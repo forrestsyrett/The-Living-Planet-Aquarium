@@ -1,0 +1,894 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		060C1EB31E81D7FC00501713 /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */; };
+		060C1EB61E81D87500501713 /* shark.obj in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB41E81D87500501713 /* shark.obj */; };
+		060C1EB71E81D87500501713 /* sharkTexture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB51E81D87500501713 /* sharkTexture.jpg */; };
+		061548EC1EF1CDB6004406CF /* CraftARResourcesAR.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */; };
+		061548F21EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */; };
+		061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F31EF1CEBE004406CF /* libc++.tbd */; };
+		061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F51EF1CEC8004406CF /* libz.tbd */; };
+		061548FC1EF1D04B004406CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FB1EF1D04B004406CF /* QuartzCore.framework */; };
+		061548FE1EF1D054004406CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FD1EF1D054004406CF /* AudioToolbox.framework */; };
+		061549001EF1D060004406CF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FF1EF1D060004406CF /* CoreMedia.framework */; };
+		061549021EF1D066004406CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549011EF1D066004406CF /* SystemConfiguration.framework */; };
+		061549041EF1D06D004406CF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549031EF1D06D004406CF /* MobileCoreServices.framework */; };
+		061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549051EF1D075004406CF /* CoreLocation.framework */; };
+		061549081EF1D18C004406CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549071EF1D18C004406CF /* Pods.framework */; };
+		061549251EF1DF01004406CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061549241EF1DF01004406CF /* Main.storyboard */; };
+		061549271EF1E38F004406CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549261EF1E38F004406CF /* GoogleService-Info.plist */; };
+		061549291EF1E62B004406CF /* Aquarium.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549281EF1E62B004406CF /* Aquarium.plist */; };
+		0615492B1EF1E63D004406CF /* AquariumSecondFloor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492A1EF1E63D004406CF /* AquariumSecondFloor.plist */; };
+		0615492D1EF1E64D004406CF /* BackgroundOverlay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */; };
+		0615492F1EF1E65C004406CF /* firstFloorExhibits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */; };
+		061549311EF1E667004406CF /* SecondFloorExhibits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549301EF1E667004406CF /* SecondFloorExhibits.plist */; };
+		061549331EF1E6B6004406CF /* AugmentedRealityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */; };
+		061549351EF1E6D3004406CF /* ARCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */; };
+		061549371EF1E80B004406CF /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 061549361EF1E80B004406CF /* background.jpg */; };
+		061549391EF1E93B004406CF /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549381EF1E93B004406CF /* EventsViewController.swift */; };
+		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
+		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
+		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */; };
+		0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */; };
+		0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0461EA00AB700D14C3D /* TheaterShows.swift */; };
+		0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */; };
+		069A216B1EB68F77006130C1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21671EB68F77006130C1 /* CustomTabBarController.swift */; };
+		069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21681EB68F77006130C1 /* CustomTabBar.swift */; };
+		069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */; };
+		069A216E1EB68F77006130C1 /* CustomTabBarItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A216A1EB68F77006130C1 /* CustomTabBarItems.swift */; };
+		069A21701EB68FB0006130C1 /* IndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A216F1EB68FB0006130C1 /* IndexController.swift */; };
+		06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */; };
+		06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DE1E8714930012A1DD /* AnimalController.swift */; };
+		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
+		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
+		06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */; };
+		06C714F81E5E6C61003F3794 /* jellies.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 06C714F71E5E6C61003F3794 /* jellies.MOV */; };
+		06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */; };
+		2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA163953DE68335B7F2D0C0E /* Pods_Aquarium.framework */; };
+		AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */; };
+		AA07C69E1DD5052700AD855D /* SecondFloorOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA07C69D1DD5052700AD855D /* SecondFloorOverlayView.swift */; };
+		AA07C6A01DD5090E00AD855D /* SecondFloorOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA07C69F1DD5090E00AD855D /* SecondFloorOverlay.swift */; };
+		AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA081A571DDA91E60020C269 /* BackGroundOverlay.swift */; };
+		AA183F2A1D1A6DD300D31044 /* AnimalEncountersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA183F291D1A6DD200D31044 /* AnimalEncountersViewController.swift */; };
+		AA353AB31DCE5F1700AD5490 /* AquariumMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AB21DCE5F1700AD5490 /* AquariumMap.swift */; };
+		AA353AB61DCE5FD200AD5490 /* MapKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AB51DCE5FD200AD5490 /* MapKitViewController.swift */; };
+		AA353AB81DCE601800AD5490 /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AB71DCE601800AD5490 /* BottomSheetViewController.swift */; };
+		AA353ABC1DCE608500AD5490 /* CurrentLocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353ABB1DCE608500AD5490 /* CurrentLocationController.swift */; };
+		AA353ABE1DCE60A700AD5490 /* AnnotationViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353ABD1DCE60A700AD5490 /* AnnotationViews.swift */; };
+		AA353AC01DCE617000AD5490 /* AquariumMapOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353ABF1DCE617000AD5490 /* AquariumMapOverlay.swift */; };
+		AA353AC21DCE619100AD5490 /* AquariumMapOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AC11DCE619100AD5490 /* AquariumMapOverlayView.swift */; };
+		AA353AC81DCE622300AD5490 /* MapGalleries.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AC71DCE622300AD5490 /* MapGalleries.swift */; };
+		AA353ACA1DCE625600AD5490 /* MapGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353AC91DCE625600AD5490 /* MapGalleryController.swift */; };
+		AA353ACC1DCE665500AD5490 /* fishFlop.m4r in Resources */ = {isa = PBXBuildFile; fileRef = AA353ACB1DCE665500AD5490 /* fishFlop.m4r */; };
+		AA353ACE1DCE670000AD5490 /* Annotations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA353ACD1DCE670000AD5490 /* Annotations.swift */; };
+		AA353AD01DCE701500AD5490 /* EntranceToSharksRoute.plist in Resources */ = {isa = PBXBuildFile; fileRef = AA353ACF1DCE701500AD5490 /* EntranceToSharksRoute.plist */; };
+		AA353AD91DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD11DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf */; };
+		AA353ADA1DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD21DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf */; };
+		AA353ADB1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD31DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf */; };
+		AA353ADC1DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD41DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf */; };
+		AA353ADD1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD51DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf */; };
+		AA353ADE1DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD61DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf */; };
+		AA353ADF1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD71DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf */; };
+		AA353AE01DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AD81DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf */; };
+		AA353AE41DCE8C0600AD5490 /* TrajanPro-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AE21DCE8C0600AD5490 /* TrajanPro-Bold.otf */; };
+		AA353AE51DCE8C0600AD5490 /* TrajanPro-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AA353AE31DCE8C0600AD5490 /* TrajanPro-Regular.otf */; };
+		AA544C951D0BB66C00DC1725 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544C941D0BB66C00DC1725 /* AppDelegate.swift */; };
+		AA544C9C1D0BB66C00DC1725 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA544C9B1D0BB66C00DC1725 /* Assets.xcassets */; };
+		AA544C9F1D0BB66C00DC1725 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA544C9D1D0BB66C00DC1725 /* LaunchScreen.storyboard */; };
+		AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CAA1D0C790400DC1725 /* UIAppearance.swift */; };
+		AA544CAD1D0C90DE00DC1725 /* ExhibitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */; };
+		AA544CB31D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */; };
+		AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */; };
+		AA55B5821DDF759600CC2336 /* MainExhibitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5811DDF759600CC2336 /* MainExhibitTableViewController.swift */; };
+		AA55B5841DDF75AE00CC2336 /* MainExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */; };
+		AA55B5861DDF765100CC2336 /* MainExhibitController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5851DDF765100CC2336 /* MainExhibitController.swift */; };
+		AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */; };
+		AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E631D3868F900FA20F7 /* Animations.swift */; };
+		AA6F4E661D386A2A00FA20F7 /* AnimalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */; };
+		AA6F4E701D3C01B100FA20F7 /* AnimalFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */; };
+		AA6F4E721D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */; };
+		AA6FA1D21D554E6800CBEEC7 /* MembershipCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */; };
+		AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */; };
+		AA6FA1D61D5554FC00CBEEC7 /* MembershipCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */; };
+		AA6FA1D81D55552800CBEEC7 /* Membership.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D71D55552800CBEEC7 /* Membership.swift */; };
+		AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CE6FE1DDB91A600EF4669 /* Background.swift */; };
+		AA7CE7011DDB928200EF4669 /* BackgroundOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CE7001DDB928200EF4669 /* BackgroundOverlayView.swift */; };
+		AA7FF44B1DDE65AE002A5AE0 /* MainExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */; };
+		AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */; };
+		AA8D05161D19DC930063F222 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D05151D19DC930063F222 /* HomeViewController.swift */; };
+		AA909B181D41B42A000DB923 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA909B171D41B42A000DB923 /* Feeding.swift */; };
+		AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D6EDF1D1CCD5000831AFE /* Animal.swift */; };
+		AAA20FF61D5E47A1009B3241 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */; };
+		AACE392A1D54578E0082E667 /* AddNewMembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE39291D54578E0082E667 /* AddNewMembershipViewController.swift */; };
+		AAEE47681D3CAD8500E0C537 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEE47671D3CAD8500E0C537 /* NotificationController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneKitViewController.swift; sourceTree = "<group>"; };
+		060C1EB41E81D87500501713 /* shark.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shark.obj; sourceTree = "<group>"; };
+		060C1EB51E81D87500501713 /* sharkTexture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sharkTexture.jpg; sourceTree = "<group>"; };
+		061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CraftARResourcesAR.bundle; sourceTree = "<group>"; };
+		061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CraftARAugmentedRealitySDK.framework; sourceTree = "<group>"; };
+		061548F31EF1CEBE004406CF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		061548F51EF1CEC8004406CF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		061548F81EF1CFC6004406CF /* Aquarium-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aquarium-Bridging-Header.h"; sourceTree = "<group>"; };
+		061548FB1EF1D04B004406CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		061548FD1EF1D054004406CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		061548FF1EF1D060004406CF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		061549011EF1D066004406CF /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		061549031EF1D06D004406CF /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		061549051EF1D075004406CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		061549071EF1D18C004406CF /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods.framework; sourceTree = "<group>"; };
+		061549241EF1DF01004406CF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		061549261EF1E38F004406CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		061549281EF1E62B004406CF /* Aquarium.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Aquarium.plist; sourceTree = "<group>"; };
+		0615492A1EF1E63D004406CF /* AquariumSecondFloor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AquariumSecondFloor.plist; sourceTree = "<group>"; };
+		0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BackgroundOverlay.plist; sourceTree = "<group>"; };
+		0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = firstFloorExhibits.plist; sourceTree = "<group>"; };
+		061549301EF1E667004406CF /* SecondFloorExhibits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecondFloorExhibits.plist; sourceTree = "<group>"; };
+		061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AugmentedRealityViewController.swift; sourceTree = "<group>"; };
+		061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCollectionViewCell.swift; sourceTree = "<group>"; };
+		061549361EF1E80B004406CF /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		061549381EF1E93B004406CF /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		0615493B1EF1E94E004406CF /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
+		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
+		0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterTimesTableViewCell.swift; path = Aquarium/TheaterTimesTableViewCell.swift; sourceTree = "<group>"; };
+		0660F0461EA00AB700D14C3D /* TheaterShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShows.swift; path = Aquarium/TheaterShows.swift; sourceTree = "<group>"; };
+		0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShowsController.swift; path = Aquarium/TheaterShowsController.swift; sourceTree = "<group>"; };
+		069A21671EB68F77006130C1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		069A21681EB68F77006130C1 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarAnimatedTransition.swift; sourceTree = "<group>"; };
+		069A216A1EB68F77006130C1 /* CustomTabBarItems.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarItems.swift; sourceTree = "<group>"; };
+		069A216F1EB68FB0006130C1 /* IndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexController.swift; sourceTree = "<group>"; };
+		06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = Aquarium/MapTableViewCell.swift; sourceTree = "<group>"; };
+		06A0C2DE1E8714930012A1DD /* AnimalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalController.swift; sourceTree = "<group>"; };
+		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
+		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningScreenViewController.swift; sourceTree = "<group>"; };
+		06C714F71E5E6C61003F3794 /* jellies.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = jellies.MOV; sourceTree = "<group>"; };
+		06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
+		AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		AA07C69D1DD5052700AD855D /* SecondFloorOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondFloorOverlayView.swift; sourceTree = "<group>"; };
+		AA07C69F1DD5090E00AD855D /* SecondFloorOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecondFloorOverlay.swift; path = Aquarium/SecondFloorOverlay.swift; sourceTree = "<group>"; };
+		AA081A571DDA91E60020C269 /* BackGroundOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackGroundOverlay.swift; path = Aquarium/BackGroundOverlay.swift; sourceTree = "<group>"; };
+		AA183F291D1A6DD200D31044 /* AnimalEncountersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalEncountersViewController.swift; sourceTree = "<group>"; };
+		AA353AB21DCE5F1700AD5490 /* AquariumMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AquariumMap.swift; path = Aquarium/AquariumMap.swift; sourceTree = "<group>"; };
+		AA353AB51DCE5FD200AD5490 /* MapKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapKitViewController.swift; path = Aquarium/MapKitViewController.swift; sourceTree = "<group>"; };
+		AA353AB71DCE601800AD5490 /* BottomSheetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BottomSheetViewController.swift; path = Aquarium/BottomSheetViewController.swift; sourceTree = "<group>"; };
+		AA353ABB1DCE608500AD5490 /* CurrentLocationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CurrentLocationController.swift; path = Aquarium/CurrentLocationController.swift; sourceTree = "<group>"; };
+		AA353ABD1DCE60A700AD5490 /* AnnotationViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnnotationViews.swift; path = Aquarium/AnnotationViews.swift; sourceTree = "<group>"; };
+		AA353ABF1DCE617000AD5490 /* AquariumMapOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AquariumMapOverlay.swift; path = Aquarium/AquariumMapOverlay.swift; sourceTree = "<group>"; };
+		AA353AC11DCE619100AD5490 /* AquariumMapOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AquariumMapOverlayView.swift; path = Aquarium/AquariumMapOverlayView.swift; sourceTree = "<group>"; };
+		AA353AC71DCE622300AD5490 /* MapGalleries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapGalleries.swift; path = Aquarium/MapGalleries.swift; sourceTree = "<group>"; };
+		AA353AC91DCE625600AD5490 /* MapGalleryController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapGalleryController.swift; path = Aquarium/MapGalleryController.swift; sourceTree = "<group>"; };
+		AA353ACB1DCE665500AD5490 /* fishFlop.m4r */ = {isa = PBXFileReference; lastKnownFileType = file; path = fishFlop.m4r; sourceTree = "<group>"; };
+		AA353ACD1DCE670000AD5490 /* Annotations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Annotations.swift; path = Aquarium/Annotations.swift; sourceTree = "<group>"; };
+		AA353ACF1DCE701500AD5490 /* EntranceToSharksRoute.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = EntranceToSharksRoute.plist; sourceTree = "<group>"; };
+		AA353AD11DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-Book.otf"; sourceTree = "<group>"; };
+		AA353AD21DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-BookIt.otf"; sourceTree = "<group>"; };
+		AA353AD31DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-Demi.otf"; sourceTree = "<group>"; };
+		AA353AD41DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-DemiIt.otf"; sourceTree = "<group>"; };
+		AA353AD51DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-Hvy.otf"; sourceTree = "<group>"; };
+		AA353AD61DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-HvyIt.otf"; sourceTree = "<group>"; };
+		AA353AD71DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-Med.otf"; sourceTree = "<group>"; };
+		AA353AD81DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ITCFranklinGothicStd-MedIt.otf"; sourceTree = "<group>"; };
+		AA353AE21DCE8C0600AD5490 /* TrajanPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Bold.otf"; sourceTree = "<group>"; };
+		AA353AE31DCE8C0600AD5490 /* TrajanPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "TrajanPro-Regular.otf"; sourceTree = "<group>"; };
+		AA544C911D0BB66C00DC1725 /* Aquarium.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aquarium.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA544C941D0BB66C00DC1725 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AA544C9B1D0BB66C00DC1725 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA544C9E1D0BB66C00DC1725 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AA544CA01D0BB66C00DC1725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA544CAA1D0C790400DC1725 /* UIAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAppearance.swift; sourceTree = "<group>"; };
+		AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExhibitTableViewController.swift; path = Aquarium/ExhibitTableViewController.swift; sourceTree = "<group>"; };
+		AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitGalleriesViewController.swift; sourceTree = "<group>"; };
+		AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRScannerViewController.swift; path = ../QRScannerViewController.swift; sourceTree = "<group>"; };
+		AA55B5811DDF759600CC2336 /* MainExhibitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitTableViewController.swift; sourceTree = "<group>"; };
+		AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibits.swift; sourceTree = "<group>"; };
+		AA55B5851DDF765100CC2336 /* MainExhibitController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitController.swift; sourceTree = "<group>"; };
+		AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitGalleryTableViewCell.swift; sourceTree = "<group>"; };
+		AA6F4E631D3868F900FA20F7 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewCell.swift; sourceTree = "<group>"; };
+		AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFeedTableViewController.swift; sourceTree = "<group>"; };
+		AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFeedTableViewCell.swift; sourceTree = "<group>"; };
+		AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardTableViewCell.swift; sourceTree = "<group>"; };
+		AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipListTableViewController.swift; sourceTree = "<group>"; };
+		AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardController.swift; sourceTree = "<group>"; };
+		AA6FA1D71D55552800CBEEC7 /* Membership.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Membership.swift; sourceTree = "<group>"; };
+		AA7CE6FE1DDB91A600EF4669 /* Background.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Background.swift; path = Aquarium/Background.swift; sourceTree = "<group>"; };
+		AA7CE7001DDB928200EF4669 /* BackgroundOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundOverlayView.swift; path = Aquarium/BackgroundOverlayView.swift; sourceTree = "<group>"; };
+		AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitViewController.swift; sourceTree = "<group>"; };
+		AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlowingMenu.framework; path = "../../../Library/Developer/Xcode/DerivedData/Aquarium-dssxpatbhahvltdxuofqdxoybnwp/Build/Products/Debug-iphoneos/FlowingMenu/FlowingMenu.framework"; sourceTree = "<group>"; };
+		AA8D05151D19DC930063F222 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		AA909B171D41B42A000DB923 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
+		AA9D6EDF1D1CCD5000831AFE /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
+		AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aquarium.entitlements; sourceTree = "<group>"; };
+		AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		AACE39291D54578E0082E667 /* AddNewMembershipViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddNewMembershipViewController.swift; sourceTree = "<group>"; };
+		AAEE47671D3CAD8500E0C537 /* NotificationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		AE652E5AD0B8A15AFB9D2F67 /* Pods-Aquarium.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aquarium.release.xcconfig"; path = "Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium.release.xcconfig"; sourceTree = "<group>"; };
+		DA6E2996903BEDB88149D83B /* Pods-Aquarium.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aquarium.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium.debug.xcconfig"; sourceTree = "<group>"; };
+		EA163953DE68335B7F2D0C0E /* Pods_Aquarium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aquarium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AA544C8E1D0BB66B00DC1725 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				061549081EF1D18C004406CF /* Pods.framework in Frameworks */,
+				061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */,
+				061549041EF1D06D004406CF /* MobileCoreServices.framework in Frameworks */,
+				061549021EF1D066004406CF /* SystemConfiguration.framework in Frameworks */,
+				061549001EF1D060004406CF /* CoreMedia.framework in Frameworks */,
+				061548FE1EF1D054004406CF /* AudioToolbox.framework in Frameworks */,
+				061548FC1EF1D04B004406CF /* QuartzCore.framework in Frameworks */,
+				061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */,
+				061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */,
+				AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */,
+				061548F21EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework in Frameworks */,
+				2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0615493A1EF1E93F004406CF /* Calendar Events */ = {
+			isa = PBXGroup;
+			children = (
+				061549381EF1E93B004406CF /* EventsViewController.swift */,
+				0615493B1EF1E94E004406CF /* CustomCell.swift */,
+				0615493D1EF1E956004406CF /* EventTableViewCell.swift */,
+				0615493F1EF1E95D004406CF /* Event.swift */,
+			);
+			name = "Calendar Events";
+			sourceTree = "<group>";
+		};
+		0656D2CB1DE4C3150014BBF0 /* Unused */ = {
+			isa = PBXGroup;
+			children = (
+				AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */,
+				AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */,
+			);
+			name = Unused;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		069A21661EB68F52006130C1 /* CustomTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				069A21671EB68F77006130C1 /* CustomTabBarController.swift */,
+				069A21681EB68F77006130C1 /* CustomTabBar.swift */,
+				069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */,
+				069A216A1EB68F77006130C1 /* CustomTabBarItems.swift */,
+				069A216F1EB68FB0006130C1 /* IndexController.swift */,
+			);
+			name = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		AA353AB41DCE5F3900AD5490 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				AA353AB21DCE5F1700AD5490 /* AquariumMap.swift */,
+				AA7CE6FE1DDB91A600EF4669 /* Background.swift */,
+				AA353AB51DCE5FD200AD5490 /* MapKitViewController.swift */,
+				AA353AB71DCE601800AD5490 /* BottomSheetViewController.swift */,
+				06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */,
+				AA353ABB1DCE608500AD5490 /* CurrentLocationController.swift */,
+				AA353ABD1DCE60A700AD5490 /* AnnotationViews.swift */,
+				AA081A571DDA91E60020C269 /* BackGroundOverlay.swift */,
+				AA353ABF1DCE617000AD5490 /* AquariumMapOverlay.swift */,
+				AA353AC11DCE619100AD5490 /* AquariumMapOverlayView.swift */,
+				AA7CE7001DDB928200EF4669 /* BackgroundOverlayView.swift */,
+				AA07C69D1DD5052700AD855D /* SecondFloorOverlayView.swift */,
+				AA07C69F1DD5090E00AD855D /* SecondFloorOverlay.swift */,
+				AA353AC71DCE622300AD5490 /* MapGalleries.swift */,
+				AA353AC91DCE625600AD5490 /* MapGalleryController.swift */,
+				AA353ACD1DCE670000AD5490 /* Annotations.swift */,
+				0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */,
+				0660F0461EA00AB700D14C3D /* TheaterShows.swift */,
+				0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */,
+				061549281EF1E62B004406CF /* Aquarium.plist */,
+				0615492A1EF1E63D004406CF /* AquariumSecondFloor.plist */,
+				0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */,
+				0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */,
+				061549301EF1E667004406CF /* SecondFloorExhibits.plist */,
+				AA353ACF1DCE701500AD5490 /* EntranceToSharksRoute.plist */,
+			);
+			name = Map;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		AA353AE11DCE8BAA00AD5490 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				AA353AD11DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf */,
+				AA353AD21DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf */,
+				AA353AD31DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf */,
+				AA353AD41DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf */,
+				AA353AD51DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf */,
+				AA353AD61DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf */,
+				AA353AD71DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf */,
+				AA353AD81DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf */,
+				AA353AE21DCE8C0600AD5490 /* TrajanPro-Bold.otf */,
+				AA353AE31DCE8C0600AD5490 /* TrajanPro-Regular.otf */,
+			);
+			name = Fonts;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		AA544C881D0BB66B00DC1725 = {
+			isa = PBXGroup;
+			children = (
+				061548F81EF1CFC6004406CF /* Aquarium-Bridging-Header.h */,
+				061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */,
+				AA544C931D0BB66C00DC1725 /* Aquarium */,
+				AA544C921D0BB66C00DC1725 /* Products */,
+				BA65A9DDB62A50DF28C33017 /* Pods */,
+				EA94B41FA31D61D281B2BE4B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AA544C921D0BB66C00DC1725 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA544C911D0BB66C00DC1725 /* Aquarium.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AA544C931D0BB66C00DC1725 /* Aquarium */ = {
+			isa = PBXGroup;
+			children = (
+				061549071EF1D18C004406CF /* Pods.framework */,
+				061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */,
+				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
+				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
+				06C4BB891E78882B005A96CE /* NotificationDelegate.swift */,
+				06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */,
+				061549241EF1DF01004406CF /* Main.storyboard */,
+				AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */,
+				AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */,
+				06C714F71E5E6C61003F3794 /* jellies.MOV */,
+				AA544CA01D0BB66C00DC1725 /* Info.plist */,
+				061549261EF1E38F004406CF /* GoogleService-Info.plist */,
+				0615493A1EF1E93F004406CF /* Calendar Events */,
+				AA353AE11DCE8BAA00AD5490 /* Fonts */,
+				AA353AB41DCE5F3900AD5490 /* Map */,
+				AA8441CF1D556F3C000238C1 /* Main Tab Bar Items */,
+				AA8441CB1D556E12000238C1 /* Mobile Membership */,
+				AA8441CD1D556EA0000238C1 /* Animal Feeds */,
+				069A21661EB68F52006130C1 /* CustomTabBar */,
+				AA8441CE1D556ECD000238C1 /* Appearance */,
+				AA8441CC1D556E49000238C1 /* Animal Exhibit Galleries */,
+				AA544C9B1D0BB66C00DC1725 /* Assets.xcassets */,
+				0656D2CB1DE4C3150014BBF0 /* Unused */,
+				AA544C9D1D0BB66C00DC1725 /* LaunchScreen.storyboard */,
+			);
+			path = Aquarium;
+			sourceTree = "<group>";
+		};
+		AA8441CB1D556E12000238C1 /* Mobile Membership */ = {
+			isa = PBXGroup;
+			children = (
+				AACE39291D54578E0082E667 /* AddNewMembershipViewController.swift */,
+				AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */,
+				AA6FA1D71D55552800CBEEC7 /* Membership.swift */,
+				AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */,
+				AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */,
+			);
+			name = "Mobile Membership";
+			sourceTree = "<group>";
+		};
+		AA8441CC1D556E49000238C1 /* Animal Exhibit Galleries */ = {
+			isa = PBXGroup;
+			children = (
+				AA9D6EDF1D1CCD5000831AFE /* Animal.swift */,
+				06A0C2DE1E8714930012A1DD /* AnimalController.swift */,
+				AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */,
+				AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */,
+				AA55B5811DDF759600CC2336 /* MainExhibitTableViewController.swift */,
+				0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */,
+				AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */,
+				AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */,
+				AA55B5851DDF765100CC2336 /* MainExhibitController.swift */,
+				06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */,
+				060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */,
+				060C1EB41E81D87500501713 /* shark.obj */,
+				060C1EB51E81D87500501713 /* sharkTexture.jpg */,
+			);
+			name = "Animal Exhibit Galleries";
+			sourceTree = "<group>";
+		};
+		AA8441CD1D556EA0000238C1 /* Animal Feeds */ = {
+			isa = PBXGroup;
+			children = (
+				AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */,
+				AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */,
+				AAEE47671D3CAD8500E0C537 /* NotificationController.swift */,
+				AA909B171D41B42A000DB923 /* Feeding.swift */,
+			);
+			name = "Animal Feeds";
+			sourceTree = "<group>";
+		};
+		AA8441CE1D556ECD000238C1 /* Appearance */ = {
+			isa = PBXGroup;
+			children = (
+				061549361EF1E80B004406CF /* background.jpg */,
+				AA6F4E631D3868F900FA20F7 /* Animations.swift */,
+				AA544CAA1D0C790400DC1725 /* UIAppearance.swift */,
+				AA353ACB1DCE665500AD5490 /* fishFlop.m4r */,
+			);
+			name = Appearance;
+			sourceTree = "<group>";
+		};
+		AA8441CF1D556F3C000238C1 /* Main Tab Bar Items */ = {
+			isa = PBXGroup;
+			children = (
+				AA8D05151D19DC930063F222 /* HomeViewController.swift */,
+				061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */,
+				061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */,
+				AA183F291D1A6DD200D31044 /* AnimalEncountersViewController.swift */,
+				06B325241DF7383500A53057 /* BeaconInfoViewController.swift */,
+				AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */,
+			);
+			name = "Main Tab Bar Items";
+			sourceTree = "<group>";
+		};
+		BA65A9DDB62A50DF28C33017 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DA6E2996903BEDB88149D83B /* Pods-Aquarium.debug.xcconfig */,
+				AE652E5AD0B8A15AFB9D2F67 /* Pods-Aquarium.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		EA94B41FA31D61D281B2BE4B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				061549051EF1D075004406CF /* CoreLocation.framework */,
+				061549031EF1D06D004406CF /* MobileCoreServices.framework */,
+				061549011EF1D066004406CF /* SystemConfiguration.framework */,
+				061548FF1EF1D060004406CF /* CoreMedia.framework */,
+				061548FD1EF1D054004406CF /* AudioToolbox.framework */,
+				061548FB1EF1D04B004406CF /* QuartzCore.framework */,
+				061548F51EF1CEC8004406CF /* libz.tbd */,
+				061548F31EF1CEBE004406CF /* libc++.tbd */,
+				AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */,
+				EA163953DE68335B7F2D0C0E /* Pods_Aquarium.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA544C901D0BB66B00DC1725 /* Aquarium */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA544CA31D0BB66C00DC1725 /* Build configuration list for PBXNativeTarget "Aquarium" */;
+			buildPhases = (
+				18EC9C3927D6BD15E1764A5A /* [CP] Check Pods Manifest.lock */,
+				AA544C8D1D0BB66B00DC1725 /* Sources */,
+				AA544C8E1D0BB66B00DC1725 /* Frameworks */,
+				AA544C8F1D0BB66B00DC1725 /* Resources */,
+				46E6E5229D403232BA3BCF95 /* [CP] Embed Pods Frameworks */,
+				64C321959809DAF444FA9955 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Aquarium;
+			productName = Aquarium;
+			productReference = AA544C911D0BB66C00DC1725 /* Aquarium.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA544C891D0BB66B00DC1725 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0730;
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Forrest Syrett";
+				TargetAttributes = {
+					AA544C901D0BB66B00DC1725 = {
+						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = B3G94J8WC9;
+						LastSwiftMigration = 0830;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = AA544C8C1D0BB66B00DC1725 /* Build configuration list for PBXProject "Aquarium" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AA544C881D0BB66B00DC1725;
+			productRefGroup = AA544C921D0BB66C00DC1725 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA544C901D0BB66B00DC1725 /* Aquarium */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA544C8F1D0BB66B00DC1725 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA353ACC1DCE665500AD5490 /* fishFlop.m4r in Resources */,
+				061549371EF1E80B004406CF /* background.jpg in Resources */,
+				061549251EF1DF01004406CF /* Main.storyboard in Resources */,
+				AA353ADD1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf in Resources */,
+				061548EC1EF1CDB6004406CF /* CraftARResourcesAR.bundle in Resources */,
+				AA544C9F1D0BB66C00DC1725 /* LaunchScreen.storyboard in Resources */,
+				AA353AD91DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf in Resources */,
+				AA353ADE1DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf in Resources */,
+				061549291EF1E62B004406CF /* Aquarium.plist in Resources */,
+				0615492B1EF1E63D004406CF /* AquariumSecondFloor.plist in Resources */,
+				061549311EF1E667004406CF /* SecondFloorExhibits.plist in Resources */,
+				AA353ADB1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf in Resources */,
+				AA353AE41DCE8C0600AD5490 /* TrajanPro-Bold.otf in Resources */,
+				AA353AE51DCE8C0600AD5490 /* TrajanPro-Regular.otf in Resources */,
+				AA353ADF1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf in Resources */,
+				061549271EF1E38F004406CF /* GoogleService-Info.plist in Resources */,
+				060C1EB61E81D87500501713 /* shark.obj in Resources */,
+				0615492D1EF1E64D004406CF /* BackgroundOverlay.plist in Resources */,
+				AA544C9C1D0BB66C00DC1725 /* Assets.xcassets in Resources */,
+				AA353ADA1DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf in Resources */,
+				060C1EB71E81D87500501713 /* sharkTexture.jpg in Resources */,
+				0615492F1EF1E65C004406CF /* firstFloorExhibits.plist in Resources */,
+				06C714F81E5E6C61003F3794 /* jellies.MOV in Resources */,
+				AA353AD01DCE701500AD5490 /* EntranceToSharksRoute.plist in Resources */,
+				AA353AE01DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf in Resources */,
+				AA353ADC1DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		18EC9C3927D6BD15E1764A5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		46E6E5229D403232BA3BCF95 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64C321959809DAF444FA9955 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA544C8D1D0BB66B00DC1725 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA6F4E701D3C01B100FA20F7 /* AnimalFeedTableViewController.swift in Sources */,
+				AA6FA1D61D5554FC00CBEEC7 /* MembershipCardController.swift in Sources */,
+				06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */,
+				069A216E1EB68F77006130C1 /* CustomTabBarItems.swift in Sources */,
+				AA55B5821DDF759600CC2336 /* MainExhibitTableViewController.swift in Sources */,
+				069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */,
+				AA353ACE1DCE670000AD5490 /* Annotations.swift in Sources */,
+				069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */,
+				AA55B5861DDF765100CC2336 /* MainExhibitController.swift in Sources */,
+				AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */,
+				AA353ABE1DCE60A700AD5490 /* AnnotationViews.swift in Sources */,
+				AA544CAD1D0C90DE00DC1725 /* ExhibitTableViewController.swift in Sources */,
+				061549331EF1E6B6004406CF /* AugmentedRealityViewController.swift in Sources */,
+				0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */,
+				061549351EF1E6D3004406CF /* ARCollectionViewCell.swift in Sources */,
+				AA6F4E721D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift in Sources */,
+				AA07C6A01DD5090E00AD855D /* SecondFloorOverlay.swift in Sources */,
+				0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */,
+				0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */,
+				061549401EF1E95D004406CF /* Event.swift in Sources */,
+				AA7CE7011DDB928200EF4669 /* BackgroundOverlayView.swift in Sources */,
+				AA353AB61DCE5FD200AD5490 /* MapKitViewController.swift in Sources */,
+				AACE392A1D54578E0082E667 /* AddNewMembershipViewController.swift in Sources */,
+				AA353AC81DCE622300AD5490 /* MapGalleries.swift in Sources */,
+				AA353AB31DCE5F1700AD5490 /* AquariumMap.swift in Sources */,
+				06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */,
+				069A21701EB68FB0006130C1 /* IndexController.swift in Sources */,
+				AA544CB31D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift in Sources */,
+				AA353ACA1DCE625600AD5490 /* MapGalleryController.swift in Sources */,
+				AA909B181D41B42A000DB923 /* Feeding.swift in Sources */,
+				069A216B1EB68F77006130C1 /* CustomTabBarController.swift in Sources */,
+				061549391EF1E93B004406CF /* EventsViewController.swift in Sources */,
+				AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */,
+				AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */,
+				06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */,
+				AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */,
+				AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */,
+				AA353AC01DCE617000AD5490 /* AquariumMapOverlay.swift in Sources */,
+				AAA20FF61D5E47A1009B3241 /* ContactUsViewController.swift in Sources */,
+				AA07C69E1DD5052700AD855D /* SecondFloorOverlayView.swift in Sources */,
+				AA8D05161D19DC930063F222 /* HomeViewController.swift in Sources */,
+				AA55B5841DDF75AE00CC2336 /* MainExhibits.swift in Sources */,
+				AA353AB81DCE601800AD5490 /* BottomSheetViewController.swift in Sources */,
+				AA7FF44B1DDE65AE002A5AE0 /* MainExhibitViewController.swift in Sources */,
+				AA6F4E661D386A2A00FA20F7 /* AnimalTableViewCell.swift in Sources */,
+				060C1EB31E81D7FC00501713 /* SceneKitViewController.swift in Sources */,
+				AA353AC21DCE619100AD5490 /* AquariumMapOverlayView.swift in Sources */,
+				06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */,
+				06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */,
+				AA183F2A1D1A6DD300D31044 /* AnimalEncountersViewController.swift in Sources */,
+				AA544C951D0BB66C00DC1725 /* AppDelegate.swift in Sources */,
+				0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */,
+				AAEE47681D3CAD8500E0C537 /* NotificationController.swift in Sources */,
+				0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */,
+				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
+				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
+				0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */,
+				06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */,
+				AA353ABC1DCE608500AD5490 /* CurrentLocationController.swift in Sources */,
+				AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */,
+				AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */,
+				AA6FA1D21D554E6800CBEEC7 /* MembershipCardTableViewCell.swift in Sources */,
+				AA6FA1D81D55552800CBEEC7 /* Membership.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AA544C9D1D0BB66C00DC1725 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AA544C9E1D0BB66C00DC1725 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AA544CA11D0BB66C00DC1725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AA544CA21D0BB66C00DC1725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AA544CA41D0BB66C00DC1725 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DA6E2996903BEDB88149D83B /* Pods-Aquarium.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Aquarium/Aquarium.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B3G94J8WC9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aquarium",
+				);
+				INFOPLIST_FILE = Aquarium/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"FlowingMenu\"",
+					"-framework",
+					"\"OneSignal\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
+				PRODUCT_NAME = Aquarium;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Aquarium-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AA544CA51D0BB66C00DC1725 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE652E5AD0B8A15AFB9D2F67 /* Pods-Aquarium.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Aquarium/Aquarium.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				DEVELOPMENT_TEAM = B3G94J8WC9;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Aquarium",
+				);
+				INFOPLIST_FILE = Aquarium/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"FlowingMenu\"",
+					"-framework",
+					"\"OneSignal\"",
+					"-framework",
+					"\"SystemConfiguration\"",
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
+				PRODUCT_NAME = Aquarium;
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Aquarium-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA544C8C1D0BB66B00DC1725 /* Build configuration list for PBXProject "Aquarium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA544CA11D0BB66C00DC1725 /* Debug */,
+				AA544CA21D0BB66C00DC1725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA544CA31D0BB66C00DC1725 /* Build configuration list for PBXNativeTarget "Aquarium" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA544CA41D0BB66C00DC1725 /* Debug */,
+				AA544CA51D0BB66C00DC1725 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AA544C891D0BB66B00DC1725 /* Project object */;
+}

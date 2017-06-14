@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Elevator</string>
+		<key>location</key>
+		<string>{40.53225, -111.8937}</string>
+		<key>type</key>
+		<string>10</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Restrooms</string>
+		<key>location</key>
+		<string>{40.5323, -111.8941}</string>
+		<key>type</key>
+		<string>8</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Deep Sea Lab</string>
+		<key>location</key>
+		<string>{40.5326, -111.8937}</string>
+		<key>type</key>
+		<string>11</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Jellyfish</string>
+		<key>location</key>
+		<string>{40.5324, -111.8938}</string>
+		<key>type</key>
+		<string>9</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Ocean Explorer</string>
+		<key>location</key>
+		<string>{40.5325, -111.8940}</string>
+		<key>type</key>
+		<string>3</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>40&apos; Shark Tunnel</string>
+		<key>location</key>
+		<string>{40.5325, -111.8943}</string>
+		<key>type</key>
+		<string>3</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Banquet Hall</string>
+		<key>location</key>
+		<string>{40.5323, -111.8943}</string>
+		<key>type</key>
+		<string>7</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Gift Shop</string>
+		<key>location</key>
+		<string>{40.532109537999929, -111.89393610991748}</string>
+		<key>type</key>
+		<string>2</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Journey to South America</string>
+		<key>location</key>
+		<string>{40.532105460818542,  -111.89343543106274}</string>
+		<key>type</key>
+		<string>1</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Journey to South America</string>
+		<key>location</key>
+		<string>{40.5322, -111.8935}</string>
+		<key>type</key>
+		<string>1</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Discover Utah</string>
+		<key>location</key>
+		<string>{40.5325, -111.8934}</string>
+		<key>type</key>
+		<string>0</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

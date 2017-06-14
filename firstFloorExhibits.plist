@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Elevator</string>
+		<key>location</key>
+		<string>{40.53223, -111.893787}</string>
+		<key>type</key>
+		<string>10</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Restrooms</string>
+		<key>location</key>
+		<string>{40.53228, -111.8941899}</string>
+		<key>type</key>
+		<string>8</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Deep Sea Lab</string>
+		<key>location</key>
+		<string>{40.53257, -111.893774}</string>
+		<key>type</key>
+		<string>11</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Jellyfish</string>
+		<key>location</key>
+		<string>{40.53242, -111.89387656}</string>
+		<key>type</key>
+		<string>9</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Ocean Explorer</string>
+		<key>location</key>
+		<string>{40.53248, -111.89418850}</string>
+		<key>type</key>
+		<string>3</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>40&apos; Shark Tunnel</string>
+		<key>location</key>
+		<string>{40.53254, -111.8943563}</string>
+		<key>type</key>
+		<string>3</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Banquet Hall</string>
+		<key>location</key>
+		<string>{40.53225, -111.894313}</string>
+		<key>type</key>
+		<string>7</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Journey to South America</string>
+		<key>location</key>
+		<string>{40.53218,  -111.89357}</string>
+		<key>type</key>
+		<string>1</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Discover Utah</string>
+		<key>location</key>
+		<string>{40.53250, -111.893496}</string>
+		<key>type</key>
+		<string>0</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Gift Shop</string>
+		<key>location</key>
+		<string>{40.53213, -111.89393244}</string>
+		<key>type</key>
+		<string>2</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Cafe</string>
+		<key>location</key>
+		<string>{40.5320, -111.89409}</string>
+		<key>type</key>
+		<string>2</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+</array>
+</plist>

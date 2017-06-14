@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Elevator</string>
+		<key>location</key>
+		<string>{40.53225, -111.893781}</string>
+		<key>type</key>
+		<string>10</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>4D Theater</string>
+		<key>location</key>
+		<string>{40.53240, -111.89411}</string>
+		<key>type</key>
+		<string>13</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Restrooms</string>
+		<key>location</key>
+		<string>{40.53224, -111.89419}</string>
+		<key>type</key>
+		<string>8</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Expedition Asia</string>
+		<key>location</key>
+		<string>{40.532591623, -111.89407191}</string>
+		<key>type</key>
+		<string>4</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Tuki&apos;s Island</string>
+		<key>location</key>
+		<string>{40.53221756, -111.8943762}</string>
+		<key>type</key>
+		<string>5</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Journey to South America - Aviary</string>
+		<key>location</key>
+		<string>{40.53211, -111.89355327}</string>
+		<key>type</key>
+		<string>1</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Antarctic Adventure</string>
+		<key>location</key>
+		<string>{40.53256259, -111.89378918}</string>
+		<key>type</key>
+		<string>6</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Education Center</string>
+		<key>location</key>
+		<string>{40.53270, -111.89412}</string>
+		<key>type</key>
+		<string>14</string>
+		<key>subtitle</key>
+		<string></string>
+	</dict>
+</array>
+</plist>
