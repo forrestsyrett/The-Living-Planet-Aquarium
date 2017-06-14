@@ -692,11 +692,11 @@ To get started, tap the plus!
                     <navigationItem key="navigationItem" id="Ldp-oS-yj0">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="uib-eT-Oi6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Ip-zb-kE7">
-                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                <rect key="frame" x="324" y="4" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7p6-iG-8Wb"/>
-                                    <constraint firstAttribute="width" constant="30" id="JGc-vz-pRa"/>
+                                    <constraint firstAttribute="height" constant="35" id="7p6-iG-8Wb"/>
+                                    <constraint firstAttribute="width" constant="35" id="JGc-vz-pRa"/>
                                 </constraints>
                                 <state key="normal" image="plus"/>
                                 <connections>
@@ -1120,13 +1120,13 @@ To get started, tap the plus!
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmz-cn-9eH">
                                 <rect key="frame" x="16" y="29" width="35" height="35"/>
-                                <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="2pd-u3-uuW"/>
                                     <constraint firstAttribute="height" constant="35" id="kCa-6o-Bgx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="X"/>
+                                <state key="normal" image="cancel"/>
                                 <connections>
                                     <action selector="dismissButtonTapped:" destination="vyk-Ro-hE2" eventType="touchUpInside" id="VnQ-Ko-Xtv"/>
                                 </connections>
@@ -1681,7 +1681,7 @@ To get started, tap the plus!
         <!--Animal Detail View Controller-->
         <scene sceneID="WOz-BM-1dZ">
             <objects>
-                <viewController id="Jr2-gF-2qH" customClass="AnimalDetailViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Jr2-gF-2qH" customClass="AnimalDetailViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iaE-th-QQg"/>
                         <viewControllerLayoutGuide type="bottom" id="t3h-eh-PRC"/>
@@ -1743,31 +1743,22 @@ To get started, tap the plus!
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIq-YH-Ocm" userLabel="containerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This may have more than 1 line" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVh-Vb-9pf">
                                                 <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-qn-TaP">
-                                                <rect key="frame" x="8" y="42" width="359" height="8"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="tt5-fw-ZFv"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="h3d-qn-TaP" secondAttribute="bottom" constant="-1" id="Cqd-Bf-9Eb"/>
                                             <constraint firstAttribute="trailing" secondItem="MVh-Vb-9pf" secondAttribute="trailing" constant="8" id="ERp-Rv-6oI"/>
                                             <constraint firstItem="MVh-Vb-9pf" firstAttribute="top" secondItem="bIq-YH-Ocm" secondAttribute="top" constant="8" id="G7m-cq-9qc"/>
-                                            <constraint firstItem="h3d-qn-TaP" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="IBo-Yj-6JN"/>
-                                            <constraint firstAttribute="trailing" secondItem="h3d-qn-TaP" secondAttribute="trailing" constant="8" id="JW4-7o-IcX"/>
                                             <constraint firstItem="MVh-Vb-9pf" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="sy3-5h-Nch"/>
-                                            <constraint firstItem="h3d-qn-TaP" firstAttribute="top" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="13.5" id="wkO-CR-drm"/>
+                                            <constraint firstAttribute="bottom" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="7.5" id="tEM-6B-2wS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1776,7 +1767,7 @@ To get started, tap the plus!
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="top" secondItem="IYv-Aw-Sfx" secondAttribute="top" id="0h6-7h-gld"/>
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="leading" secondItem="IYv-Aw-Sfx" secondAttribute="leading" id="bOQ-7B-Sxl"/>
                                     <constraint firstAttribute="trailing" secondItem="bIq-YH-Ocm" secondAttribute="trailing" id="s5w-ld-bhV"/>
-                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" constant="321" id="z09-5a-46O"/>
+                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" id="z09-5a-46O"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxM-Hz-ex6">
@@ -2345,14 +2336,14 @@ To get started, tap the plus!
                                 <rect key="frame" x="-6" y="0.0" width="388" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </sceneKitView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-eE-BKd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-eE-BKd">
                                 <rect key="frame" x="319" y="28" width="40" height="39"/>
-                                <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Ey4-xr-2F1"/>
                                     <constraint firstAttribute="width" constant="40" id="XH8-T2-X9B"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2474,13 +2465,13 @@ To get started, tap the plus!
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDR-eW-5zp">
-                                <rect key="frame" x="16" y="98" width="343" height="500"/>
+                                <rect key="frame" x="16" y="98" width="343" height="549"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SHv-G7-FXS">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="500"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="549"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waN-Ru-3wv" userLabel="QRScanner Modal">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="500"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="549"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk0-Bu-fsC">
                                                     <rect key="frame" x="8" y="0.0" width="327" height="137"/>
@@ -2575,7 +2566,7 @@ To get started, tap the plus!
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdo-TE-cKj">
-                                <rect key="frame" x="16" y="534" width="0.0" height="21"/>
+                                <rect key="frame" x="16" y="583" width="0.0" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zsC-lf-kXV"/>
                                 </constraints>
@@ -2629,14 +2620,14 @@ To get started, tap the plus!
                                     <constraint firstAttribute="height" constant="1" id="fDK-ya-Q51"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sov-TY-OlN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sov-TY-OlN">
                                 <rect key="frame" x="329" y="24" width="35" height="35"/>
                                 <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="YVE-Rk-JCl"/>
                                     <constraint firstAttribute="width" constant="35" id="gXZ-AR-fuZ"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2644,7 +2635,7 @@ To get started, tap the plus!
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRviewfinder" translatesAutoresizingMaskIntoConstraints="NO" id="lHU-Tu-3C7">
-                                <rect key="frame" x="31" y="269" width="314" height="79"/>
+                                <rect key="frame" x="31" y="269" width="314" height="128"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -3377,7 +3368,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="qnK-PO-FRk"/>
-        <segue reference="7Cm-a2-BYD"/>
+        <segue reference="qCd-ud-LAc"/>
         <segue reference="AID-KC-xwd"/>
     </inferredMetricsTieBreakers>
 </document>
