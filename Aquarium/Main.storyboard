@@ -700,7 +700,7 @@ To get started, tap the plus!
                                 </constraints>
                                 <state key="normal" image="plus"/>
                                 <connections>
-                                    <segue destination="vyk-Ro-hE2" kind="presentation" modalPresentationStyle="overCurrentContext" id="fKo-YQ-PGe"/>
+                                    <segue destination="vyk-Ro-hE2" kind="presentation" modalPresentationStyle="fullScreen" id="fKo-YQ-PGe"/>
                                 </connections>
                             </button>
                         </barButtonItem>

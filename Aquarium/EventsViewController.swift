@@ -14,7 +14,6 @@ import AlamofireObjectMapper
 import UserNotifications
 
 
-
 class EventsViewController: UIViewController {
     
     //  @IBOutlet weak var yearLabel: UILabel!
@@ -23,9 +22,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var monthLabel: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
-    
     var notificationController = NotificationController()
-    
     
     var currentDate = Date()
     
@@ -43,6 +40,7 @@ class EventsViewController: UIViewController {
         
         setupCalendar()
         gradient(self.view)
+       
         
     }
     
@@ -295,10 +293,10 @@ class EventsViewController: UIViewController {
     }
     
     @IBAction func reloadTableVIew(_ sender: Any) {
-        self.tabBarController?.selectedIndex = 1
+
     }
     
-    
+  
 /////////////////////////////////////////
     
     func checkScheduledEvents(completionHandler: @escaping (_ complete: Bool) -> ()) {
