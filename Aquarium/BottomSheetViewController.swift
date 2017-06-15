@@ -64,6 +64,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var animalImage = UIImage()
     var animalName = ""
     var conservationStatus = ""
+    var animal: Animals?
     
     
     var closeSwitch: Bool = true
@@ -189,6 +190,22 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             return cell
         }
+        
+    }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if tableView == self.tableView {
+            let animal = mapTableViewData[indexPath.row]
+            self.animalName = animal.info.name
+            self.animalImage = animal.info.animalImage
+            self.animalInfo = animal.info.description ?? ""
+            self.conservationStatus = animal.info.status
+            
+            self.performSegue(withIdentifier: "toAnimalDetail", sender: nil)
+        }
+        
         
     }
     
@@ -563,6 +580,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 
             }
         }
+        
     }
     
     

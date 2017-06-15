@@ -202,8 +202,7 @@ class CustomTabBar: UIView {
         let index = tabBarButtons.index(of: sender)!
         
         animateTabBarSelection(from: selectedTabBarItemIndex, to: index)
-        selectedTabBarItemIndex = index
-        
+        selectedTabBarItemIndex = index        
         delegate.didSelectViewController(self, atIndex: index)
     }
 }

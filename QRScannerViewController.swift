@@ -116,8 +116,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         if qrResult != "" && self.scanType == "barCode" {
             print("Barcode result: \(qrResult).")
-            self.performSegue(withIdentifier: "unwindToAddNewMembership", sender: self)
+            self.performSegue(withIdentifier: "unwindToAddNewMembership", sender: nil)
+            captureSession?.stopRunning()
         } else if qrResult != "" {
+            
+            // Do something with specific QR information. (Show exhibit animals)
+    //        print(qrResult)
             openURL()
         }
         
@@ -125,12 +129,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     @IBAction func scanButtonTapped(_ sender: AnyObject) {
         
-        
-        //        if scanType == "qr" {
-        //
-        //        openURL()
-        //
-        //    }
+
     }
     
     

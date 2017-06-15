@@ -16,6 +16,7 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var membershipCardTableView: UITableView!
     @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var addAMembershipButton: UIButton!
     
     @IBOutlet weak var becomeAMemberButtonLabel: UIButton!
     
@@ -29,6 +30,7 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         roundCornerButtons(becomeAMemberButtonLabel)
         roundCornerButtons(welcomeView)
         roundCornerButtons(blurView)
+        roundCornerButtons(addAMembershipButton)
         
         NotificationCenter.default.addObserver(self, selector: #selector(MembershipListTableViewController.reloadView), name: Notification.Name(rawValue: "addedNewMembership"), object: nil)
         

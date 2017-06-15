@@ -309,7 +309,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTl-Ja-usU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="homeFilled" id="PDX-89-lF2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Oi-c8-wAc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Oi-c8-wAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -563,7 +563,6 @@
                                                     <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <string key="text">Here you can add your Living Planet Aquarium memberships, and scan your phone at the entrance!
 
-To get started, tap the plus!
 </string>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <fontDescription key="fontDescription" name="ITCFranklinGothicStd-Book" family="ITC Franklin Gothic Std" pointSize="18"/>
@@ -576,12 +575,12 @@ To get started, tap the plus!
                                                         <constraint firstAttribute="height" constant="1" id="UmJ-hF-LQT"/>
                                                     </constraints>
                                                 </view>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Em-QZ-dU4">
-                                                    <rect key="frame" x="70" y="347" width="204" height="51"/>
-                                                    <color key="backgroundColor" red="0.60297624350000001" green="0.77598434559999996" blue="0.88197115380000002" alpha="0.76686422409999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Em-QZ-dU4">
+                                                    <rect key="frame" x="87" y="352" width="169" height="31"/>
+                                                    <color key="backgroundColor" red="0.64929753292214321" green="0.83600462472438242" blue="0.95561487207411167" alpha="0.44540125320958907" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="3Em-QZ-dU4" secondAttribute="height" multiplier="421:59" id="Ibg-LS-VGC"/>
-                                                        <constraint firstAttribute="height" constant="51" id="P4J-9N-jEI"/>
+                                                        <constraint firstAttribute="height" constant="31" id="P4J-9N-jEI"/>
                                                         <constraint firstAttribute="width" constant="340" id="SrU-Ck-Fa1"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="ITCFranklinGothicStd-Book" family="ITC Franklin Gothic Std" pointSize="17"/>
@@ -604,22 +603,47 @@ To get started, tap the plus!
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Otg-rh-uum">
+                                                    <rect key="frame" x="72" y="112" width="201" height="56"/>
+                                                    <color key="backgroundColor" red="0.60297624350000001" green="0.77598434559999996" blue="0.88197115380000002" alpha="0.59643400149726034" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Otg-rh-uum" secondAttribute="height" multiplier="421:59" id="LSF-oz-aEB"/>
+                                                        <constraint firstAttribute="height" constant="56" id="fmX-Pr-Xa3"/>
+                                                        <constraint firstAttribute="width" constant="340" id="wOV-zT-CcY"/>
+                                                        <constraint firstAttribute="width" secondItem="Otg-rh-uum" secondAttribute="height" multiplier="166:51" constant="18.725490196078425" id="yib-D8-psA"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="ITCFranklinGothicStd-Book" family="ITC Franklin Gothic Std" pointSize="17"/>
+                                                    <state key="normal" title="Add A Membership!">
+                                                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="LSF-oz-aEB"/>
+                                                            <exclude reference="wOV-zT-CcY"/>
+                                                        </mask>
+                                                    </variation>
+                                                    <connections>
+                                                        <segue destination="vyk-Ro-hE2" kind="presentation" modalPresentationStyle="fullScreen" id="Ufe-47-U55"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <constraints>
-                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" constant="70" id="820-sx-4WW"/>
+                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" constant="87" id="820-sx-4WW"/>
                                                 <constraint firstAttribute="trailing" secondItem="HG4-QV-EOX" secondAttribute="trailing" id="C7w-WK-e5r"/>
                                                 <constraint firstItem="gfZ-VS-SlL" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" constant="19" id="CGy-H8-LIg"/>
                                                 <constraint firstAttribute="trailing" secondItem="4X3-rL-V9z" secondAttribute="trailing" constant="8" id="K08-4U-Rca"/>
-                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="Ni6-bF-yRa" secondAttribute="bottom" constant="3" id="Kqd-Uo-iVY"/>
+                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="Ni6-bF-yRa" secondAttribute="bottom" constant="8" id="Kqd-Uo-iVY"/>
                                                 <constraint firstAttribute="bottom" secondItem="4X3-rL-V9z" secondAttribute="bottom" constant="8" id="O8H-Sm-FJm"/>
-                                                <constraint firstAttribute="trailing" secondItem="3Em-QZ-dU4" secondAttribute="trailing" constant="69" id="OcJ-Lr-zq4"/>
+                                                <constraint firstAttribute="trailing" secondItem="3Em-QZ-dU4" secondAttribute="trailing" constant="87" id="OcJ-Lr-zq4"/>
+                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="Otg-rh-uum" secondAttribute="bottom" constant="184" id="PXM-MX-VJB"/>
                                                 <constraint firstItem="4X3-rL-V9z" firstAttribute="top" secondItem="vTV-cV-O25" secondAttribute="top" constant="79" id="TOW-S3-GRh"/>
                                                 <constraint firstItem="4X3-rL-V9z" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" constant="8" id="eha-JY-07p"/>
+                                                <constraint firstItem="Otg-rh-uum" firstAttribute="centerX" secondItem="4X3-rL-V9z" secondAttribute="centerX" constant="1" id="h5l-fj-qxR"/>
                                                 <constraint firstItem="3Em-QZ-dU4" firstAttribute="leading" secondItem="4X3-rL-V9z" secondAttribute="leading" constant="102" id="lHY-5h-bvL"/>
                                                 <constraint firstAttribute="trailing" secondItem="gfZ-VS-SlL" secondAttribute="trailing" constant="18" id="lIm-CQ-ihM"/>
                                                 <constraint firstItem="Ni6-bF-yRa" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" constant="8" id="lSL-8T-PRY"/>
-                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="4X3-rL-V9z" secondAttribute="bottom" constant="-80" id="mBM-id-tZm"/>
+                                                <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="4X3-rL-V9z" secondAttribute="bottom" constant="-75" id="mBM-id-tZm"/>
                                                 <constraint firstItem="gfZ-VS-SlL" firstAttribute="top" secondItem="HG4-QV-EOX" secondAttribute="bottom" constant="8" id="pfz-9w-rWr"/>
                                                 <constraint firstItem="HG4-QV-EOX" firstAttribute="leading" secondItem="vTV-cV-O25" secondAttribute="leading" id="qAB-gm-0K7"/>
                                                 <constraint firstAttribute="bottom" secondItem="3Em-QZ-dU4" secondAttribute="bottom" constant="65" id="qYD-Hn-5by"/>
@@ -627,7 +651,7 @@ To get started, tap the plus!
                                                 <constraint firstItem="HG4-QV-EOX" firstAttribute="top" secondItem="vTV-cV-O25" secondAttribute="top" constant="41" id="s3s-vh-D9R"/>
                                                 <constraint firstItem="3Em-QZ-dU4" firstAttribute="top" secondItem="4X3-rL-V9z" secondAttribute="bottom" constant="8" symbolic="YES" id="sZf-Np-uFM"/>
                                                 <constraint firstAttribute="trailing" secondItem="Ni6-bF-yRa" secondAttribute="trailing" constant="8" id="saN-1B-Y8v"/>
-                                                <constraint firstAttribute="bottom" secondItem="3Em-QZ-dU4" secondAttribute="bottom" constant="37" id="ybe-dc-r2j"/>
+                                                <constraint firstAttribute="bottom" secondItem="3Em-QZ-dU4" secondAttribute="bottom" constant="52" id="ybe-dc-r2j"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
@@ -692,20 +716,21 @@ To get started, tap the plus!
                     <navigationItem key="navigationItem" id="Ldp-oS-yj0">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="uib-eT-Oi6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Ip-zb-kE7">
-                                <rect key="frame" x="329" y="7" width="30" height="30"/>
+                                <rect key="frame" x="324" y="4" width="35" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7p6-iG-8Wb"/>
-                                    <constraint firstAttribute="width" constant="30" id="JGc-vz-pRa"/>
+                                    <constraint firstAttribute="height" constant="35" id="7p6-iG-8Wb"/>
+                                    <constraint firstAttribute="width" constant="35" id="JGc-vz-pRa"/>
                                 </constraints>
                                 <state key="normal" image="plus"/>
                                 <connections>
-                                    <segue destination="vyk-Ro-hE2" kind="presentation" modalPresentationStyle="overCurrentContext" id="fKo-YQ-PGe"/>
+                                    <segue destination="vyk-Ro-hE2" kind="presentation" modalPresentationStyle="fullScreen" id="fKo-YQ-PGe"/>
                                 </connections>
                             </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addAMembershipButton" destination="Otg-rh-uum" id="QHu-jf-DNi"/>
                         <outlet property="becomeAMemberButtonLabel" destination="3Em-QZ-dU4" id="ZkV-88-QG5"/>
                         <outlet property="blurView" destination="Hgc-xP-w3T" id="tay-hX-dAH"/>
                         <outlet property="membershipCardTableView" destination="EO3-t5-Sj1" id="cl1-fu-oTs"/>
@@ -1047,13 +1072,13 @@ To get started, tap the plus!
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Membership ID Number" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="lIg-Nw-p4n">
-                                <rect key="frame" x="16" y="253" width="343" height="40"/>
+                                <rect key="frame" x="16" y="253" width="294" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="76Y-TI-WqV"/>
                                     <constraint firstAttribute="height" constant="30" id="LYm-bP-wlY"/>
                                 </constraints>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -1071,7 +1096,7 @@ To get started, tap the plus!
                                     <constraint firstAttribute="height" constant="40" id="54o-gM-F29"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                 <connections>
                                     <action selector="firstNameNextButtonTapped:" destination="vyk-Ro-hE2" eventType="editingDidEnd" id="wvi-By-tl5"/>
@@ -1120,13 +1145,13 @@ To get started, tap the plus!
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tmz-cn-9eH">
                                 <rect key="frame" x="16" y="29" width="35" height="35"/>
-                                <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="2pd-u3-uuW"/>
                                     <constraint firstAttribute="height" constant="35" id="kCa-6o-Bgx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="X"/>
+                                <state key="normal" image="cancel"/>
                                 <connections>
                                     <action selector="dismissButtonTapped:" destination="vyk-Ro-hE2" eventType="touchUpInside" id="VnQ-Ko-Xtv"/>
                                 </connections>
@@ -1161,7 +1186,7 @@ To get started, tap the plus!
                                     <constraint firstAttribute="height" constant="40" id="3to-dQ-NOj"/>
                                 </constraints>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                                 <connections>
                                     <action selector="lastNameNextButtonTapped:" destination="vyk-Ro-hE2" eventType="editingDidEnd" id="BQj-rv-ehF"/>
@@ -1175,23 +1200,9 @@ To get started, tap the plus!
                                     <action selector="notifyMeButtonTapped:" destination="vyk-Ro-hE2" eventType="touchUpInside" id="On4-gP-kzJ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQY-Nq-Lhu">
-                                <rect key="frame" x="112" y="306" width="150" height="30"/>
-                                <color key="backgroundColor" red="0.28922465425518523" green="0.49107943940651011" blue="0.61056472081218272" alpha="0.25133775684931509" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="AQY-Nq-Lhu" secondAttribute="height" multiplier="5:1" id="0Rl-4K-3nm"/>
-                                </constraints>
-                                <state key="normal" title="Scan Card">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="scanCardButtonTapped:" destination="vyk-Ro-hE2" eventType="touchUpInside" id="zKF-8n-G0v"/>
-                                    <segue destination="uai-Rq-JX2" kind="presentation" identifier="toBarcodeScanner" id="qCd-ud-LAc"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expiration Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="zMg-ne-kXB">
-                                <rect key="frame" x="16" y="306" width="232" height="35"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="29"/>
+                                <rect key="frame" x="16" y="311" width="232" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <color key="textColor" red="0.050000000000000003" green="0.41999999999999998" blue="0.56000000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -1210,6 +1221,21 @@ To get started, tap the plus!
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="highlightsToday" value="NO"/>
                                 </userDefinedRuntimeAttributes>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQY-Nq-Lhu">
+                                <rect key="frame" x="320" y="256" width="35" height="35"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="ZRo-Ty-Lk6"/>
+                                    <constraint firstAttribute="height" constant="35" id="wSD-qW-p5k"/>
+                                </constraints>
+                                <state key="normal" image="camera">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="scanCardButtonTapped:" destination="vyk-Ro-hE2" eventType="touchUpInside" id="zKF-8n-G0v"/>
+                                    <segue destination="uai-Rq-JX2" kind="presentation" identifier="toBarcodeScanner" id="qCd-ud-LAc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1218,7 +1244,7 @@ To get started, tap the plus!
                             <constraint firstItem="dHn-RD-4X3" firstAttribute="leading" secondItem="LYD-Ub-rKK" secondAttribute="leadingMargin" id="4g0-yW-wSJ"/>
                             <constraint firstItem="WoT-pk-gRy" firstAttribute="top" secondItem="jqs-jU-A9g" secondAttribute="bottom" constant="63" id="739-GD-XwJ"/>
                             <constraint firstItem="jTJ-su-Gr4" firstAttribute="top" secondItem="WuE-OV-quv" secondAttribute="bottom" constant="22" id="79W-DW-QzD"/>
-                            <constraint firstItem="AQY-Nq-Lhu" firstAttribute="leading" secondItem="LYD-Ub-rKK" secondAttribute="leadingMargin" constant="96" id="7YT-93-WSa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AQY-Nq-Lhu" secondAttribute="trailing" constant="4" id="AUX-Vf-Bzz"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mbq-57-TzL" secondAttribute="trailing" id="BKU-L6-9pr"/>
                             <constraint firstItem="lIg-Nw-p4n" firstAttribute="top" secondItem="mbq-57-TzL" secondAttribute="bottom" constant="20" id="Frq-G4-6h5"/>
                             <constraint firstItem="Fs7-2W-WDD" firstAttribute="top" secondItem="JUT-JD-Nqw" secondAttribute="bottom" constant="8" id="GA5-ne-5K5"/>
@@ -1234,13 +1260,14 @@ To get started, tap the plus!
                             <constraint firstItem="dHn-RD-4X3" firstAttribute="top" secondItem="l1l-IO-8mY" secondAttribute="bottom" constant="100" id="NOo-uy-Q67"/>
                             <constraint firstAttribute="leadingMargin" secondItem="JUT-JD-Nqw" secondAttribute="leading" id="NwS-N5-lRp"/>
                             <constraint firstItem="Hb9-ug-yoa" firstAttribute="leading" secondItem="LYD-Ub-rKK" secondAttribute="leadingMargin" constant="-4" id="O6I-nl-OSo"/>
+                            <constraint firstItem="AQY-Nq-Lhu" firstAttribute="leading" secondItem="lIg-Nw-p4n" secondAttribute="trailing" constant="10" id="On0-aU-WKq"/>
                             <constraint firstItem="ma1-no-Epf" firstAttribute="top" secondItem="zMg-ne-kXB" secondAttribute="bottom" constant="8" id="QQl-ug-yoC"/>
+                            <constraint firstItem="AQY-Nq-Lhu" firstAttribute="centerY" secondItem="lIg-Nw-p4n" secondAttribute="centerY" id="Qk6-NY-x8u"/>
                             <constraint firstAttribute="leadingMargin" secondItem="mbq-57-TzL" secondAttribute="leading" id="RYX-Ez-CMX"/>
                             <constraint firstItem="lIg-Nw-p4n" firstAttribute="leading" secondItem="LYD-Ub-rKK" secondAttribute="leadingMargin" id="SEn-Bg-Vd2"/>
                             <constraint firstItem="WuE-OV-quv" firstAttribute="top" secondItem="ma1-no-Epf" secondAttribute="bottom" constant="9" id="SiN-Km-Poz"/>
                             <constraint firstItem="ma1-no-Epf" firstAttribute="leading" secondItem="LYD-Ub-rKK" secondAttribute="leadingMargin" constant="-16" id="YFj-mM-Huj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="AQY-Nq-Lhu" secondAttribute="trailing" constant="97" id="Zo4-4q-8o4"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="lIg-Nw-p4n" secondAttribute="trailing" id="aLo-bt-VUr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lIg-Nw-p4n" secondAttribute="trailing" constant="49" id="aLo-bt-VUr"/>
                             <constraint firstItem="mbq-57-TzL" firstAttribute="top" secondItem="Fs7-2W-WDD" secondAttribute="bottom" constant="3" id="e91-cH-x9D"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Fs7-2W-WDD" secondAttribute="leading" id="ff1-rx-LMe"/>
                             <constraint firstAttribute="trailingMargin" secondItem="jqs-jU-A9g" secondAttribute="trailing" constant="2" id="gVl-6m-bgh"/>
@@ -1248,17 +1275,16 @@ To get started, tap the plus!
                             <constraint firstItem="Tmz-cn-9eH" firstAttribute="top" secondItem="l1l-IO-8mY" secondAttribute="bottom" constant="9" id="hbG-gY-XqH"/>
                             <constraint firstItem="Hb9-ug-yoa" firstAttribute="top" secondItem="lIg-Nw-p4n" secondAttribute="bottom" constant="3" id="hgQ-PV-QH4"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fs7-2W-WDD" secondAttribute="trailing" id="iPB-JE-ZZ7"/>
-                            <constraint firstItem="zMg-ne-kXB" firstAttribute="top" relation="greaterThanOrEqual" secondItem="AQY-Nq-Lhu" secondAttribute="bottom" constant="-30" id="lti-SQ-OhW"/>
                             <constraint firstAttribute="leadingMargin" secondItem="zMg-ne-kXB" secondAttribute="leading" id="lzw-4r-cXv"/>
                             <constraint firstAttribute="leadingMargin" secondItem="E9N-D5-CFh" secondAttribute="leading" id="mbx-UL-w3M"/>
                             <constraint firstItem="E9N-D5-CFh" firstAttribute="top" secondItem="l1l-IO-8mY" secondAttribute="bottom" constant="17" id="nbj-DR-uAr"/>
                             <constraint firstItem="dHn-RD-4X3" firstAttribute="centerY" secondItem="LYD-Ub-rKK" secondAttribute="centerY" id="nj5-FF-8Hr"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lvr-00-OxW" secondAttribute="trailing" constant="-20" id="os9-Dq-WJ3"/>
                             <constraint firstItem="bd9-cw-sUJ" firstAttribute="top" secondItem="l1l-IO-8mY" secondAttribute="bottom" constant="11" id="pxI-2U-fc4"/>
+                            <constraint firstItem="WoT-pk-gRy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="jTJ-su-Gr4" secondAttribute="bottom" constant="8" id="q1M-lH-ru2"/>
                             <constraint firstItem="jqs-jU-A9g" firstAttribute="top" secondItem="ma1-no-Epf" secondAttribute="bottom" constant="8" id="rJR-aW-uC8"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Tmz-cn-9eH" secondAttribute="leading" id="tKQ-vN-WhZ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="jTJ-su-Gr4" secondAttribute="leading" id="tlv-0C-FQf"/>
-                            <constraint firstItem="AQY-Nq-Lhu" firstAttribute="top" secondItem="Hb9-ug-yoa" secondAttribute="bottom" constant="9" id="vDP-jq-i2P"/>
                             <constraint firstItem="jqs-jU-A9g" firstAttribute="leading" secondItem="WuE-OV-quv" secondAttribute="trailing" constant="8" id="vmE-dp-7fI"/>
                             <constraint firstItem="JUT-JD-Nqw" firstAttribute="top" secondItem="dHn-RD-4X3" secondAttribute="bottom" constant="3" id="wY7-eR-xyd"/>
                             <constraint firstItem="lvr-00-OxW" firstAttribute="top" secondItem="l1l-IO-8mY" secondAttribute="bottom" constant="-20" id="yzp-Cz-KK3"/>
@@ -1681,7 +1707,7 @@ To get started, tap the plus!
         <!--Animal Detail View Controller-->
         <scene sceneID="WOz-BM-1dZ">
             <objects>
-                <viewController id="Jr2-gF-2qH" customClass="AnimalDetailViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="Jr2-gF-2qH" customClass="AnimalDetailViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iaE-th-QQg"/>
                         <viewControllerLayoutGuide type="bottom" id="t3h-eh-PRC"/>
@@ -1743,31 +1769,22 @@ To get started, tap the plus!
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIq-YH-Ocm" userLabel="containerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This may have more than 1 line" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVh-Vb-9pf">
                                                 <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h3d-qn-TaP">
-                                                <rect key="frame" x="8" y="42" width="359" height="8"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="8" id="tt5-fw-ZFv"/>
-                                                </constraints>
-                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="h3d-qn-TaP" secondAttribute="bottom" constant="-1" id="Cqd-Bf-9Eb"/>
                                             <constraint firstAttribute="trailing" secondItem="MVh-Vb-9pf" secondAttribute="trailing" constant="8" id="ERp-Rv-6oI"/>
                                             <constraint firstItem="MVh-Vb-9pf" firstAttribute="top" secondItem="bIq-YH-Ocm" secondAttribute="top" constant="8" id="G7m-cq-9qc"/>
-                                            <constraint firstItem="h3d-qn-TaP" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="IBo-Yj-6JN"/>
-                                            <constraint firstAttribute="trailing" secondItem="h3d-qn-TaP" secondAttribute="trailing" constant="8" id="JW4-7o-IcX"/>
                                             <constraint firstItem="MVh-Vb-9pf" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="sy3-5h-Nch"/>
-                                            <constraint firstItem="h3d-qn-TaP" firstAttribute="top" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="13.5" id="wkO-CR-drm"/>
+                                            <constraint firstAttribute="bottom" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="7.5" id="tEM-6B-2wS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1776,7 +1793,7 @@ To get started, tap the plus!
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="top" secondItem="IYv-Aw-Sfx" secondAttribute="top" id="0h6-7h-gld"/>
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="leading" secondItem="IYv-Aw-Sfx" secondAttribute="leading" id="bOQ-7B-Sxl"/>
                                     <constraint firstAttribute="trailing" secondItem="bIq-YH-Ocm" secondAttribute="trailing" id="s5w-ld-bhV"/>
-                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" constant="321" id="z09-5a-46O"/>
+                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" id="z09-5a-46O"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxM-Hz-ex6">
@@ -1933,7 +1950,7 @@ To get started, tap the plus!
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Fd-Oif">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Fd-Oif">
                                                     <rect key="frame" x="155" y="8" width="101" height="56"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="jlO-Fd-Oif" secondAttribute="height" multiplier="40:7" constant="-219" id="hhK-ao-4qb"/>
@@ -1966,6 +1983,7 @@ To get started, tap the plus!
                                                 <constraint firstItem="jlO-Fd-Oif" firstAttribute="top" secondItem="mQq-RE-VLR" secondAttribute="topMargin" id="2LX-mt-Din"/>
                                                 <constraint firstAttribute="topMargin" secondItem="iCs-g4-MOp" secondAttribute="top" id="VT4-7y-dt5"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="jlO-Fd-Oif" secondAttribute="bottom" id="d3Y-OZ-8BE"/>
+                                                <constraint firstItem="jlO-Fd-Oif" firstAttribute="leading" secondItem="iCs-g4-MOp" secondAttribute="trailing" constant="8" id="j0M-ht-aQp"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="iCs-g4-MOp" secondAttribute="bottom" id="lIp-09-XpF"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="iCs-g4-MOp" secondAttribute="leading" id="nAf-x9-Dpf"/>
                                                 <constraint firstItem="VlT-D4-xJY" firstAttribute="top" secondItem="mQq-RE-VLR" secondAttribute="topMargin" constant="13" id="oCu-3F-fsX"/>
@@ -2048,16 +2066,19 @@ To get started, tap the plus!
                                 </subviews>
                             </stackView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="N5a-hS-Ybz">
-                                <rect key="frame" x="339" y="37" width="20" height="20"/>
+                                <rect key="frame" x="16" y="33" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-93-w9N">
-                                <rect key="frame" x="16" y="20" width="47" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Reload">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-93-w9N">
+                                <rect key="frame" x="319" y="28" width="50" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="TfO-93-w9N" secondAttribute="height" multiplier="47:30" id="K6M-cL-YWw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Today">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="reloadTableVIew:" destination="u3z-Js-a8Q" eventType="touchUpInside" id="mAs-kF-YOb"/>
+                                    <action selector="todayButtonTapped:" destination="u3z-Js-a8Q" eventType="touchUpInside" id="KqG-OU-6F6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2072,20 +2093,22 @@ To get started, tap the plus!
                             <constraint firstItem="9oM-xW-8Bw" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leading" id="DdH-aG-I1N"/>
                             <constraint firstItem="ePF-aL-9Rb" firstAttribute="top" secondItem="jab-2u-FDD" secondAttribute="bottom" constant="20" id="EDs-Tk-9Nb"/>
                             <constraint firstItem="iv7-ZF-Bwv" firstAttribute="top" secondItem="jab-2u-FDD" secondAttribute="bottom" constant="3" id="Fuh-PF-ZlP"/>
-                            <constraint firstItem="N5a-hS-Ybz" firstAttribute="trailing" secondItem="b5W-X6-Csl" secondAttribute="trailingMargin" id="HAc-XZ-BaE"/>
                             <constraint firstItem="e4w-c6-wQr" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leadingMargin" id="Kc8-1K-IBR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="urR-ET-n7i" secondAttribute="trailing" constant="43" id="LD0-CE-dUu"/>
                             <constraint firstItem="urR-ET-n7i" firstAttribute="top" secondItem="8ez-4b-qMa" secondAttribute="bottom" constant="17" id="V2k-ps-aoC"/>
+                            <constraint firstItem="Ioy-mx-PqI" firstAttribute="leading" secondItem="N5a-hS-Ybz" secondAttribute="trailing" constant="-36" id="atQ-o5-zR6"/>
+                            <constraint firstItem="TfO-93-w9N" firstAttribute="centerY" secondItem="urR-ET-n7i" secondAttribute="centerY" constant="-2.5" id="bBK-u5-vQz"/>
                             <constraint firstItem="jab-2u-FDD" firstAttribute="top" secondItem="8ez-4b-qMa" secondAttribute="bottom" constant="122" id="bdb-kV-fOI"/>
                             <constraint firstItem="Ioy-mx-PqI" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leading" id="cgj-Wp-q5w"/>
+                            <constraint firstItem="TfO-93-w9N" firstAttribute="leading" secondItem="Ioy-mx-PqI" secondAttribute="trailing" constant="-56" id="chB-tb-eAU"/>
                             <constraint firstAttribute="trailing" secondItem="Ioy-mx-PqI" secondAttribute="trailing" id="dPl-uK-q7P"/>
-                            <constraint firstItem="N5a-hS-Ybz" firstAttribute="centerY" secondItem="urR-ET-n7i" secondAttribute="centerY" id="dqO-Bf-qY1"/>
                             <constraint firstItem="e4w-c6-wQr" firstAttribute="top" secondItem="8ez-4b-qMa" secondAttribute="bottom" constant="77" id="hxX-sP-3ml"/>
                             <constraint firstItem="T61-ZC-vNn" firstAttribute="top" secondItem="9oM-xW-8Bw" secondAttribute="bottom" constant="46" id="j3n-db-LDl"/>
                             <constraint firstItem="urR-ET-n7i" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leadingMargin" constant="43" id="oQQ-zg-Kj4"/>
                             <constraint firstItem="Ioy-mx-PqI" firstAttribute="top" secondItem="b5W-X6-Csl" secondAttribute="top" id="uxM-4n-n0q"/>
                             <constraint firstItem="iv7-ZF-Bwv" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leadingMargin" constant="-10" id="wVE-hD-9tQ"/>
                             <constraint firstItem="ePF-aL-9Rb" firstAttribute="leading" secondItem="b5W-X6-Csl" secondAttribute="leading" id="xyi-nF-s3o"/>
+                            <constraint firstItem="N5a-hS-Ybz" firstAttribute="top" secondItem="Ioy-mx-PqI" secondAttribute="bottom" constant="-53" id="y4I-ut-2Hw"/>
                             <constraint firstItem="e4w-c6-wQr" firstAttribute="trailing" secondItem="b5W-X6-Csl" secondAttribute="trailingMargin" id="yfS-Qe-9e4"/>
                         </constraints>
                     </view>
@@ -2095,11 +2118,12 @@ To get started, tap the plus!
                         <outlet property="calendarView" destination="ePF-aL-9Rb" id="Uji-7m-Y8C"/>
                         <outlet property="monthLabel" destination="e4w-c6-wQr" id="131-LS-gfL"/>
                         <outlet property="tableView" destination="9oM-xW-8Bw" id="TTK-r3-rIJ"/>
+                        <outlet property="todayButton" destination="TfO-93-w9N" id="Ocs-8Z-Gaj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zKy-s0-VZC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2636" y="-251"/>
+            <point key="canvasLocation" x="2636" y="-251.42428785607197"/>
         </scene>
         <!--AR-->
         <scene sceneID="2hq-mM-b2i">
@@ -2345,14 +2369,14 @@ To get started, tap the plus!
                                 <rect key="frame" x="-6" y="0.0" width="388" height="667"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </sceneKitView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-eE-BKd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G3k-eE-BKd">
                                 <rect key="frame" x="319" y="28" width="40" height="39"/>
-                                <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="39" id="Ey4-xr-2F1"/>
                                     <constraint firstAttribute="width" constant="40" id="XH8-T2-X9B"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2474,13 +2498,13 @@ To get started, tap the plus!
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xDR-eW-5zp">
-                                <rect key="frame" x="16" y="98" width="343" height="500"/>
+                                <rect key="frame" x="16" y="98" width="343" height="549"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="SHv-G7-FXS">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="500"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="343" height="549"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="waN-Ru-3wv" userLabel="QRScanner Modal">
-                                            <rect key="frame" x="0.0" y="0.0" width="343" height="500"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="549"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk0-Bu-fsC">
                                                     <rect key="frame" x="8" y="0.0" width="327" height="137"/>
@@ -2575,7 +2599,7 @@ To get started, tap the plus!
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pdo-TE-cKj">
-                                <rect key="frame" x="16" y="534" width="0.0" height="21"/>
+                                <rect key="frame" x="16" y="583" width="0.0" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="zsC-lf-kXV"/>
                                 </constraints>
@@ -2629,14 +2653,14 @@ To get started, tap the plus!
                                     <constraint firstAttribute="height" constant="1" id="fDK-ya-Q51"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sov-TY-OlN">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sov-TY-OlN">
                                 <rect key="frame" x="329" y="24" width="35" height="35"/>
                                 <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="YVE-Rk-JCl"/>
                                     <constraint firstAttribute="width" constant="35" id="gXZ-AR-fuZ"/>
                                 </constraints>
-                                <state key="normal" title="X">
+                                <state key="normal" image="cancel">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -2644,7 +2668,7 @@ To get started, tap the plus!
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRviewfinder" translatesAutoresizingMaskIntoConstraints="NO" id="lHU-Tu-3C7">
-                                <rect key="frame" x="31" y="269" width="314" height="79"/>
+                                <rect key="frame" x="31" y="269" width="314" height="128"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -2701,7 +2725,7 @@ To get started, tap the plus!
                         <outlet property="qrCodeResult" destination="pdo-TE-cKj" id="6lw-CQ-hWL"/>
                         <outlet property="qrWelcomeTextField" destination="Pk0-Bu-fsC" id="aT6-x1-i3W"/>
                         <outlet property="scanButton" destination="jir-VW-avP" id="ho1-or-nKI"/>
-                        <segue destination="m95-yL-ULS" kind="unwind" identifier="unwindToAddNewMembership" unwindAction="unwindToAddNewMembershipWithSegue:" id="AKE-Tr-JYW"/>
+                        <segue destination="m95-yL-ULS" kind="unwind" identifier="unwindToAddNewMembership" unwindAction="unwindToAddNewMembershipWithSegue:" id="VGZ-F3-6Il"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vRI-qV-PHc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3376,8 +3400,9 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="toucan" width="3872" height="2592"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="a5a-op-VaW"/>
         <segue reference="qnK-PO-FRk"/>
-        <segue reference="7Cm-a2-BYD"/>
-        <segue reference="AID-KC-xwd"/>
+        <segue reference="Ufe-47-U55"/>
+        <segue reference="qCd-ud-LAc"/>
     </inferredMetricsTieBreakers>
 </document>
