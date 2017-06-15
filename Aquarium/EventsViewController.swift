@@ -20,6 +20,7 @@ class EventsViewController: UIViewController {
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
     @IBOutlet weak var monthLabel: UILabel!
+    @IBOutlet weak var todayButton: UIButton!
     
     @IBOutlet weak var tableView: UITableView!
     var notificationController = NotificationController()
@@ -273,7 +274,7 @@ class EventsViewController: UIViewController {
             if cellState.dateBelongsTo == .thisMonth {
                 validCell.dateLabel.textColor = self.monthColor
             } else {
-                validCell.dateLabel.textColor = self.outsideMonthColor
+                validCell.dateLabel.textColor = self.monthColor
             }
         }
     }
@@ -282,18 +283,20 @@ class EventsViewController: UIViewController {
     func setupViewsOfCalendar(from visibleDates: DateSegmentInfo) {
         
         
-        guard let date = visibleDates.monthDates.first?.date else { return }
-        
-        //   self.dateFormatter.dateFormat = "yyyy"
-        // self.yearLabel.text = self.dateFormatter.string(from: date)
-        
-        
+        guard let date = visibleDates.monthDates.last?.date else { return }
+      
         self.dateFormatter.dateFormat = "MMMM"
         self.monthLabel.text = self.dateFormatter.string(from: date)
     }
     
-    @IBAction func reloadTableVIew(_ sender: Any) {
-
+  
+    @IBAction func todayButtonTapped(_ sender: Any) {
+        
+        let currentDate = Date()
+        self.calendarView.scrollToDate(currentDate)
+        self.calendarView.selectDates([currentDate])
+        
+        
     }
     
   
@@ -341,7 +344,7 @@ extension EventsViewController: JTAppleCalendarViewDataSource {
         let startDate = dateFormatter.date(from: "2017 01 01")!
         let endDate = dateFormatter.date(from: "2017 12 31")!
         
-        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1, calendar: nil, generateInDates: nil, generateOutDates: nil, firstDayOfWeek: nil, hasStrictBoundaries: nil)
+        let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1, calendar: Calendar.current, generateInDates: .off , generateOutDates: .off, firstDayOfWeek: .sunday , hasStrictBoundaries: nil)
         return parameters
     }
     
@@ -367,9 +370,9 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
         handleCellTextColor(cell: cell, cellState: cellState)
         
         
-        if cellState.dateBelongsTo == .followingMonthWithinBoundary || cellState.dateBelongsTo == .previousMonthWithinBoundary {
-            calendar.scrollToDate(date)
-        }
+    //    if cellState.dateBelongsTo == .followingMonthWithinBoundary || cellState.dateBelongsTo == .previousMonthWithinBoundary {
+         //   calendar.scrollToDate(date)
+     //   }
         
         self.currentDate = cellState.date
         getCalendarItems()
@@ -415,6 +418,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
             cell.eventTimeLabel.text = ""
             return cell
         }
+        
         cell.eventTimeLabel.text = self.formatDate(dateString: eventDate)
         
         

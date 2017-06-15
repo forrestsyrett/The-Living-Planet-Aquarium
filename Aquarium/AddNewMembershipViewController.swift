@@ -175,7 +175,9 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func scanCardButtonTapped(_ sender: Any) {
         
-        
+        self.firstNameTextField.resignFirstResponder()
+        self.lastNameTextField.resignFirstResponder()
+        self.membershipIDTextField.resignFirstResponder()
     }
     
     
