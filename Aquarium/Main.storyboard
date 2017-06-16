@@ -309,7 +309,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTl-Ja-usU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="homeFilled" id="PDX-89-lF2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Oi-c8-wAc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Oi-c8-wAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1505,17 +1505,6 @@
                                     <constraint firstAttribute="height" constant="1" id="0YT-Fm-QY2"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HxW-2u-wFD">
-                                <rect key="frame" x="330" y="22" width="30" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="0hF-x8-zNc"/>
-                                    <constraint firstAttribute="height" constant="30" id="jPH-3J-OI3"/>
-                                </constraints>
-                                <state key="normal" image="QRcode"/>
-                                <connections>
-                                    <segue destination="uai-Rq-JX2" kind="show" identifier="toQRScanner" id="7Cm-a2-BYD"/>
-                                </connections>
-                            </button>
                             <searchBar contentMode="redraw" placeholder="Search for an animal!" showsCancelButton="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erm-3E-mZe">
                                 <rect key="frame" x="-4" y="523" width="383" height="50"/>
                                 <constraints>
@@ -1527,6 +1516,20 @@
                                     <outlet property="delegate" destination="efd-Aa-KzA" id="7oP-Q3-n8m"/>
                                 </connections>
                             </searchBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nvq-Wk-LWP" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                                <rect key="frame" x="324" y="22" width="35" height="35"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="HMO-qv-bgk"/>
+                                    <constraint firstAttribute="width" constant="35" id="ejS-0r-qIM"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="typeName" value="ballRotateChase"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="padding">
+                                        <real key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1536,8 +1539,8 @@
                             <constraint firstAttribute="trailing" secondItem="psT-nt-buZ" secondAttribute="trailing" id="9id-AK-eqg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ekS-k9-O6b" secondAttribute="trailing" id="DWY-Dh-DLN"/>
                             <constraint firstItem="psT-nt-buZ" firstAttribute="top" secondItem="VGm-vU-f89" secondAttribute="bottom" constant="-26" id="Emn-US-ry8"/>
-                            <constraint firstItem="HxW-2u-wFD" firstAttribute="leading" secondItem="VGm-vU-f89" secondAttribute="trailing" constant="-45" id="FH3-8c-gvG"/>
                             <constraint firstItem="ufK-UP-ctO" firstAttribute="leading" secondItem="yaF-kY-vGA" secondAttribute="leadingMargin" constant="-20" id="FKe-TE-fM6"/>
+                            <constraint firstItem="Nvq-Wk-LWP" firstAttribute="top" secondItem="VGm-vU-f89" secondAttribute="bottom" constant="-56" id="GLQ-E4-dGd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="erm-3E-mZe" secondAttribute="trailing" constant="-20" id="IT2-fc-Oya"/>
                             <constraint firstAttribute="trailing" secondItem="VGm-vU-f89" secondAttribute="trailing" id="JXQ-Tn-mAs"/>
                             <constraint firstItem="2yP-h4-CSn" firstAttribute="top" secondItem="VGm-vU-f89" secondAttribute="bottom" constant="-47" id="KZS-Se-eTY"/>
@@ -1545,10 +1548,10 @@
                             <constraint firstItem="hfj-U2-cWa" firstAttribute="top" secondItem="ufK-UP-ctO" secondAttribute="bottom" id="Oqt-ux-h7C"/>
                             <constraint firstItem="psT-nt-buZ" firstAttribute="leading" secondItem="yaF-kY-vGA" secondAttribute="leading" id="P7z-2f-vgz"/>
                             <constraint firstItem="VGm-vU-f89" firstAttribute="leading" secondItem="yaF-kY-vGA" secondAttribute="leading" id="WNH-N7-tOP"/>
+                            <constraint firstItem="Nvq-Wk-LWP" firstAttribute="leading" secondItem="VGm-vU-f89" secondAttribute="trailing" constant="-51" id="Ye5-uY-Pr3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ufK-UP-ctO" secondAttribute="trailing" constant="-20" id="YjJ-aR-YL4"/>
                             <constraint firstItem="hfj-U2-cWa" firstAttribute="top" secondItem="6yd-VI-7GF" secondAttribute="bottom" id="f5P-ZF-J1k"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6yd-VI-7GF" secondAttribute="trailing" constant="-16" id="hDU-Pu-9hg"/>
-                            <constraint firstItem="HxW-2u-wFD" firstAttribute="top" secondItem="VGm-vU-f89" secondAttribute="bottom" constant="-56" id="oAZ-0j-KQe"/>
                             <constraint firstItem="erm-3E-mZe" firstAttribute="leading" secondItem="yaF-kY-vGA" secondAttribute="leadingMargin" constant="-20" id="rLE-br-B1f"/>
                             <constraint firstItem="ekS-k9-O6b" firstAttribute="top" secondItem="zgj-Mo-Hfr" secondAttribute="bottom" constant="17" id="w6B-9N-lQz"/>
                             <constraint firstItem="6yd-VI-7GF" firstAttribute="leading" secondItem="yaF-kY-vGA" secondAttribute="leadingMargin" constant="-16" id="xTM-5w-AoW"/>
@@ -1562,6 +1565,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="Nvq-Wk-LWP" id="j5g-7T-bmc"/>
                         <outlet property="collectionView" destination="psT-nt-buZ" id="dSa-e9-4X5"/>
                         <outlet property="searchBar" destination="erm-3E-mZe" id="N2S-CS-S3N"/>
                         <outlet property="searchDisplayController" destination="yDe-aN-f4a" id="1yC-CL-Nxs"/>
@@ -2136,6 +2140,106 @@
             </objects>
             <point key="canvasLocation" x="2636" y="-251.42428785607197"/>
         </scene>
+        <!--Item-->
+        <scene sceneID="Qhw-yZ-f7O">
+            <objects>
+                <viewController id="zbc-rd-NCP" customClass="AnimalTestViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="87k-AH-VgE"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Js-1C-cwL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vuO-9b-G5d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gPm-a1-LvR">
+                                <rect key="frame" x="16" y="85" width="343" height="30"/>
+                                <state key="normal" title="Get animals"/>
+                                <connections>
+                                    <action selector="getAnimalsButtonTapped:" destination="zbc-rd-NCP" eventType="touchUpInside" id="57f-RO-Wh0"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gbr-Dp-hxw">
+                                <rect key="frame" x="24" y="133" width="327" height="89"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="89" id="Iiw-PI-dZd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Updates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qAT-EH-FWr">
+                                <rect key="frame" x="24" y="259" width="327" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="V5P-NO-uG1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery/Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WHA-gy-Dgl">
+                                <rect key="frame" x="24" y="288" width="327" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="Ndb-Js-EQr"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo Link" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zMQ-N3-66d">
+                                <rect key="frame" x="24" y="317" width="327" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="bpx-ct-96j"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xf-gF-8Xl">
+                                <rect key="frame" x="24" y="230" width="327" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="vOg-y3-BMT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="zMQ-N3-66d" firstAttribute="leading" secondItem="vuO-9b-G5d" secondAttribute="leadingMargin" constant="8" id="50x-qZ-nJw"/>
+                            <constraint firstItem="Gbr-Dp-hxw" firstAttribute="leading" secondItem="vuO-9b-G5d" secondAttribute="leadingMargin" constant="8" id="Azk-VS-Oo9"/>
+                            <constraint firstItem="qAT-EH-FWr" firstAttribute="leading" secondItem="vuO-9b-G5d" secondAttribute="leadingMargin" constant="8" id="BiE-3E-kOF"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gPm-a1-LvR" secondAttribute="leading" id="DfE-qv-OyR"/>
+                            <constraint firstItem="WHA-gy-Dgl" firstAttribute="leading" secondItem="vuO-9b-G5d" secondAttribute="leadingMargin" constant="8" id="GtV-zU-I5n"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zMQ-N3-66d" secondAttribute="trailing" constant="8" id="NTZ-0S-C6v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="WHA-gy-Dgl" secondAttribute="trailing" constant="8" id="Pwf-HT-uF6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Gbr-Dp-hxw" secondAttribute="trailing" constant="8" id="R5v-Qi-U1A"/>
+                            <constraint firstItem="qAT-EH-FWr" firstAttribute="top" secondItem="Gbr-Dp-hxw" secondAttribute="bottom" constant="37" id="UyT-Fk-Rvg"/>
+                            <constraint firstItem="1Js-1C-cwL" firstAttribute="top" secondItem="zMQ-N3-66d" secondAttribute="bottom" constant="329" id="YLM-5v-0Tu"/>
+                            <constraint firstItem="7xf-gF-8Xl" firstAttribute="leading" secondItem="vuO-9b-G5d" secondAttribute="leadingMargin" constant="8" id="ZIU-1u-wZe"/>
+                            <constraint firstItem="7xf-gF-8Xl" firstAttribute="top" secondItem="gPm-a1-LvR" secondAttribute="bottom" constant="115" id="Zga-UH-cHQ"/>
+                            <constraint firstItem="gPm-a1-LvR" firstAttribute="top" secondItem="87k-AH-VgE" secondAttribute="bottom" constant="65" id="heT-iq-qW4"/>
+                            <constraint firstItem="Gbr-Dp-hxw" firstAttribute="top" secondItem="7xf-gF-8Xl" secondAttribute="bottom" constant="-118" id="orF-Ds-U7r"/>
+                            <constraint firstItem="WHA-gy-Dgl" firstAttribute="top" secondItem="qAT-EH-FWr" secondAttribute="bottom" constant="8" id="u61-L3-j84"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7xf-gF-8Xl" secondAttribute="trailing" constant="8" id="ubY-mF-BfF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="qAT-EH-FWr" secondAttribute="trailing" constant="8" id="v1P-0E-Qm0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="gPm-a1-LvR" secondAttribute="trailing" id="xal-EE-QJY"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="yVB-nR-hPg"/>
+                    <connections>
+                        <outlet property="animalDescriptionLabel" destination="Gbr-Dp-hxw" id="VRB-Zs-JMb"/>
+                        <outlet property="animalNameLabel" destination="7xf-gF-8Xl" id="UQI-sG-Ei1"/>
+                        <outlet property="animalUpdates" destination="qAT-EH-FWr" id="2Hp-NG-iq3"/>
+                        <outlet property="galleryLabel" destination="WHA-gy-Dgl" id="NaJ-9L-g58"/>
+                        <outlet property="photoLinkLabel" destination="zMQ-N3-66d" id="In1-2S-rWg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1gM-O8-IPw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3328.8000000000002" y="-251.42428785607197"/>
+        </scene>
         <!--AR-->
         <scene sceneID="2hq-mM-b2i">
             <objects>
@@ -2403,6 +2507,14 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DF3-g7-g8f">
+                                <rect key="frame" x="127" y="63" width="83" height="46"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="zbc-rd-NCP" kind="show" id="Vdm-a5-cWs"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -3273,7 +3385,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                             <rect key="frame" x="0.0" y="28" width="375" height="164"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qAH-og-mZD" id="ToE-zp-MmA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="163.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="penguins-200px" translatesAutoresizingMaskIntoConstraints="NO" id="Sj1-5r-c74">
@@ -3381,7 +3493,6 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="360°_icon" width="43" height="41"/>
         <image name="CriticallyEndangered" width="414" height="27"/>
         <image name="QRLogo" width="250" height="250"/>
-        <image name="QRcode" width="25" height="25"/>
         <image name="QRviewfinder" width="384" height="248"/>
         <image name="aquaWave" width="2501" height="418"/>
         <image name="aquarium" width="800" height="304"/>
@@ -3414,6 +3525,5 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <segue reference="a5a-op-VaW"/>
         <segue reference="qnK-PO-FRk"/>
         <segue reference="Ufe-47-U55"/>
-        <segue reference="qCd-ud-LAc"/>
     </inferredMetricsTieBreakers>
 </document>

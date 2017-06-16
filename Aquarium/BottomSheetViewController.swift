@@ -64,7 +64,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var animalImage = UIImage()
     var animalName = ""
     var conservationStatus = ""
-    var animal: Animals?
+    var animal: AnimalTest?
     
     
     var closeSwitch: Bool = true
@@ -166,8 +166,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             let mapData = self.mapTableViewData[indexPath.row]
             
-            cell.cellImage.image = mapData.info.animalImage
-            cell.cellLabel.text = mapData.info.name
+ // FIX THIS           cell.cellImage.image = mapData.animalImage
+            cell.cellLabel.text = mapData.animalName
             
             cell.animalInfoButton.tag = indexPath.row
             
@@ -198,10 +198,10 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         if tableView == self.tableView {
             let animal = mapTableViewData[indexPath.row]
-            self.animalName = animal.info.name
-            self.animalImage = animal.info.animalImage
-            self.animalInfo = animal.info.description ?? ""
-            self.conservationStatus = animal.info.status
+            self.animalName = animal.animalName ?? ""
+// FIX THIS!            self.animalImage = animal.animalImage
+            self.animalInfo = animal.animalInfo ?? ""
+            self.conservationStatus = animal.conservationStatus ?? ""
             
             self.performSegue(withIdentifier: "toAnimalDetail", sender: nil)
         }
@@ -232,7 +232,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.antarcticAdventure.name:
             showTableView()
-            self.mapTableViewData = [.penguins]
+            self.mapTableViewData = AnimalController.shared.antarcticAdventureAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.banquetHall.name:
@@ -249,7 +249,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.discoverUtah.name:
             showTableView()
-            self.mapTableViewData = [.otters, .tortoise]
+            self.mapTableViewData = AnimalController.shared.discoverUtahAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.educationCenter.name:
@@ -258,22 +258,22 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.expeditionAsia.name:
             showTableView()
-            self.mapTableViewData = [.cloudedLeopards, .hornbill]
+            self.mapTableViewData = AnimalController.shared.ExpeditionAsiaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.jellyFish.name:
             showTableView()
-            self.mapTableViewData = [.jellyfish]
+            self.mapTableViewData = []
             self.theaterTableView.isHidden = true
             
         case galleries.jsa.name:
             showTableView()
-            self.mapTableViewData = [.arapaima, .toucan]
+            self.mapTableViewData = AnimalController.shared.jsaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.oceanExplorer.name:
             showTableView()
-            self.mapTableViewData = [.blacktipReef, .eel, .greenSeaTurtle, .zebraShark]
+            self.mapTableViewData = AnimalController.shared.oceanExplorerAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.theater.name:
@@ -499,12 +499,12 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
         let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
-        self.animalInfo = animal.info.description!
-        self.animalName = animal.info.name
-        self.animalImage = animal.info.animalImage
-        self.conservationStatus = animal.info.status
+        self.animalInfo = animal.animalInfo ?? ""
+        self.animalName = animal.animalName ?? ""
+// FIX THIS!!        self.animalImage = animal.animalImage ?? ""
+        self.conservationStatus = animal.conservationStatus ?? ""
         
-        print("Info button tapped for \(animal.info.name)")
+        print("Info button tapped for \(animal.animalName ?? "")")
         self.performSegue(withIdentifier: "toAnimalDetail", sender: self)
         
         self.closeSwitch = false
@@ -513,13 +513,13 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     func locateButtonAction(_ mapTableViewCell: MapTableViewCell) {
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
         let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
-        print("Locate button tapped for \(animal.info.name)")
+        print("Locate button tapped for \(animal.animalName ?? "")")
     }
     
     func feedingButtonAction(_ mapTableViewCell: MapTableViewCell) {
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
         let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
-        print("Feeding button tapped for \(animal.info.name)")
+        print("Feeding button tapped for \(animal.animalName ?? "")")
     }
     
     

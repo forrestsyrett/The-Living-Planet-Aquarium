@@ -275,8 +275,8 @@ class AugmentedRealityViewController: UIViewController, CraftARContentEventsProt
         
         let animal = AnimalController.shared.allAnimals[indexPath.row]
         
-        cell.animalImage.image = animal.info.animalImage
-        cell.animalNameLabel.text = animal.info.name
+// FIX THIS!!        cell.animalImage.image = animal.animalImage
+        cell.animalNameLabel.text = animal.animalName ?? ""
         cell.clipsToBounds = true
             cell.layer.cornerRadius = 5.0
         cell.animalImage.layer.cornerRadius = 5.0
@@ -301,7 +301,7 @@ class AugmentedRealityViewController: UIViewController, CraftARContentEventsProt
     let animal = AnimalController.shared.allAnimals[selectedItem]
     print(selectedItem)
     destinationViewController.updateInfo(animal: animal)
-    destinationViewController.animal = animal.info.name
+    destinationViewController.animal = animal.animalName ?? ""
             }
         }
     }

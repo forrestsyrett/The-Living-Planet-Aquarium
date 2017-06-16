@@ -8,6 +8,8 @@
 
 import UIKit
 import FlowingMenu
+import Firebase
+import NVActivityIndicatorView
 
 class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
@@ -16,26 +18,41 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     let flowingMenuTransitionManager = FlowingMenuTransitionManager()
     var menu: UIViewController?
-    var allAnimals: [Animals] = []
-    var allAnimalsSorted: [Animals] = []
-    var dataSourceForSearchResult:[Animals]?
+    var allAnimals: [AnimalTest] = []
+    var allAnimalsSorted: [AnimalTest] = []
+    
+    var discoverUtahAnimals: [AnimalTest] = []
+    var oceanExplorerAnimals: [AnimalTest] = []
+    var ExpeditionAsiaAnimals: [AnimalTest] = []
+    var jsaAnimals: [AnimalTest] = []
+    var antarcticAdventureAnimals: [AnimalTest] = []
+    
+    var dataSourceForSearchResult:[AnimalTest]?
     var searchBarIsActive: Bool = false
     var searchBarBoundsY: CGFloat?
+    var firebaseReference: FIRDatabaseReference!
+
     @IBOutlet weak var searchBar: UISearchBar!
     
+    @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.activityIndicator.isHidden = false
+
+        self.firebaseReference = FIRDatabase.database().reference()
+        
+        getAnimals()
         
         
-        allAnimals = AnimalController.shared.allAnimals
-        allAnimalsSorted = allAnimals.sorted { $0.info.name < $1.info.name }
+        //allAnimals = AnimalController.shared.allAnimals
+        allAnimalsSorted = allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
         
         allAnimals = allAnimalsSorted
         
-        dataSourceForSearchResult = [Animals]()
+        dataSourceForSearchResult = [AnimalTest]()
         
         
         tabBarTint(view: self)
@@ -86,6 +103,46 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         self.searchBar.isHidden = false
     }
     override func viewWillDisappear(_ animated: Bool) {
+    }
+    
+    
+    
+    func getAnimals() {
+        
+        self.activityIndicator.isHidden = false
+        self.activityIndicator.startAnimating()
+        let query =  self.firebaseReference.child("Animals")
+        
+        query.observe(.value, with: { (snapshot) in
+            self.allAnimals = []
+            for item in snapshot.children {
+                let animalTest = AnimalTest(snapshot: item as! FIRDataSnapshot)
+                self.allAnimals.append(animalTest!)
+            }
+            if self.allAnimals != [] {
+                self.activityIndicator.stopAnimating()
+                self.activityIndicator.isHidden = true
+                AnimalController.shared.allAnimals = self.allAnimals
+                self.collectionView.reloadData()
+                
+                // Sort animals into gallery exhibits
+                for animal in self.allAnimals {
+                    guard let gallery = animal.gallery else { return }
+                    switch gallery {
+                    case "Discover Utah": self.discoverUtahAnimals.append(animal)
+                    case "Journey to South America": self.jsaAnimals.append(animal)
+                    case "Ocean Explorer": self.oceanExplorerAnimals.append(animal)
+                    case "Expedition Asia": self.ExpeditionAsiaAnimals.append(animal)
+                    case "Antarctic Adventure": self.antarcticAdventureAnimals.append(animal)
+                        
+                    default: break
+                        
+                    }
+                }
+
+            }
+        })
+        
     }
     
     
@@ -188,7 +245,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     
     func keyboardWillBeHidden(notification: NSNotification) {
-        var info = notification.userInfo!
+        _ = notification.userInfo!
         //     let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         //     let keyboardHeight: CGFloat = (keyboardSize?.height)!
         
@@ -222,8 +279,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
-            cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].info.name
-            cell.animalImage.image = self.dataSourceForSearchResult?[indexPath.row].info.animalImage
+            cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
+// FIX THIS!!      cell.animalImage.image = self.dataSourceForSearchResult?[indexPath.row].animalImage
         } else {
             
             
@@ -231,14 +288,9 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             
             let animal = allAnimals[indexPath.row]
             
-            cell.animalImage.image = animal.info.animalImage
-            cell.animalNameLabel.text = animal.info.name
+// FIX THIS!!         cell.animalImage.image = animal.animalImage
+            cell.animalNameLabel.text = animal.animalName
         }
-        // cell.alpha = 0.0
-        
-        //   UIView.animate(withDuration: 0.30, animations: {
-        //       cell.alpha = 1.0
-        //   }, completion: nil)
         
         cell.layer.cornerRadius = 5.0
         
@@ -259,12 +311,13 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     // MARK: - Gallery Selected Delegate Methods
     
     func gallerySelected(indexPath: Int) {
+        
         switch indexPath {
-        case 0: allAnimals = [Animals.otters, Animals.tortoise]
-        case 1: allAnimals = [Animals.arapaima, Animals.toucan]
-        case 2: allAnimals = [Animals.eel, Animals.greenSeaTurtle, Animals.zebraShark, Animals.blacktipReef]
-        case 3: allAnimals = [Animals.penguins]
-        case 4: allAnimals = [Animals.binturong, Animals.cloudedLeopards, Animals.hornbill]
+        case 0: allAnimals = self.discoverUtahAnimals
+        case 1: allAnimals = self.jsaAnimals
+        case 2: allAnimals = self.oceanExplorerAnimals
+        case 3: allAnimals = self.antarcticAdventureAnimals
+        case 4: allAnimals = self.ExpeditionAsiaAnimals
         default: break
         }
         self.collectionView.reloadData()
@@ -321,7 +374,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         let animal = allAnimals[selectedItem]
                         print(selectedItem)
                         destinationViewController.updateInfo(animal: animal)
-                        destinationViewController.animal = animal.info.name
+                        destinationViewController.animal = animal.animalName!
                     }
                 }
             }
@@ -358,7 +411,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     func filterSearchResults(searchText: String) {
         
-        let animals = allAnimals.filter { ( ($0.info.name.range(of: searchText) != nil))}
+        let animals = allAnimals.filter { ( ($0.animalName?.range(of: searchText) != nil))}
         dataSourceForSearchResult = animals
         self.collectionView.reloadData()
         

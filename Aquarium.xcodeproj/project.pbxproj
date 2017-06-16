@@ -22,7 +22,7 @@
 		061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549051EF1D075004406CF /* CoreLocation.framework */; };
 		061549081EF1D18C004406CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549071EF1D18C004406CF /* Pods.framework */; };
 		061549251EF1DF01004406CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061549241EF1DF01004406CF /* Main.storyboard */; };
-		061549271EF1E38F004406CF /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549261EF1E38F004406CF /* GoogleService-Info.plist */; };
+		061549271EF1E38F004406CF /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549261EF1E38F004406CF /* GoogleService-Info-2.plist */; };
 		061549291EF1E62B004406CF /* Aquarium.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549281EF1E62B004406CF /* Aquarium.plist */; };
 		0615492B1EF1E63D004406CF /* AquariumSecondFloor.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492A1EF1E63D004406CF /* AquariumSecondFloor.plist */; };
 		0615492D1EF1E64D004406CF /* BackgroundOverlay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */; };
@@ -50,6 +50,10 @@
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
 		06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */; };
 		06C714F81E5E6C61003F3794 /* jellies.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 06C714F71E5E6C61003F3794 /* jellies.MOV */; };
+		06F298061EF469A000856A93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06F298051EF469A000856A93 /* GoogleService-Info.plist */; };
+		06F298081EF470D800856A93 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298071EF470D800856A93 /* FirebaseController.swift */; };
+		06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298091EF4710800856A93 /* AnimalTest.swift */; };
+		06F2980C1EF4729100856A93 /* AnimalTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */; };
 		06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */; };
 		2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA163953DE68335B7F2D0C0E /* Pods_Aquarium.framework */; };
 		AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */; };
@@ -127,7 +131,7 @@
 		061549051EF1D075004406CF /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		061549071EF1D18C004406CF /* Pods.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Pods.framework; sourceTree = "<group>"; };
 		061549241EF1DF01004406CF /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		061549261EF1E38F004406CF /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		061549261EF1E38F004406CF /* GoogleService-Info-2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-2.plist"; sourceTree = "<group>"; };
 		061549281EF1E62B004406CF /* Aquarium.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Aquarium.plist; sourceTree = "<group>"; };
 		0615492A1EF1E63D004406CF /* AquariumSecondFloor.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AquariumSecondFloor.plist; sourceTree = "<group>"; };
 		0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BackgroundOverlay.plist; sourceTree = "<group>"; };
@@ -155,6 +159,10 @@
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningScreenViewController.swift; sourceTree = "<group>"; };
 		06C714F71E5E6C61003F3794 /* jellies.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = jellies.MOV; sourceTree = "<group>"; };
+		06F298051EF469A000856A93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		06F298071EF470D800856A93 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
+		06F298091EF4710800856A93 /* AnimalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTest.swift; sourceTree = "<group>"; };
+		06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTestViewController.swift; sourceTree = "<group>"; };
 		06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		AA07C69D1DD5052700AD855D /* SecondFloorOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondFloorOverlayView.swift; sourceTree = "<group>"; };
@@ -198,8 +206,8 @@
 		AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitGalleryTableViewCell.swift; sourceTree = "<group>"; };
 		AA6F4E631D3868F900FA20F7 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewCell.swift; sourceTree = "<group>"; };
-		AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFeedTableViewController.swift; sourceTree = "<group>"; };
-		AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalFeedTableViewCell.swift; sourceTree = "<group>"; };
+		AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimalFeedTableViewController.swift; path = Aquarium/AnimalFeedTableViewController.swift; sourceTree = "<group>"; };
+		AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimalFeedTableViewCell.swift; path = Aquarium/AnimalFeedTableViewCell.swift; sourceTree = "<group>"; };
 		AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardTableViewCell.swift; sourceTree = "<group>"; };
 		AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipListTableViewController.swift; sourceTree = "<group>"; };
 		AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardController.swift; sourceTree = "<group>"; };
@@ -209,7 +217,7 @@
 		AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitViewController.swift; sourceTree = "<group>"; };
 		AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlowingMenu.framework; path = "../../../Library/Developer/Xcode/DerivedData/Aquarium-dssxpatbhahvltdxuofqdxoybnwp/Build/Products/Debug-iphoneos/FlowingMenu/FlowingMenu.framework"; sourceTree = "<group>"; };
 		AA8D05151D19DC930063F222 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		AA909B171D41B42A000DB923 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feeding.swift; sourceTree = "<group>"; };
+		AA909B171D41B42A000DB923 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feeding.swift; path = Aquarium/Feeding.swift; sourceTree = "<group>"; };
 		AA9D6EDF1D1CCD5000831AFE /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aquarium.entitlements; sourceTree = "<group>"; };
 		AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +254,7 @@
 		0615493A1EF1E93F004406CF /* Calendar Events */ = {
 			isa = PBXGroup;
 			children = (
+				AAEE47671D3CAD8500E0C537 /* NotificationController.swift */,
 				061549381EF1E93B004406CF /* EventsViewController.swift */,
 				0615493B1EF1E94E004406CF /* CustomCell.swift */,
 				0615493D1EF1E956004406CF /* EventTableViewCell.swift */,
@@ -259,6 +268,9 @@
 			children = (
 				AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */,
 				AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */,
+				AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */,
+				AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */,
+				AA909B171D41B42A000DB923 /* Feeding.swift */,
 			);
 			name = Unused;
 			path = ..;
@@ -356,18 +368,21 @@
 				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
 				06C4BB891E78882B005A96CE /* NotificationDelegate.swift */,
 				06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */,
+				06F298071EF470D800856A93 /* FirebaseController.swift */,
+				06F298091EF4710800856A93 /* AnimalTest.swift */,
+				06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */,
 				061549241EF1DF01004406CF /* Main.storyboard */,
 				AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */,
 				AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */,
 				06C714F71E5E6C61003F3794 /* jellies.MOV */,
 				AA544CA01D0BB66C00DC1725 /* Info.plist */,
-				061549261EF1E38F004406CF /* GoogleService-Info.plist */,
+				061549261EF1E38F004406CF /* GoogleService-Info-2.plist */,
+				06F298051EF469A000856A93 /* GoogleService-Info.plist */,
 				0615493A1EF1E93F004406CF /* Calendar Events */,
 				AA353AE11DCE8BAA00AD5490 /* Fonts */,
 				AA353AB41DCE5F3900AD5490 /* Map */,
 				AA8441CF1D556F3C000238C1 /* Main Tab Bar Items */,
 				AA8441CB1D556E12000238C1 /* Mobile Membership */,
-				AA8441CD1D556EA0000238C1 /* Animal Feeds */,
 				069A21661EB68F52006130C1 /* CustomTabBar */,
 				AA8441CE1D556ECD000238C1 /* Appearance */,
 				AA8441CC1D556E49000238C1 /* Animal Exhibit Galleries */,
@@ -408,17 +423,6 @@
 				060C1EB51E81D87500501713 /* sharkTexture.jpg */,
 			);
 			name = "Animal Exhibit Galleries";
-			sourceTree = "<group>";
-		};
-		AA8441CD1D556EA0000238C1 /* Animal Feeds */ = {
-			isa = PBXGroup;
-			children = (
-				AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */,
-				AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */,
-				AAEE47671D3CAD8500E0C537 /* NotificationController.swift */,
-				AA909B171D41B42A000DB923 /* Feeding.swift */,
-			);
-			name = "Animal Feeds";
 			sourceTree = "<group>";
 		};
 		AA8441CE1D556ECD000238C1 /* Appearance */ = {
@@ -556,8 +560,9 @@
 				AA353ADB1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Demi.otf in Resources */,
 				AA353AE41DCE8C0600AD5490 /* TrajanPro-Bold.otf in Resources */,
 				AA353AE51DCE8C0600AD5490 /* TrajanPro-Regular.otf in Resources */,
+				06F298061EF469A000856A93 /* GoogleService-Info.plist in Resources */,
 				AA353ADF1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Med.otf in Resources */,
-				061549271EF1E38F004406CF /* GoogleService-Info.plist in Resources */,
+				061549271EF1E38F004406CF /* GoogleService-Info-2.plist in Resources */,
 				060C1EB61E81D87500501713 /* shark.obj in Resources */,
 				0615492D1EF1E64D004406CF /* BackgroundOverlay.plist in Resources */,
 				AA544C9C1D0BB66C00DC1725 /* Assets.xcassets in Resources */,
@@ -660,6 +665,7 @@
 				061549391EF1E93B004406CF /* EventsViewController.swift in Sources */,
 				AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */,
 				AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */,
+				06F2980C1EF4729100856A93 /* AnimalTestViewController.swift in Sources */,
 				06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */,
 				AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */,
 				AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */,
@@ -675,6 +681,7 @@
 				AA353AC21DCE619100AD5490 /* AquariumMapOverlayView.swift in Sources */,
 				06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */,
 				06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */,
+				06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */,
 				AA183F2A1D1A6DD300D31044 /* AnimalEncountersViewController.swift in Sources */,
 				AA544C951D0BB66C00DC1725 /* AppDelegate.swift in Sources */,
 				0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */,
@@ -682,6 +689,7 @@
 				0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */,
 				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
 				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
+				06F298081EF470D800856A93 /* FirebaseController.swift in Sources */,
 				0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */,
 				06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */,
 				AA353ABC1DCE608500AD5490 /* CurrentLocationController.swift in Sources */,

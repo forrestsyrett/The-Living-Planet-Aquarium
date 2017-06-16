@@ -109,11 +109,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.dismiss(animated: true, completion: nil)
     }
     
-    func updateInfo(animal: Animals) {
-        self.name = animal.info.name
-        self.image = animal.info.animalImage
-        self.info = animal.info.description!
-        self.status = animal.info.status
+    func updateInfo(animal: AnimalTest) {
+        self.name = animal.animalName ?? ""
+//FIX THIS!!!        self.image = animal.animalImage
+        self.info = animal.animalInfo ?? ""
+        self.status = animal.conservationStatus ?? ""
     }
     
     
