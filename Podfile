@@ -18,7 +18,7 @@ pod 'AlamofireObjectMapper', '~> 4.0'
 pod 'Google'
 pod 'Google/Analytics'
 pod 'Google/SignIn'
-
+pod 'NVActivityIndicatorView'
 
 
 end

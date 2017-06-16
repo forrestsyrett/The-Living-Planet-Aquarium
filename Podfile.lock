@@ -46,6 +46,7 @@ PODS:
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
   - JTAppleCalendar (7.0.4)
+  - NVActivityIndicatorView (3.6.1)
   - ObjectMapper (2.2.7)
   - OneSignal (2.5.4)
   - SwiftyJSON (3.1.4)
@@ -58,6 +59,7 @@ DEPENDENCIES:
   - Google/Analytics
   - Google/SignIn
   - JTAppleCalendar (~> 7.0)
+  - NVActivityIndicatorView
   - OneSignal
   - SwiftyJSON
 
@@ -75,10 +77,11 @@ SPEC CHECKSUMS:
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   JTAppleCalendar: 6def48ecd0daae1d5baaa45e813124c2a20b184d
+  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 2a0cf279cf8d7cb438babe0d82ecb6d0ac4b918c
+PODFILE CHECKSUM: 999dc03ca8b2c289a4600905b161f4332fcf847a
 
 COCOAPODS: 1.1.1

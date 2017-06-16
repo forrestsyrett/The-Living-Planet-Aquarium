@@ -12,13 +12,16 @@ import SwiftyJSON
 import JTAppleCalendar
 import AlamofireObjectMapper
 import UserNotifications
+import NVActivityIndicatorView
 
 
 class EventsViewController: UIViewController {
     
     //  @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
+
+    @IBOutlet weak var activityMonitor: NVActivityIndicatorView!
+    
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var todayButton: UIButton!
     
@@ -185,10 +188,13 @@ class EventsViewController: UIViewController {
                     if complete {
                 self.animateTableView(completion: { (true) in
                     
-                        self.activityMonitor.stopAnimating()
-                        self.activityMonitor.isHidden = true
-                        print("Execution Finished")
+                //prevent flashing of activity monitor
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                            self.activityMonitor.stopAnimating()
+                            self.activityMonitor.isHidden = true
+                            print("Execution Finished")
                         })
+                    })
                 
                 } else {
                     print("not complete")
@@ -201,7 +207,12 @@ class EventsViewController: UIViewController {
             })
             case .failure(let error):
                 print(error)
+                let noConnectionAlert = UIAlertController(title: "There was a problem loading the events.", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+                self.activityMonitor.stopAnimating()
+                noConnectionAlert.addAction(dismissAction)
                 
+                self.present(noConnectionAlert, animated: true, completion: nil)
             }
         
         }
@@ -373,6 +384,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
     //    if cellState.dateBelongsTo == .followingMonthWithinBoundary || cellState.dateBelongsTo == .previousMonthWithinBoundary {
          //   calendar.scrollToDate(date)
      //   }
+     
         
         self.currentDate = cellState.date
         getCalendarItems()
