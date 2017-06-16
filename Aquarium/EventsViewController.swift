@@ -268,7 +268,15 @@ class EventsViewController: UIViewController {
     
     func handleCellSelected(cell: JTAppleCell?, cellState: CellState) {
         
+        
         guard let validCell = cell as? CustomCell else { return }
+        
+        validCell.selectedView.layer.shadowColor = UIColor.white.cgColor
+        validCell.selectedView.layer.shadowOpacity = 1.0
+        validCell.selectedView.layer.shadowRadius = 5.0
+        validCell.selectedView.layer.shadowOffset = CGSize.zero
+        validCell.selectedView.clipsToBounds = false
+        
         if cellState.isSelected {
             validCell.selectedView.isHidden = false
         } else {
@@ -372,7 +380,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
         cell.selectedView.layer.cornerRadius = 15.0
         cell.selectedView.layer.borderWidth = 1.0
         cell.selectedView.layer.borderColor = UIColor.white.cgColor
-        cell.selectedView.backgroundColor = aquaLight
+        cell.selectedView.backgroundColor = .white
         return cell
     }
     
