@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import FirebaseStorageUI
+import Firebase
 
 
 var galleryTest = ""
@@ -56,7 +57,16 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         case WebView = "WebView"
     }
     
-    var mapTableViewData = AnimalController.shared.allAnimals
+    //   var mapTableViewData = AnimalController.shared.allAnimals
+    var allAnimals: [AnimalTest] = []
+    var allAnimalsSorted: [AnimalTest] = []
+    
+    var discoverUtahAnimals: [AnimalTest] = []
+    var oceanExplorerAnimals: [AnimalTest] = []
+    var expeditionAsiaAnimals: [AnimalTest] = []
+    var jsaAnimals: [AnimalTest] = []
+    var antarcticAdventureAnimals: [AnimalTest] = []
+    
     var mapGalleries = [MapGalleryController.sharedController.antarcticAdventure.name]
     var allTheaterShows = [TheaterShowsController.shared.penguins4D, TheaterShowsController.shared.sammyAndRay4D, TheaterShowsController.shared.wildCats3D]
     
@@ -66,6 +76,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var animalName = ""
     var conservationStatus = ""
     var animal: AnimalTest?
+    var firebaseReference: FIRDatabaseReference!
     
     
     var closeSwitch: Bool = true
@@ -73,10 +84,15 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        self.firebaseReference = FIRDatabase.database().reference()
+        
+        getAnimals()
+        
         print("SHARED CONTROLLER \(AnimalController.shared.allAnimals.count)")
         print("JSA \(AnimalController.shared.jsaAnimals.count)")
         print("UTAH \(AnimalController.shared.discoverUtahAnimals.count)")
-        print("ASIA \(AnimalController.shared.ExpeditionAsiaAnimals.count)")
+        print("ASIA \(AnimalController.shared.expeditionAsiaAnimals.count)")
         print("OCEANS \(AnimalController.shared.oceanExplorerAnimals.count)")
         print("AA \(AnimalController.shared.antarcticAdventureAnimals.count)")
         
@@ -143,6 +159,52 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     
     
+    func getAnimals() {
+        
+        
+        let query =  self.firebaseReference.child("Animals")
+        
+        query.observe(.value, with: { (snapshot) in
+            self.allAnimals = []
+            AnimalController.shared.allAnimals = []
+            
+            self.discoverUtahAnimals = []
+            self.oceanExplorerAnimals = []
+            self.expeditionAsiaAnimals = []
+            self.jsaAnimals = []
+            self.antarcticAdventureAnimals = []
+            
+            for item in snapshot.children {
+                let animal = AnimalTest(snapshot: item as! FIRDataSnapshot)
+                self.allAnimals.append(animal!)
+            }
+            if self.allAnimals != [] {
+                self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
+                self.allAnimals = self.allAnimalsSorted
+                
+                
+                // Sort animals into gallery exhibits
+                for animal in self.allAnimals {
+                    guard let gallery = animal.gallery else { return }
+                    switch gallery {
+                    case "Discover Utah": self.discoverUtahAnimals.append(animal)
+                    case "Journey to South America": self.jsaAnimals.append(animal)
+                    case "Ocean Explorer": self.oceanExplorerAnimals.append(animal)
+                    case "Expedition Asia": self.expeditionAsiaAnimals.append(animal)
+                    case "Antarctic Adventure": self.antarcticAdventureAnimals.append(animal)
+                        
+                    default: break
+                        
+                    }
+                }
+                self.sortGalleryData()
+            }
+        })
+    }
+    
+    
+    
+    
     // MARK: - TableView Functions
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -156,7 +218,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.tableView {
-            return self.mapTableViewData.count
+            return self.allAnimals.count
         } else {
             return self.allTheaterShows.count
         }
@@ -171,7 +233,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             cell.delegate = self
             
-            let mapData = self.mapTableViewData[indexPath.row]
+            let mapData = self.allAnimals[indexPath.row]
             
             // Download image from Firebase Storage
             
@@ -210,7 +272,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == self.tableView {
-            let animal = mapTableViewData[indexPath.row]
+            let animal = allAnimals[indexPath.row]
             self.animalName = animal.animalName ?? ""
             self.animalImage = animal.animalImage ?? ""
             self.animalInfo = animal.animalInfo ?? ""
@@ -245,7 +307,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.antarcticAdventure.name:
             showTableView()
-            self.mapTableViewData = AnimalController.shared.antarcticAdventureAnimals
+            self.allAnimals = self.antarcticAdventureAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.banquetHall.name:
@@ -262,7 +324,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.discoverUtah.name:
             showTableView()
-            self.mapTableViewData = AnimalController.shared.discoverUtahAnimals
+            self.allAnimals = self.discoverUtahAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.educationCenter.name:
@@ -271,22 +333,22 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.expeditionAsia.name:
             showTableView()
-            self.mapTableViewData = AnimalController.shared.ExpeditionAsiaAnimals
+            self.allAnimals = self.expeditionAsiaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.jellyFish.name:
             showTableView()
-            self.mapTableViewData = []
+            self.allAnimals = []
             self.theaterTableView.isHidden = true
             
         case galleries.jsa.name:
             showTableView()
-            self.mapTableViewData = AnimalController.shared.jsaAnimals
+            self.allAnimals = self.jsaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.oceanExplorer.name:
             showTableView()
-            self.mapTableViewData = AnimalController.shared.oceanExplorerAnimals
+            self.allAnimals = self.oceanExplorerAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.theater.name:
@@ -511,7 +573,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     func infoButtonAction(_ mapTableViewCell: MapTableViewCell) {
         
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
+        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
         self.animalImage = animal.animalImage ?? ""
         self.animalInfo = animal.animalInfo ?? ""
         self.animalName = animal.animalName ?? ""
@@ -525,13 +587,13 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func locateButtonAction(_ mapTableViewCell: MapTableViewCell) {
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
+        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
         print("Locate button tapped for \(animal.animalName ?? "")")
     }
     
     func feedingButtonAction(_ mapTableViewCell: MapTableViewCell) {
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
+        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
         print("Feeding button tapped for \(animal.animalName ?? "")")
     }
     
@@ -586,7 +648,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
-               destinationViewController.imageReference = self.animalImage
+                destinationViewController.imageReference = self.animalImage
                 destinationViewController.info = self.animalInfo
                 destinationViewController.name = self.animalName
                 destinationViewController.status = self.conservationStatus

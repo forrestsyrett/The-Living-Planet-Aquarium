@@ -47,7 +47,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-
+        
         
         tabBarTint(view: self)
         transparentNavigationBar(self)
@@ -109,6 +109,22 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         query.observe(.value, with: { (snapshot) in
             self.allAnimals = []
+            AnimalController.shared.allAnimals = []
+          /*
+            let shared = AnimalController.shared
+            shared.discoverUtahAnimals = []
+            shared.oceanExplorerAnimals = []
+            shared.expeditionAsiaAnimals = []
+            shared.jsaAnimals = []
+            shared.antarcticAdventureAnimals = []
+          */
+            self.discoverUtahAnimals = []
+            self.oceanExplorerAnimals = []
+            self.expeditionAsiaAnimals = []
+            self.jsaAnimals = []
+            self.antarcticAdventureAnimals = []
+            
+            
             for item in snapshot.children {
                 let animalTest = AnimalTest(snapshot: item as! FIRDataSnapshot)
                 self.allAnimals.append(animalTest!)
@@ -122,9 +138,9 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 
                 
                 self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
-                for animal in self.allAnimalsSorted {
-                    print(animal.animalName)
-                }
+       //         for animal in self.allAnimalsSorted {
+//                    print(animal.animalName)
+         //       }
                 self.allAnimals = self.allAnimalsSorted
                 self.dataSourceForSearchResult = [AnimalTest]()
 
@@ -143,14 +159,14 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         
                     }
                 }
-                
+           /*
                 let shared = AnimalController.shared
                 shared.antarcticAdventureAnimals = self.antarcticAdventureAnimals
                 shared.discoverUtahAnimals = self.discoverUtahAnimals
-                shared.ExpeditionAsiaAnimals = self.expeditionAsiaAnimals
+                shared.expeditionAsiaAnimals = self.expeditionAsiaAnimals
                 shared.jsaAnimals = self.jsaAnimals
                 shared.oceanExplorerAnimals = self.oceanExplorerAnimals
-
+*/
             }
         })
         

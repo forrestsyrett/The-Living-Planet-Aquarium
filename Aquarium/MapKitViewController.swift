@@ -29,9 +29,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     let galleries = MapGalleryController.sharedController
     let bottomSheetViewController = BottomSheetViewController()
-    
-    // var locationManager: CLLocationManager!
-    
+        
     var aquarium = AquariumMap(filename: "Aquarium")
     var aquariumSecondFloor = AquariumMap(filename: "AquariumSecondFloor")
     var background = Background(filename: "BackgroundOverlay")
@@ -129,6 +127,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     }
     
     
+    
     func addOverlays() {
         
         let path = Bundle.main.path(forResource: "background", ofType: "jpg")
@@ -201,11 +200,11 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         ///// Sets Overlay and Overlay Image
         if overlay is AquariumMapOverlay {
-            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFloor") )
+            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFinalRSZ") )
             return overlayView
         }
         if overlay is SecondFloorOverlay {
-            let overlayView = SecondFloorOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "secondFloor"))
+            let overlayView = SecondFloorOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "secondFloorFinalRSZ"))
             return overlayView
         }
         if overlay is BackGroundOverlay {
@@ -302,7 +301,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         }
     }
     
-    // MARK: - Zoom Gallery
     
     func zoomGallery() {
         

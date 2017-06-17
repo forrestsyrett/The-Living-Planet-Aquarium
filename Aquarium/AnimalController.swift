@@ -21,7 +21,7 @@ class AnimalController {
     
     var discoverUtahAnimals: [AnimalTest] = []
     var oceanExplorerAnimals: [AnimalTest] = []
-    var ExpeditionAsiaAnimals: [AnimalTest] = []
+    var expeditionAsiaAnimals: [AnimalTest] = []
     var jsaAnimals: [AnimalTest] = []
     var antarcticAdventureAnimals: [AnimalTest] = []
   

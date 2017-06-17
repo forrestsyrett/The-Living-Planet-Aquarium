@@ -309,7 +309,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTl-Ja-usU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="homeFilled" id="PDX-89-lF2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Oi-c8-wAc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Oi-c8-wAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1773,22 +1773,33 @@
                                 <rect key="frame" x="0.0" y="297" width="375" height="370"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bIq-YH-Ocm" userLabel="containerView">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="36"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="257"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This may have more than 1 line" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MVh-Vb-9pf">
-                                                <rect key="frame" x="8" y="8" width="359" height="20.5"/>
+                                                <rect key="frame" x="8" y="227" width="359" height="21"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="infoGraphic" translatesAutoresizingMaskIntoConstraints="NO" id="m9o-Ha-0tK">
+                                                <rect key="frame" x="8" y="8" width="359" height="211"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="211" id="uoH-J3-t4S"/>
+                                                    <constraint firstAttribute="width" secondItem="m9o-Ha-0tK" secondAttribute="height" multiplier="359:211" id="xzV-cZ-NFf"/>
+                                                </constraints>
+                                            </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="MVh-Vb-9pf" secondAttribute="trailing" constant="8" id="ERp-Rv-6oI"/>
-                                            <constraint firstItem="MVh-Vb-9pf" firstAttribute="top" secondItem="bIq-YH-Ocm" secondAttribute="top" constant="8" id="G7m-cq-9qc"/>
-                                            <constraint firstItem="MVh-Vb-9pf" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="sy3-5h-Nch"/>
-                                            <constraint firstAttribute="bottom" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="7.5" id="tEM-6B-2wS"/>
+                                            <constraint firstAttribute="trailing" secondItem="m9o-Ha-0tK" secondAttribute="trailing" constant="8" id="1Wa-W5-qdK"/>
+                                            <constraint firstItem="m9o-Ha-0tK" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="8Zf-fi-45o"/>
+                                            <constraint firstItem="m9o-Ha-0tK" firstAttribute="top" secondItem="bIq-YH-Ocm" secondAttribute="top" constant="8" id="RwB-uI-Uvz"/>
+                                            <constraint firstItem="MVh-Vb-9pf" firstAttribute="leading" secondItem="bIq-YH-Ocm" secondAttribute="leading" constant="8" id="W3n-lC-mbb"/>
+                                            <constraint firstAttribute="trailing" secondItem="MVh-Vb-9pf" secondAttribute="trailing" constant="8" id="fQn-TH-LY6"/>
+                                            <constraint firstAttribute="bottom" secondItem="MVh-Vb-9pf" secondAttribute="bottom" constant="9" id="uX1-5D-duQ"/>
+                                            <constraint firstItem="MVh-Vb-9pf" firstAttribute="top" secondItem="m9o-Ha-0tK" secondAttribute="bottom" constant="8" id="vwb-oO-JCW"/>
+                                            <constraint firstItem="MVh-Vb-9pf" firstAttribute="top" secondItem="bIq-YH-Ocm" secondAttribute="top" priority="250" constant="227" id="wFc-WV-VqC"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -1797,7 +1808,7 @@
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="top" secondItem="IYv-Aw-Sfx" secondAttribute="top" id="0h6-7h-gld"/>
                                     <constraint firstItem="bIq-YH-Ocm" firstAttribute="leading" secondItem="IYv-Aw-Sfx" secondAttribute="leading" id="bOQ-7B-Sxl"/>
                                     <constraint firstAttribute="trailing" secondItem="bIq-YH-Ocm" secondAttribute="trailing" id="s5w-ld-bhV"/>
-                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" id="z09-5a-46O"/>
+                                    <constraint firstAttribute="bottom" secondItem="bIq-YH-Ocm" secondAttribute="bottom" constant="8" id="z09-5a-46O"/>
                                 </constraints>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KxM-Hz-ex6">
@@ -2070,7 +2081,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-93-w9N">
-                                <rect key="frame" x="319" y="28.5" width="50" height="32"/>
+                                <rect key="frame" x="319" y="28" width="50" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TfO-93-w9N" secondAttribute="height" multiplier="47:30" id="K6M-cL-YWw"/>
                                 </constraints>
@@ -3511,6 +3522,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="heatMap" width="227" height="224"/>
         <image name="home" width="25" height="25"/>
         <image name="homeFilled" width="25" height="25"/>
+        <image name="infoGraphic" width="366" height="247"/>
         <image name="map" width="25" height="25"/>
         <image name="mapFilled" width="25" height="25"/>
         <image name="menu" width="50" height="50"/>
