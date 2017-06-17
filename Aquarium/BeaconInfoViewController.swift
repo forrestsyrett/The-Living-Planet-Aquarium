@@ -35,14 +35,6 @@ class BeaconInfoViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         updateWithInfo()
         
-        let weekday = getWeekday(date: Date())
-        let notificationScheduled = AnimalFeedTableViewController.shared.notificationCheck("Shark Feed", weekday: weekday)
-        
-        if notificationScheduled {
-            self.button.setTitle("Shark Feed Notification Scheduled!", for: .normal)
-        } else {
-            self.button.setTitle(self.buttonLabel, for: .normal)
-        }
     }
     
     
@@ -69,42 +61,7 @@ class BeaconInfoViewController: UIViewController {
     // Near shark beacon, allows user to schedule a notification for the shark feed. Code checks for existing notification so they don't double schedule the same notification.
     
     func scheduleSharkFeed() {
-        
-        let weekday = getWeekday(date: Date())
-        
-        
-        let notificationScheduled = AnimalFeedTableViewController.shared.notificationCheck("Shark Feed", weekday: weekday)
-        
-        
-        
-        if notificationScheduled == false {
-            NotificationController().scheduleNotification(for: .shark, onWeekday: weekday, scheduled: true)
-            
-            let alert = UIAlertController(title: "Shark Feed Notification Scheduled!", message: "We'll alert you 15 minutes before the shark feeding.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Awesome!", style: .default, handler: nil)
-            
-            alert.addAction(action)
-            
-            self.present(alert, animated: true, completion: nil)
-            
-            self.button.setTitle("Shark Feed Notification Scheduled!", for: .normal)
-            
-        } else {
-            
-            let alert = UIAlertController(title: "Cancel Notification?", message: "Would you like to cancel your notification for the shark feeding?", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { (action) in
-                
-                NotificationController().scheduleNotification(for: .shark, onWeekday: weekday, scheduled: false)
-                self.button.setTitle("Notify me about the Shark Feeding!", for: .normal)
-            })
-            let noAction = UIAlertAction(title: "No", style: .default, handler: nil)
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            
-            self.present(alert, animated: true, completion: nil)
-            
-        }
-        
+        // Schedule notification here
     }
     
     // Button animations

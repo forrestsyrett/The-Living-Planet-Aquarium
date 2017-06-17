@@ -175,8 +175,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             self.antarcticAdventureAnimals = []
             
             for item in snapshot.children {
-                let animal = AnimalTest(snapshot: item as! FIRDataSnapshot)
-                self.allAnimals.append(animal!)
+                guard let animal = AnimalTest(snapshot: item as! FIRDataSnapshot) else { continue }
+                self.allAnimals.append(animal)
             }
             if self.allAnimals != [] {
                 self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }

@@ -53,7 +53,6 @@
 		06F298061EF469A000856A93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06F298051EF469A000856A93 /* GoogleService-Info.plist */; };
 		06F298081EF470D800856A93 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298071EF470D800856A93 /* FirebaseController.swift */; };
 		06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298091EF4710800856A93 /* AnimalTest.swift */; };
-		06F2980C1EF4729100856A93 /* AnimalTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */; };
 		06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */; };
 		2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA163953DE68335B7F2D0C0E /* Pods_Aquarium.framework */; };
 		AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */; };
@@ -87,8 +86,6 @@
 		AA544C9C1D0BB66C00DC1725 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA544C9B1D0BB66C00DC1725 /* Assets.xcassets */; };
 		AA544C9F1D0BB66C00DC1725 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA544C9D1D0BB66C00DC1725 /* LaunchScreen.storyboard */; };
 		AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CAA1D0C790400DC1725 /* UIAppearance.swift */; };
-		AA544CAD1D0C90DE00DC1725 /* ExhibitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */; };
-		AA544CB31D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */; };
 		AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */; };
 		AA55B5821DDF759600CC2336 /* MainExhibitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5811DDF759600CC2336 /* MainExhibitTableViewController.swift */; };
 		AA55B5841DDF75AE00CC2336 /* MainExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */; };
@@ -96,8 +93,6 @@
 		AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */; };
 		AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E631D3868F900FA20F7 /* Animations.swift */; };
 		AA6F4E661D386A2A00FA20F7 /* AnimalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */; };
-		AA6F4E701D3C01B100FA20F7 /* AnimalFeedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */; };
-		AA6F4E721D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */; };
 		AA6FA1D21D554E6800CBEEC7 /* MembershipCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */; };
 		AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */; };
 		AA6FA1D61D5554FC00CBEEC7 /* MembershipCardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */; };
@@ -107,7 +102,6 @@
 		AA7FF44B1DDE65AE002A5AE0 /* MainExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */; };
 		AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */; };
 		AA8D05161D19DC930063F222 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D05151D19DC930063F222 /* HomeViewController.swift */; };
-		AA909B181D41B42A000DB923 /* Feeding.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA909B171D41B42A000DB923 /* Feeding.swift */; };
 		AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D6EDF1D1CCD5000831AFE /* Animal.swift */; };
 		AAA20FF61D5E47A1009B3241 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */; };
 		AACE392A1D54578E0082E667 /* AddNewMembershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AACE39291D54578E0082E667 /* AddNewMembershipViewController.swift */; };
@@ -162,7 +156,6 @@
 		06F298051EF469A000856A93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06F298071EF470D800856A93 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		06F298091EF4710800856A93 /* AnimalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTest.swift; sourceTree = "<group>"; };
-		06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTestViewController.swift; sourceTree = "<group>"; };
 		06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalDetailViewController.swift; sourceTree = "<group>"; };
 		AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		AA07C69D1DD5052700AD855D /* SecondFloorOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondFloorOverlayView.swift; sourceTree = "<group>"; };
@@ -197,8 +190,6 @@
 		AA544C9E1D0BB66C00DC1725 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AA544CA01D0BB66C00DC1725 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA544CAA1D0C790400DC1725 /* UIAppearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAppearance.swift; sourceTree = "<group>"; };
-		AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ExhibitTableViewController.swift; path = Aquarium/ExhibitTableViewController.swift; sourceTree = "<group>"; };
-		AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitGalleriesViewController.swift; sourceTree = "<group>"; };
 		AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QRScannerViewController.swift; path = ../QRScannerViewController.swift; sourceTree = "<group>"; };
 		AA55B5811DDF759600CC2336 /* MainExhibitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitTableViewController.swift; sourceTree = "<group>"; };
 		AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibits.swift; sourceTree = "<group>"; };
@@ -206,8 +197,6 @@
 		AA55B5871DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExhibitGalleryTableViewCell.swift; sourceTree = "<group>"; };
 		AA6F4E631D3868F900FA20F7 /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		AA6F4E651D386A2A00FA20F7 /* AnimalTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTableViewCell.swift; sourceTree = "<group>"; };
-		AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimalFeedTableViewController.swift; path = Aquarium/AnimalFeedTableViewController.swift; sourceTree = "<group>"; };
-		AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AnimalFeedTableViewCell.swift; path = Aquarium/AnimalFeedTableViewCell.swift; sourceTree = "<group>"; };
 		AA6FA1D11D554E6800CBEEC7 /* MembershipCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardTableViewCell.swift; sourceTree = "<group>"; };
 		AA6FA1D31D55540B00CBEEC7 /* MembershipListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipListTableViewController.swift; sourceTree = "<group>"; };
 		AA6FA1D51D5554FC00CBEEC7 /* MembershipCardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembershipCardController.swift; sourceTree = "<group>"; };
@@ -217,7 +206,6 @@
 		AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainExhibitViewController.swift; sourceTree = "<group>"; };
 		AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FlowingMenu.framework; path = "../../../Library/Developer/Xcode/DerivedData/Aquarium-dssxpatbhahvltdxuofqdxoybnwp/Build/Products/Debug-iphoneos/FlowingMenu/FlowingMenu.framework"; sourceTree = "<group>"; };
 		AA8D05151D19DC930063F222 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		AA909B171D41B42A000DB923 /* Feeding.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Feeding.swift; path = Aquarium/Feeding.swift; sourceTree = "<group>"; };
 		AA9D6EDF1D1CCD5000831AFE /* Animal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Aquarium.entitlements; sourceTree = "<group>"; };
 		AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
@@ -261,19 +249,6 @@
 				0615493F1EF1E95D004406CF /* Event.swift */,
 			);
 			name = "Calendar Events";
-			sourceTree = "<group>";
-		};
-		0656D2CB1DE4C3150014BBF0 /* Unused */ = {
-			isa = PBXGroup;
-			children = (
-				AA544CB21D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift */,
-				AA544CAC1D0C90DE00DC1725 /* ExhibitTableViewController.swift */,
-				AA6F4E711D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift */,
-				AA6F4E6F1D3C01B100FA20F7 /* AnimalFeedTableViewController.swift */,
-				AA909B171D41B42A000DB923 /* Feeding.swift */,
-			);
-			name = Unused;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		069A21661EB68F52006130C1 /* CustomTabBar */ = {
@@ -370,7 +345,6 @@
 				06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */,
 				06F298071EF470D800856A93 /* FirebaseController.swift */,
 				06F298091EF4710800856A93 /* AnimalTest.swift */,
-				06F2980B1EF4729100856A93 /* AnimalTestViewController.swift */,
 				061549241EF1DF01004406CF /* Main.storyboard */,
 				AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */,
 				AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */,
@@ -387,7 +361,6 @@
 				AA8441CE1D556ECD000238C1 /* Appearance */,
 				AA8441CC1D556E49000238C1 /* Animal Exhibit Galleries */,
 				AA544C9B1D0BB66C00DC1725 /* Assets.xcassets */,
-				0656D2CB1DE4C3150014BBF0 /* Unused */,
 				AA544C9D1D0BB66C00DC1725 /* LaunchScreen.storyboard */,
 			);
 			path = Aquarium;
@@ -631,7 +604,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA6F4E701D3C01B100FA20F7 /* AnimalFeedTableViewController.swift in Sources */,
 				AA6FA1D61D5554FC00CBEEC7 /* MembershipCardController.swift in Sources */,
 				06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */,
 				069A216E1EB68F77006130C1 /* CustomTabBarItems.swift in Sources */,
@@ -642,11 +614,9 @@
 				AA55B5861DDF765100CC2336 /* MainExhibitController.swift in Sources */,
 				AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */,
 				AA353ABE1DCE60A700AD5490 /* AnnotationViews.swift in Sources */,
-				AA544CAD1D0C90DE00DC1725 /* ExhibitTableViewController.swift in Sources */,
 				061549331EF1E6B6004406CF /* AugmentedRealityViewController.swift in Sources */,
 				0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */,
 				061549351EF1E6D3004406CF /* ARCollectionViewCell.swift in Sources */,
-				AA6F4E721D3C01D000FA20F7 /* AnimalFeedTableViewCell.swift in Sources */,
 				AA07C6A01DD5090E00AD855D /* SecondFloorOverlay.swift in Sources */,
 				0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */,
 				0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */,
@@ -658,14 +628,11 @@
 				AA353AB31DCE5F1700AD5490 /* AquariumMap.swift in Sources */,
 				06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */,
 				069A21701EB68FB0006130C1 /* IndexController.swift in Sources */,
-				AA544CB31D0CAE1000DC1725 /* ExhibitGalleriesViewController.swift in Sources */,
 				AA353ACA1DCE625600AD5490 /* MapGalleryController.swift in Sources */,
-				AA909B181D41B42A000DB923 /* Feeding.swift in Sources */,
 				069A216B1EB68F77006130C1 /* CustomTabBarController.swift in Sources */,
 				061549391EF1E93B004406CF /* EventsViewController.swift in Sources */,
 				AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */,
 				AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */,
-				06F2980C1EF4729100856A93 /* AnimalTestViewController.swift in Sources */,
 				06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */,
 				AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */,
 				AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */,

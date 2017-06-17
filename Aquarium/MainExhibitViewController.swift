@@ -126,8 +126,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             
             
             for item in snapshot.children {
-                let animalTest = AnimalTest(snapshot: item as! FIRDataSnapshot)
-                self.allAnimals.append(animalTest!)
+                guard let animal = AnimalTest(snapshot: item as! FIRDataSnapshot) else { continue }
+                self.allAnimals.append(animal)
             }
             if self.allAnimals != [] {
                 self.activityIndicator.stopAnimating()
