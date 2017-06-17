@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import FirebaseStorageUI
 
 
 var galleryTest = ""
@@ -61,7 +62,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     
     var animalInfo = ""
-    var animalImage = UIImage()
+    var animalImage = ""
     var animalName = ""
     var conservationStatus = ""
     var animal: AnimalTest?
@@ -72,6 +73,12 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("SHARED CONTROLLER \(AnimalController.shared.allAnimals.count)")
+        print("JSA \(AnimalController.shared.jsaAnimals.count)")
+        print("UTAH \(AnimalController.shared.discoverUtahAnimals.count)")
+        print("ASIA \(AnimalController.shared.ExpeditionAsiaAnimals.count)")
+        print("OCEANS \(AnimalController.shared.oceanExplorerAnimals.count)")
+        print("AA \(AnimalController.shared.antarcticAdventureAnimals.count)")
         
         
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
@@ -166,7 +173,13 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             let mapData = self.mapTableViewData[indexPath.row]
             
- // FIX THIS           cell.cellImage.image = mapData.animalImage
+            // Download image from Firebase Storage
+            
+            
+            let reference = FIRStorageReference().child(mapData.animalImage ?? "")
+            cell.cellImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            
+            
             cell.cellLabel.text = mapData.animalName
             
             cell.animalInfoButton.tag = indexPath.row
@@ -199,7 +212,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         if tableView == self.tableView {
             let animal = mapTableViewData[indexPath.row]
             self.animalName = animal.animalName ?? ""
-// FIX THIS!            self.animalImage = animal.animalImage
+            self.animalImage = animal.animalImage ?? ""
             self.animalInfo = animal.animalInfo ?? ""
             self.conservationStatus = animal.conservationStatus ?? ""
             
@@ -499,9 +512,9 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
         let animal = self.mapTableViewData[(indexPath as NSIndexPath).row]
+        self.animalImage = animal.animalImage ?? ""
         self.animalInfo = animal.animalInfo ?? ""
         self.animalName = animal.animalName ?? ""
-// FIX THIS!!        self.animalImage = animal.animalImage ?? ""
         self.conservationStatus = animal.conservationStatus ?? ""
         
         print("Info button tapped for \(animal.animalName ?? "")")
@@ -573,7 +586,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
-                destinationViewController.image = self.animalImage
+               destinationViewController.imageReference = self.animalImage
                 destinationViewController.info = self.animalInfo
                 destinationViewController.name = self.animalName
                 destinationViewController.status = self.conservationStatus

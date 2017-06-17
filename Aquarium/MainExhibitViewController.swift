@@ -9,6 +9,8 @@
 import UIKit
 import FlowingMenu
 import Firebase
+import FirebaseStorage
+import FirebaseStorageUI
 import NVActivityIndicatorView
 
 class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
@@ -23,7 +25,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     var discoverUtahAnimals: [AnimalTest] = []
     var oceanExplorerAnimals: [AnimalTest] = []
-    var ExpeditionAsiaAnimals: [AnimalTest] = []
+    var expeditionAsiaAnimals: [AnimalTest] = []
     var jsaAnimals: [AnimalTest] = []
     var antarcticAdventureAnimals: [AnimalTest] = []
     
@@ -45,15 +47,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-        
-        
-        //allAnimals = AnimalController.shared.allAnimals
-        allAnimalsSorted = allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
-        
-        allAnimals = allAnimalsSorted
-        
-        dataSourceForSearchResult = [AnimalTest]()
-        
+
         
         tabBarTint(view: self)
         transparentNavigationBar(self)
@@ -125,6 +119,16 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 AnimalController.shared.allAnimals = self.allAnimals
                 self.collectionView.reloadData()
                 
+                
+                
+                self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
+                for animal in self.allAnimalsSorted {
+                    print(animal.animalName)
+                }
+                self.allAnimals = self.allAnimalsSorted
+                self.dataSourceForSearchResult = [AnimalTest]()
+
+                
                 // Sort animals into gallery exhibits
                 for animal in self.allAnimals {
                     guard let gallery = animal.gallery else { return }
@@ -132,18 +136,28 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                     case "Discover Utah": self.discoverUtahAnimals.append(animal)
                     case "Journey to South America": self.jsaAnimals.append(animal)
                     case "Ocean Explorer": self.oceanExplorerAnimals.append(animal)
-                    case "Expedition Asia": self.ExpeditionAsiaAnimals.append(animal)
+                    case "Expedition Asia": self.expeditionAsiaAnimals.append(animal)
                     case "Antarctic Adventure": self.antarcticAdventureAnimals.append(animal)
                         
                     default: break
                         
                     }
                 }
+                
+                let shared = AnimalController.shared
+                shared.antarcticAdventureAnimals = self.antarcticAdventureAnimals
+                shared.discoverUtahAnimals = self.discoverUtahAnimals
+                shared.ExpeditionAsiaAnimals = self.expeditionAsiaAnimals
+                shared.jsaAnimals = self.jsaAnimals
+                shared.oceanExplorerAnimals = self.oceanExplorerAnimals
 
             }
         })
         
     }
+    
+    
+
     
     
     // MARK: - Search Bar Functions
@@ -279,16 +293,22 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
+            
+            let animal = self.dataSourceForSearchResult?[indexPath.row]
             cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
-// FIX THIS!!      cell.animalImage.image = self.dataSourceForSearchResult?[indexPath.row].animalImage
+            let reference = FIRStorageReference().child(animal?.animalImage ?? "")
+            cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            
+            
+            
         } else {
-            
-            
-            //         Default Animal Data When No Search Is Present
+            //         Default Animal Data When Search is Not being performed
             
             let animal = allAnimals[indexPath.row]
             
-// FIX THIS!!         cell.animalImage.image = animal.animalImage
+            let reference = FIRStorageReference().child(animal.animalImage ?? "")
+            cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            print("\(reference)")
             cell.animalNameLabel.text = animal.animalName
         }
         
@@ -317,7 +337,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         case 1: allAnimals = self.jsaAnimals
         case 2: allAnimals = self.oceanExplorerAnimals
         case 3: allAnimals = self.antarcticAdventureAnimals
-        case 4: allAnimals = self.ExpeditionAsiaAnimals
+        case 4: allAnimals = self.expeditionAsiaAnimals
         default: break
         }
         self.collectionView.reloadData()

@@ -241,13 +241,13 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         // Get value for zoom level
         let zoomWidth = mapView.visibleMapRect.size.width
         let zoomFactor = Double(zoomWidth)
-        print("ZOOM FACTOR: \(zoomFactor)")
+   //     print("ZOOM FACTOR: \(zoomFactor)")
         
         if zoomFactor < 620 {
-            print("Map zoomed in. Show details!")
+     //       print("Map zoomed in. Show details!")
         }
         if zoomFactor > 800 {
-            print("Map zoomed out, Hide details.")
+      //      print("Map zoomed out, Hide details.")
         }
         
         

@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import FirebaseStorageUI
 
 
 class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -28,9 +29,9 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBOutlet weak var conservationStatusImage: UIImageView!
     
     var name = ""
-    var image = UIImage(named: "")
+    var image = UIImageView()
     var info = ""
-    
+    var imageReference = ""
     var animal = "none"
     var status = "none"
     
@@ -54,8 +55,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
+        let reference = FIRStorageReference().child(self.imageReference)
+        self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        
         self.animalNameLabel.text = name
-        self.animalImage.image = image
         self.animalInfo.text = info
         animalImage.layer.cornerRadius = 5.0
         animalImage.clipsToBounds = true
@@ -96,7 +99,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             self.animalImage.image = #imageLiteral(resourceName: "FrogHeatMap_Example")
             self.imageType = "heatmap"
         } else {
-            self.animalImage.image = image
+            let reference = FIRStorageReference().child(self.imageReference)
+            self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             self.imageType = "animal"
         }
     }
@@ -111,9 +115,9 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     func updateInfo(animal: AnimalTest) {
         self.name = animal.animalName ?? ""
-//FIX THIS!!!        self.image = animal.animalImage
         self.info = animal.animalInfo ?? ""
         self.status = animal.conservationStatus ?? ""
+        self.imageReference = animal.animalImage ?? ""
     }
     
     
