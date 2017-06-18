@@ -12,6 +12,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseStorageUI
 import NVActivityIndicatorView
+import Hero
 
 class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
     
@@ -33,7 +34,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var searchBarIsActive: Bool = false
     var searchBarBoundsY: CGFloat?
     var firebaseReference: FIRDatabaseReference!
-
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
@@ -133,6 +134,9 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 self.activityIndicator.stopAnimating()
                 self.activityIndicator.isHidden = true
                 AnimalController.shared.allAnimals = self.allAnimals
+                
+                self.collectionView.heroModifiers = [.cascade]
+                
                 self.collectionView.reloadData()
                 
                 
@@ -308,13 +312,13 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         
+       
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
             
             let animal = self.dataSourceForSearchResult?[indexPath.row]
             cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
             let reference = FIRStorageReference().child(animal?.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-            
             
             
         } else {
@@ -338,6 +342,9 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
+        cell.heroID = "animal: \(indexPath.row)"
+        cell.animalImage.heroModifiers = [.size(CGSize(width: 257, height: 154))]
         searchBarIsActive = false
         searchBar.resignFirstResponder()
     }
@@ -400,15 +407,24 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
+                
+                guard let newIndexPath = indexPath else { return }
+                
+                destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
+                print("Prepare for segue- animal: \(newIndexPath.row)")
                 if let selectedItem = (indexPath as NSIndexPath?)?.row {
                     
                     if (self.searchBar.text?.characters.count)! > 0 {
                         let animal = dataSourceForSearchResult?[selectedItem]
                         destinationViewController.updateInfo(animal: animal!)
+                        destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
+                        print("Prepare for segue- animal: \(newIndexPath.row)")
                     }
                     else  {
                         let animal = allAnimals[selectedItem]
                         print(selectedItem)
+                       destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
+                        print("Prepare for segue- animal: \(newIndexPath.row)")
                         destinationViewController.updateInfo(animal: animal)
                         destinationViewController.animal = animal.animalName!
                     }

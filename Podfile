@@ -22,6 +22,5 @@ pod 'Firebase/Core'
 pod 'Firebase/Database'
 pod 'FirebaseUI/Storage'
 pod 'NVActivityIndicatorView'
-
-
+pod 'Hero'
 end

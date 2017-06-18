@@ -34,7 +34,6 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var imageReference = ""
     var animal = "none"
     var status = "none"
-    
     var imageType = "animal"
     
     override func viewDidLoad() {
@@ -54,6 +53,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        print("View Will Appear\(view.heroID)")
         
         let reference = FIRStorageReference().child(self.imageReference)
         self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
@@ -82,6 +83,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         default: break
         }
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("View Did Disappear\(view.heroID)")
     }
     
     
