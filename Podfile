@@ -18,7 +18,9 @@ pod 'AlamofireObjectMapper', '~> 4.0'
 pod 'Google'
 pod 'Google/Analytics'
 pod 'Google/SignIn'
-
-
-
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'FirebaseUI/Storage'
+pod 'NVActivityIndicatorView'
+pod 'Hero'
 end

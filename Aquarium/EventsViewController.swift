@@ -12,13 +12,16 @@ import SwiftyJSON
 import JTAppleCalendar
 import AlamofireObjectMapper
 import UserNotifications
+import NVActivityIndicatorView
 
 
 class EventsViewController: UIViewController {
     
     //  @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet weak var activityMonitor: UIActivityIndicatorView!
+
+    @IBOutlet weak var activityMonitor: NVActivityIndicatorView!
+    
     @IBOutlet weak var monthLabel: UILabel!
     @IBOutlet weak var todayButton: UIButton!
     
@@ -185,10 +188,13 @@ class EventsViewController: UIViewController {
                     if complete {
                 self.animateTableView(completion: { (true) in
                     
-                        self.activityMonitor.stopAnimating()
-                        self.activityMonitor.isHidden = true
-                        print("Execution Finished")
+                //prevent flashing of activity monitor
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
+                            self.activityMonitor.stopAnimating()
+                            self.activityMonitor.isHidden = true
+                            print("Execution Finished")
                         })
+                    })
                 
                 } else {
                     print("not complete")
@@ -201,7 +207,12 @@ class EventsViewController: UIViewController {
             })
             case .failure(let error):
                 print(error)
+                let noConnectionAlert = UIAlertController(title: "There was a problem loading the events.", message: "Please check your internet connection and try again.", preferredStyle: .alert)
+                let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+                self.activityMonitor.stopAnimating()
+                noConnectionAlert.addAction(dismissAction)
                 
+                self.present(noConnectionAlert, animated: true, completion: nil)
             }
         
         }
@@ -257,7 +268,15 @@ class EventsViewController: UIViewController {
     
     func handleCellSelected(cell: JTAppleCell?, cellState: CellState) {
         
+        
         guard let validCell = cell as? CustomCell else { return }
+        
+        validCell.selectedView.layer.shadowColor = UIColor.white.cgColor
+        validCell.selectedView.layer.shadowOpacity = 1.0
+        validCell.selectedView.layer.shadowRadius = 5.0
+        validCell.selectedView.layer.shadowOffset = CGSize.zero
+        validCell.selectedView.clipsToBounds = false
+        
         if cellState.isSelected {
             validCell.selectedView.isHidden = false
         } else {
@@ -361,7 +380,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
         cell.selectedView.layer.cornerRadius = 15.0
         cell.selectedView.layer.borderWidth = 1.0
         cell.selectedView.layer.borderColor = UIColor.white.cgColor
-        cell.selectedView.backgroundColor = aquaLight
+        cell.selectedView.backgroundColor = .white
         return cell
     }
     
@@ -373,6 +392,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
     //    if cellState.dateBelongsTo == .followingMonthWithinBoundary || cellState.dateBelongsTo == .previousMonthWithinBoundary {
          //   calendar.scrollToDate(date)
      //   }
+     
         
         self.currentDate = cellState.date
         getCalendarItems()

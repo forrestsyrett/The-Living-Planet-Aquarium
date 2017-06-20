@@ -1,16 +1,33 @@
 PODS:
-  - Alamofire (4.4.0)
+  - Alamofire (4.5.0)
   - AlamofireObjectMapper (4.1.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 2.0)
+  - Firebase/Core (3.17.0):
+    - FirebaseAnalytics (= 3.9.0)
+    - FirebaseCore (= 3.6.0)
+  - Firebase/Database (3.17.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 3.1.2)
+  - Firebase/Storage (3.17.0):
+    - Firebase/Core
+    - FirebaseStorage (= 1.1.0)
   - FirebaseAnalytics (3.9.0):
     - FirebaseCore (~> 3.6)
     - FirebaseInstanceID (~> 1.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
   - FirebaseCore (3.6.0):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseDatabase (3.1.2):
+    - FirebaseAnalytics (~> 3.7)
   - FirebaseInstanceID (1.0.10):
     - FirebaseCore (~> 3.6)
+  - FirebaseStorage (1.1.0):
+    - FirebaseAnalytics (~> 3.7)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseUI/Storage (4.0.0):
+    - Firebase/Storage
+    - SDWebImage (~> 4.0)
   - FlowingMenu (2.0.1)
   - Google (3.1.0):
     - Google/Core (= 3.1.0)
@@ -45,28 +62,42 @@ PODS:
   - GTMSessionFetcher/Core (1.1.10)
   - GTMSessionFetcher/Full (1.1.10):
     - GTMSessionFetcher/Core (= 1.1.10)
+  - Hero (0.3.6)
   - JTAppleCalendar (7.0.4)
+  - NVActivityIndicatorView (3.6.1)
   - ObjectMapper (2.2.7)
   - OneSignal (2.5.4)
+  - SDWebImage (4.0.0):
+    - SDWebImage/Core (= 4.0.0)
+  - SDWebImage/Core (4.0.0)
   - SwiftyJSON (3.1.4)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper (~> 4.0)
+  - Firebase/Core
+  - Firebase/Database
+  - FirebaseUI/Storage
   - FlowingMenu (~> 2.0.1)
   - Google
   - Google/Analytics
   - Google/SignIn
+  - Hero
   - JTAppleCalendar (~> 7.0)
+  - NVActivityIndicatorView
   - OneSignal
   - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   AlamofireObjectMapper: 435adc82f5b367679bd9e71c4974a54efd0b2521
+  Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
+  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
+  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
+  FirebaseUI: b9de05bfb4768db05f64ea90fc2f6a07b819118f
   FlowingMenu: 097789ea7fcec5c94edd58765e00e27b31e62cf5
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
@@ -74,11 +105,14 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   JTAppleCalendar: 6def48ecd0daae1d5baaa45e813124c2a20b184d
+  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
+  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 2a0cf279cf8d7cb438babe0d82ecb6d0ac4b918c
+PODFILE CHECKSUM: e507f012d0b4c969bfd8da209d45a45aa548dac5
 
 COCOAPODS: 1.1.1

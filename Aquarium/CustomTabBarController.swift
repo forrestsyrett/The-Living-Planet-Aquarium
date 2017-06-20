@@ -23,11 +23,13 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         self.selectedTabIndex = self.selectedIndex
         let customTabBar = CustomTabBar(frame: self.tabBar.frame)
         
-        
         customTabBar.datasource = self
         customTabBar.delegate = self
         self.delegate = self
         customTabBar.setup()
+        
+     //   customTabBar.autoresizingMask = [UIViewAutoresizing.flexibleHeight]
+        customTabBar.autoresizesSubviews = false
         
         self.view.addSubview(customTabBar)
         setupHomeButton()
@@ -66,6 +68,10 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         homeButton.tintColor = .white
         homeButton.isUserInteractionEnabled = false
         self.view.layoutIfNeeded()
+    }
+    
+    func addConstraints() {
+        
     }
     
     

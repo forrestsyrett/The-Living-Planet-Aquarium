@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+import Firebase
 
 
 class AnimalController {
@@ -14,7 +16,14 @@ class AnimalController {
     static let shared = AnimalController()
     
     
-    let allAnimals = [Animals.arapaima, Animals.binturong, Animals.cloudedLeopards, Animals.eel, Animals.greenSeaTurtle, Animals.hornbill, Animals.otters, Animals.penguins, Animals.tortoise, Animals.toucan, Animals.zebraShark, Animals.jellyfish, Animals.blacktipReef]
+    var allAnimals: [AnimalTest] = []
+    
+    
+    var discoverUtahAnimals: [AnimalTest] = []
+    var oceanExplorerAnimals: [AnimalTest] = []
+    var expeditionAsiaAnimals: [AnimalTest] = []
+    var jsaAnimals: [AnimalTest] = []
+    var antarcticAdventureAnimals: [AnimalTest] = []
   
 }
 

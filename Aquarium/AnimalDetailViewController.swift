@@ -8,6 +8,7 @@
 
 import UIKit
 import QuartzCore
+import FirebaseStorageUI
 
 
 class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -28,13 +29,15 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBOutlet weak var conservationStatusImage: UIImageView!
     
     var name = ""
-    var image = UIImage(named: "")
+    var image = UIImageView()
     var info = ""
-    
+    var imageReference = ""
     var animal = "none"
     var status = "none"
-    
     var imageType = "animal"
+    var imageHeroID = ""
+    var titleLabelHeroID = ""
+    var dismissButtonHeroID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,11 +57,18 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
+        
+        let reference = FIRStorageReference().child(self.imageReference)
+        self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        
         self.animalNameLabel.text = name
-        self.animalImage.image = image
         self.animalInfo.text = info
         animalImage.layer.cornerRadius = 5.0
         animalImage.clipsToBounds = true
+        
+        self.animalImage.heroID = self.imageHeroID
+        self.animalNameLabel.heroID = self.titleLabelHeroID
+        self.dismissButton.heroID = self.dismissButtonHeroID
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
         if self.name == "Blacktip Reef Shark" {
@@ -80,7 +90,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         }
         
     }
-    
+
     
     @IBAction func toModelButtonTapped(_ sender: Any) {
         
@@ -96,7 +106,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             self.animalImage.image = #imageLiteral(resourceName: "FrogHeatMap_Example")
             self.imageType = "heatmap"
         } else {
-            self.animalImage.image = image
+            let reference = FIRStorageReference().child(self.imageReference)
+            self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             self.imageType = "animal"
         }
     }
@@ -109,11 +120,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.dismiss(animated: true, completion: nil)
     }
     
-    func updateInfo(animal: Animals) {
-        self.name = animal.info.name
-        self.image = animal.info.animalImage
-        self.info = animal.info.description!
-        self.status = animal.info.status
+    func updateInfo(animal: AnimalTest) {
+        self.name = animal.animalName ?? ""
+        self.info = animal.animalInfo ?? ""
+        self.status = animal.conservationStatus ?? ""
+        self.imageReference = animal.animalImage ?? ""
     }
     
     

@@ -29,9 +29,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     let galleries = MapGalleryController.sharedController
     let bottomSheetViewController = BottomSheetViewController()
-    
-    // var locationManager: CLLocationManager!
-    
+        
     var aquarium = AquariumMap(filename: "Aquarium")
     var aquariumSecondFloor = AquariumMap(filename: "AquariumSecondFloor")
     var background = Background(filename: "BackgroundOverlay")
@@ -129,21 +127,22 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     }
     
     
+    
     func addOverlays() {
         
-        let path = Bundle.main.path(forResource: "background", ofType: "jpg")
-        let fileURL = NSURL(fileURLWithPath: path!)
-        let colorOverlay = MKTileOverlay(urlTemplate: fileURL.absoluteString)
-        colorOverlay.canReplaceMapContent = true
-        colorOverlay.tileSize = CGSize(width: 265, height: 265)
-        mapView.add(colorOverlay)
+      //  let path = Bundle.main.path(forResource: "background", ofType: "jpg")
+      //  let fileURL = NSURL(fileURLWithPath: path!)
+     //   let colorOverlay = MKTileOverlay(urlTemplate: fileURL.absoluteString)
+      //  colorOverlay.canReplaceMapContent = true
+     //   colorOverlay.tileSize = CGSize(width: 265, height: 265)
+     //   mapView.add(colorOverlay)
         
         
         
         // MARK: -  Background Overlay
         
-        // let background = BackGroundOverlay(background: self.background)
-        //   mapView.add(background, level: .aboveLabels)
+         let background = BackGroundOverlay(background: self.background)
+           mapView.add(background, level: .aboveLabels)
         
         let firstFloorOverlay = AquariumMapOverlay(aquarium: aquarium)
         self.firstFloor = firstFloorOverlay
@@ -201,11 +200,11 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         ///// Sets Overlay and Overlay Image
         if overlay is AquariumMapOverlay {
-            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFloor") )
+            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFinalRSZ") )
             return overlayView
         }
         if overlay is SecondFloorOverlay {
-            let overlayView = SecondFloorOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "secondFloor"))
+            let overlayView = SecondFloorOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "secondFloorFinalRSZ"))
             return overlayView
         }
         if overlay is BackGroundOverlay {
@@ -241,13 +240,13 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         // Get value for zoom level
         let zoomWidth = mapView.visibleMapRect.size.width
         let zoomFactor = Double(zoomWidth)
-        print("ZOOM FACTOR: \(zoomFactor)")
+   //     print("ZOOM FACTOR: \(zoomFactor)")
         
         if zoomFactor < 620 {
-            print("Map zoomed in. Show details!")
+     //       print("Map zoomed in. Show details!")
         }
         if zoomFactor > 800 {
-            print("Map zoomed out, Hide details.")
+      //      print("Map zoomed out, Hide details.")
         }
         
         
@@ -302,7 +301,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         }
     }
     
-    // MARK: - Zoom Gallery
     
     func zoomGallery() {
         

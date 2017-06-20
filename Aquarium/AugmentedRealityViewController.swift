@@ -9,7 +9,7 @@
 
 
 import UIKit
-
+import FirebaseStorageUI
 
 
 class AugmentedRealityViewController: UIViewController, CraftARContentEventsProtocol, CraftARSDKProtocol, SearchProtocol, CraftARTrackingEventsProtocol, UICollectionViewDelegate,UICollectionViewDataSource {
@@ -275,8 +275,11 @@ class AugmentedRealityViewController: UIViewController, CraftARContentEventsProt
         
         let animal = AnimalController.shared.allAnimals[indexPath.row]
         
-        cell.animalImage.image = animal.info.animalImage
-        cell.animalNameLabel.text = animal.info.name
+        // Download image from Firebase storage
+        let reference = FIRStorageReference().child(animal.animalImage ?? "")
+        cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        
+        cell.animalNameLabel.text = animal.animalName ?? ""
         cell.clipsToBounds = true
             cell.layer.cornerRadius = 5.0
         cell.animalImage.layer.cornerRadius = 5.0
@@ -301,7 +304,7 @@ class AugmentedRealityViewController: UIViewController, CraftARContentEventsProt
     let animal = AnimalController.shared.allAnimals[selectedItem]
     print(selectedItem)
     destinationViewController.updateInfo(animal: animal)
-    destinationViewController.animal = animal.info.name
+    destinationViewController.animal = animal.animalName ?? ""
             }
         }
     }
