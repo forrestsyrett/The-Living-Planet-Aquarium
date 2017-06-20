@@ -130,19 +130,19 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     func addOverlays() {
         
-        let path = Bundle.main.path(forResource: "background", ofType: "jpg")
-        let fileURL = NSURL(fileURLWithPath: path!)
-        let colorOverlay = MKTileOverlay(urlTemplate: fileURL.absoluteString)
-        colorOverlay.canReplaceMapContent = true
-        colorOverlay.tileSize = CGSize(width: 265, height: 265)
-        mapView.add(colorOverlay)
+      //  let path = Bundle.main.path(forResource: "background", ofType: "jpg")
+      //  let fileURL = NSURL(fileURLWithPath: path!)
+     //   let colorOverlay = MKTileOverlay(urlTemplate: fileURL.absoluteString)
+      //  colorOverlay.canReplaceMapContent = true
+     //   colorOverlay.tileSize = CGSize(width: 265, height: 265)
+     //   mapView.add(colorOverlay)
         
         
         
         // MARK: -  Background Overlay
         
-        // let background = BackGroundOverlay(background: self.background)
-        //   mapView.add(background, level: .aboveLabels)
+         let background = BackGroundOverlay(background: self.background)
+           mapView.add(background, level: .aboveLabels)
         
         let firstFloorOverlay = AquariumMapOverlay(aquarium: aquarium)
         self.firstFloor = firstFloorOverlay

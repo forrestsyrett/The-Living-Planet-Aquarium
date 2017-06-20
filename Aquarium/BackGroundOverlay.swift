@@ -18,6 +18,7 @@ class BackGroundOverlay: NSObject, MKOverlay {
     init(background: Background) {
         boundingMapRect = background.overlayBoundingMapRect
         coordinate = background.midCoordinate
+
     }
 
 }

@@ -34,6 +34,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var searchBarIsActive: Bool = false
     var searchBarBoundsY: CGFloat?
     var firebaseReference: FIRDatabaseReference!
+    var heroIDString = ""
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -321,6 +322,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             
             
+            
         } else {
             //         Default Animal Data When Search is Not being performed
             
@@ -330,6 +332,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             print("\(reference)")
             cell.animalNameLabel.text = animal.animalName
+            
         }
         
         cell.layer.cornerRadius = 5.0
@@ -344,10 +347,12 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
         cell.heroID = "animal: \(indexPath.row)"
-        cell.animalImage.heroModifiers = [.size(CGSize(width: 257, height: 154))]
+        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+  
         searchBarIsActive = false
         searchBar.resignFirstResponder()
     }
+
     
     
     
@@ -409,22 +414,30 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
                 
                 guard let newIndexPath = indexPath else { return }
+                let heroString = "animal: \(newIndexPath.row)"
+                let imageHeroID = "animalImage: \(newIndexPath.row)"
+                let titleLabelHeroID = "titleLabel: \(newIndexPath.row)"
                 
-                destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
-                print("Prepare for segue- animal: \(newIndexPath.row)")
+                destinationViewController.view.heroID = heroString
+                destinationViewController.imageHeroID = imageHeroID
+                destinationViewController.titleLabelHeroID = titleLabelHeroID
+                
                 if let selectedItem = (indexPath as NSIndexPath?)?.row {
                     
                     if (self.searchBar.text?.characters.count)! > 0 {
                         let animal = dataSourceForSearchResult?[selectedItem]
                         destinationViewController.updateInfo(animal: animal!)
-                        destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
-                        print("Prepare for segue- animal: \(newIndexPath.row)")
+                        destinationViewController.view.heroID = heroString
+                        destinationViewController.imageHeroID = imageHeroID
+                        destinationViewController.titleLabelHeroID = titleLabelHeroID
+                 
                     }
                     else  {
                         let animal = allAnimals[selectedItem]
                         print(selectedItem)
-                       destinationViewController.view.heroID = "animal: \(newIndexPath.row)"
-                        print("Prepare for segue- animal: \(newIndexPath.row)")
+                       destinationViewController.view.heroID = heroString
+                        destinationViewController.imageHeroID = imageHeroID
+                        destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.updateInfo(animal: animal)
                         destinationViewController.animal = animal.animalName!
                     }

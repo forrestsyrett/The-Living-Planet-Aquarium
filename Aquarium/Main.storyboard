@@ -1477,7 +1477,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Fact Zone" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ekS-k9-O6b">
-                                <rect key="frame" x="16" y="37" width="343" height="22.5"/>
+                                <rect key="frame" x="16" y="37" width="343" height="19"/>
                                 <fontDescription key="fontDescription" name="TrajanPro-Regular" family="Trajan Pro" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1734,7 +1734,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="uS7-2V-fie">
-                                <rect key="frame" x="59" y="37" width="257" height="22.5"/>
+                                <rect key="frame" x="59" y="37" width="257" height="19"/>
                                 <fontDescription key="fontDescription" name="TrajanPro-Regular" family="Trajan Pro" pointSize="19"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -2091,7 +2091,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-93-w9N">
-                                <rect key="frame" x="319" y="28" width="50" height="32"/>
+                                <rect key="frame" x="319" y="28.5" width="50" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TfO-93-w9N" secondAttribute="height" multiplier="47:30" id="K6M-cL-YWw"/>
                                 </constraints>
@@ -3001,7 +3001,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                                         <fontDescription key="fontDescription" name="ITCFranklinGothicStd-Book" family="ITC Franklin Gothic Std" pointSize="21"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSc-Nq-b93">
+                                                                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSc-Nq-b93">
                                                                         <rect key="frame" x="332" y="28" width="35" height="35"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="35" id="rSg-Rs-Xwb"/>
@@ -3029,6 +3029,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                                 <outlet property="animalInfoButton" destination="zSc-Nq-b93" id="Z6Z-Tq-jxB"/>
                                                                 <outlet property="cellImage" destination="bbb-HH-Ppg" id="FHB-xT-0PA"/>
                                                                 <outlet property="cellLabel" destination="rUb-GM-c83" id="Kax-rV-cSm"/>
+                                                                <segue destination="Jr2-gF-2qH" kind="show" identifier="toAnimalDetail" id="KGH-zN-9xo"/>
                                                             </connections>
                                                         </tableViewCell>
                                                     </prototypes>
@@ -3063,7 +3064,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                             <rect key="frame" x="0.0" y="28" width="375" height="164"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qAH-og-mZD" id="ToE-zp-MmA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="163"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="163.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="penguins-200px" translatesAutoresizingMaskIntoConstraints="NO" id="Sj1-5r-c74">
@@ -3159,7 +3160,6 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                         <outlet property="shadowView" destination="7rL-nT-j2W" id="RwJ-yD-sfv"/>
                         <outlet property="tableView" destination="UTh-Li-foC" id="QSL-fT-cy4"/>
                         <outlet property="theaterTableView" destination="jAn-Hc-rSu" id="1yW-LM-A4w"/>
-                        <segue destination="Jr2-gF-2qH" kind="show" identifier="toAnimalDetail" id="kEL-g6-fwi"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLt-zb-f7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -3200,8 +3200,8 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="toucan" width="3872" height="2592"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="a5a-op-VaW"/>
-        <segue reference="Ufe-47-U55"/>
         <segue reference="Ibr-S3-SYC"/>
+        <segue reference="Ufe-47-U55"/>
+        <segue reference="KGH-zN-9xo"/>
     </inferredMetricsTieBreakers>
 </document>

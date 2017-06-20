@@ -10,6 +10,7 @@ import UIKit
 import SafariServices
 import FirebaseStorageUI
 import Firebase
+import Hero
 
 
 var galleryTest = ""
@@ -273,12 +274,16 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         if tableView == self.tableView {
             let animal = allAnimals[indexPath.row]
+            let cell = self.tableView.cellForRow(at: indexPath) as! MapTableViewCell
+            
+            cell.cellImage.heroID = "tableViewImage \(indexPath.row)"
+            cell.cellLabel.heroID = "tableViewTitle \(indexPath.row)"
+            cell.animalInfoButton.heroID = "tableViewInfoButton \(indexPath.row)"
             self.animalName = animal.animalName ?? ""
             self.animalImage = animal.animalImage ?? ""
             self.animalInfo = animal.animalInfo ?? ""
             self.conservationStatus = animal.conservationStatus ?? ""
             
-            self.performSegue(withIdentifier: "toAnimalDetail", sender: nil)
         }
         
         
@@ -647,11 +652,19 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         if segue.identifier == "toAnimalDetail" {
             
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
+                let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
+                guard let newIndexPath = indexPath else { return }
+                let animal = self.allAnimals[newIndexPath.row]
+
                 
-                destinationViewController.imageReference = self.animalImage
-                destinationViewController.info = self.animalInfo
-                destinationViewController.name = self.animalName
-                destinationViewController.status = self.conservationStatus
+                destinationViewController.imageReference = animal.animalImage ?? ""
+                destinationViewController.info = animal.animalInfo ?? ""
+                destinationViewController.name = animal.animalName ?? ""
+                destinationViewController.status = animal.conservationStatus ?? ""
+                destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.row)"
+                destinationViewController.titleLabelHeroID = "tableViewTitle \(newIndexPath.row)"
+                destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.row)"
+                
                 
             }
         }

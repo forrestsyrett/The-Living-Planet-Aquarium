@@ -35,6 +35,9 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var animal = "none"
     var status = "none"
     var imageType = "animal"
+    var imageHeroID = ""
+    var titleLabelHeroID = ""
+    var dismissButtonHeroID = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +57,6 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
-        print("View Will Appear\(view.heroID)")
         
         let reference = FIRStorageReference().child(self.imageReference)
         self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
@@ -63,6 +65,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalInfo.text = info
         animalImage.layer.cornerRadius = 5.0
         animalImage.clipsToBounds = true
+        
+        self.animalImage.heroID = self.imageHeroID
+        self.animalNameLabel.heroID = self.titleLabelHeroID
+        self.dismissButton.heroID = self.dismissButtonHeroID
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
         if self.name == "Blacktip Reef Shark" {
@@ -84,11 +90,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         }
         
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("View Did Disappear\(view.heroID)")
-    }
-    
+
     
     @IBAction func toModelButtonTapped(_ sender: Any) {
         
