@@ -50,9 +50,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         tabBarTint(view: self)
         gradient(self.view)
         transparentNavigationBar(self)
-        
-        self.view.autoresizesSubviews = true
-        
+                
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()

@@ -234,7 +234,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
     }
     func setSearchBarView() {
-        searchBar.frame = CGRect(x: 0, y: 637, width: view.frame.width, height: 50)
+        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.size.height - 99, width: view.frame.width, height: 50)
         self.searchBar.isHidden = false
     }
     
@@ -287,7 +287,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         UIView.animate(withDuration: 0.20, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             
             
-            self.searchBar.frame.origin.y = 637
+            self.searchBar.frame.origin.y = UIScreen.main.bounds.size.height - 99
         }, completion: nil)
         
         self.view.endEditing(true)
@@ -330,7 +330,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             
             let reference = FIRStorageReference().child(animal.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-            print("\(reference)")
             cell.animalNameLabel.text = animal.animalName
             
         }

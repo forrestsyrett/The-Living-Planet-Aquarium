@@ -121,8 +121,13 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         } else if qrResult != "" {
             
             // Do something with specific QR information. (Show exhibit animals)
-    //        print(qrResult)
-            openURL()
+            self.result = "\(qrResult)"
+             print(qrResult)
+            if self.result != "" {
+                self.alertWithExhibit()
+                self.captureSession?.stopRunning()
+            }
+        //    openURL()
         }
         
     }
@@ -130,6 +135,15 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     @IBAction func scanButtonTapped(_ sender: AnyObject) {
         
 
+    }
+    
+    func alertWithExhibit() {
+        let alert = UIAlertController(title: "You found the \(self.result)!", message: "You can scroll through the list below to learn more about the animals in this exhibit!", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Awesome!", style: .default) { (action) in
+            self.captureSession?.startRunning()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     

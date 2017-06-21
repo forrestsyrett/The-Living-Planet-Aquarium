@@ -22,6 +22,7 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         self.selectedIndex = 2
         self.selectedTabIndex = self.selectedIndex
         let customTabBar = CustomTabBar(frame: self.tabBar.frame)
+        print("Custom Tab Bar Height = \(customTabBar.frame.height)")
         
         customTabBar.datasource = self
         customTabBar.delegate = self
