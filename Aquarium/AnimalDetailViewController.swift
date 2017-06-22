@@ -28,6 +28,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var conservationStatusImage: UIImageView!
     
+    @IBOutlet weak var animalFactSheet: UIImageView!
+    
+    @IBOutlet weak var factSheetHeight: NSLayoutConstraint!
+    
     var name = ""
     var image = UIImageView()
     var info = ""
@@ -38,6 +42,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var imageHeroID = ""
     var titleLabelHeroID = ""
     var dismissButtonHeroID = ""
+    var factSheetString = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,12 +64,18 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         
         let reference = FIRStorageReference().child(self.imageReference)
+        let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
         self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        self.animalFactSheet.sd_setImage(with: factSheetReference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
         
         self.animalNameLabel.text = name
         self.animalInfo.text = info
         animalImage.layer.cornerRadius = 5.0
         animalImage.clipsToBounds = true
+        
+        if self.factSheetString == "" {
+            self.factSheetHeight.constant = 0.0
+        }
         
         self.animalImage.heroID = self.imageHeroID
         self.animalNameLabel.heroID = self.titleLabelHeroID
@@ -125,6 +136,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.info = animal.animalInfo ?? ""
         self.status = animal.conservationStatus ?? ""
         self.imageReference = animal.animalImage ?? ""
+        self.factSheetString = animal.factSheet ?? ""
     }
     
     
