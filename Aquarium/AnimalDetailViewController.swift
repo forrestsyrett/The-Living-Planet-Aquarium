@@ -32,6 +32,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var factSheetHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var animalNewsButton: UIButton!
+
+    @IBOutlet weak var animalNewsBUttonHeight: NSLayoutConstraint!
+    
     var name = ""
     var image = UIImageView()
     var info = ""
@@ -39,6 +43,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var animal = "none"
     var status = "none"
     var imageType = "animal"
+    var animalUpdates = ""
     var imageHeroID = ""
     var titleLabelHeroID = ""
     var dismissButtonHeroID = ""
@@ -57,11 +62,12 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         view.addGestureRecognizer(gesture)
         
         gesture.delegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.animalNewsBUttonHeight.constant = 0.0
+        self.view.layoutIfNeeded()
         
         let reference = FIRStorageReference().child(self.imageReference)
         let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
@@ -101,6 +107,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         }
         
     }
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        animateRibbon()
+    }
 
     
     @IBAction func toModelButtonTapped(_ sender: Any) {
@@ -131,14 +142,38 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.dismiss(animated: true, completion: nil)
     }
     
+    
+    @IBAction func animalNewsButtonTapped(_ sender: Any) {
+        
+        let alert = UIAlertController(title: "Animal News", message: self.animalUpdates, preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func animateRibbon() {
+        if self.animalUpdates == "none" {
+            self.animalNewsBUttonHeight.constant = 0.0
+            self.view.layoutIfNeeded()
+        } else {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                self.animalNewsBUttonHeight.constant = 78.0
+                self.view.layoutIfNeeded()
+            }, completion: nil)
+
+        }
+    }
+    
+    
     func updateInfo(animal: AnimalTest) {
         self.name = animal.animalName ?? ""
         self.info = animal.animalInfo ?? ""
         self.status = animal.conservationStatus ?? ""
         self.imageReference = animal.animalImage ?? ""
         self.factSheetString = animal.factSheet ?? ""
+        self.animalUpdates = animal.animalUpdates ?? ""
     }
-    
+
     
     
     func panGesture(recognizer: UIPanGestureRecognizer) {

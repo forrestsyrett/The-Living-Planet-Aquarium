@@ -126,6 +126,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 self.activityIndicator.isHidden = true
                 AnimalController.shared.allAnimals = self.allAnimals
                 
+                self.collectionView.layoutIfNeeded()
                 self.collectionView.reloadData()
                 
                 
@@ -294,9 +295,13 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         let index = indexPath.row
         
+        cell.newsRibbon.heroModifiers = [.fade]
         cell.heroID = "animal: \(indexPath.row)"
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+        cell.newsRibbonHeight.constant = 0.0
+        cell.layoutIfNeeded()
         
+        // Animal data when search is being performed
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
             
             let animal = self.dataSourceForSearchResult?[indexPath.row]
@@ -304,16 +309,32 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             let reference = FIRStorageReference().child(animal?.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             
+            // Prevent cell from animating when scrolling. Each cell only animates one time.
             if cell.didAnimate == false {
                 cell.alpha = 0.0
-            UIView.animate(withDuration: 1.0, delay: 0.05 * Double(index), options: .allowUserInteraction, animations: { 
+            UIView.animate(withDuration: 1.0, delay: 0.15 * Double(index), options: .allowUserInteraction, animations: {
                 cell.alpha = 1.0
                 cell.didAnimate = true
             }, completion: nil)
+                
+            }
+                //Check for animal updates, and show ribbon
+                if animal?.animalUpdates != "none" {
+                    UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                        cell.newsRibbonHeight.constant = 58.0
+                        cell.layoutIfNeeded()
+                    }, completion: nil)
+                    
+                    //No updates at the moment, hide ribbon
+                } else {
+                    cell.newsRibbonHeight.constant = 0.0
+                    cell.layoutIfNeeded()
             }
             
+            
+            
         } else {
-            //         Default Animal Data When Search is Not being performed
+            //     Animal Data When Search is NOT being performed
             
             let animal = allAnimals[indexPath.row]
             
@@ -321,12 +342,25 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             cell.animalNameLabel.text = animal.animalName
             
+            // Prevent cell from animating when scrolling. Each cell only animates one time.
             if cell.didAnimate == false {
                 cell.alpha = 0.0
-            UIView.animate(withDuration: 1.0, delay: 0.05 * Double(index), options: .allowUserInteraction, animations: {
+            UIView.animate(withDuration: 1.0, delay: 0.15 * Double(index), options: .allowUserInteraction, animations: {
                 cell.alpha = 1.0
                 cell.didAnimate = true
             }, completion: nil)
+            }
+                //Check for animal updates, and show ribbon
+                if animal.animalUpdates != "none" {
+                    UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                        cell.newsRibbonHeight.constant = 58.0
+                        cell.layoutIfNeeded()
+                    }, completion: nil)
+                    
+                    // No animal updates at the moment, hide ribbon
+                } else {
+                    cell.newsRibbonHeight.constant = 0.0
+                    cell.layoutIfNeeded()
             }
         }
         
@@ -374,13 +408,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         menu?.dismiss(animated: true, completion: nil)
     }
     
-    func dimBackground() {
-        /*   if searchBarIsActive {
-         dimView.isHidden = false
-         } else {
-         dimView.isHidden = true
-         } */
-    }
     
     // MARK: - Prepare for Segue
     
@@ -441,6 +468,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 destinationViewController.scanType = "qr"
             }
         }
+        
+    
         
     }
     

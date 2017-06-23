@@ -310,7 +310,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTl-Ja-usU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="homeFilled" id="PDX-89-lF2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Oi-c8-wAc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Oi-c8-wAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1434,6 +1434,13 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otters" translatesAutoresizingMaskIntoConstraints="NO" id="Vil-Wf-riF">
                                                     <rect key="frame" x="0.0" y="24" width="196" height="116"/>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redRibbon" translatesAutoresizingMaskIntoConstraints="NO" id="nKf-9P-zH0">
+                                                    <rect key="frame" x="2.5" y="0.0" width="36" height="58"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="58" id="Hxe-Zv-cya"/>
+                                                        <constraint firstAttribute="width" constant="36" id="bz7-At-PHU"/>
+                                                    </constraints>
+                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="WZg-QS-ZzO">
                                                     <rect key="frame" x="8" y="8" width="180" height="17"/>
                                                     <constraints>
@@ -1449,15 +1456,19 @@
                                         <constraints>
                                             <constraint firstItem="Vil-Wf-riF" firstAttribute="leading" secondItem="uyV-fR-gOP" secondAttribute="leading" id="7mK-Cj-PmT"/>
                                             <constraint firstAttribute="bottom" secondItem="Vil-Wf-riF" secondAttribute="bottom" id="9Hp-B5-5Ly"/>
+                                            <constraint firstItem="nKf-9P-zH0" firstAttribute="leading" secondItem="uyV-fR-gOP" secondAttribute="leadingMargin" constant="-5" id="Cs0-9b-EiI"/>
                                             <constraint firstAttribute="trailing" secondItem="Vil-Wf-riF" secondAttribute="trailing" id="JQw-mM-Myl"/>
                                             <constraint firstAttribute="leadingMargin" secondItem="WZg-QS-ZzO" secondAttribute="leading" id="S3O-K7-yae"/>
                                             <constraint firstItem="Vil-Wf-riF" firstAttribute="top" secondItem="WZg-QS-ZzO" secondAttribute="bottom" constant="-1" id="XDn-TG-slY"/>
+                                            <constraint firstItem="nKf-9P-zH0" firstAttribute="top" secondItem="uyV-fR-gOP" secondAttribute="topMargin" constant="-8" id="ZFe-QB-3SX"/>
                                             <constraint firstAttribute="topMargin" secondItem="WZg-QS-ZzO" secondAttribute="top" id="iOK-pT-Ogd"/>
                                             <constraint firstAttribute="trailingMargin" secondItem="WZg-QS-ZzO" secondAttribute="trailing" id="vhN-AQ-osJ"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="animalImage" destination="Vil-Wf-riF" id="Zq5-q5-U2x"/>
                                             <outlet property="animalNameLabel" destination="WZg-QS-ZzO" id="6vZ-7l-RXL"/>
+                                            <outlet property="newsRibbon" destination="nKf-9P-zH0" id="ZZe-i0-FKN"/>
+                                            <outlet property="newsRibbonHeight" destination="Hxe-Zv-cya" id="Zjz-Vt-de3"/>
                                             <segue destination="Jr2-gF-2qH" kind="presentation" identifier="toAnimalDetail" modalPresentationStyle="overFullScreen" id="a5a-op-VaW">
                                                 <segue key="commit" inheritsFrom="parent" id="80C-Eh-CAz"/>
                                                 <segue key="preview" inheritsFrom="commit" id="ppU-Ug-dLy"/>
@@ -1843,9 +1854,21 @@
                                     <action selector="toModelButtonTapped:" destination="Jr2-gF-2qH" eventType="touchUpInside" id="EQ4-pU-XoL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IJV-oG-gxs">
+                                <rect key="frame" x="16" y="28" width="51" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="51" id="CsF-nf-X3z"/>
+                                    <constraint firstAttribute="height" constant="78" id="vuM-bq-dZP"/>
+                                </constraints>
+                                <state key="normal" image="redRibbon"/>
+                                <connections>
+                                    <action selector="animalNewsButtonTapped:" destination="Jr2-gF-2qH" eventType="touchUpInside" id="hFr-Kh-U3W"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.25414796429999997" green="0.61494155530000005" blue="0.72336632010000002" alpha="0.59441021130000005" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="IJV-oG-gxs" firstAttribute="top" secondItem="yhB-6a-2WU" secondAttribute="bottom" constant="-58" id="1Nu-t1-bxh"/>
                             <constraint firstItem="q4g-9x-y3Q" firstAttribute="leading" secondItem="Zeu-qj-FT0" secondAttribute="leadingMargin" id="3d3-nl-lZP"/>
                             <constraint firstAttribute="bottom" secondItem="IYv-Aw-Sfx" secondAttribute="bottom" id="54M-yF-Hw2"/>
                             <constraint firstItem="q4g-9x-y3Q" firstAttribute="top" secondItem="KxM-Hz-ex6" secondAttribute="bottom" constant="26" id="9Eq-dG-PUN"/>
@@ -1854,6 +1877,7 @@
                             <constraint firstItem="KxM-Hz-ex6" firstAttribute="top" secondItem="Ko2-zq-VuQ" secondAttribute="bottom" constant="-55" id="IbQ-Et-5sK"/>
                             <constraint firstItem="Ko2-zq-VuQ" firstAttribute="leading" secondItem="Zeu-qj-FT0" secondAttribute="leading" constant="59" id="KWc-zc-mDQ"/>
                             <constraint firstItem="yhB-6a-2WU" firstAttribute="top" secondItem="Zeu-qj-FT0" secondAttribute="top" id="LlX-86-1E2"/>
+                            <constraint firstItem="yhB-6a-2WU" firstAttribute="leading" secondItem="IJV-oG-gxs" secondAttribute="trailing" constant="-67" id="Mp0-Kp-xX6"/>
                             <constraint firstItem="KxM-Hz-ex6" firstAttribute="leading" secondItem="Ko2-zq-VuQ" secondAttribute="trailing" constant="-44" id="Npk-NH-adB"/>
                             <constraint firstItem="gsX-CA-KWh" firstAttribute="top" secondItem="Ko2-zq-VuQ" secondAttribute="bottom" constant="-4" id="OTL-Ag-WHs"/>
                             <constraint firstAttribute="trailing" secondItem="Ko2-zq-VuQ" secondAttribute="trailing" constant="59" id="SfZ-wK-p4k"/>
@@ -1880,6 +1904,8 @@
                         <outlet property="animalImage" destination="Ko2-zq-VuQ" id="wQK-7a-MT1"/>
                         <outlet property="animalInfo" destination="MVh-Vb-9pf" id="8LA-kb-SqE"/>
                         <outlet property="animalNameLabel" destination="uS7-2V-fie" id="hLF-g3-0XB"/>
+                        <outlet property="animalNewsBUttonHeight" destination="vuM-bq-dZP" id="1BE-le-uvt"/>
+                        <outlet property="animalNewsButton" destination="IJV-oG-gxs" id="JFX-zS-0yF"/>
                         <outlet property="conservationStatusImage" destination="q4g-9x-y3Q" id="T7l-9j-JdZ"/>
                         <outlet property="dismissButton" destination="8sw-dx-0fL" id="Jsl-PN-Tco"/>
                         <outlet property="factSheetHeight" destination="uoH-J3-t4S" id="8dJ-v6-Ye4"/>
@@ -2459,7 +2485,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWx-QZ-rJd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2241" y="1110"/>
+            <point key="canvasLocation" x="2265" y="1110"/>
         </scene>
         <!--Animal Encounters View Controller-->
         <scene sceneID="euu-eR-3cJ">
@@ -3071,7 +3097,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                             <rect key="frame" x="0.0" y="28" width="375" height="164"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qAH-og-mZD" id="ToE-zp-MmA">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="163.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="164"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="penguins-200px" translatesAutoresizingMaskIntoConstraints="NO" id="Sj1-5r-c74">
@@ -3203,6 +3229,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="penguin_factsheet" width="343" height="176"/>
         <image name="penguins-200px" width="200" height="300"/>
         <image name="plus" width="50" height="50"/>
+        <image name="redRibbon" width="96" height="146"/>
         <image name="restrooms" width="50" height="50"/>
         <image name="shop" width="50" height="50"/>
         <image name="smallLogo" width="67" height="64"/>

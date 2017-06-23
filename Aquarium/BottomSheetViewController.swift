@@ -662,6 +662,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 destinationViewController.name = animal.animalName ?? ""
                 destinationViewController.status = animal.conservationStatus ?? ""
                 destinationViewController.factSheetString = animal.factSheet ?? ""
+                destinationViewController.animalUpdates = animal.animalUpdates ?? ""
                 destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.row)"
                 destinationViewController.titleLabelHeroID = "tableViewTitle \(newIndexPath.row)"
                 destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.row)"
