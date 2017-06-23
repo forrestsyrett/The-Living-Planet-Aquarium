@@ -55,7 +55,7 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
     }
     
     func setupHomeButton() {
-        let homeButton = UIButton(frame: CGRect(x: 0, y: 2.0, width: 64, height: 64))
+        let homeButton = UIButton(frame: CGRect(x: 0, y: 2.0, width: 60, height: 60))
         var homeButtonFrame = homeButton.frame
         homeButtonFrame.origin.y = self.view.bounds.height - homeButtonFrame.height
         homeButtonFrame.origin.x = self.view.bounds.width/2 - homeButtonFrame.size.width/2

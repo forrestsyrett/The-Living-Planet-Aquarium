@@ -96,9 +96,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     override func viewDidAppear(_ animated: Bool) {
         self.searchBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
     }
-    
     
     
     func getAnimals() {
@@ -344,12 +343,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
         cell.heroID = "animal: \(indexPath.row)"
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
-        
-        let cells = self.collectionView.visibleCells
-        
-        
-        searchBarIsActive = false
-        searchBar.resignFirstResponder()
     }
     
     
@@ -404,7 +397,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         }
         
         if segue.identifier == "toAnimalDetail" {
-            
+            self.searchBar.resignFirstResponder()
+            self.searchBarIsActive = false
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
@@ -449,7 +443,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         }
         
     }
-    
     
     // MARK: - Delegate Functions
     

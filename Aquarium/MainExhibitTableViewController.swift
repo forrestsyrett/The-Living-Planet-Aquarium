@@ -30,7 +30,7 @@ class MainExhibitTableViewController: UIViewController, UITableViewDelegate, UIT
         allGalleries = [mainGalleries.discoverUtah, mainGalleries.journeyToSouthAmerica, mainGalleries.oceanExplorer, mainGalleries.antarcticAdventure, mainGalleries.expeditionAsia]
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "exhibitsAppeared"), object: nil)
-        print("viewDidLoad")
+        
     }
     
     override func didReceiveMemoryWarning() {
