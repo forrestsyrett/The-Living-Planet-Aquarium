@@ -9,10 +9,12 @@
 import UIKit
 import AVFoundation
 import SafariServices
+import Firebase
+import FirebaseStorage
+import FirebaseStorageUI
 
 
-
-class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate {
+class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var QRModalView: UIView!
@@ -22,12 +24,25 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     @IBOutlet weak var photoFrameImage: UIImageView!
     @IBOutlet weak var alignQRCodeLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
-    @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var barcodeViewFinder: UIImageView!
     @IBOutlet weak var blurView: UIVisualEffectView!
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var dismissCollectionView: UIButton!
+    @IBOutlet weak var dismissView: UIVisualEffectView!
+    @IBOutlet weak var aquaWave: UIImageView!
+    @IBOutlet weak var QRScannerLabel: UILabel!
     
+    @IBOutlet weak var QRAnimalViewYConstraint: NSLayoutConstraint!
+    @IBOutlet weak var QRAnimalView: UIView!
+    @IBOutlet weak var containerViewForDismiss: UIView!
     
+    @IBOutlet weak var dismissBarcodeScanner: UIButton!
     
+    var animals: [AnimalTest] = []
+    var organizedAnimals: [AnimalTest] = []
+    
+    var QRViewIsVisible = false
+    var firebaseReference: FIRDatabaseReference!
     var captureSession: AVCaptureSession?
     var videoPreviewLayer: AVCaptureVideoPreviewLayer?
     var qrCodeFrameView: UIView?
@@ -86,10 +101,13 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         qrCodeFrameView = UIView()
         qrCodeFrameView?.layer.borderColor = UIColor.blue.cgColor
         qrCodeFrameView?.layer.borderWidth = 5
+        self.view.addSubview(aquaWave)
+        self.view.addSubview(QRScannerLabel)
         self.view.addSubview(qrCodeFrameView!)
-        self.view.addSubview(dismissButton)
         self.view.addSubview(photoFrameImage)
         self.view.addSubview(alignQRCodeLabel)
+        self.view.addSubview(self.QRAnimalView)
+        self.view.addSubview(self.dismissView)
         //        self.view.addSubview(scanButton)
         self.view.addSubview(barcodeViewFinder)
     }
@@ -122,29 +140,21 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             // Do something with specific QR information. (Show exhibit animals)
             self.result = "\(qrResult)"
-             print(qrResult)
-            if self.result != "" {
+            if self.result != "" && self.QRViewIsVisible == false {
                 self.alertWithExhibit()
-                self.captureSession?.stopRunning()
+                self.collectionView.reloadData()
+                print(self.result)
+                print(self.animals.count)
+                print(self.organizedAnimals.count)
             }
-        //    openURL()
         }
         
     }
     
     @IBAction func scanButtonTapped(_ sender: AnyObject) {
         
-
     }
     
-    func alertWithExhibit() {
-        let alert = UIAlertController(title: "You found the \(self.result)!", message: "You can scroll through the list below to learn more about the animals in this exhibit!", preferredStyle: .alert)
-        let action = UIAlertAction(title: "Awesome!", style: .default) { (action) in
-            self.captureSession?.startRunning()
-        }
-        alert.addAction(action)
-        self.present(alert, animated: true, completion: nil)
-    }
     
     
     func openURL() {
@@ -174,14 +184,15 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.firebaseReference = FIRDatabase.database().reference()
         
-        
+        getAnimals()
+        self.dismissView.layer.cornerRadius = 5.0
+        self.dismissView.clipsToBounds = true
         roundCornerButtons(QRModalView)
         roundCornerButtons(getStartedButtonLabel)
         roundCornerButtons(scanButton)
         roundCornerButtons(blurView)
-        self.dismissButton.layer.cornerRadius = 17.0
-        self.dismissButton.clipsToBounds = true
         gradient(self.view)
         
         tabBarTint(view: self)
@@ -198,13 +209,18 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
+        self.QRViewIsVisible = false
+        
+        
         // Barcode Scanner Mode
         if self.scanType == "barCode" {
             self.dataType = AVMetadataObjectTypeCode128Code
             self.barcodeViewFinder.isHidden = false
             self.alignQRCodeLabel.text = "Align barcode in frame"
             self.photoFrameImage.isHidden = true
-            
+            self.QRScannerLabel.text = "Membership Card Scanner"
+            self.dismissBarcodeScanner.isHidden = false
             cameraCheck()
             
             // QR Scanner Mode
@@ -214,6 +230,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             self.alignQRCodeLabel.text = "Align QR code in frame"
             self.scanButton.isHidden = false
             self.photoFrameImage.isHidden = false
+            self.QRScannerLabel.text = "QR Code Scanner"
+            self.dismissBarcodeScanner.isHidden = true
+            IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         }
         
         if QRModalView.isHidden == false {
@@ -287,10 +306,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
     }
     
-    @IBAction func dismissButtonTapped(_ sender: Any) {
+    
+    @IBAction func dismissBarcodeScannerButtonTapped(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
     }
+
     
     
     @IBAction func getStartedButtonTapped(_ sender: AnyObject) {
@@ -301,6 +322,149 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     
+    // MARK: - Firebase Query
+    
+    func getAnimals() {
+        
+        let query =  self.firebaseReference.child("Animals")
+        
+        query.observe(.value, with: { (snapshot) in
+            self.animals = []
+            
+          self.organizedAnimals = []
+            
+            for item in snapshot.children {
+                guard let animal = AnimalTest(snapshot: item as! FIRDataSnapshot) else { continue }
+                self.animals.append(animal)
+            }
+            if self.animals != [] {
+                self.collectionView.layoutIfNeeded()
+                self.collectionView.reloadData()
+                
+                
+                self.animals = self.animals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
+    
+            }
+        }
+    )}
+    
+    
+    
+
+    func sortForExhibit(exhibit: String) {
+        
+        self.organizedAnimals = []
+        
+        for animal in self.animals {
+            if animal.exhibit == exhibit && !self.organizedAnimals.contains(animal){
+                self.organizedAnimals.append(animal)
+            }
+        }
+    }
+    
+    // MARK: - CollectionView Methods
+
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of items
+        return self.organizedAnimals.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ARCollectionViewCell
+        
+        let animal = self.organizedAnimals[indexPath.row]
+        
+        // Download image from Firebase storage
+        let reference = FIRStorageReference().child(animal.animalImage ?? "")
+        cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        
+        cell.animalNameLabel.text = animal.animalName ?? ""
+        cell.clipsToBounds = true
+        cell.layer.cornerRadius = 5.0
+        cell.animalImage.layer.cornerRadius = 5.0
+        cell.animalNameLabel.layer.cornerRadius = 5.0
+        
+        
+        return cell
+    }
+
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        
+        animateDown()
+    }
+    
+    
+    func alertWithExhibit() {
+        
+        // Sort animals into exhibits based on QR result
+        
+        switch self.result {
+        case QRExhibits.coralReef.rawValue: self.sortForExhibit(exhibit: QRExhibits.coralReef.rawValue)
+            self.animateUp()
+        case QRExhibits.floodedForest.rawValue: self.sortForExhibit(exhibit: QRExhibits.floodedForest.rawValue)
+            self.animateUp()
+        case QRExhibits.giants.rawValue: self.sortForExhibit(exhibit: QRExhibits.giants.rawValue)
+            self.animateUp()
+        case QRExhibits.jsaBirds.rawValue: self.sortForExhibit(exhibit: QRExhibits.jsaBirds.rawValue)
+            self.animateUp()
+        case QRExhibits.reefPredators.rawValue: self.sortForExhibit(exhibit: QRExhibits.reefPredators.rawValue)
+            self.animateUp()
+        case QRExhibits.sharkTank.rawValue: self.sortForExhibit(exhibit: QRExhibits.sharkTank.rawValue)
+            self.animateUp()
+        case QRExhibits.poisonDartFrogs.rawValue: self.sortForExhibit(exhibit: QRExhibits.poisonDartFrogs.rawValue)
+            self.animateUp()
+            
+        default: alertForUnrecognizedQR()
+    }
+        
+}
+    func alertForUnrecognizedQR() {
+        
+        self.QRViewIsVisible = true
+        let alert = UIAlertController(title: "Scan Unsuccessful", message: "We didn't recognize this QR Code.", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action) in
+            self.QRViewIsVisible = false
+        }
+        alert.addAction(dismissAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func animateUp() {
+        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height + 55
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: .allowUserInteraction, animations: {
+            self.view.layoutIfNeeded()
+            self.scanButton.alpha = 0.0
+            self.alignQRCodeLabel.isHidden = true
+            self.photoFrameImage.isHidden = true
+        }, completion: nil)
+        self.QRViewIsVisible = true
+        self.collectionView.reloadData()
+    }
+    
+    
+    func animateDown() {
+        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: .allowUserInteraction, animations: {
+            self.view.layoutIfNeeded()
+            self.scanButton.alpha = 1.0
+            self.alignQRCodeLabel.isHidden = true
+            self.photoFrameImage?.isHidden = true
+        }, completion: nil)
+        self.QRViewIsVisible = false
+        
+    }
+    
+    
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "unwindToAddNewMembership" {
@@ -309,6 +473,23 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             destination.membershipIDTextField.text = self.result
         }
+        
+        if segue.identifier == "toAnimalDetail" {
+            
+            if let destinationViewController = segue.destination as? AnimalDetailViewController {
+                
+                let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
+                
+                if let selectedItem = (indexPath as NSIndexPath?)?.row {
+                    
+                    let animal = self.organizedAnimals[selectedItem]
+                    print(selectedItem)
+                    destinationViewController.updateInfo(animal: animal)
+                    destinationViewController.animal = animal.animalName ?? ""
+                }
+            }
+        }
+
     }
     
 }

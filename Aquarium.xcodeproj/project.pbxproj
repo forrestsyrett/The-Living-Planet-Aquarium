@@ -35,6 +35,7 @@
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633A3681EFF16C400522FAC /* QRExhibits.swift */; };
 		0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */; };
 		0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */; };
 		0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0461EA00AB700D14C3D /* TheaterShows.swift */; };
@@ -138,6 +139,7 @@
 		0615493B1EF1E94E004406CF /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0633A3681EFF16C400522FAC /* QRExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRExhibits.swift; sourceTree = "<group>"; };
 		0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterTimesTableViewCell.swift; path = Aquarium/TheaterTimesTableViewCell.swift; sourceTree = "<group>"; };
 		0660F0461EA00AB700D14C3D /* TheaterShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShows.swift; path = Aquarium/TheaterShows.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				AA183F291D1A6DD200D31044 /* AnimalEncountersViewController.swift */,
 				06B325241DF7383500A53057 /* BeaconInfoViewController.swift */,
 				AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */,
+				0633A3681EFF16C400522FAC /* QRExhibits.swift */,
 			);
 			name = "Main Tab Bar Items";
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				AAEE47681D3CAD8500E0C537 /* NotificationController.swift in Sources */,
 				0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */,
 				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
+				0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */,
 				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
 				06F298081EF470D800856A93 /* FirebaseController.swift in Sources */,
 				0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */,
