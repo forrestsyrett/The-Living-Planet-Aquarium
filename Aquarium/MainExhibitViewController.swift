@@ -13,7 +13,7 @@ import FirebaseStorageUI
 import NVActivityIndicatorView
 import Hero
 
-class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -66,8 +66,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         NotificationCenter.default.addObserver(self, selector: #selector(MainExhibitViewController.updateToAllAnimals), name: Notification.Name(rawValue: "allAnimals"), object: nil)
         
         registerForKeyboardNotifications()
-        
-        
         
         
         let downGesture = UIPanGestureRecognizer.init(target: self,action: #selector(MainExhibitViewController.panGesture))
@@ -277,7 +275,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     ///////////////////////////////////////////////////
     
     // Generate cells for animals
-    
+    // MARK: - CollectionView Methods
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -300,38 +298,23 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
         cell.newsRibbonHeight.constant = 0.0
         cell.layoutIfNeeded()
+        var animal = allAnimals[indexPath.row]
+        
+        //Get odd numbers (right hand column)
+        if indexPath.row % 2 == 1 {
+            cell.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0.0)
+        } else {
+            //Left hand column
+            cell.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0.0)
+        }
         
         // Animal data when search is being performed
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
             
-            let animal = self.dataSourceForSearchResult?[indexPath.row]
+            animal = (self.dataSourceForSearchResult?[indexPath.row])!
             cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
-            let reference = FIRStorageReference().child(animal?.animalImage ?? "")
+            let reference = FIRStorageReference().child(animal.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-            
-            // Prevent cell from animating when scrolling. Each cell only animates one time.
-            if cell.didAnimate == false {
-                cell.alpha = 0.0
-            UIView.animate(withDuration: 1.0, delay: 0.15 * Double(index), options: .allowUserInteraction, animations: {
-                cell.alpha = 1.0
-                cell.didAnimate = true
-            }, completion: nil)
-                
-            }
-                //Check for animal updates, and show ribbon
-                if animal?.animalUpdates != "none" {
-                    UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
-                        cell.newsRibbonHeight.constant = 58.0
-                        cell.layoutIfNeeded()
-                    }, completion: nil)
-                    
-                    //No updates at the moment, hide ribbon
-                } else {
-                    cell.newsRibbonHeight.constant = 0.0
-                    cell.layoutIfNeeded()
-            }
-            
-            
             
         } else {
             //     Animal Data When Search is NOT being performed
@@ -342,17 +325,25 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             cell.animalNameLabel.text = animal.animalName
             
+            
+            
+            
+        }
             // Prevent cell from animating when scrolling. Each cell only animates one time.
             if cell.didAnimate == false {
-                cell.alpha = 0.0
-            UIView.animate(withDuration: 1.0, delay: 0.15 * Double(index), options: .allowUserInteraction, animations: {
-                cell.alpha = 1.0
+            
+                UIView.animate(withDuration: 0.85, delay: 0.05 * Double(index) / 2, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                cell.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
                 cell.didAnimate = true
             }, completion: nil)
-            }
+            } else {
+                cell.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
+        }
                 //Check for animal updates, and show ribbon
                 if animal.animalUpdates != "none" {
-                    UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                    UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
                         cell.newsRibbonHeight.constant = 58.0
                         cell.layoutIfNeeded()
                     }, completion: nil)
@@ -362,7 +353,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                     cell.newsRibbonHeight.constant = 0.0
                     cell.layoutIfNeeded()
             }
-        }
+        
         
         cell.layer.cornerRadius = 5.0
         
@@ -370,8 +361,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         
     }
-    
-    
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
@@ -380,6 +370,23 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     }
     
     
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: ((self.collectionView.frame.width / 2) - 12), height: collectionView.frame.height / 3.75)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4.0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
     
     
     // MARK: - Gallery Selected Delegate Methods

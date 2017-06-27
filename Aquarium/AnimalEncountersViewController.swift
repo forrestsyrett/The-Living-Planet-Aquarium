@@ -12,25 +12,40 @@ class AnimalEncountersViewController: UIViewController {
     
     @IBOutlet weak var webView: UIWebView!
     
+    var requestString = ""
+    var titleLabelString = ""
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        webView.loadRequest(URLRequest(url: URL(string: "http://thelivingplanet.com/animalencounters/")!))
+        
         
         
         gradient(self.view)
         
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
+        transparentNavigationBar(self)
+        
+        webView.scrollView.bounces = false
+        webView.scalesPageToFit = true
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        webView.loadRequest(URLRequest(url: URL(string: requestString)!))
+        
+        self.titleLabel.text = titleLabelString
         
     }
     
     
-    override func viewDidAppear(_ animated: Bool) {
-    }
-    
-    /* @IBAction func bookYourEncounterButtonTapped(_ sender: Any) {
+       /* @IBAction func bookYourEncounterButtonTapped(_ sender: Any) {
      buttonBounceTouchUp(self.encounterButton)
      
      let callAlert = UIAlertController(title: "Call the Living Planet Aquarium?", message: "801-355-3474", preferredStyle: .alert)

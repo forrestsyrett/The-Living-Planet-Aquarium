@@ -108,6 +108,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.view.addSubview(alignQRCodeLabel)
         self.view.addSubview(self.QRAnimalView)
         self.view.addSubview(self.dismissView)
+        self.view.addSubview(self.dismissBarcodeScanner)
         //        self.view.addSubview(scanButton)
         self.view.addSubview(barcodeViewFinder)
     }
@@ -206,6 +207,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.scanType = "qr"
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -272,6 +276,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         switch authStatus {
         case .authorized:
             qrOn(true)
+            self.photoFrameImage.isHidden = false
             QRModalView.isHidden = true
             alignQRCodeLabel.isHidden = false
             scanButton.isHidden = false
@@ -317,7 +322,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     @IBAction func getStartedButtonTapped(_ sender: AnyObject) {
         
         cameraCheck()
-        self.photoFrameImage.isHidden = false
         
     }
     
