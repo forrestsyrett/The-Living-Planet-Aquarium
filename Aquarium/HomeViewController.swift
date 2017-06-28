@@ -246,15 +246,15 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
             
             if self.destinationName == "Sharks" {
                 
-                destinationViewController.image = "zebraShark"
-                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have 8 species of sharks in our shark tank. Can you spot them all?"
+                destinationViewController.image = #imageLiteral(resourceName: "oceans")
+                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have many species of sharks in our shark tank. Can you spot them all? Tap on the camera logo below to open the Exhibit Scanner and see if you can find all the different sharks!"
                 destinationViewController.titleLabel = "Shark Tank"
                 destinationViewController.segueIdentifier = "sharks"
                 destinationViewController.buttonLabel = "Notify me about the Shark Feeding!"
    
             }
             if self.destinationName == "Penguins" {
-                destinationViewController.image = "penguins"
+                destinationViewController.image = #imageLiteral(resourceName: "antarcticAdventure2")
                 destinationViewController.titleLabel = "Gentoo Penguins"
                 destinationViewController.info = "Our aquarium is home to 19 Gentoo Penguins. See if you can spot the name bands on their flippers!\nWe feed our penguins at 4:00 PM every day."
                 destinationViewController.segueIdentifier = "penguinEncounter"

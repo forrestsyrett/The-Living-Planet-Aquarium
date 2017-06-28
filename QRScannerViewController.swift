@@ -14,7 +14,7 @@ import FirebaseStorage
 import FirebaseStorageUI
 
 
-class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
+class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, QRAnimalCollectionViewDelegate {
     
     
     @IBOutlet weak var QRModalView: UIView!
@@ -38,9 +38,20 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     @IBOutlet weak var dismissBarcodeScanner: UIButton!
     
+    @IBOutlet weak var foundAnimalsview: UIView!
+    @IBOutlet weak var foundAnimalsViewXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var foundAnimalsViewWidth: NSLayoutConstraint!
+
+    @IBOutlet weak var exhibitNameLabel: UILabel!
+    
     var animals: [AnimalTest] = []
     var organizedAnimals: [AnimalTest] = []
+    var foundAnimals: [AnimalTest] = []
+    var foundAnimalsViewIsShown = false
     
+    
+    var collectionViewLocation: CGFloat = 0.0
+    var foundAnimalsViewLocation: CGFloat = 0.0
     var QRViewIsVisible = false
     var firebaseReference: FIRDatabaseReference!
     var captureSession: AVCaptureSession?
@@ -48,6 +59,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var qrCodeFrameView: UIView?
     var scanType = "qr"
     var result = ""
+    var previousResult = ""
     var dataType = AVMetadataObjectTypeQRCode
     
     
@@ -109,7 +121,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.view.addSubview(self.QRAnimalView)
         self.view.addSubview(self.dismissView)
         self.view.addSubview(self.dismissBarcodeScanner)
-        //        self.view.addSubview(scanButton)
+        self.view.addSubview(self.foundAnimalsview)
         self.view.addSubview(barcodeViewFinder)
     }
     
@@ -141,12 +153,18 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             // Do something with specific QR information. (Show exhibit animals)
             self.result = "\(qrResult)"
-            if self.result != "" && self.QRViewIsVisible == false {
+            if self.result != "" && self.QRViewIsVisible == false && self.animals.count != 0 {
+                self.exhibitNameLabel.text = "You've found the \(self.result) exhibit!"
                 self.alertWithExhibit()
                 self.collectionView.reloadData()
                 print(self.result)
                 print(self.animals.count)
                 print(self.organizedAnimals.count)
+            } else {
+                let alert = UIAlertController(title: "Scan failed", message: "Please try again", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
             }
         }
         
@@ -182,18 +200,36 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }}
     
     
+    // MARK: - View LifeCycle Methods
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.firebaseReference = FIRDatabase.database().reference()
         
+        self.collectionViewLocation = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
+        self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
+        
+        self.foundAnimalsViewLocation = UIScreen.main.bounds.width - UIScreen.main.bounds.width - self.foundAnimalsview.frame.width - self.dismissView.frame.width - 12
+        print("STARTING LOCATION \(foundAnimalsViewLocation)")
+        self.foundAnimalsViewXConstraint.constant = self.foundAnimalsViewLocation
+        
+        self.foundAnimalsViewWidth.constant = UIScreen.main.bounds.width - self.dismissView.frame.width - 12
+        
+        
         getAnimals()
         self.dismissView.layer.cornerRadius = 5.0
         self.dismissView.clipsToBounds = true
+        self.foundAnimalsview.layer.cornerRadius = 5.0
+        self.foundAnimalsview.clipsToBounds = true
+        self.QRAnimalView.layer.cornerRadius = 5.0
+        self.QRAnimalView.clipsToBounds = true
+        
         roundCornerButtons(QRModalView)
         roundCornerButtons(getStartedButtonLabel)
         roundCornerButtons(scanButton)
         roundCornerButtons(blurView)
+        
         gradient(self.view)
         
         tabBarTint(view: self)
@@ -213,7 +249,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
+        self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
+        self.foundAnimalsViewXConstraint.constant = self.foundAnimalsViewLocation
+        
         self.QRViewIsVisible = false
         
         
@@ -234,7 +272,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             self.alignQRCodeLabel.text = "Align QR code in frame"
             self.scanButton.isHidden = false
             self.photoFrameImage.isHidden = false
-            self.QRScannerLabel.text = "QR Code Scanner"
+            self.QRScannerLabel.text = "Exhibit Scanner"
             self.dismissBarcodeScanner.isHidden = true
             IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         }
@@ -352,8 +390,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
     )}
     
-    
-    
 
     func sortForExhibit(exhibit: String) {
         
@@ -383,6 +419,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ARCollectionViewCell
         
+        
+        cell.delegate = self
         let animal = self.organizedAnimals[indexPath.row]
         
         // Download image from Firebase storage
@@ -395,6 +433,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         cell.animalImage.layer.cornerRadius = 5.0
         cell.animalNameLabel.layer.cornerRadius = 5.0
         
+        if self.previousResult != self.result {
+            print("triggered false")
+            cell.animalFound = false
+            cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+        }
+        
         
         return cell
     }
@@ -402,7 +446,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     @IBAction func cancelButtonTapped(_ sender: Any) {
         
-        animateDown()
+        animateLeft()
     }
     
     
@@ -442,31 +486,97 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     func animateUp() {
-        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height + 55
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: .allowUserInteraction, animations: {
+        
+        
+        self.collectionViewLocation = UIScreen.main.bounds.height - UIScreen.main.bounds.height + 55
+        self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
             self.scanButton.alpha = 0.0
             self.alignQRCodeLabel.isHidden = true
             self.photoFrameImage.isHidden = true
-        }, completion: nil)
+        }, completion: { (true) in
+                self.animateRight()
+            })
         self.QRViewIsVisible = true
         self.collectionView.reloadData()
     }
     
     
     func animateDown() {
-        self.QRAnimalViewYConstraint.constant = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.8, options: .allowUserInteraction, animations: {
+        
+        self.collectionViewLocation = UIScreen.main.bounds.height - UIScreen.main.bounds.height - self.QRAnimalView.frame.height - self.dismissView.frame.height
+        self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
+        
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
             self.scanButton.alpha = 1.0
             self.alignQRCodeLabel.isHidden = true
             self.photoFrameImage?.isHidden = true
         }, completion: nil)
         self.QRViewIsVisible = false
-        
+        // Reset found animal checkmarks if the user scans a different exhibit
+        self.previousResult = self.result
     }
     
     
+    func animateRight() {
+        self.foundAnimalsViewLocation = 4
+        self.foundAnimalsViewXConstraint.constant = self.foundAnimalsViewLocation
+        self.foundAnimalsViewIsShown = true
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+
+        
+    }
+    
+    func animateLeft() {
+        
+        self.foundAnimalsViewLocation = UIScreen.main.bounds.width - UIScreen.main.bounds.width - self.foundAnimalsview.frame.width - self.dismissView.frame.width - 12
+        self.foundAnimalsViewIsShown = false
+        self.foundAnimalsViewXConstraint.constant = self.foundAnimalsViewLocation
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
+            self.view.layoutIfNeeded()
+        }, completion: { (true) in
+            self.animateDown()
+        })
+
+        
+    }
+    @IBAction func showFoundAnimalsButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "foundAnimals", sender: nil)
+    }
+    
+    // MARK: - Delegate Method
+    
+    func animalFound(_ cell: ARCollectionViewCell) {
+        print("delegate found")
+        
+        let indexPath = self.collectionView.indexPath(for: cell)
+        
+        let foundAnimal = self.animals[(indexPath?.row)!]
+        if cell.animalFound == false {
+        cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+            
+            
+            if self.foundAnimals.contains(foundAnimal) {
+                print("animal already found!")
+            } else {
+                self.foundAnimals.append(foundAnimal)
+                if self.foundAnimalsViewIsShown == false {
+                    self.animateRight()
+                    
+                }
+            }
+
+            cell.animalFound = true
+        } else {
+            cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
+            cell.animalFound = false
+        }
+       
+}
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
