@@ -25,7 +25,6 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     @IBOutlet weak var lineTwo: UIView!
     @IBOutlet weak var lineThree: UIView!
     @IBOutlet weak var lineFour: UIView!
-    @IBOutlet weak var aquariumLabel: UILabel!
     @IBOutlet weak var beaconInfoButton: UIButton!
     
     var locationManager: CLLocationManager!
@@ -74,25 +73,24 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         locationManager.startMonitoring(for: self.entranceRegion)
         locationManager.startMonitoring(for: self.sharkRegion)
         
-        //   self.rightGesture.direction = .right
-        //   self.view.addGestureRecognizer(rightGesture)
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         animateImage(smallLogo, animateTime: 2.0)
         animateLabel(welcomeLabel, animateTime: 0.5)
         animateLabel(livingPlanetLabel, animateTime: 1.0)
-        animateLabel(aquariumLabel, animateTime: 1.0)
         animateLines(lineOne, animateTime: 0.75)
         animateLines(lineTwo, animateTime: 1.0)
         animateLines(lineThree, animateTime: 1.5)
         animateLines(lineFour, animateTime: 2.0)
-        IndexController.shared.index = (self.tabBarController?.selectedIndex)!
+
         
+        IndexController.shared.index = (self.tabBarController?.selectedIndex)!
     }
     
+    
+  
     
     // Beacon Code
     

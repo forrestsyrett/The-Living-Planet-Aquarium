@@ -66,6 +66,7 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         homeButton.layer.borderWidth = 0.5
         self.view.addSubview(homeButton)
         homeButton.setImage(#imageLiteral(resourceName: "home"), for: .normal)
+       
         homeButton.tintColor = .white
         homeButton.isUserInteractionEnabled = false
         self.view.layoutIfNeeded()

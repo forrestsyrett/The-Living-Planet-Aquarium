@@ -64,6 +64,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>RQShineLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,17 +82,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>0E38258FFEB45F964FBEF9575C6C62A7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>107A9565F9DF88517DFD3E28C05B2B96</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>180D8FDE90A15229F9EB5BDB40076850</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>18EE8B5DEEFB400FA2CAFEC89E531ABE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,6 +122,16 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>812597ED3379BEEABCA6FE7AF9F5C796</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8588D67DFCF1EB8AE7EEEA5DE522C935</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
@@ -127,22 +142,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>9CBEA6468082A780D05BD0B428252924</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>B1C4AAFAF49036C7007633DAA3C806AD</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>BFED2E29E95E065400F8846E0231A970</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FB90723D43403E20DDF8AFA8C6F094FF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FE9F38338C10A7EE48713E920C2D7FF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

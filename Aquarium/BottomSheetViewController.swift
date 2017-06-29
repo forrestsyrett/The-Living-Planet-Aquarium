@@ -67,6 +67,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var expeditionAsiaAnimals: [AnimalTest] = []
     var jsaAnimals: [AnimalTest] = []
     var antarcticAdventureAnimals: [AnimalTest] = []
+    var deepSeaAnimals: [AnimalTest] = []
+    var jellyfishTypes: [AnimalTest] = []
     
     var mapGalleries = [MapGalleryController.sharedController.antarcticAdventure.name]
     var allTheaterShows = [TheaterShowsController.shared.penguins4D, TheaterShowsController.shared.sammyAndRay4D, TheaterShowsController.shared.wildCats3D]
@@ -169,12 +171,15 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         query.observe(.value, with: { (snapshot) in
             self.allAnimals = []
             AnimalController.shared.allAnimals = []
-            
+    
+    //Clear sorted arrays here to update tableViews live
             self.discoverUtahAnimals = []
             self.oceanExplorerAnimals = []
             self.expeditionAsiaAnimals = []
             self.jsaAnimals = []
             self.antarcticAdventureAnimals = []
+            self.deepSeaAnimals = []
+            self.jellyfishTypes = []
             
             for item in snapshot.children {
                 guard let animal = AnimalTest(snapshot: item as! FIRDataSnapshot) else { continue }
@@ -184,7 +189,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
                 self.allAnimals = self.allAnimalsSorted
                 
-                
+// MARK: Add Additional Exhibits Here
                 // Sort animals into gallery exhibits
                 for animal in self.allAnimals {
                     guard let gallery = animal.gallery else { return }
@@ -194,6 +199,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                     case "Ocean Explorer": self.oceanExplorerAnimals.append(animal)
                     case "Expedition Asia": self.expeditionAsiaAnimals.append(animal)
                     case "Antarctic Adventure": self.antarcticAdventureAnimals.append(animal)
+                    case "Deep Sea": self.deepSeaAnimals.append(animal)
+                    case "Jellies": self.jellyfishTypes.append(animal)
                         
                     default: break
                         
@@ -326,7 +333,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             self.theaterTableView.isHidden = true
             
         case galleries.deepSeaLab.name:
-            hideTableView()
+            showTableView()
+            self.allAnimals = self.deepSeaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.discoverUtah.name:
@@ -345,7 +353,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.jellyFish.name:
             showTableView()
-            self.allAnimals = []
+            self.allAnimals = self.jellyfishTypes
             self.theaterTableView.isHidden = true
             
         case galleries.jsa.name:
