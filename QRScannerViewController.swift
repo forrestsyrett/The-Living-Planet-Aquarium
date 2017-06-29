@@ -169,9 +169,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                     if self.oneScan == false {
                     self.scannedNewExhibitAlert()
                     }
-                }
                 
-                else {
+                
+                } else {
                     self.organizeAndShowAnimals()
                 }
             }
@@ -570,11 +570,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             self.scanButton.alpha = 1.0
             self.alignQRCodeLabel.alpha = 1.0
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        }, completion: { (true) in
         self.QRViewIsVisible = false
-        // Reset found animal checkmarks if the user scans a different exhibit
-        self.previousResult = self.result
-        self.resetFoundAnimals = false
+            // Reset found animal checkmarks if the user scans a different exhibit
+            self.resetFoundAnimals = false
+        })
+        
         
     }
     
