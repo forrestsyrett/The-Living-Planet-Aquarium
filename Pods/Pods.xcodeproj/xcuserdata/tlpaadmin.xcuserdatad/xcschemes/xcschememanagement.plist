@@ -44,6 +44,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LTMorphingLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,6 +87,11 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>18EE8B5DEEFB400FA2CAFEC89E531ABE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
 		<dict>
 			<key>primary</key>
@@ -97,17 +107,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4C69BF3EF4CE81852226B9442B0C2DF4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>681BE6E3D02A43F9BA63777AC435C8FD</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>74024C7FD8BC06653ACE7673CAEF6E56</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>7F6A8C3E8B38296F3EDB25FEAA8A1B1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,7 +137,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EF909433096C1713DF10EEE71F85A977</key>
+		<key>FB90723D43403E20DDF8AFA8C6F094FF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FE9F38338C10A7EE48713E920C2D7FF0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

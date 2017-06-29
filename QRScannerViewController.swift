@@ -12,6 +12,7 @@ import SafariServices
 import Firebase
 import FirebaseStorage
 import FirebaseStorageUI
+import LTMorphingLabel
 
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, QRAnimalCollectionViewDelegate {
@@ -61,7 +62,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var result = ""
     var previousResult = ""
     var dataType = AVMetadataObjectTypeQRCode
-    
+    var resetExhibit = false
     
     func configureVideoCapture() {
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -149,29 +150,67 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             print("Barcode result: \(qrResult).")
             self.performSegue(withIdentifier: "unwindToAddNewMembership", sender: nil)
             captureSession?.stopRunning()
-        } else if qrResult != "" {
             
+            // QR Code Scanned
+        } else if qrResult != "" {
             // Do something with specific QR information. (Show exhibit animals)
             self.result = "\(qrResult)"
-            if self.result != "" && self.QRViewIsVisible == false && self.animals.count != 0 {
-                self.exhibitNameLabel.text = "You've found the \(self.result) exhibit!"
-                self.alertWithExhibit()
-                self.collectionView.reloadData()
-                print(self.result)
-                print(self.animals.count)
-                print(self.organizedAnimals.count)
+            
+            // Check if new exhibit was scanned
+            if self.previousResult != self.result {
+                self.scannedNewExhibitAlert()
+                
+            //First exhibit scanned or exhibit was re-scanned
             } else {
-                let alert = UIAlertController(title: "Scan failed", message: "Please try again", preferredStyle: .alert)
-                let action = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-                alert.addAction(action)
-                self.present(alert, animated: true, completion: nil)
-            }
+                self.organizeAndShowAnimals()
         }
-        
     }
+}
     
     @IBAction func scanButtonTapped(_ sender: AnyObject) {
         
+    }
+    
+    
+    func organizeAndShowAnimals() {
+        
+        self.alertWithExhibit(completion: { (true) in
+            
+            // check if CollectionView is already up and animals array isn't empty
+            if self.QRViewIsVisible == false && self.organizedAnimals.count != 0 {
+                self.animateUp()
+                self.exhibitNameLabel.text = "Welcome to the \(self.result) exhibit!"
+            } else if self.organizedAnimals.count == 0 {
+                self.failedScanAlert()
+            }
+        })
+    }
+    
+    
+    func scannedNewExhibitAlert() {
+        let alert = UIAlertController(title: "Start searching a new exhibit?", message: "If you scan a new exhibit your previously found animals will be cleared.", preferredStyle: .alert)
+        let clearAction = UIAlertAction(title: "Clear", style: .destructive, handler: { (action) in
+            
+            self.QRViewIsVisible = false
+            self.foundAnimals = []
+            self.previousResult = "New Exhibit"
+            self.organizeAndShowAnimals()
+
+
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addAction(clearAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
+
+    }
+    
+    
+    func failedScanAlert() {
+        let alert = UIAlertController(title: "Scan failed", message: "Please try again.", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     
@@ -304,7 +343,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
         
         if QRModalView.isHidden == false {
-            alignQRCodeLabel.isHidden = true
+            alignQRCodeLabel.alpha = 0.0
         }
     }
     
@@ -316,7 +355,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrOn(true)
             self.photoFrameImage.isHidden = false
             QRModalView.isHidden = true
-            alignQRCodeLabel.isHidden = false
+            alignQRCodeLabel.alpha = 1.0
             scanButton.isHidden = false
             
         case .denied:
@@ -333,7 +372,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             
             QRModalView.isHidden = false
-            alignQRCodeLabel.isHidden = true
+            alignQRCodeLabel.alpha = 0.0
             scanButton.isHidden = true
             photoFrameImage.isHidden = true
             
@@ -434,10 +473,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         cell.animalNameLabel.layer.cornerRadius = 5.0
         
         if self.previousResult != self.result {
-            print("triggered false")
             cell.animalFound = false
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         }
+        
+        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+        cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
         
         
         return cell
@@ -450,30 +491,25 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     
-    func alertWithExhibit() {
+    func alertWithExhibit(completion: @escaping (Bool) -> Void) {
         
         // Sort animals into exhibits based on QR result
         
         switch self.result {
         case QRExhibits.coralReef.rawValue: self.sortForExhibit(exhibit: QRExhibits.coralReef.rawValue)
-            self.animateUp()
         case QRExhibits.floodedForest.rawValue: self.sortForExhibit(exhibit: QRExhibits.floodedForest.rawValue)
-            self.animateUp()
         case QRExhibits.giants.rawValue: self.sortForExhibit(exhibit: QRExhibits.giants.rawValue)
-            self.animateUp()
         case QRExhibits.jsaBirds.rawValue: self.sortForExhibit(exhibit: QRExhibits.jsaBirds.rawValue)
-            self.animateUp()
         case QRExhibits.reefPredators.rawValue: self.sortForExhibit(exhibit: QRExhibits.reefPredators.rawValue)
-            self.animateUp()
         case QRExhibits.sharkTank.rawValue: self.sortForExhibit(exhibit: QRExhibits.sharkTank.rawValue)
-            self.animateUp()
         case QRExhibits.poisonDartFrogs.rawValue: self.sortForExhibit(exhibit: QRExhibits.poisonDartFrogs.rawValue)
-            self.animateUp()
             
         default: alertForUnrecognizedQR()
     }
-        
+        completion(true)
 }
+    
+    
     func alertForUnrecognizedQR() {
         
         self.QRViewIsVisible = true
@@ -485,16 +521,17 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Animations
+    
     func animateUp() {
         
         
         self.collectionViewLocation = UIScreen.main.bounds.height - UIScreen.main.bounds.height + 55
         self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
-            self.view.layoutIfNeeded()
             self.scanButton.alpha = 0.0
-            self.alignQRCodeLabel.isHidden = true
-            self.photoFrameImage.isHidden = true
+            self.alignQRCodeLabel.alpha = 0.0
+            self.view.layoutIfNeeded()
         }, completion: { (true) in
                 self.animateRight()
             })
@@ -509,14 +546,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
-            self.view.layoutIfNeeded()
             self.scanButton.alpha = 1.0
-            self.alignQRCodeLabel.isHidden = true
-            self.photoFrameImage?.isHidden = true
+            self.alignQRCodeLabel.alpha = 1.0
+            self.view.layoutIfNeeded()
         }, completion: nil)
         self.QRViewIsVisible = false
         // Reset found animal checkmarks if the user scans a different exhibit
         self.previousResult = self.result
+        
     }
     
     
@@ -524,9 +561,28 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.foundAnimalsViewLocation = 4
         self.foundAnimalsViewXConstraint.constant = self.foundAnimalsViewLocation
         self.foundAnimalsViewIsShown = true
+        self.exhibitNameLabel.text = "Welcome to the \(self.result) exhibit!"
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        }, completion: { (true) in
+            
+            if self.foundAnimals.count == 0 {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.2, execute: {
+                self.exhibitNameLabel.text = "Check off the animals you find in the list below!"
+            })
+            } else {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.2, execute: {
+
+                //Change grammar (Add/Remove "s" in "animals")
+                if self.foundAnimals.count == 1 {
+                    self.exhibitNameLabel.text = "You've found \(self.foundAnimals.count) animal."
+                } else {
+                    self.exhibitNameLabel.text = "You've found \(self.foundAnimals.count) animals."
+                }
+                    })
+            }
+        })
 
         
     }
@@ -559,22 +615,30 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         if cell.animalFound == false {
         cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
             
-            
             if self.foundAnimals.contains(foundAnimal) {
                 print("animal already found!")
             } else {
                 self.foundAnimals.append(foundAnimal)
-                if self.foundAnimalsViewIsShown == false {
-                    self.animateRight()
-                    
-                }
-            }
-
+        }
             cell.animalFound = true
         } else {
+            guard let index = self.foundAnimals.index(of: foundAnimal) else { return }
+            self.foundAnimals.remove(at: index)
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             cell.animalFound = false
         }
+        
+        if self.foundAnimals.count != 0 {
+            
+            //Change grammar (Add/Remove "s" in "animals")
+            if self.foundAnimals.count == 1 {
+        self.exhibitNameLabel.text = "You've found \(self.foundAnimals.count) animal."
+            } else {
+                self.exhibitNameLabel.text = "You've found \(self.foundAnimals.count) animals."
+            }
+        } else {
+                self.exhibitNameLabel.text = "Check off the animals you find in the list below!"
+            }
        
 }
     
@@ -593,6 +657,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
+                guard let newIndexPath = indexPath else { return }
                 
                 if let selectedItem = (indexPath as NSIndexPath?)?.row {
                     
@@ -600,6 +665,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                     print(selectedItem)
                     destinationViewController.updateInfo(animal: animal)
                     destinationViewController.animal = animal.animalName ?? ""
+                    destinationViewController.imageHeroID = "animalImage: \(newIndexPath.row)"
+                    destinationViewController.titleLabelHeroID = "animalName: \(newIndexPath.row)"
+                    
                 }
             }
         }
