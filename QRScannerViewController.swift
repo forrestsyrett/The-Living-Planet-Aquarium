@@ -49,6 +49,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var organizedAnimals: [AnimalTest] = []
     var foundAnimals: [AnimalTest] = []
     var foundAnimalsViewIsShown = false
+    var resetFoundAnimals = false
+    var initialScan = true
     
     
     var collectionViewLocation: CGFloat = 0.0
@@ -63,7 +65,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var previousResult = ""
     var dataType = AVMetadataObjectTypeQRCode
     var resetExhibit = false
-    
+    var oneScan = false
     func configureVideoCapture() {
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
@@ -156,13 +158,23 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             // Do something with specific QR information. (Show exhibit animals)
             self.result = "\(qrResult)"
             
-            // Check if new exhibit was scanned
-            if self.previousResult != self.result {
-                self.scannedNewExhibitAlert()
-                
-            //First exhibit scanned or exhibit was re-scanned
-            } else {
+            if self.initialScan == true {
                 self.organizeAndShowAnimals()
+                self.previousResult = result
+            } else {
+                
+            if self.QRViewIsVisible == false {
+                
+                if self.previousResult != result {
+                    if self.oneScan == false {
+                    self.scannedNewExhibitAlert()
+                    }
+                }
+                
+                else {
+                    self.organizeAndShowAnimals()
+                }
+            }
         }
     }
 }
@@ -171,6 +183,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
     }
     
+    
+
     
     func organizeAndShowAnimals() {
         
@@ -181,27 +195,33 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 self.animateUp()
                 self.exhibitNameLabel.text = "Welcome to the \(self.result) exhibit!"
             } else if self.organizedAnimals.count == 0 {
-                self.failedScanAlert()
+                print("No animals yet, animation will be delayed")
             }
         })
     }
     
     
     func scannedNewExhibitAlert() {
+        self.oneScan = true
         let alert = UIAlertController(title: "Start searching a new exhibit?", message: "If you scan a new exhibit your previously found animals will be cleared.", preferredStyle: .alert)
-        let clearAction = UIAlertAction(title: "Clear", style: .destructive, handler: { (action) in
+        let clearAction = UIAlertAction(title: "Search", style: .destructive, handler: { (action) in
             
             self.QRViewIsVisible = false
             self.foundAnimals = []
             self.previousResult = "New Exhibit"
             self.organizeAndShowAnimals()
-
+            self.previousResult = self.result
+            self.resetFoundAnimals = true
+            self.oneScan = false
 
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        alert.addAction(clearAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            self.oneScan = false
+        })
         alert.addAction(cancelAction)
+        alert.addAction(clearAction)
         self.present(alert, animated: true, completion: nil)
+        
 
     }
     
@@ -472,7 +492,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         cell.animalImage.layer.cornerRadius = 5.0
         cell.animalNameLabel.layer.cornerRadius = 5.0
         
-        if self.previousResult != self.result {
+        if self.resetFoundAnimals == true {
             cell.animalFound = false
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         }
@@ -534,6 +554,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             self.view.layoutIfNeeded()
         }, completion: { (true) in
                 self.animateRight()
+                self.initialScan = false
             })
         self.QRViewIsVisible = true
         self.collectionView.reloadData()
@@ -553,6 +574,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.QRViewIsVisible = false
         // Reset found animal checkmarks if the user scans a different exhibit
         self.previousResult = self.result
+        self.resetFoundAnimals = false
         
     }
     
