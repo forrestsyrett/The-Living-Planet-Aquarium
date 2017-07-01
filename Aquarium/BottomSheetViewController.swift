@@ -248,7 +248,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             
             let reference = FIRStorageReference().child(mapData.animalImage ?? "")
-            cell.cellImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            cell.cellImage.sd_setShowActivityIndicatorView(true)
+            cell.cellImage.sd_setImage(with: reference)
             
             
             cell.cellLabel.text = mapData.animalName

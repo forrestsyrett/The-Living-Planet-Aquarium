@@ -485,7 +485,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         // Download image from Firebase storage
         let reference = FIRStorageReference().child(animal.animalImage ?? "")
-        cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        cell.animalImage.sd_setShowActivityIndicatorView(true)
+        cell.animalImage.sd_setImage(with: reference)
         
         cell.animalNameLabel.text = animal.animalName ?? ""
         cell.clipsToBounds = true

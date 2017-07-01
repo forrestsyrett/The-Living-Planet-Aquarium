@@ -71,8 +71,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         let reference = FIRStorageReference().child(self.imageReference)
         let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
-        self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-        self.animalFactSheet.sd_setImage(with: factSheetReference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        self.animalImage.sd_setShowActivityIndicatorView(true)
+        self.animalFactSheet.sd_setShowActivityIndicatorView(true)
+        self.animalImage.sd_setImage(with: reference)
+        self.animalFactSheet.sd_setImage(with: factSheetReference)
         
         self.animalNameLabel.text = name
         self.animalInfo.text = info

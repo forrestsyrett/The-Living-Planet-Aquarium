@@ -284,9 +284,9 @@
         <scene sceneID="rZh-HU-YfR">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cTl-Ja-usU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="homeFilled" id="PDX-89-lF2"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="home" id="PDX-89-lF2"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4Oi-c8-wAc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4Oi-c8-wAc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -689,7 +689,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Members" image="card" selectedImage="cardFilled" id="TG4-K0-O04"/>
+                    <tabBarItem key="tabBarItem" title="Members" image="card" id="TG4-K0-O04"/>
                     <navigationItem key="navigationItem" id="Ldp-oS-yj0">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="uib-eT-Oi6">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3Ip-zb-kE7">
@@ -1549,7 +1549,7 @@
                             <constraint firstAttribute="leadingMargin" secondItem="ekS-k9-O6b" secondAttribute="leading" id="yDm-dx-7WF"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Animals" image="fish" selectedImage="fishFilled" id="e5W-rZ-IhW"/>
+                    <tabBarItem key="tabBarItem" title="Animals" image="fish" id="e5W-rZ-IhW"/>
                     <navigationItem key="navigationItem" id="bBC-Ob-ov6">
                         <barButtonItem key="leftBarButtonItem" title="|||" style="done" id="k2I-kG-f9u">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1993,20 +1993,20 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="jlO-Fd-Oif">
-                                                            <rect key="frame" x="88" y="17.5" width="70" height="20.5"/>
+                                                            <rect key="frame" x="88" y="17.5" width="70.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zRo-Hb-iYv">
-                                                            <rect key="frame" x="158" y="0.0" width="3" height="55.5"/>
+                                                            <rect key="frame" x="158.5" y="0.0" width="3" height="55.5"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="3" id="NAT-PW-d9m"/>
                                                             </constraints>
                                                         </view>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VlT-D4-xJY">
-                                                            <rect key="frame" x="161" y="11.5" width="190" height="33"/>
+                                                            <rect key="frame" x="161.5" y="11.5" width="189.5" height="33"/>
                                                             <color key="backgroundColor" red="0.050000000000000003" green="0.41999999999999998" blue="0.56000000000000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="103" id="hj7-UR-f5P"/>
@@ -2744,7 +2744,7 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="118" height="118"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JBa-Kj-Utr">
+                                                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JBa-Kj-Utr">
                                                                         <rect key="frame" x="0.0" y="0.0" width="118" height="98"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animal Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="nTu-sj-Ahq">
@@ -2914,7 +2914,7 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" enabled="NO" title="Scan" image="camera" selectedImage="camera" id="8zP-hr-HLq"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Scan" image="camera" id="8zP-hr-HLq"/>
                     <navigationItem key="navigationItem" title="QR Scanner" id="LiI-1X-I6n"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="isHeroEnabled" value="YES"/>
@@ -3063,7 +3063,7 @@
                             <constraint firstItem="YOf-IF-cy9" firstAttribute="leading" secondItem="UxW-Qw-RXL" secondAttribute="trailing" constant="12" id="zos-aQ-FgS"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="map" selectedImage="mapFilled" id="hWi-34-4U6"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" id="hWi-34-4U6"/>
                     <connections>
                         <outlet property="cafeButton" destination="UxW-Qw-RXL" id="nWA-wV-vBB"/>
                         <outlet property="compassButton" destination="lSq-JG-tPW" id="KiD-0A-aT9"/>
@@ -3427,13 +3427,13 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                                 <mask key="constraints">
                                                     <exclude reference="UlM-gJ-ym2"/>
                                                     <exclude reference="bJB-fI-w38"/>
+                                                    <exclude reference="0ht-lB-Hbz"/>
+                                                    <exclude reference="HC6-05-dac"/>
                                                     <exclude reference="SUM-lJ-xhB"/>
                                                     <exclude reference="Scr-hO-s2B"/>
-                                                    <exclude reference="0ht-lB-Hbz"/>
                                                     <exclude reference="Xph-mh-pfS"/>
-                                                    <exclude reference="HC6-05-dac"/>
-                                                    <exclude reference="mAI-GP-KgO"/>
                                                     <exclude reference="gy2-EB-0x8"/>
+                                                    <exclude reference="mAI-GP-KgO"/>
                                                 </mask>
                                             </variation>
                                         </view>
@@ -3448,7 +3448,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ad1-rM-UbH">
-                                <rect key="frame" x="16" y="534" width="0.0" height="21"/>
+                                <rect key="frame" x="16" y="583" width="0.0" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="nbs-MR-b0d"/>
                                 </constraints>
@@ -3496,7 +3496,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="QRviewfinder" translatesAutoresizingMaskIntoConstraints="NO" id="9yg-Ce-ITZ">
-                                <rect key="frame" x="31" y="269" width="314" height="79"/>
+                                <rect key="frame" x="31" y="269" width="314" height="128"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sLM-Nb-HUX">
                                 <rect key="frame" x="129" y="469" width="117" height="51"/>
@@ -3513,7 +3513,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                 </connections>
                             </button>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OhJ-Ai-4nb">
-                                <rect key="frame" x="333" y="395" width="38" height="38"/>
+                                <rect key="frame" x="333" y="444" width="38" height="38"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="uS7-tE-10H">
                                     <rect key="frame" x="0.0" y="0.0" width="38" height="38"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3540,7 +3540,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                 <blurEffect style="light"/>
                             </visualEffectView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C7o-H0-wDS" userLabel="QR Animal View">
-                                <rect key="frame" x="4" y="437" width="367" height="125"/>
+                                <rect key="frame" x="4" y="486" width="367" height="125"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ol5-iS-Qnb">
                                         <rect key="frame" x="0.0" y="0.0" width="367" height="125"/>
@@ -3642,7 +3642,7 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omT-Oe-WXO" userLabel="FoundAnimalsView">
-                                <rect key="frame" x="4" y="395" width="325" height="38"/>
+                                <rect key="frame" x="4" y="444" width="325" height="38"/>
                                 <subviews>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yZb-4Q-vRy">
                                         <rect key="frame" x="0.0" y="0.0" width="325" height="38"/>
@@ -3791,16 +3791,12 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="camera" width="25" height="25"/>
         <image name="cancel" width="50" height="50"/>
         <image name="card" width="25" height="25"/>
-        <image name="cardFilled" width="25" height="25"/>
         <image name="compass" width="50" height="50"/>
         <image name="expandArrow" width="50" height="50"/>
         <image name="fish" width="25" height="25"/>
-        <image name="fishFilled" width="25" height="25"/>
         <image name="food" width="50" height="50"/>
         <image name="home" width="25" height="25"/>
-        <image name="homeFilled" width="25" height="25"/>
         <image name="map" width="25" height="25"/>
-        <image name="mapFilled" width="25" height="25"/>
         <image name="menu" width="50" height="50"/>
         <image name="penguin_factsheet" width="343" height="176"/>
         <image name="penguins-200px" width="200" height="300"/>
@@ -3813,9 +3809,9 @@ We hope you enjoy your visit and we're excited to have you with us as we Explore
         <image name="unchecked" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="keY-XR-aFb"/>
-        <segue reference="7n1-a8-wr1"/>
-        <segue reference="cFj-gi-mRE"/>
+        <segue reference="NgL-GM-RRo"/>
         <segue reference="Ufe-47-U55"/>
+        <segue reference="qCd-ud-LAc"/>
+        <segue reference="7n1-a8-wr1"/>
     </inferredMetricsTieBreakers>
 </document>
