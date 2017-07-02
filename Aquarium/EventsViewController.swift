@@ -602,7 +602,7 @@ extension EventsViewController: UNUserNotificationCenterDelegate {
             
             print("Notification being triggered")
             
-                completionHandler( [.alert, .sound, .badge])
+                completionHandler( [.alert, .sound])
                 
             }
         }

@@ -36,9 +36,6 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         self.membershipCardTableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0)
         
-        UNUserNotificationCenter.current().delegate = NotificationDelegate.shared.delegate
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,12 +70,6 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         self.performSegue(withIdentifier: "becomeAMember", sender: nil)
         
     }
-    
-    
-    //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    //
-    //        completionHandler([.alert, .sound])
-    //    }
     
     
     let membership = MembershipCardTableViewCell()

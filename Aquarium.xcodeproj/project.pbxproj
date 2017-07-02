@@ -246,7 +246,6 @@
 		0615493A1EF1E93F004406CF /* Calendar Events */ = {
 			isa = PBXGroup;
 			children = (
-				AAEE47671D3CAD8500E0C537 /* NotificationController.swift */,
 				061549381EF1E93B004406CF /* EventsViewController.swift */,
 				0615493B1EF1E94E004406CF /* CustomCell.swift */,
 				0615493D1EF1E956004406CF /* EventTableViewCell.swift */,
@@ -265,6 +264,15 @@
 				069A216F1EB68FB0006130C1 /* IndexController.swift */,
 			);
 			name = CustomTabBar;
+			sourceTree = "<group>";
+		};
+		06A4D86C1F08657B00881168 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				06C4BB891E78882B005A96CE /* NotificationDelegate.swift */,
+				AAEE47671D3CAD8500E0C537 /* NotificationController.swift */,
+			);
+			name = Notifications;
 			sourceTree = "<group>";
 		};
 		AA353AB41DCE5F3900AD5490 /* Map */ = {
@@ -345,7 +353,6 @@
 				061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */,
 				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
 				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
-				06C4BB891E78882B005A96CE /* NotificationDelegate.swift */,
 				06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */,
 				06F298071EF470D800856A93 /* FirebaseController.swift */,
 				06F298091EF4710800856A93 /* AnimalTest.swift */,
@@ -356,6 +363,7 @@
 				AA544CA01D0BB66C00DC1725 /* Info.plist */,
 				061549261EF1E38F004406CF /* GoogleService-Info-2.plist */,
 				06F298051EF469A000856A93 /* GoogleService-Info.plist */,
+				06A4D86C1F08657B00881168 /* Notifications */,
 				0615493A1EF1E93F004406CF /* Calendar Events */,
 				AA353AE11DCE8BAA00AD5490 /* Fonts */,
 				AA353AB41DCE5F3900AD5490 /* Map */,
