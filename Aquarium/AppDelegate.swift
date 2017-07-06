@@ -111,14 +111,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
         
-        MembershipShortcutAction(shortcutItem)
+        let handledShortcutItem = MembershipShortcutAction(shortcutItem)
+        
+        completionHandler(handledShortcutItem)
     }
     
     
     
     enum ShortCutIdentifier: String {
-        case OpenMobileMembership = "Open Mobile Membership"
-        case QRScanner = "QR Scanner"
+        case OpenMobileMembership = "Memberships"
+        case QRScanner = "Scanner"
+        case Events = "Events"
+        
         
         init?(shortcutItem: String) {
             guard let last = shortcutItem.components(separatedBy: ".").last else { return nil }
@@ -134,11 +138,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func MembershipShortcutAction(_ shortcutItem: UIApplicationShortcutItem) -> Bool {
         
-        if let index = shortcutItem.userInfo?["TabIndex"] as? Int {
-            (window?.rootViewController as? UITabBarController)?.selectedIndex = index
-            
-        }
+      let shortcutType = shortcutItem.type
+        guard let shortCutIdentifier = ShortCutIdentifier(shortcutItem: shortcutType) else { return false }
         
+        
+        switch shortCutIdentifier {
+            
+        case .OpenMobileMembership:
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBar = storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            self.window?.rootViewController = tabBar
+            tabBar.selectedIndex = 2
+            let navigationController = tabBar.selectedViewController as! UINavigationController
+            let memberships = storyBoard.instantiateViewController(withIdentifier: "membershipsViewController") as! MembershipListTableViewController
+            transparentNavigationBar(memberships)
+            navigationController.pushViewController(memberships, animated: true)
+
+        case .QRScanner:
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBar = storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            self.window?.rootViewController = tabBar
+            tabBar.selectedIndex = 4
+            
+        case .Events:
+            let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+            let tabBar = storyBoard.instantiateViewController(withIdentifier: "tabBar") as! UITabBarController
+            self.window?.rootViewController = tabBar
+            tabBar.selectedIndex = 3
+
+    
+        }
+
         return true
     }
 }

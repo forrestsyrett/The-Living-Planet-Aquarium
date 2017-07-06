@@ -40,11 +40,11 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeSearch</string>
+			<string>UIApplicationShortcutIconTypeCapturePhoto</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Animals</string>
+			<string>QR Scanner</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Third</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Scanner</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>TabIndex</key>
@@ -52,12 +52,14 @@
 			</dict>
 		</dict>
 		<dict>
+			<key></key>
+			<string></string>
 			<key>UIApplicationShortcutItemIconType</key>
-			<string>UIApplicationShortcutIconTypeAlarm</string>
+			<string>UIApplicationShortcutIconTypeDate</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Today&apos;s Feedings</string>
+			<string>Events</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Second</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Events</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>TabIndex</key>
@@ -70,7 +72,7 @@
 			<key>UIApplicationShortcutItemTitle</key>
 			<string>Membership Card</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>$(PRODUCT_BUNDLE_IDENTIFIER).First</string>
+			<string>$(PRODUCT_BUNDLE_IDENTIFIER).Memberships</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>TabIndex</key>

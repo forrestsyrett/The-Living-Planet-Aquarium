@@ -64,7 +64,7 @@ class CustomTabBar: UIView {
         // get tab bar items from default tab bar
         tabBarItems = datasource.tabBarItemsInCustomTabBar(self)
         
-        initialTabBarItemIndex = 2
+        initialTabBarItemIndex = IndexController.shared.initialTabBarIndex
         selectedTabBarItemIndex = initialTabBarItemIndex
         
         slideAnimationDuration = 0.3

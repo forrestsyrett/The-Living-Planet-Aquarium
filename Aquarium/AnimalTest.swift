@@ -23,6 +23,7 @@ class AnimalTest: FIRDataSnapshot {
     var animalImage: String?
     var factSheet: String?
     var exhibit: String?
+    var found: Bool = false
     
     init?(snapshot: FIRDataSnapshot) {
         guard let snap = snapshot.value as? [String: Any],
@@ -45,6 +46,10 @@ class AnimalTest: FIRDataSnapshot {
         self.exhibit = exhibit
 
 }
+    
+    init(found: Bool) {
+        self.found = found
+    }
 
 
 }

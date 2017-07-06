@@ -46,7 +46,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     var animals: [AnimalTest] = []
     var organizedAnimals: [AnimalTest] = []
-    var foundAnimals: [AnimalTest] = []
     var foundAnimalsViewIsShown = false
     var resetFoundAnimals = false
     var initialScan = true
@@ -65,6 +64,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var dataType = AVMetadataObjectTypeQRCode
     var resetExhibit = false
     var oneScan = false
+    
     func configureVideoCapture() {
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         
@@ -157,26 +157,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             // Do something with specific QR information. (Show exhibit animals)
             self.result = "\(qrResult)"
             
-            if self.initialScan == true {
-                self.organizeAndShowAnimals()
-                self.previousResult = result
-            } else {
-                
             if self.QRViewIsVisible == false {
-                
-                if self.previousResult != result {
-                    if self.oneScan == false {
-                    self.scannedNewExhibitAlert()
-                    }
-                
-                
-                } else {
-                    self.organizeAndShowAnimals()
-                }
+        
+            self.organizeAndShowAnimals()
             }
-        }
-    }
 }
+    }
     
     @IBAction func scanButtonTapped(_ sender: AnyObject) {
         
@@ -206,7 +192,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         let clearAction = UIAlertAction(title: "Search", style: .destructive, handler: { (action) in
             
             self.QRViewIsVisible = false
-            self.foundAnimals = []
             self.previousResult = "New Exhibit"
             self.organizeAndShowAnimals()
             self.previousResult = self.result
@@ -494,8 +479,11 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         cell.animalImage.layer.cornerRadius = 5.0
         cell.animalNameLabel.layer.cornerRadius = 5.0
         
-        if self.resetFoundAnimals == true {
-            cell.animalFound = false
+        print(animal.found)
+        
+        if animal.found == true {
+            cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
+        } else {
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         }
         
@@ -589,11 +577,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.exhibitNameLabel.shineDuration = 0.5
         self.exhibitNameLabel.shine()
         self.exhibitNameLabel.text = "Welcome to the \(self.result) exhibit!"
+        
+        let animalCount = self.getFoundAnimals()
+        
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
         }, completion: { (true) in
             
-            if self.foundAnimals.count == 0 {
+            if animalCount == 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.4, execute: {
                     self.animateLabel(with: "Check off the animals you find in the list below!", fadeOutDuration: 0.5, shineDuration: 0.5)
                 })
@@ -602,10 +593,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
                 DispatchQueue.main.asyncAfter(deadline: .now() + 2.4, execute: {
                     
                     //Change grammar (Add/Remove "s" in "animals")
-                    if self.foundAnimals.count == 1 {
-                        self.animateLabel(with: "You've found \(self.foundAnimals.count) animal.", fadeOutDuration: 0.5, shineDuration: 0.5)
+                    if animalCount == 1 {
+                        self.animateLabel(with: "You've found \(animalCount) animal.", fadeOutDuration: 0.5, shineDuration: 0.5)
                     } else {
-                        self.animateLabel(with: "You've found \(self.foundAnimals.count) animals.", fadeOutDuration: 0.5, shineDuration: 0.5)
+                        self.animateLabel(with: "You've found \(animalCount) animals.", fadeOutDuration: 0.5, shineDuration: 0.5)
                     }
                 })
             }
@@ -641,6 +632,18 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     
+    func getFoundAnimals() -> Int {
+        
+        var foundAnimals = 0
+        
+        for animal in self.organizedAnimals {
+            if animal.found == true {
+            foundAnimals += 1
+        }
+        }
+        
+        return foundAnimals
+    }
     
     
     @IBAction func showFoundAnimalsButton(_ sender: Any) {
@@ -654,30 +657,28 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         let indexPath = self.collectionView.indexPath(for: cell)
         
-        let foundAnimal = self.animals[(indexPath?.row)!]
-        if cell.animalFound == false {
+        let animal = self.organizedAnimals[(indexPath?.row)!]
+        
+        if animal.found == false {
+            print("checked!")
         cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
-            
-            if self.foundAnimals.contains(foundAnimal) {
-                print("animal already found!")
-            } else {
-                self.foundAnimals.append(foundAnimal)
-        }
-            cell.animalFound = true
-        } else {
-            guard let index = self.foundAnimals.index(of: foundAnimal) else { return }
-            self.foundAnimals.remove(at: index)
+        animal.found = true
+        
+    } else {
+            print("unchecked!")
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-            cell.animalFound = false
+            animal.found = false
         }
         
-        if self.foundAnimals.count != 0 {
+        let animalCount = self.getFoundAnimals()
+        
+        if animalCount != 0 {
             
             //Change grammar (Add/Remove "s" in "animals")
-            if self.foundAnimals.count == 1 {
-                self.animateLabel(with: "You've found \(self.foundAnimals.count) animal.", fadeOutDuration: 0.2, shineDuration: 0.2)
+            if animalCount == 1 {
+                self.animateLabel(with: "You've found \(animalCount) animal.", fadeOutDuration: 0.2, shineDuration: 0.2)
             } else {
-                self.animateLabel(with: "You've found \(self.foundAnimals.count) animals.", fadeOutDuration: 0.2, shineDuration: 0.2)
+                self.animateLabel(with: "You've found \(animalCount) animals.", fadeOutDuration: 0.2, shineDuration: 0.2)
             }
         } else {
             self.animateLabel(with: "Check off the animals you find in the list below!", fadeOutDuration: 0.2, shineDuration: 0.2)

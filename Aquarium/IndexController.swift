@@ -15,6 +15,8 @@ class IndexController {
     static let shared = IndexController()
     
     
+    var initialTabBarIndex = 2
+    
     var index = 2
     
     

@@ -20,7 +20,6 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     @IBOutlet weak var animalEncountersLabel: UIButton!
     @IBOutlet weak var directionsLabel: UIButton!
     @IBOutlet weak var donateLabel: UIButton!
-    @IBOutlet weak var smallLogo: UIImageView!
     @IBOutlet weak var lineOne: UIView!
     @IBOutlet weak var lineTwo: UIView!
     @IBOutlet weak var lineThree: UIView!
@@ -31,7 +30,6 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     var regionName = "Area Name"
     var destinationName = "String"
     var notificationSwitch = true
-    
     
     //   let rightGesture = UISwipeGestureRecognizer()
     
@@ -77,7 +75,6 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     
     override func viewWillAppear(_ animated: Bool) {
 
-        animateImage(smallLogo, animateTime: 2.0)
         animateLabel(welcomeLabel, animateTime: 0.5)
         animateLabel(livingPlanetLabel, animateTime: 1.0)
         animateLines(lineOne, animateTime: 0.75)
@@ -237,10 +234,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         if segue.identifier == "toAnimalDetail" {
             
             let destinationViewController = segue.destination as! BeaconInfoViewController
-            UIView.animate(withDuration: 0.3, animations: {
-                self.smallLogo.alpha = 0.0
-                
-            })
+           
             
             if self.destinationName == "Sharks" {
                 

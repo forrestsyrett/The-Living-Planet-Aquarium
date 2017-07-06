@@ -14,7 +14,7 @@ import FirebaseStorage
 import FirebaseStorageUI
 import RQShineLabel
 
-class TESTViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, QRAnimalCollectionViewDelegate {
+class TESTViewController: UIViewController /*AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, QRAnimalCollectionViewDelegate */{
     
     
     @IBOutlet weak var QRModalView: UIView!
@@ -67,7 +67,7 @@ class TESTViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     var oneScan = false
     
     
-    
+/*
         func initializeQRView() {
         qrCodeFrameView = UIView()
         qrCodeFrameView?.layer.borderColor = UIColor.blue.cgColor
@@ -435,11 +435,7 @@ class TESTViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         cell.animalImage.layer.cornerRadius = 5.0
         cell.animalNameLabel.layer.cornerRadius = 5.0
         
-        if self.resetFoundAnimals == true {
-            cell.animalFound = false
-            cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
-        }
-        
+
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
         cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
         
@@ -623,5 +619,6 @@ class TESTViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             self.animateLeft()
         }
     }
+ */
     
 }

@@ -53,8 +53,11 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
             welcomeView.isHidden = false
             blurView.isHidden = false
         }
+        if self.tabBarController == nil {
+            print("tabBar is not loaded yet")
+        } else {
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
-        
+        }
     }
     
     

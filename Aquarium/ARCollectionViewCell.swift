@@ -20,8 +20,7 @@ class ARCollectionViewCell: UICollectionViewCell {
     weak var delegate: QRAnimalCollectionViewDelegate?
     
     @IBOutlet weak var animalCheckedButton: UIButton!
-    var animalFound = false
-    
+
     @IBAction func foundAnimal(_ sender: Any) {
         
         delegate?.animalFound(self)

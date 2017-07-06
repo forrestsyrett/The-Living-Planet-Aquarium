@@ -105,7 +105,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         case "Endangered": conservationStatusImage.image = #imageLiteral(resourceName: "Endangered")
         case "Critically Endangered": conservationStatusImage.image = #imageLiteral(resourceName: "CriticallyEndangered")
         case "Extinct in the Wild": conservationStatusImage.image = #imageLiteral(resourceName: "Extinct_In_Wild")
-        default: break
+        default: conservationStatusImage.image = #imageLiteral(resourceName: "Unknown")
         }
         
     }
