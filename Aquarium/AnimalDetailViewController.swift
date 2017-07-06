@@ -48,6 +48,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var titleLabelHeroID = ""
     var dismissButtonHeroID = ""
     var factSheetString = ""
+    var updateImage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,10 +149,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBAction func animalNewsButtonTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Animal News", message: self.animalUpdates, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-        alert.addAction(dismissAction)
-        self.present(alert, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "animalNotification", sender: nil)
     }
     
     func animateRibbon() {
@@ -175,6 +173,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.imageReference = animal.animalImage ?? ""
         self.factSheetString = animal.factSheet ?? ""
         self.animalUpdates = animal.animalUpdates ?? ""
+        self.updateImage = animal.updateImage ?? ""
     }
 
     
@@ -194,7 +193,31 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
          */
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? AnimalNotificationsViewController {
+            
+            destination.updateInfo = self.animalUpdates
+            destination.imageReference = self.updateImage
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
+
 
 extension UIPanGestureRecognizer {
     

@@ -331,20 +331,21 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             
             
         }
-            // Show cascade animation on first load, after that animate each row equally.
+            // Show cascade animation on first load
         
         var delay = 0.05 * Double(index) / 2
             if cell.didAnimate == false {
                 delay = 0.05 * Double(index) / 2
+                
+                UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                    cell.transform = CGAffineTransform.identity
+                    cell.layoutIfNeeded()
+                    cell.didAnimate = true
+                }, completion: nil)
             } else {
-            delay = 0.1
+            cell.transform = CGAffineTransform.identity
         }
         
-        UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
-        cell.transform = CGAffineTransform.identity
-        cell.layoutIfNeeded()
-        cell.didAnimate = true
-        }, completion: nil)
 
                 //Check for animal updates, and show ribbon
                 if animal.animalUpdates != "none" {

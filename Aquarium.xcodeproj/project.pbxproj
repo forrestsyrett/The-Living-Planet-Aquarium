@@ -47,6 +47,7 @@
 		069A21701EB68FB0006130C1 /* IndexController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A216F1EB68FB0006130C1 /* IndexController.swift */; };
 		06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */; };
 		06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DE1E8714930012A1DD /* AnimalController.swift */; };
+		06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */; };
 		06A60F691F05946600635477 /* TESTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A60F681F05946600635477 /* TESTViewController.swift */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
@@ -152,6 +153,7 @@
 		069A216F1EB68FB0006130C1 /* IndexController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexController.swift; sourceTree = "<group>"; };
 		06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = Aquarium/MapTableViewCell.swift; sourceTree = "<group>"; };
 		06A0C2DE1E8714930012A1DD /* AnimalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalController.swift; sourceTree = "<group>"; };
+		06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalNotificationsViewController.swift; sourceTree = "<group>"; };
 		06A60F681F05946600635477 /* TESTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TESTViewController.swift; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				AA55B5831DDF75AE00CC2336 /* MainExhibits.swift */,
 				AA55B5851DDF765100CC2336 /* MainExhibitController.swift */,
 				06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */,
+				06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */,
 				060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */,
 				060C1EB41E81D87500501713 /* shark.obj */,
 				060C1EB51E81D87500501713 /* sharkTexture.jpg */,
@@ -676,6 +679,7 @@
 				0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */,
 				06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */,
 				AA353ABC1DCE608500AD5490 /* CurrentLocationController.swift in Sources */,
+				06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */,
 				AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */,
 				AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */,
 				AA6FA1D21D554E6800CBEEC7 /* MembershipCardTableViewCell.swift in Sources */,
