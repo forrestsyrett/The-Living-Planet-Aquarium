@@ -35,9 +35,13 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     
     
     // MARK: - Beacon Regions
-    var entranceRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54482, identifier: "Entrance")
+    var jsaRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54482, identifier: "jsa")
     
-    var sharkRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54481, identifier: "Sharks")
+    var sharkRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54481, identifier: "sharks")
+    
+     var theaterRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54483, identifier: "theater")
+    
+     var utahRegion: CLBeaconRegion = CLBeaconRegion(proximityUUID: UUID(uuidString: "FDA50693-A4E2-4FB1-AFCF-C6EB07647825")!, major: 10004, minor: 54484, identifier: "utah")
     
     
     
@@ -59,17 +63,27 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         
         beaconInfoButton.alpha = 0.0
         
-        self.entranceRegion.notifyOnEntry = true
-        self.entranceRegion.notifyOnExit = true
-        self.entranceRegion.notifyEntryStateOnDisplay = true
+        self.jsaRegion.notifyOnEntry = true
+        self.jsaRegion.notifyOnExit = true
+        self.jsaRegion.notifyEntryStateOnDisplay = true
+        
+        self.utahRegion.notifyOnEntry = true
+        self.utahRegion.notifyOnExit = true
+        self.utahRegion.notifyEntryStateOnDisplay = true
+        
+        self.theaterRegion.notifyOnEntry = true
+        self.theaterRegion.notifyOnExit = true
+        self.theaterRegion.notifyEntryStateOnDisplay = true
         
         
         self.sharkRegion.notifyOnEntry = true
         self.sharkRegion.notifyOnExit = true
         self.sharkRegion.notifyEntryStateOnDisplay = true
         
-        locationManager.startMonitoring(for: self.entranceRegion)
+        locationManager.startMonitoring(for: self.jsaRegion)
         locationManager.startMonitoring(for: self.sharkRegion)
+        locationManager.startMonitoring(for: self.utahRegion)
+        locationManager.startMonitoring(for: self.theaterRegion)
         
     }
     
@@ -95,64 +109,80 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         if status == .authorizedAlways {
             if CLLocationManager.isMonitoringAvailable(for: CLBeaconRegion.self) {
                 if CLLocationManager.isRangingAvailable() {
+                    
+                    
                 }
             }
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didStartMonitoringFor region: CLRegion) {
-        locationManager.requestState(for: self.entranceRegion)
+        locationManager.requestState(for: self.jsaRegion)
         locationManager.requestState(for: self.sharkRegion)
+        locationManager.requestState(for: self.utahRegion)
+        locationManager.requestState(for: self.theaterRegion)
         
     }
     
     func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
         
-        if region == self.entranceRegion {
+        // Range specific beacons when entering a region
+        
+        switch region {
+            
+        case self.jsaRegion:
             if state == CLRegionState.inside {
-                manager.startRangingBeacons(in: entranceRegion)
-                print("inside entrance region")
-                
-                UIView.animate(withDuration: 1.0, animations: {
-                    self.beaconInfoButton.alpha = 1.0
-                    
-                })
-                self.destinationName = "Penguins"
-                self.regionName = region.identifier
-                
+                manager.startRangingBeacons(in: jsaRegion)
+                print("inside jsa region")
+                 self.regionName = region.identifier
+            } else if state == CLRegionState.outside {
+                manager.stopRangingBeacons(in: jsaRegion)
+                print("Left jsa region")
             }
             
-        }
-        if state == CLRegionState.outside {
-            manager.stopRangingBeacons(in: entranceRegion)
-            print("Left Entrance region")
-        }
-        
-        
-        if region == self.sharkRegion {
+        case self.sharkRegion:
             if state == CLRegionState.inside {
                 manager.startRangingBeacons(in: sharkRegion)
                 print("inside shark region")
-                beaconInfoButton.alpha = 0.0
-                beaconInfoButton.setTitle("Info", for: .normal)
-                UIView.animate(withDuration: 1.0, animations: {
-                    self.beaconInfoButton.alpha = 1.0
-                    
-                })
-                self.destinationName = "Sharks"
+                self.regionName = region.identifier
+            } else if state == CLRegionState.outside {
+               manager.stopRangingBeacons(in: sharkRegion)
+                print("Left shark region")
             }
             
-        }
-        if state == CLRegionState.outside {
-            manager.stopRangingBeacons(in: sharkRegion)
-            print("outside shark region")
-            UIView.animate(withDuration: 1.0, animations: {
-                self.beaconInfoButton.alpha = 0.0
-            })
+        case self.utahRegion:
+            if state == CLRegionState.inside {
+                manager.startRangingBeacons(in: utahRegion)
+                print("inside utah region")
+                self.regionName = region.identifier
+            } else if state == CLRegionState.outside {
+                manager.stopRangingBeacons(in: utahRegion)
+                print("Left utah region")
+            }
             
+        case self.theaterRegion:
+            if state == CLRegionState.inside {
+                manager.startRangingBeacons(in: theaterRegion)
+                print("inside theater region")
+                self.regionName = region.identifier
+            } else if state == CLRegionState.outside {
+                manager.stopRangingBeacons(in: theaterRegion)
+                print("Left theater region")
+            }
+
+
+        default: print("no beacon state")
+
         }
-        
+  
     }
+    
+    func startScanning() {
+        locationManager.startRangingBeacons(in: self.theaterRegion)
+    }
+    
+    
+    
     func locationManager(_ manager: CLLocationManager, didRangeBeacons beacons: [CLBeacon], in region: CLBeaconRegion) {
         
         print("Did range beacons")
@@ -179,18 +209,12 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         
         let regionName = region.identifier
         
-        self.view.backgroundColor = UIColor.purple
-        
         print("Exited Region \(regionName)")
         
-        if region == self.entranceRegion {
-            self.notificationSwitch = true
-        }
     }
     
     func update (_ distance: CLProximity) {
         
-        UIView.animate(withDuration: 0.4) {
             switch distance {
             case .unknown:
                 print("unknown")
@@ -198,33 +222,37 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
             case.far:
                 print("Far")
                 
-                if self.regionName == "Entrance" {
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "jsa"), object: nil)
+                
+                switch self.regionName {
                     
-                    // Sets the currentLocationController "Current Location" String
+                case self.jsaRegion.identifier:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "jsa"), object: nil)
                     CurrentLocationController.shared.exhibitName = "jsa"
                     
-                }
-                if self.regionName == "Sharks" {
+                case self.sharkRegion.identifier:
                     NotificationCenter.default.post(name: Notification.Name(rawValue: "sharks"), object: nil)
                     CurrentLocationController.shared.exhibitName = "sharks"
+                    
+                case self.theaterRegion.identifier:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "theater"), object: nil)
+                    CurrentLocationController.shared.exhibitName = "theater"
+                    
+                case self.utahRegion.identifier:
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: "utah"), object: nil)
+                    CurrentLocationController.shared.exhibitName = "utah"
+                    
+                default: break
+                    
                 }
-                
+
             case.near:
                 print("Near")
-                UIView.animate(withDuration: 1.0, animations: {
-                    self.beaconInfoButton.alpha = 1.0
-                })
                 
-                if self.notificationSwitch == true {
-                    self.scheduleWelcomeNotification(at: Date())
-                    self.notificationSwitch = false
-                }
             case .immediate:
                 print("immediate")
                 
             }
-        }
+        
     }
     ////////////////
     // MARK: - Prepare for Segue
@@ -236,7 +264,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
             let destinationViewController = segue.destination as! BeaconInfoViewController
            
             
-            if self.destinationName == "Sharks" {
+            if self.destinationName == "sharks" {
                 
                 destinationViewController.image = #imageLiteral(resourceName: "oceans")
                 destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have many species of sharks in our shark tank. Can you spot them all? Tap on the camera logo below to open the Exhibit Scanner and see if you can find all the different sharks!"
@@ -245,7 +273,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
                 destinationViewController.buttonLabel = "Notify me about the Shark Feeding!"
    
             }
-            if self.destinationName == "Penguins" {
+            if self.destinationName == "jsa" {
                 destinationViewController.image = #imageLiteral(resourceName: "antarcticAdventure2")
                 destinationViewController.titleLabel = "Gentoo Penguins"
                 destinationViewController.info = "Our aquarium is home to 19 Gentoo Penguins. See if you can spot the name bands on their flippers!\nWe feed our penguins at 4:00 PM every day."

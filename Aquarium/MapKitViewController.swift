@@ -101,6 +101,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "jsa"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "sharks"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "theater"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "utah"), object: nil)
         
         transparentNavigationBar(self)
         
@@ -292,9 +294,13 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             
             switch CurrentLocationController.shared.exhibitName {
             case "jsa":
-                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.5321), longitude: CLLocationDegrees(-111.8934))
+                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.5322), longitude: CLLocationDegrees(-111.8936))
             case "sharks":
-                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.5325), longitude: CLLocationDegrees(-111.8940))
+                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.53255), longitude: CLLocationDegrees(-111.89425))
+            case "theater":
+                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.53248), longitude: CLLocationDegrees(-111.89396))
+            case "utah":
+                self.currentLocationAnnotation.coordinate = CLLocationCoordinate2D(latitude: CLLocationDegrees(40.53248), longitude: CLLocationDegrees(-111.89358))
                 
             default: break
             }

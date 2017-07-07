@@ -37,6 +37,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     var buttonAction = "Safari"
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var theaterTableView: UITableView!
@@ -302,12 +303,15 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.tableView.isHidden = true
         self.galleryInfo.isHidden = false
         self.getDirectionsButton.isHidden = false
+        self.scrollView.isHidden = false
+        self.scrollView.setContentOffset(CGPoint.zero, animated: false)
     }
     
     func showTableView() {
         self.tableView.isHidden = false
         self.galleryInfo.isHidden = true
         self.getDirectionsButton.isHidden = true
+        self.scrollView.isHidden = true
         
     }
     
