@@ -94,13 +94,13 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         getAnimals()
         
-        print("SHARED CONTROLLER \(AnimalController.shared.allAnimals.count)")
+     /*   print("SHARED CONTROLLER \(AnimalController.shared.allAnimals.count)")
         print("JSA \(AnimalController.shared.jsaAnimals.count)")
         print("UTAH \(AnimalController.shared.discoverUtahAnimals.count)")
         print("ASIA \(AnimalController.shared.expeditionAsiaAnimals.count)")
         print("OCEANS \(AnimalController.shared.oceanExplorerAnimals.count)")
         print("AA \(AnimalController.shared.antarcticAdventureAnimals.count)")
-        
+     */   
         
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
         
@@ -112,6 +112,9 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         roundedCorners(galleryPhoto1, cornerRadius: 5.0)
         roundedCorners(handleView, cornerRadius: 5.0)
         roundedCorners(getDirectionsButton, cornerRadius: 5.0)
+        getDirectionsButton.layer.borderColor = UIColor.white.cgColor
+        getDirectionsButton.layer.borderWidth = 1.0
+        
         postObservers()
         
         self.shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -305,6 +308,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.getDirectionsButton.isHidden = false
         self.scrollView.isHidden = false
         self.scrollView.setContentOffset(CGPoint.zero, animated: false)
+        self.shadowView.isHidden = false
     }
     
     func showTableView() {
@@ -312,6 +316,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.galleryInfo.isHidden = true
         self.getDirectionsButton.isHidden = true
         self.scrollView.isHidden = true
+        self.shadowView.isHidden = false
+        self.tableView.setContentOffset(CGPoint.zero, animated: false)
         
     }
     
@@ -336,6 +342,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         case galleries.cafe.name:
             hideTableView()
             self.theaterTableView.isHidden = true
+            self.shadowView.isHidden = true
             
         case galleries.deepSeaLab.name:
             showTableView()
@@ -607,7 +614,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.animalName = animal.animalName ?? ""
         self.conservationStatus = animal.conservationStatus ?? ""
         
-        print("Info button tapped for \(animal.animalName ?? "")")
+       // print("Info button tapped for \(animal.animalName ?? "")")
         self.performSegue(withIdentifier: "toAnimalDetail", sender: self)
         
         self.closeSwitch = false

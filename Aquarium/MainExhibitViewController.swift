@@ -49,7 +49,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-        
+        setSearchBarView()
         tabBarTint(view: self)
         transparentNavigationBar(self)
         gradient(self.view)
@@ -213,7 +213,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
     }
     func setSearchBarView() {
-        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 99, width: view.frame.width, height: 50)
+        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: view.frame.width, height: 50)
+        print(UIScreen.main.bounds.height - 100)
         self.searchBar.isHidden = false
     }
     
@@ -266,7 +267,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         UIView.animate(withDuration: 0.20, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             
             
-            self.searchBar.frame.origin.y = UIScreen.main.bounds.height - 99
+            self.setSearchBarView()
         }, completion: nil)
         
         self.view.endEditing(true)
