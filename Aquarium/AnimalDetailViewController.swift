@@ -128,11 +128,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBAction func heatmapButtonTapped(_ sender: Any) {
         
     /*    if self.imageType == "animal" {
-            self.animalImage.image = #imageLiteral(resourceName: "FrogHeatMap_Example")
+            self.animalImage.image = image
             self.imageType = "heatmap"
         } else {
             let reference = FIRStorageReference().child(self.imageReference)
-            self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            self.animalImage.sd_setImage(with: reference, placeholderImage: image)
             self.imageType = "animal"
         }
  */

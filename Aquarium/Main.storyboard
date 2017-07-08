@@ -1569,15 +1569,19 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="105"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jsa" translatesAutoresizingMaskIntoConstraints="NO" id="Ucr-iv-erP">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jsa" translatesAutoresizingMaskIntoConstraints="NO" id="Ucr-iv-erP">
                                                     <rect key="frame" x="8" y="8" width="359" height="89"/>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V82-vH-tGs">
-                                                    <rect key="frame" x="8" y="38" width="359" height="29"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nwC-Vv-IDq">
+                                                    <rect key="frame" x="8" y="0.0" width="359" height="105"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gallery Name Gallery Name Gallery Name Gallery Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="V82-vH-tGs">
+                                                    <rect key="frame" x="8" y="8" width="359" height="89"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="29" id="zhx-ea-NWQ"/>
+                                                        <constraint firstAttribute="height" constant="89" id="zhx-ea-NWQ"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="TrajanPro-Bold" family="Trajan Pro" pointSize="17"/>
+                                                    <fontDescription key="fontDescription" name="TrajanPro-Bold" family="Trajan Pro" pointSize="18"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                     <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -1585,10 +1589,14 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="nwC-Vv-IDq" firstAttribute="bottom" secondItem="IP7-EH-sI8" secondAttribute="bottomMargin" constant="8" id="0x7-yh-ipV"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="V82-vH-tGs" secondAttribute="trailing" id="76m-ra-a2p"/>
-                                                <constraint firstItem="V82-vH-tGs" firstAttribute="top" secondItem="IP7-EH-sI8" secondAttribute="topMargin" constant="30" id="FKt-w9-rmt"/>
+                                                <constraint firstItem="nwC-Vv-IDq" firstAttribute="top" secondItem="IP7-EH-sI8" secondAttribute="topMargin" constant="-8" id="C4r-t5-nHl"/>
+                                                <constraint firstItem="V82-vH-tGs" firstAttribute="top" secondItem="IP7-EH-sI8" secondAttribute="topMargin" id="FKt-w9-rmt"/>
+                                                <constraint firstItem="nwC-Vv-IDq" firstAttribute="leading" secondItem="IP7-EH-sI8" secondAttribute="leadingMargin" id="Wj1-MS-Xg6"/>
                                                 <constraint firstItem="Ucr-iv-erP" firstAttribute="top" secondItem="IP7-EH-sI8" secondAttribute="topMargin" id="acQ-S8-rZ0"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="Ucr-iv-erP" secondAttribute="trailing" id="eEi-Fr-7ZH"/>
+                                                <constraint firstItem="nwC-Vv-IDq" firstAttribute="trailing" secondItem="IP7-EH-sI8" secondAttribute="trailingMargin" id="lEO-uP-Qi1"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="Ucr-iv-erP" secondAttribute="bottom" id="qv3-cg-6uG"/>
                                                 <constraint firstAttribute="leadingMargin" secondItem="V82-vH-tGs" secondAttribute="leading" id="w1g-dw-yfF"/>
                                                 <constraint firstItem="Ucr-iv-erP" firstAttribute="leading" secondItem="IP7-EH-sI8" secondAttribute="leadingMargin" id="yat-6O-VoG"/>
@@ -1609,17 +1617,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v1K-Kr-Yyn">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="93"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibit Galleries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAS-GW-tom">
-                                        <rect key="frame" x="8" y="33" width="359" height="30"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="QAS-GW-tom" secondAttribute="height" multiplier="359:21" constant="-153.85714285714289" id="Ndf-1l-3nx"/>
-                                        </constraints>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exhibit Galleries" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="QAS-GW-tom">
+                                        <rect key="frame" x="8" y="63" width="359" height="18"/>
                                         <fontDescription key="fontDescription" name="TrajanPro-Regular" family="Trajan Pro" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iTg-2u-Sct">
-                                        <rect key="frame" x="25" y="66" width="325" height="1"/>
+                                        <rect key="frame" x="25" y="84" width="325" height="1"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="oLk-LY-zQx"/>
@@ -1630,10 +1635,11 @@
                                 <constraints>
                                     <constraint firstItem="iTg-2u-Sct" firstAttribute="leading" secondItem="v1K-Kr-Yyn" secondAttribute="leading" constant="25" id="4kj-0y-lZM"/>
                                     <constraint firstAttribute="trailing" secondItem="QAS-GW-tom" secondAttribute="trailing" constant="8" id="FY8-qc-efG"/>
+                                    <constraint firstAttribute="bottom" secondItem="iTg-2u-Sct" secondAttribute="bottom" constant="8" id="Nyb-lC-scJ"/>
                                     <constraint firstItem="QAS-GW-tom" firstAttribute="leading" secondItem="v1K-Kr-Yyn" secondAttribute="leading" constant="8" id="Ol2-1w-tLQ"/>
                                     <constraint firstAttribute="trailing" secondItem="iTg-2u-Sct" secondAttribute="trailing" constant="25" id="Q5G-hq-5Hb"/>
                                     <constraint firstItem="iTg-2u-Sct" firstAttribute="top" secondItem="QAS-GW-tom" secondAttribute="bottom" constant="3" id="RH6-QJ-umv"/>
-                                    <constraint firstItem="QAS-GW-tom" firstAttribute="top" secondItem="v1K-Kr-Yyn" secondAttribute="top" constant="33" id="fUr-7q-06L"/>
+                                    <constraint firstItem="QAS-GW-tom" firstAttribute="top" relation="greaterThanOrEqual" secondItem="v1K-Kr-Yyn" secondAttribute="top" constant="8" id="q7T-jN-gat"/>
                                     <constraint firstAttribute="width" secondItem="v1K-Kr-Yyn" secondAttribute="height" multiplier="375:77" constant="-77.922077922077904" id="qmf-ne-mlZ"/>
                                 </constraints>
                             </view>
@@ -1655,11 +1661,11 @@
                             <constraint firstItem="5sD-ys-tH3" firstAttribute="top" secondItem="rBp-Ws-4KI" secondAttribute="bottom" constant="3" id="9UT-1N-yBP"/>
                             <constraint firstItem="5sD-ys-tH3" firstAttribute="leading" secondItem="wpD-uB-IxM" secondAttribute="leadingMargin" id="B4o-e7-ONd"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5sD-ys-tH3" secondAttribute="trailing" id="Hf7-qE-wYq"/>
-                            <constraint firstItem="rBp-Ws-4KI" firstAttribute="top" secondItem="E5g-8N-n3B" secondAttribute="bottom" constant="73" id="PDU-cF-ynU"/>
                             <constraint firstItem="v1K-Kr-Yyn" firstAttribute="top" secondItem="E5g-8N-n3B" secondAttribute="bottom" constant="-20" id="QaL-T6-0fb"/>
                             <constraint firstItem="v1K-Kr-Yyn" firstAttribute="leading" secondItem="wpD-uB-IxM" secondAttribute="leadingMargin" constant="-16" id="RKr-WD-PTC"/>
                             <constraint firstAttribute="trailing" secondItem="rBp-Ws-4KI" secondAttribute="trailing" id="YLa-u3-8dj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="v1K-Kr-Yyn" secondAttribute="trailing" constant="-16" id="hhw-wU-5k8"/>
+                            <constraint firstItem="rBp-Ws-4KI" firstAttribute="top" secondItem="v1K-Kr-Yyn" secondAttribute="bottom" id="lSl-OO-AVQ"/>
                             <constraint firstItem="U5b-qY-oUD" firstAttribute="top" secondItem="rBp-Ws-4KI" secondAttribute="bottom" constant="104" id="onc-y2-BO2"/>
                             <constraint firstItem="rBp-Ws-4KI" firstAttribute="leading" secondItem="wpD-uB-IxM" secondAttribute="leading" id="wYA-wf-DyM"/>
                         </constraints>
@@ -1671,7 +1677,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7Su-fd-enF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="814" y="1810"/>
+            <point key="canvasLocation" x="813.60000000000002" y="1809.4452773613195"/>
         </scene>
         <!--Animal Notifications View Controller-->
         <scene sceneID="elS-tr-6dk">
@@ -4133,7 +4139,7 @@
         <image name="fish" width="25" height="25"/>
         <image name="food" width="50" height="50"/>
         <image name="home" width="25" height="25"/>
-        <image name="jsa" width="1024" height="768"/>
+        <image name="jsa" width="359" height="236"/>
         <image name="map" width="25" height="25"/>
         <image name="menu" width="50" height="50"/>
         <image name="penguin_factsheet" width="343" height="176"/>

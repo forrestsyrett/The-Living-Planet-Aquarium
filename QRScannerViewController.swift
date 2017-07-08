@@ -207,6 +207,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         if ["http", "https"].contains(url.scheme!.lowercased()) {
             let safariViewController = SFSafariViewController(url: url)
             self.present(safariViewController, animated: true, completion: nil)
+            safariViewController.preferredBarTintColor = UIColor(red:0.20, green:0.35, blue:0.54, alpha:1.00)
+            safariViewController.preferredControlTintColor = .white
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
         } else { return }
     }
@@ -501,13 +503,19 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     func alertForUnrecognizedQR() {
         
         self.QRViewIsVisible = true
-        let alert = UIAlertController(title: "Scan Unsuccessful", message: "We didn't recognize this QR Code.", preferredStyle: .alert)
+        if self.result.range(of: "http") != nil {
+            self.openURL()
+        } else {
+        
+        let alert = UIAlertController(title: "Scan Unsuccessful", message: "We didn't recognize this QR code.", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .default) { (action) in
             self.QRViewIsVisible = false
         }
         alert.addAction(dismissAction)
         self.present(alert, animated: true, completion: nil)
     }
+    }
+
     
     // MARK: - Animations
     
