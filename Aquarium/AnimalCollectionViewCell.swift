@@ -12,6 +12,8 @@ class AnimalCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var animalNameLabel: UILabel!
     @IBOutlet weak var animalImage: UIImageView!
-    
+    var didAnimate = false
+    @IBOutlet weak var newsRibbon: UIImageView!
+    @IBOutlet weak var newsRibbonHeight: NSLayoutConstraint!
 
 }

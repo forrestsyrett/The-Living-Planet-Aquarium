@@ -23,4 +23,5 @@ pod 'Firebase/Database'
 pod 'FirebaseUI/Storage'
 pod 'NVActivityIndicatorView'
 pod 'Hero'
+pod 'LTMorphingLabel'
 end

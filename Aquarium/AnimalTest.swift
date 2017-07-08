@@ -21,6 +21,8 @@ class AnimalTest: FIRDataSnapshot {
     var conservationStatus: String?
     var gallery: String?
     var animalImage: String?
+    var factSheet: String?
+    var exhibit: String?
     
     init?(snapshot: FIRDataSnapshot) {
         guard let snap = snapshot.value as? [String: Any],
@@ -29,7 +31,9 @@ class AnimalTest: FIRDataSnapshot {
         let animalUpdates = snap["updates"] as? String,
         let conservationStatus = snap["conservationStatus"] as? String,
         let gallery = snap["gallery"] as? String,
-            let animalImage = snap["imageLink"] as? String else { return nil }
+        let animalImage = snap["imageLink"] as? String,
+        let factSheet = snap["factSheet"] as? String,
+        let exhibit = snap["exhibit"] as? String else { return nil }
         
         self.animalName = animalName
         self.animalInfo = animalInfo
@@ -37,6 +41,8 @@ class AnimalTest: FIRDataSnapshot {
         self.conservationStatus = conservationStatus
         self.gallery = gallery
         self.animalImage = animalImage
+        self.factSheet = factSheet
+        self.exhibit = exhibit
 
 }
 

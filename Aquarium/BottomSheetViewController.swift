@@ -85,6 +85,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.getDirectionsButton.isHidden = true
         
         self.firebaseReference = FIRDatabase.database().reference()
         
@@ -305,11 +306,12 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     func sortGalleryData() {
         
         switch self.galleryName {
+            
         case galleries.amenities.name:
             hideTableView()
             self.theaterTableView.isHidden = true
-            
-            
+            self.getDirectionsButton.isHidden = true
+        
         case galleries.antarcticAdventure.name:
             showTableView()
             self.allAnimals = self.antarcticAdventureAnimals
@@ -369,7 +371,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         default: break
             
         }
-        
+    
         tableView.reloadData()
         
     }
@@ -392,9 +394,6 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.discoverUtah)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid_category/discover-utah/"
-        
     }
     
     func antarcticAdventure() {
@@ -419,7 +418,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.setTitle("Book an event!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid/wedding-proposals/"
+        self.urlString = "http://thelivingplanet.com/corporateevents/"
     }
     
     func asia() {
@@ -478,8 +477,17 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.deepSeaLab)
         animateTappedGallery()
         sortGalleryData()
+        self.getDirectionsButton.isHidden = true
         self.getDirectionsButton.setTitle("More Info!", for: .normal)
         self.urlString = "http://www.thelivingplanet.com/essential_grid/exhibit-updates/"
+    }
+    func cafe() {
+        updateLabels(gallery: galleries.cafe)
+        animateTappedGallery()
+        sortGalleryData()
+        self.getDirectionsButton.setTitle("More Info!", for: .normal)
+        self.getDirectionsButton.isHidden = false
+        self.urlString = "http://thelivingplanet.com/cafe-avalon/"
     }
     
     func postObservers() {
@@ -508,6 +516,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         NotificationCenter.default.addObserver(self, selector: #selector(BottomSheetViewController.educationCenter), name: Notification.Name(rawValue: galleries.educationCenter.name), object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(BottomSheetViewController.deepSea), name: Notification.Name(rawValue: galleries.deepSeaLab.name), object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(BottomSheetViewController.cafe), name: Notification.Name(rawValue: galleries.cafe.name), object: nil)
         
         // Reloads bottomSheet viewController when leaving the app
         NotificationCenter.default.addObserver(self, selector: #selector(BottomSheetViewController.closeSwitchAction), name: NSNotification.Name(rawValue: "enteringBackground"), object: nil)
@@ -661,6 +671,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 destinationViewController.info = animal.animalInfo ?? ""
                 destinationViewController.name = animal.animalName ?? ""
                 destinationViewController.status = animal.conservationStatus ?? ""
+                destinationViewController.factSheetString = animal.factSheet ?? ""
+                destinationViewController.animalUpdates = animal.animalUpdates ?? ""
                 destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.row)"
                 destinationViewController.titleLabelHeroID = "tableViewTitle \(newIndexPath.row)"
                 destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.row)"

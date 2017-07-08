@@ -5,7 +5,6 @@
 //  Created by Forrest Syrett on 11/17/16.
 //  Copyright © 2016 Forrest Syrett. All rights reserved.
 //
-
 import UIKit
 import FlowingMenu
 import Firebase
@@ -14,7 +13,7 @@ import FirebaseStorageUI
 import NVActivityIndicatorView
 import Hero
 
-class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate {
+class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollectionViewDelegate, UICollectionViewDataSource, MainExhibitTableViewControllerDelegate, UISearchBarDelegate, UIGestureRecognizerDelegate, UICollectionViewDelegateFlowLayout {
     
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -35,6 +34,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var searchBarBoundsY: CGFloat?
     var firebaseReference: FIRDatabaseReference!
     var heroIDString = ""
+    var initialLoading = true
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -45,11 +45,10 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         super.viewDidLoad()
         
         self.activityIndicator.isHidden = false
-
+        
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-        
         
         tabBarTint(view: self)
         transparentNavigationBar(self)
@@ -67,8 +66,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         NotificationCenter.default.addObserver(self, selector: #selector(MainExhibitViewController.updateToAllAnimals), name: Notification.Name(rawValue: "allAnimals"), object: nil)
         
         registerForKeyboardNotifications()
-        
-        
         
         
         let downGesture = UIPanGestureRecognizer.init(target: self,action: #selector(MainExhibitViewController.panGesture))
@@ -92,15 +89,13 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     override func viewWillAppear(_ animated: Bool) {
         
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         self.searchBar.isHidden = false
     }
-    override func viewWillDisappear(_ animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
     }
-    
     
     
     func getAnimals() {
@@ -112,14 +107,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         query.observe(.value, with: { (snapshot) in
             self.allAnimals = []
             AnimalController.shared.allAnimals = []
-          /*
-            let shared = AnimalController.shared
-            shared.discoverUtahAnimals = []
-            shared.oceanExplorerAnimals = []
-            shared.expeditionAsiaAnimals = []
-            shared.jsaAnimals = []
-            shared.antarcticAdventureAnimals = []
-          */
+         
             self.discoverUtahAnimals = []
             self.oceanExplorerAnimals = []
             self.expeditionAsiaAnimals = []
@@ -136,19 +124,15 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 self.activityIndicator.isHidden = true
                 AnimalController.shared.allAnimals = self.allAnimals
                 
-                self.collectionView.heroModifiers = [.cascade]
-                
+                self.collectionView.layoutIfNeeded()
                 self.collectionView.reloadData()
                 
                 
-                
                 self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
-       //         for animal in self.allAnimalsSorted {
-//                    print(animal.animalName)
-         //       }
+              
                 self.allAnimals = self.allAnimalsSorted
                 self.dataSourceForSearchResult = [AnimalTest]()
-
+                
                 
                 // Sort animals into gallery exhibits
                 for animal in self.allAnimals {
@@ -164,21 +148,16 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         
                     }
                 }
-           /*
-                let shared = AnimalController.shared
-                shared.antarcticAdventureAnimals = self.antarcticAdventureAnimals
-                shared.discoverUtahAnimals = self.discoverUtahAnimals
-                shared.expeditionAsiaAnimals = self.expeditionAsiaAnimals
-                shared.jsaAnimals = self.jsaAnimals
-                shared.oceanExplorerAnimals = self.oceanExplorerAnimals
-*/
+                
+                self.initialLoading = false
+          
             }
         })
         
     }
     
     
-
+    
     
     
     // MARK: - Search Bar Functions
@@ -234,7 +213,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
     }
     func setSearchBarView() {
-        searchBar.frame = CGRect(x: 0, y: 637, width: view.frame.width, height: 50)
+        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 99, width: view.frame.width, height: 50)
         self.searchBar.isHidden = false
     }
     
@@ -287,7 +266,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         UIView.animate(withDuration: 0.20, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             
             
-            self.searchBar.frame.origin.y = 637
+            self.searchBar.frame.origin.y = UIScreen.main.bounds.height - 99
         }, completion: nil)
         
         self.view.endEditing(true)
@@ -296,7 +275,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     ///////////////////////////////////////////////////
     
     // Generate cells for animals
-    
+    // MARK: - CollectionView Methods
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
@@ -312,28 +291,69 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
+        let index = indexPath.row
         
-       
+        cell.newsRibbon.heroModifiers = [.fade]
+        cell.heroID = "animal: \(indexPath.row)"
+        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+        cell.newsRibbonHeight.constant = 0.0
+        cell.layoutIfNeeded()
+        var animal = allAnimals[indexPath.row]
+        
+        //Get odd numbers (right hand column)
+        if indexPath.row % 2 == 1 {
+            cell.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0.0)
+        } else {
+            //Left hand column
+            cell.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0.0)
+        }
+        
+        // Animal data when search is being performed
         if self.searchBarIsActive && (self.searchBar.text?.characters.count)! > 0 {
             
-            let animal = self.dataSourceForSearchResult?[indexPath.row]
+            animal = (self.dataSourceForSearchResult?[indexPath.row])!
             cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
-            let reference = FIRStorageReference().child(animal?.animalImage ?? "")
+            let reference = FIRStorageReference().child(animal.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
             
-            
-            
         } else {
-            //         Default Animal Data When Search is Not being performed
+            //     Animal Data When Search is NOT being performed
             
             let animal = allAnimals[indexPath.row]
             
             let reference = FIRStorageReference().child(animal.animalImage ?? "")
             cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-            print("\(reference)")
             cell.animalNameLabel.text = animal.animalName
             
+            
+            
+            
         }
+            // Prevent cell from animating when scrolling. Each cell only animates one time.
+            if cell.didAnimate == false {
+            
+                UIView.animate(withDuration: 0.85, delay: 0.05 * Double(index) / 2, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                cell.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
+                cell.didAnimate = true
+            }, completion: nil)
+            } else {
+                cell.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
+        }
+                //Check for animal updates, and show ribbon
+                if animal.animalUpdates != "none" {
+                    UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                        cell.newsRibbonHeight.constant = 58.0
+                        cell.layoutIfNeeded()
+                    }, completion: nil)
+                    
+                    // No animal updates at the moment, hide ribbon
+                } else {
+                    cell.newsRibbonHeight.constant = 0.0
+                    cell.layoutIfNeeded()
+            }
+        
         
         cell.layer.cornerRadius = 5.0
         
@@ -341,19 +361,32 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         
     }
-    
-    
+   
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
         cell.heroID = "animal: \(indexPath.row)"
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
-  
-        searchBarIsActive = false
-        searchBar.resignFirstResponder()
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: ((self.collectionView.frame.width / 2) - 12), height: collectionView.frame.height / 3.75)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4.0
     }
 
-    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
     
     
     // MARK: - Gallery Selected Delegate Methods
@@ -382,16 +415,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         menu?.dismiss(animated: true, completion: nil)
     }
     
-    func dimBackground() {
-        /*   if searchBarIsActive {
-         dimView.isHidden = false
-         } else {
-         dimView.isHidden = true
-         } */
-    }
-    
-    
-    
     
     // MARK: - Prepare for Segue
     
@@ -408,7 +431,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         }
         
         if segue.identifier == "toAnimalDetail" {
-            
+            self.searchBar.resignFirstResponder()
+            self.searchBarIsActive = false
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
@@ -430,12 +454,11 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         destinationViewController.view.heroID = heroString
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
-                 
+                        
                     }
                     else  {
                         let animal = allAnimals[selectedItem]
-                        print(selectedItem)
-                       destinationViewController.view.heroID = heroString
+                        destinationViewController.view.heroID = heroString
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.updateInfo(animal: animal)
@@ -453,8 +476,9 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             }
         }
         
-    }
     
+        
+    }
     
     // MARK: - Delegate Functions
     

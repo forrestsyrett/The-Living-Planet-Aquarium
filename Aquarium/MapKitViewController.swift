@@ -490,7 +490,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             zoomGallery()
             
         case "Cafe":
-            postNotificationWithGalleryName(gallery: galleries.amenities)
+            postNotificationWithGalleryName(gallery: galleries.cafe)
             
         case "Mother's Room":
             postNotificationWithGalleryName(gallery: galleries.amenities)

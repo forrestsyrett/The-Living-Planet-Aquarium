@@ -50,9 +50,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         tabBarTint(view: self)
         gradient(self.view)
         transparentNavigationBar(self)
-        
-        self.view.autoresizesSubviews = true
-        
+                
         locationManager = CLLocationManager()
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
@@ -234,6 +232,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         }
     }
     ////////////////
+    // MARK: - Prepare for Segue
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -247,25 +246,40 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
             
             if self.destinationName == "Sharks" {
                 
-                destinationViewController.image = "zebraShark"
-                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have 8 species of sharks in our shark tank. Can you spot them all?"
+                destinationViewController.image = #imageLiteral(resourceName: "oceans")
+                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have many species of sharks in our shark tank. Can you spot them all? Tap on the camera logo below to open the Exhibit Scanner and see if you can find all the different sharks!"
                 destinationViewController.titleLabel = "Shark Tank"
                 destinationViewController.segueIdentifier = "sharks"
                 destinationViewController.buttonLabel = "Notify me about the Shark Feeding!"
-                
-                
-                
-                
+   
             }
             if self.destinationName == "Penguins" {
-                destinationViewController.image = "penguins"
+                destinationViewController.image = #imageLiteral(resourceName: "antarcticAdventure2")
                 destinationViewController.titleLabel = "Gentoo Penguins"
                 destinationViewController.info = "Our aquarium is home to 19 Gentoo Penguins. See if you can spot the name bands on their flippers!\nWe feed our penguins at 4:00 PM every day."
                 destinationViewController.segueIdentifier = "penguinEncounter"
                 destinationViewController.buttonLabel = "Feed the Penguins!"
-                
-                
             }
+        }
+        
+        
+        if segue.identifier == "buyTickets" {
+            
+            let destination = segue.destination as! AnimalEncountersViewController
+            destination.titleLabelString = "Tickets"
+            destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Tickets"
+        }
+        if segue.identifier == "animalEncounters" {
+            
+            let destination = segue.destination as! AnimalEncountersViewController
+            destination.titleLabelString = "Encounters"
+            destination.requestString = "http://thelivingplanet.com/animalencounters/"
+        }
+        if segue.identifier == "donate" {
+            
+            let destination = segue.destination as! AnimalEncountersViewController
+            destination.titleLabelString = "Help Us Grow"
+            destination.requestString = "http://www.thelivingplanet.com/home-4/give/"
         }
     }
     
@@ -375,68 +389,5 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
     @IBAction func touchUpInside(_ sender: Any) {
         buttonBounceTouchUp(self.beaconInfoButton)
     }
-    
-    
-    // CODE TO ALLOW FOR SWIPING BETWEEN TABS
-    
-    /* func goToPreviousTab(gesture: UIGestureRecognizer) {
-     print("Swipe!")
-     guard let tabBarController = self.tabBarController,
-     let selectedIndex = self.tabBarController?.selectedIndex,
-     let selectedController = tabBarController.selectedViewController,
-     let viewControllers = tabBarController.viewControllers, selectedIndex >= 0 else { return }
-     print("selectedIndex \(selectedIndex)")
-     let nextIndex = selectedIndex + 1
-     let fromView = selectedController.view
-     let toView = viewControllers[nextIndex].view
-     print("|NewIndex \(nextIndex)")
-     UIView.transition(  from: fromView!,
-     to: toView!,
-     duration: 0.5,
-     options: UIViewAnimationOptions.transitionCrossDissolve,
-     completion: {(finished : Bool) -> () in
-     if (finished) {
-     tabBarController.selectedIndex = nextIndex
-     }
-     })
-     
-     }
-     
-     @IBAction func rightSwipe(_ sender: Any) {
-     
-     self.goToPreviousTab(gesture: self.rightGesture)
-     }
-     
-     */
-    
-    
-    @IBAction func buyTicketsButtonTapped(_ sender: AnyObject) {
-        let safariVC = SFSafariViewController(url: URL(string: "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Tickets")!)
-        safariVC.preferredControlTintColor = UIColor.white
-        safariVC.preferredBarTintColor = UIColor(red:0.00, green:0.10, blue:0.20, alpha:1.00)
-        present(safariVC, animated: true, completion: nil)
-        
-    }
-    
-    
-    @IBAction func becomeAMemberButtonTapped(_ sender: AnyObject) {
-        //        let safariVC = SFSafariViewController(url: URL(string: "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Memberships")!)
-        //        safariVC.preferredControlTintColor = UIColor.white
-        //        safariVC.preferredBarTintColor = UIColor(red:0.00, green:0.10, blue:0.20, alpha:1.00)
-        //        present(safariVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func donateButtonTapped(_ sender: AnyObject) {
-        let safariVC = SFSafariViewController(url: URL(string: "http://www.thelivingplanet.com/home-4/give/")!)
-        safariVC.preferredControlTintColor = UIColor.white
-        safariVC.preferredBarTintColor = UIColor(red:0.00, green:0.10, blue:0.20, alpha:1.00)
-        present(safariVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func directionButtonTapped(_ sender: AnyObject) {
-        
-        
-    }
-    
-    
+   
 }

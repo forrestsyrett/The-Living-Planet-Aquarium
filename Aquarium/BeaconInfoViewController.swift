@@ -17,7 +17,7 @@ class BeaconInfoViewController: UIViewController {
     
     var titleLabel = ""
     var info = ""
-    var image = ""
+    var image = UIImage()
     var buttonLabel = ""
     var segueIdentifier = ""
     
@@ -42,27 +42,17 @@ class BeaconInfoViewController: UIViewController {
     func updateWithInfo() {
         self.galleryTitleLabel.text = self.titleLabel
         self.galleryInfo.text = self.info
-        self.galleryImage.image = UIImage(named: self.image)
+        self.galleryImage.image = self.image
         
     }
     
-    // Gets the Int number for the current weekday
-    func getWeekday(date: Date) -> Int {
-        let date = Date()
-        let calendar = Calendar.current
-        let components = (calendar as NSCalendar).components([.weekday], from: date)
-        let dayOfWeek = components.weekday!
-        
-        return dayOfWeek
-    }
-    
-    
-    
-    // Near shark beacon, allows user to schedule a notification for the shark feed. Code checks for existing notification so they don't double schedule the same notification.
-    
+
     func scheduleSharkFeed() {
-        // Schedule notification here
+
+    
     }
+    
+    
     
     // Button animations
     
@@ -86,12 +76,28 @@ class BeaconInfoViewController: UIViewController {
         buttonBounceTouchUp(self.button)
         
         if self.segueIdentifier == "penguinEncounter" {
+            
             self.performSegue(withIdentifier: self.segueIdentifier, sender: sender)
         }
         
         if self.segueIdentifier == "sharks" {
-            scheduleSharkFeed()
+
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "penguinEncounter" {
+            let destination = segue.destination as! AnimalEncountersViewController
+                destination.requestString = "http://thelivingplanet.com/animalencounters/"
+            destination.titleLabelString = "Encounters"
+            
+        }
+        
+        
+    }
+    
+    
+    
     
 }

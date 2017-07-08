@@ -64,6 +64,7 @@ PODS:
     - GTMSessionFetcher/Core (= 1.1.10)
   - Hero (0.3.6)
   - JTAppleCalendar (7.0.4)
+  - LTMorphingLabel (0.5.0)
   - NVActivityIndicatorView (3.6.1)
   - ObjectMapper (2.2.7)
   - OneSignal (2.5.4)
@@ -84,6 +85,7 @@ DEPENDENCIES:
   - Google/SignIn
   - Hero
   - JTAppleCalendar (~> 7.0)
+  - LTMorphingLabel
   - NVActivityIndicatorView
   - OneSignal
   - SwiftyJSON
@@ -107,12 +109,13 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   JTAppleCalendar: 6def48ecd0daae1d5baaa45e813124c2a20b184d
+  LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
   NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
   ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: e507f012d0b4c969bfd8da209d45a45aa548dac5
+PODFILE CHECKSUM: 41c5ccafab6c3839f3065e3d514d3713f8e23473
 
 COCOAPODS: 1.1.1

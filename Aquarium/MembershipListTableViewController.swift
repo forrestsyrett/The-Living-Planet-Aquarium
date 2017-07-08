@@ -70,10 +70,8 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
     
     @IBAction func becomeAMemberButtonTapped(_ sender: AnyObject) {
         
-        let safariVC = SFSafariViewController(url: URL(string: "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Memberships")!)
-        safariVC.preferredControlTintColor = UIColor.white
-        safariVC.preferredBarTintColor = UIColor(red:0.00, green:0.10, blue:0.20, alpha:1.00)
-        present(safariVC, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "becomeAMember", sender: nil)
+        
     }
     
     
@@ -147,6 +145,18 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
     deinit {
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "addedNewMembership"), object: nil)
         print("removed Notification")
+    }
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "becomeAMember" {
+            
+            let destination = segue.destination as! AnimalEncountersViewController
+            destination.titleLabelString = "Memberships"
+            destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Memberships"
+        }
+
     }
     
 }
