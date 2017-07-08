@@ -146,7 +146,7 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         if segue.identifier == "becomeAMember" {
             
-            let destination = segue.destination as! AnimalEncountersViewController
+            let destination = segue.destination as! HomeWebViewController
             destination.titleLabelString = "Memberships"
             destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Memberships"
         }

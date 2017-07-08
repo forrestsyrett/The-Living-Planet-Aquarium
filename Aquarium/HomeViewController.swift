@@ -254,54 +254,6 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
             }
         
     }
-    ////////////////
-    // MARK: - Prepare for Segue
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "toAnimalDetail" {
-            
-            let destinationViewController = segue.destination as! BeaconInfoViewController
-           
-            
-            if self.destinationName == "sharks" {
-                
-                destinationViewController.image = #imageLiteral(resourceName: "oceans")
-                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have many species of sharks in our shark tank. Can you spot them all? Tap on the camera logo below to open the Exhibit Scanner and see if you can find all the different sharks!"
-                destinationViewController.titleLabel = "Shark Tank"
-                destinationViewController.segueIdentifier = "sharks"
-                destinationViewController.buttonLabel = "Notify me about the Shark Feeding!"
-   
-            }
-            if self.destinationName == "jsa" {
-                destinationViewController.image = #imageLiteral(resourceName: "antarcticAdventure2")
-                destinationViewController.titleLabel = "Gentoo Penguins"
-                destinationViewController.info = "Our aquarium is home to 19 Gentoo Penguins. See if you can spot the name bands on their flippers!\nWe feed our penguins at 4:00 PM every day."
-                destinationViewController.segueIdentifier = "penguinEncounter"
-                destinationViewController.buttonLabel = "Feed the Penguins!"
-            }
-        }
-        
-        
-        if segue.identifier == "buyTickets" {
-            
-            let destination = segue.destination as! AnimalEncountersViewController
-            destination.titleLabelString = "Tickets"
-            destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Tickets"
-        }
-        if segue.identifier == "animalEncounters" {
-            
-            let destination = segue.destination as! AnimalEncountersViewController
-            destination.titleLabelString = "Encounters"
-            destination.requestString = "http://thelivingplanet.com/animalencounters/"
-        }
-        if segue.identifier == "donate" {
-            
-            let destination = segue.destination as! AnimalEncountersViewController
-            destination.titleLabelString = "Help Us Grow"
-            destination.requestString = "http://www.thelivingplanet.com/home-4/give/"
-        }
-    }
     
     
     // MARK: - Notification Code
@@ -405,4 +357,60 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, CLLocati
         buttonBounceTouchUp(self.beaconInfoButton)
     }
    
+    
+    
+    ////////////////
+    // MARK: - Prepare for Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "toAnimalDetail" {
+            
+            let destinationViewController = segue.destination as! BeaconInfoViewController
+            
+            
+            if self.destinationName == "sharks" {
+                
+                destinationViewController.image = #imageLiteral(resourceName: "oceans")
+                destinationViewController.info = "Welcome to our 300,000 gallon shark tank! Here at the Loveland Living Planet Aquarium, we have many species of sharks in our shark tank. Can you spot them all? Tap on the camera logo below to open the Exhibit Scanner and see if you can find all the different sharks!"
+                destinationViewController.titleLabel = "Shark Tank"
+                destinationViewController.segueIdentifier = "sharks"
+                destinationViewController.buttonLabel = "Notify me about the Shark Feeding!"
+                
+            }
+            if self.destinationName == "jsa" {
+                destinationViewController.image = #imageLiteral(resourceName: "antarcticAdventure2")
+                destinationViewController.titleLabel = "Gentoo Penguins"
+                destinationViewController.info = "Our aquarium is home to 19 Gentoo Penguins. See if you can spot the name bands on their flippers!\nWe feed our penguins at 4:00 PM every day."
+                destinationViewController.segueIdentifier = "penguinEncounter"
+                destinationViewController.buttonLabel = "Feed the Penguins!"
+            }
+        }
+        
+        
+        if segue.identifier == "buyTickets" {
+            
+            let destination = segue.destination as! HomeWebViewController
+            destination.buttonHidden = true
+            destination.titleLabelString = "Tickets"
+            destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Tickets"
+        }
+        if segue.identifier == "animalEncounters" {
+            
+            let destination = segue.destination as! HomeWebViewController
+            destination.buttonHidden = true
+            destination.titleLabelString = "Encounters"
+            destination.requestString = "http://thelivingplanet.com/animalencounters/"
+        }
+        if segue.identifier == "donate" {
+            
+            let destination = segue.destination as! HomeWebViewController
+            destination.buttonHidden = true
+            destination.titleLabelString = "Help Us Grow"
+            destination.requestString = "http://www.thelivingplanet.com/home-4/give/"
+        }
+    }
+
+    
+    
 }

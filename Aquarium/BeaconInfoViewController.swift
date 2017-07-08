@@ -88,7 +88,7 @@ class BeaconInfoViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == "penguinEncounter" {
-            let destination = segue.destination as! AnimalEncountersViewController
+            let destination = segue.destination as! HomeWebViewController
                 destination.requestString = "http://thelivingplanet.com/animalencounters/"
             destination.titleLabelString = "Encounters"
             

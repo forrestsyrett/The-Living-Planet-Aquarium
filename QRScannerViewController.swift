@@ -186,28 +186,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     
-    func scannedNewExhibitAlert() {
-        self.oneScan = true
-        let alert = UIAlertController(title: "Start searching a new exhibit?", message: "If you scan a new exhibit your previously found animals will be cleared.", preferredStyle: .alert)
-        let clearAction = UIAlertAction(title: "Search", style: .destructive, handler: { (action) in
-            
-            self.QRViewIsVisible = false
-            self.previousResult = "New Exhibit"
-            self.organizeAndShowAnimals()
-            self.previousResult = self.result
-            self.resetFoundAnimals = true
-            self.oneScan = false
-
-        })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
-            self.oneScan = false
-        })
-        alert.addAction(cancelAction)
-        alert.addAction(clearAction)
-        self.present(alert, animated: true, completion: nil)
-        
-
-    }
     
     
     func failedScanAlert() {
@@ -578,31 +556,17 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.exhibitNameLabel.shine()
         self.exhibitNameLabel.text = "Welcome to the \(self.result) exhibit!"
         
-        let animalCount = self.getFoundAnimals()
-        
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.view.layoutIfNeeded()
         }, completion: { (true) in
             
-            if animalCount == 0 {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.4, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+            if self.getFoundAnimals() == 0 {
                     self.animateLabel(with: "Check off the animals you find in the list below!", fadeOutDuration: 0.5, shineDuration: 0.5)
-                })
-            } else {
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2.4, execute: {
-                    
-                    //Change grammar (Add/Remove "s" in "animals")
-                    if animalCount == 1 {
-                        self.animateLabel(with: "You've found \(animalCount) animal.", fadeOutDuration: 0.5, shineDuration: 0.5)
-                    } else {
-                        self.animateLabel(with: "You've found \(animalCount) animals.", fadeOutDuration: 0.5, shineDuration: 0.5)
-                    }
-                })
-            }
+                }
+            })
+
         })
-        
-        
     }
 
     

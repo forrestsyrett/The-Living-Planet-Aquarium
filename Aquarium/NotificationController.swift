@@ -133,7 +133,7 @@ class NotificationController {
         //Notification Content
         let content = UNMutableNotificationContent()
         content.title = "Just a reminder"
-        content.body = "\(name), your Membership expires in one week!"
+        content.body = "\(name), your Membership expires soon!"
         
         content.sound = UNNotificationSound(named: "fishFlop.m4r")
         content.categoryIdentifier = "membershipCategory"

@@ -59,6 +59,11 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
     var membershipCell = MembershipCardTableViewCell()
     var name = "first"
     var notificationController = NotificationController()
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         gradient(self.view)

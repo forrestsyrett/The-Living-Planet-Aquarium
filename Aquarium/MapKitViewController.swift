@@ -284,7 +284,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         mapView.addAnnotation(self.currentLocationAnnotation)
         
-        print("New Location Added")
+      //  print("New Location Added")
     }
     
     func updateLocation() {

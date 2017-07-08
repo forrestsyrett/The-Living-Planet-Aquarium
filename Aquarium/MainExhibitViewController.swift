@@ -214,7 +214,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     }
     func setSearchBarView() {
         searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: view.frame.width, height: 50)
-        print(UIScreen.main.bounds.height - 100)
         self.searchBar.isHidden = false
     }
     

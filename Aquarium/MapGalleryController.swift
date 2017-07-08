@@ -14,7 +14,7 @@ class MapGalleryController {
     static let sharedController = MapGalleryController()
     
     let oceanExplorer = MapGalleries(name: "Ocean Explorer", image1: #imageLiteral(resourceName: "oceans"), info: "1. Stingray Touch Pool\n2. Giant Pacific Octopus\n3. 40' Shark Tunnel\n4. 300,000 Gallon Shark Tank")
-    let antarcticAdventure = MapGalleries(name: "Antarctic Adventure", image1: #imageLiteral(resourceName: "antarcticAdventure"), info: "5. NOAA Research Vessel\n6. Sea Jellies\n7. Deep Sea Lab\n8. Gentoo Penguins")
+    let antarcticAdventure = MapGalleries(name: "Antarctic Adventure", image1: #imageLiteral(resourceName: "antarcticAdventure2"), info: "5. NOAA Research Vessel\n6. Sea Jellies\n7. Deep Sea Lab\n8. Gentoo Penguins")
     let discoverUtah = MapGalleries(name: "Discover Utah", image1: #imageLiteral(resourceName: "utah"), info: "9.   Desert Tortoise\n10. Fish of Utah\n11. River Otters")
     let jsa = MapGalleries(name: "Journey to South America", image1: #imageLiteral(resourceName: "jsa2"), info: "12. Electric Eel\n13. Dwarf Caiman\n14. Green Anaconda\n15. River Giants\n16. Toucans (second floor)\n17. Poison Dart Frogs (second floor)")
     let expeditionAsia = MapGalleries(name: "Expedition: Asia", image1: #imageLiteral(resourceName: "asia2"), info: "18. Clouded Leopards\n19. Small-Clawed Otters\n20. Binturongs")
