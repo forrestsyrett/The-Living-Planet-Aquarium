@@ -49,7 +49,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-        
+        setSearchBarView()
         tabBarTint(view: self)
         transparentNavigationBar(self)
         gradient(self.view)
@@ -213,7 +213,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
     }
     func setSearchBarView() {
-        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 99, width: view.frame.width, height: 50)
+        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: view.frame.width, height: 50)
         self.searchBar.isHidden = false
     }
     
@@ -266,7 +266,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         UIView.animate(withDuration: 0.20, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
             
             
-            self.searchBar.frame.origin.y = UIScreen.main.bounds.height - 99
+            self.setSearchBarView()
         }, completion: nil)
         
         self.view.endEditing(true)
@@ -314,7 +314,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             animal = (self.dataSourceForSearchResult?[indexPath.row])!
             cell.animalNameLabel.text = self.dataSourceForSearchResult?[indexPath.row].animalName
             let reference = FIRStorageReference().child(animal.animalImage ?? "")
-            cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            cell.animalImage.sd_setImage(with: reference)
+            cell.animalImage.sd_setShowActivityIndicatorView(true)
             
         } else {
             //     Animal Data When Search is NOT being performed
@@ -322,25 +323,30 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             let animal = allAnimals[indexPath.row]
             
             let reference = FIRStorageReference().child(animal.animalImage ?? "")
-            cell.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            cell.animalImage.sd_setImage(with: reference)
+            cell.animalImage.sd_setShowActivityIndicatorView(true)
             cell.animalNameLabel.text = animal.animalName
             
             
             
             
         }
-            // Prevent cell from animating when scrolling. Each cell only animates one time.
+            // Show cascade animation on first load
+        
+        var delay = 0.05 * Double(index) / 2
             if cell.didAnimate == false {
-            
-                UIView.animate(withDuration: 0.85, delay: 0.05 * Double(index) / 2, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
-                cell.transform = CGAffineTransform.identity
-                cell.layoutIfNeeded()
-                cell.didAnimate = true
-            }, completion: nil)
+                delay = 0.05 * Double(index) / 2
+                
+                UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                    cell.transform = CGAffineTransform.identity
+                    cell.layoutIfNeeded()
+                    cell.didAnimate = true
+                }, completion: nil)
             } else {
-                cell.transform = CGAffineTransform.identity
-                cell.layoutIfNeeded()
+            cell.transform = CGAffineTransform.identity
         }
+        
+
                 //Check for animal updates, and show ribbon
                 if animal.animalUpdates != "none" {
                     UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {

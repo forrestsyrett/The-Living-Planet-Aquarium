@@ -37,6 +37,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     var buttonAction = "Safari"
+    @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var theaterTableView: UITableView!
@@ -67,6 +68,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var expeditionAsiaAnimals: [AnimalTest] = []
     var jsaAnimals: [AnimalTest] = []
     var antarcticAdventureAnimals: [AnimalTest] = []
+    var deepSeaAnimals: [AnimalTest] = []
+    var jellyfishTypes: [AnimalTest] = []
     
     var mapGalleries = [MapGalleryController.sharedController.antarcticAdventure.name]
     var allTheaterShows = [TheaterShowsController.shared.penguins4D, TheaterShowsController.shared.sammyAndRay4D, TheaterShowsController.shared.wildCats3D]
@@ -78,7 +81,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     var conservationStatus = ""
     var animal: AnimalTest?
     var firebaseReference: FIRDatabaseReference!
-    
+    var segueString = ""
     
     var closeSwitch: Bool = true
     
@@ -90,15 +93,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.firebaseReference = FIRDatabase.database().reference()
         
         getAnimals()
-        
-        print("SHARED CONTROLLER \(AnimalController.shared.allAnimals.count)")
-        print("JSA \(AnimalController.shared.jsaAnimals.count)")
-        print("UTAH \(AnimalController.shared.discoverUtahAnimals.count)")
-        print("ASIA \(AnimalController.shared.expeditionAsiaAnimals.count)")
-        print("OCEANS \(AnimalController.shared.oceanExplorerAnimals.count)")
-        print("AA \(AnimalController.shared.antarcticAdventureAnimals.count)")
-        
-        
+
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
         
         view.addGestureRecognizer(gesture)
@@ -107,8 +102,11 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         roundedCorners(completeView, cornerRadius: 5.0)
         roundedCorners(galleryPhoto1, cornerRadius: 5.0)
-        roundedCorners(handleView, cornerRadius: 5.0)
+        roundedCorners(handleView, cornerRadius: 3.0)
         roundedCorners(getDirectionsButton, cornerRadius: 5.0)
+        getDirectionsButton.layer.borderColor = UIColor.white.cgColor
+        getDirectionsButton.layer.borderWidth = 1.0
+        
         postObservers()
         
         self.shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -126,7 +124,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         hideTableView()
         self.theaterTableView.isHidden = true
         
-        
+        self.getDirectionsButton.isHidden = true
         
         
     }
@@ -169,12 +167,15 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         query.observe(.value, with: { (snapshot) in
             self.allAnimals = []
             AnimalController.shared.allAnimals = []
-            
+    
+    //Clear sorted arrays here to update tableViews live
             self.discoverUtahAnimals = []
             self.oceanExplorerAnimals = []
             self.expeditionAsiaAnimals = []
             self.jsaAnimals = []
             self.antarcticAdventureAnimals = []
+            self.deepSeaAnimals = []
+            self.jellyfishTypes = []
             
             for item in snapshot.children {
                 guard let animal = AnimalTest(snapshot: item as! FIRDataSnapshot) else { continue }
@@ -184,7 +185,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 self.allAnimalsSorted = self.allAnimals.sorted { $0.animalName ?? "" < $1.animalName ?? "" }
                 self.allAnimals = self.allAnimalsSorted
                 
-                
+// MARK: Add Additional Exhibits Here
                 // Sort animals into gallery exhibits
                 for animal in self.allAnimals {
                     guard let gallery = animal.gallery else { return }
@@ -194,6 +195,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                     case "Ocean Explorer": self.oceanExplorerAnimals.append(animal)
                     case "Expedition Asia": self.expeditionAsiaAnimals.append(animal)
                     case "Antarctic Adventure": self.antarcticAdventureAnimals.append(animal)
+                    case "Deep Sea": self.deepSeaAnimals.append(animal)
+                    case "Jellies": self.jellyfishTypes.append(animal)
                         
                     default: break
                         
@@ -241,7 +244,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             
             let reference = FIRStorageReference().child(mapData.animalImage ?? "")
-            cell.cellImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            cell.cellImage.sd_setShowActivityIndicatorView(true)
+            cell.cellImage.sd_setImage(with: reference)
             
             
             cell.cellLabel.text = mapData.animalName
@@ -294,12 +298,18 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.tableView.isHidden = true
         self.galleryInfo.isHidden = false
         self.getDirectionsButton.isHidden = false
+        self.scrollView.isHidden = false
+        self.scrollView.setContentOffset(CGPoint.zero, animated: false)
+        self.shadowView.isHidden = false
     }
     
     func showTableView() {
         self.tableView.isHidden = false
         self.galleryInfo.isHidden = true
         self.getDirectionsButton.isHidden = true
+        self.scrollView.isHidden = true
+        self.shadowView.isHidden = false
+        self.tableView.setContentOffset(CGPoint.zero, animated: false)
         
     }
     
@@ -324,9 +334,11 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         case galleries.cafe.name:
             hideTableView()
             self.theaterTableView.isHidden = true
+            self.shadowView.isHidden = true
             
         case galleries.deepSeaLab.name:
-            hideTableView()
+            showTableView()
+            self.allAnimals = self.deepSeaAnimals
             self.theaterTableView.isHidden = true
             
         case galleries.discoverUtah.name:
@@ -345,7 +357,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.jellyFish.name:
             showTableView()
-            self.allAnimals = []
+            self.allAnimals = self.jellyfishTypes
             self.theaterTableView.isHidden = true
             
         case galleries.jsa.name:
@@ -362,6 +374,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             hideTableView()
             self.theaterTableView.isHidden = false
             self.galleryInfo.isHidden = true
+            self.scrollView.isHidden = true
             self.getDirectionsButton.isHidden = true
             
         case galleries.tukis.name:
@@ -409,8 +422,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.amenities)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/"
+        
     }
     
     func banquetHall() {
@@ -418,31 +430,28 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.setTitle("Book an event!", for: .normal)
-        self.urlString = "http://thelivingplanet.com/corporateevents/"
+        self.segueString = "banquet"
     }
     
     func asia() {
         updateLabels(gallery: galleries.expeditionAsia)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid/expedition-asia/"
+        
     }
     
     func jsa() {
         updateLabels(gallery: galleries.jsa)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid_category/south-america/"
+
     }
     
     func oceans() {
         updateLabels(gallery: galleries.oceanExplorer)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid_category/invertebrates/"
+        
     }
     
     func tukis() {
@@ -450,44 +459,44 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.setTitle("Book a party!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/home-4/parties/"
+        self.segueString = "tukis"
+
     }
     func jellies() {
         updateLabels(gallery: galleries.jellyFish)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid/ocean-explorer/"
+
     }
     func theater() {
         updateLabels(gallery: galleries.theater)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("Check schedule", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid/4d-theatre-showtimes/"
+
     }
     func educationCenter() {
         updateLabels(gallery: galleries.educationCenter)
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/home-4/education/"
+        self.segueString = "educationCenter"
+
     }
     func deepSea() {
         updateLabels(gallery: galleries.deepSeaLab)
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.isHidden = true
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.urlString = "http://www.thelivingplanet.com/essential_grid/exhibit-updates/"
+
     }
     func cafe() {
         updateLabels(gallery: galleries.cafe)
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.getDirectionsButton.isHidden = false
-        self.urlString = "http://thelivingplanet.com/cafe-avalon/"
+        self.segueString = "cafe"
+        self.getDirectionsButton.isHidden = true
+    
     }
     
     func postObservers() {
@@ -594,7 +603,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.animalName = animal.animalName ?? ""
         self.conservationStatus = animal.conservationStatus ?? ""
         
-        print("Info button tapped for \(animal.animalName ?? "")")
+       // print("Info button tapped for \(animal.animalName ?? "")")
         self.performSegue(withIdentifier: "toAnimalDetail", sender: self)
         
         self.closeSwitch = false
@@ -618,25 +627,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     // "More Info" Button
     @IBAction func getDirectionsButtonTapped(_ sender: AnyObject) {
         
-        
-        switch self.buttonAction {
-        case ButtonActions.Safari.rawValue:
-            delegate?.getDirectionsButtonTapped(self)
-            
-            animateDown()
-            
-            let url = URL(string: self.urlString)!
-            let safariViewController = SFSafariViewController(url: url, entersReaderIfAvailable: true)
-            safariViewController.preferredBarTintColor = UIColor(red:0.00, green:0.10, blue:0.20, alpha:1.00)
-            safariViewController.preferredControlTintColor = UIColor.white
-            
-            self.present(safariViewController, animated: true, completion: nil)
-            
-            
-        case ButtonActions.WebView.rawValue:
-            storyboard?.instantiateViewController(withIdentifier: "webview")
-        default: break
-        }
+        self.performSegue(withIdentifier: self.segueString, sender: nil)
         
     }
     
@@ -673,6 +664,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 destinationViewController.status = animal.conservationStatus ?? ""
                 destinationViewController.factSheetString = animal.factSheet ?? ""
                 destinationViewController.animalUpdates = animal.animalUpdates ?? ""
+                destinationViewController.updateImage = animal.updateImage ?? ""
                 destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.row)"
                 destinationViewController.titleLabelHeroID = "tableViewTitle \(newIndexPath.row)"
                 destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.row)"
@@ -681,6 +673,41 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             }
         }
         
+        if let webviewDestination = segue.destination as? MapWebViewController {
+            
+        
+        if segue.identifier == "banquet" {
+            
+            webviewDestination.buttonHidden = false
+            webviewDestination.requestString = "http://thelivingplanet.com/corporateevents/"
+            webviewDestination.titleLabelString = "Events At LLPA"
+            }
+            
+            if segue.identifier == "tukis" {
+                webviewDestination.buttonHidden = false
+                webviewDestination.requestString = "http://www.thelivingplanet.com/home-4/parties/"
+                webviewDestination.titleLabelString = "Parties"
+                
+            }
+            
+            if segue.identifier == "educationCenter" {
+                webviewDestination.buttonHidden = false
+                webviewDestination.requestString = "http://www.thelivingplanet.com/home-4/education/"
+                webviewDestination.titleLabelString = "Education"
+                
+            }
+            
+            if segue.identifier == "cafe" {
+                webviewDestination.buttonHidden = false
+                webviewDestination.requestString = "http://thelivingplanet.com/cafe-avalon/"
+                webviewDestination.titleLabelString = "Cafe Avalon"
+                
+            }
+        }
+        
+        
+        
+        
     }
     
     
@@ -688,19 +715,5 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
 }
 
 
-// Checks to see if panGesture is moving up or down
-extension UIPanGestureRecognizer {
-    
-    //    func isUp(view: UIView) -> Bool {
-    //
-    //        let direction: CGPoint = velocity(in: view)
-    //        if direction.y < 0 {
-    //            // Panning up
-    //            return true
-    //        } else {
-    //            // Panning Down
-    //            return false
-    //        }
-    //    }
-}
+
 

@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "North Direction-30.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "Current_Location.png",
       "scale" : "2x"
     },
     {

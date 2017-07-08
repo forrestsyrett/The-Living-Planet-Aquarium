@@ -38,6 +38,7 @@ class EventsViewController: UIViewController {
     var calendarEvents: [Event] = []
     var month = ""
     var monthIndex = 0
+    var unwindDate = Date()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -304,7 +305,7 @@ class EventsViewController: UIViewController {
         
         guard let date = visibleDates.monthDates.last?.date else { return }
       
-        self.dateFormatter.dateFormat = "MMMM"
+        self.dateFormatter.dateFormat = "MMMM yyyy"
         self.monthLabel.text = self.dateFormatter.string(from: date)
     }
     
@@ -317,6 +318,38 @@ class EventsViewController: UIViewController {
         
         
     }
+ /*
+    @IBAction func backDateButtonTapped(_ sender: Any) {
+  /*
+        let selectedDate = calendarView.selectedDates[0]
+        let advanceDate = Calendar.current.date(byAdding: .day, value: -7, to: selectedDate)
+        calendarView.selectDates([advanceDate!])
+        print(calendarView.selectedDates)
+    //    calendarView.scrollToDate(advanceDate!)
+ */
+    }
+    
+    
+    @IBAction func forwardDateButtonTapped(_ sender: Any) {
+    /*
+        let selectedDate = calendarView.selectedDates[0]
+        let advanceDate = Calendar.current.date(byAdding: .day, value: 7, to: selectedDate)
+        calendarView.selectDates([advanceDate!])
+        print(calendarView.selectedDates)
+     //   calendarView.scrollToDate(advanceDate!)
+ */
+    }
+    
+    @IBAction func unwindToEvents(sender: UIStoryboardSegue) {
+        print("unwind to events")
+        
+        calendarView.selectDates([self.unwindDate])
+        calendarView.scrollToDate(self.unwindDate)
+        self.dateFormatter.dateFormat = "MMMM yyyy"
+        self.monthLabel.text = self.dateFormatter.string(from: self.unwindDate)
+    }
+ 
+ */
     
   
 /////////////////////////////////////////
@@ -396,6 +429,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
         
         self.currentDate = cellState.date
         getCalendarItems()
+        calendarView.scrollToDate(cellState.date)
         
     }
     
@@ -411,6 +445,9 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
     }
     
 }
+
+
+
 
 
 
@@ -602,7 +639,7 @@ extension EventsViewController: UNUserNotificationCenterDelegate {
             
             print("Notification being triggered")
             
-                completionHandler( [.alert, .sound, .badge])
+                completionHandler( [.alert, .sound])
                 
             }
         }

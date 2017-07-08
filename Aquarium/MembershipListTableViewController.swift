@@ -36,9 +36,6 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         self.membershipCardTableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0)
         
-        UNUserNotificationCenter.current().delegate = NotificationDelegate.shared.delegate
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -56,8 +53,11 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
             welcomeView.isHidden = false
             blurView.isHidden = false
         }
+        if self.tabBarController == nil {
+            print("tabBar is not loaded yet")
+        } else {
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
-        
+        }
     }
     
     
@@ -73,12 +73,6 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         self.performSegue(withIdentifier: "becomeAMember", sender: nil)
         
     }
-    
-    
-    //    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-    //
-    //        completionHandler([.alert, .sound])
-    //    }
     
     
     let membership = MembershipCardTableViewCell()
@@ -152,7 +146,7 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         if segue.identifier == "becomeAMember" {
             
-            let destination = segue.destination as! AnimalEncountersViewController
+            let destination = segue.destination as! HomeWebViewController
             destination.titleLabelString = "Memberships"
             destination.requestString = "https://tickets.thelivingplanet.com/WebStore/Shop/ViewItems.aspx?CG=online&C=Memberships"
         }

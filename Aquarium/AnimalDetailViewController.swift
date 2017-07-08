@@ -48,6 +48,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var titleLabelHeroID = ""
     var dismissButtonHeroID = ""
     var factSheetString = ""
+    var updateImage = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,8 +72,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         let reference = FIRStorageReference().child(self.imageReference)
         let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
-        self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
-        self.animalFactSheet.sd_setImage(with: factSheetReference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+        self.animalImage.sd_setShowActivityIndicatorView(true)
+        self.animalFactSheet.sd_setShowActivityIndicatorView(true)
+        self.animalImage.sd_setImage(with: reference)
+        self.animalFactSheet.sd_setImage(with: factSheetReference)
         
         self.animalNameLabel.text = name
         self.animalInfo.text = info
@@ -103,7 +106,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         case "Endangered": conservationStatusImage.image = #imageLiteral(resourceName: "Endangered")
         case "Critically Endangered": conservationStatusImage.image = #imageLiteral(resourceName: "CriticallyEndangered")
         case "Extinct in the Wild": conservationStatusImage.image = #imageLiteral(resourceName: "Extinct_In_Wild")
-        default: break
+        default: conservationStatusImage.image = #imageLiteral(resourceName: "Unknown")
         }
         
     }
@@ -125,11 +128,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     @IBAction func heatmapButtonTapped(_ sender: Any) {
         
     /*    if self.imageType == "animal" {
-            self.animalImage.image = #imageLiteral(resourceName: "FrogHeatMap_Example")
+            self.animalImage.image = image
             self.imageType = "heatmap"
         } else {
             let reference = FIRStorageReference().child(self.imageReference)
-            self.animalImage.sd_setImage(with: reference, placeholderImage: #imageLiteral(resourceName: "fishFilled"))
+            self.animalImage.sd_setImage(with: reference, placeholderImage: image)
             self.imageType = "animal"
         }
  */
@@ -146,10 +149,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBAction func animalNewsButtonTapped(_ sender: Any) {
         
-        let alert = UIAlertController(title: "Animal News", message: self.animalUpdates, preferredStyle: .alert)
-        let dismissAction = UIAlertAction(title: "Dismiss", style: .default, handler: nil)
-        alert.addAction(dismissAction)
-        self.present(alert, animated: true, completion: nil)
+        self.performSegue(withIdentifier: "animalNotification", sender: nil)
     }
     
     func animateRibbon() {
@@ -173,6 +173,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.imageReference = animal.animalImage ?? ""
         self.factSheetString = animal.factSheet ?? ""
         self.animalUpdates = animal.animalUpdates ?? ""
+        self.updateImage = animal.updateImage ?? ""
     }
 
     
@@ -192,7 +193,31 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
          */
     }
     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if let destination = segue.destination as? AnimalNotificationsViewController {
+            
+            destination.updateInfo = self.animalUpdates
+            destination.imageReference = self.updateImage
+            
+            
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
 }
+
+
+
+
+
+
 
 extension UIPanGestureRecognizer {
     
