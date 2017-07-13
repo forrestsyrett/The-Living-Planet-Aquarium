@@ -26,6 +26,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     @IBOutlet weak var cafeButton: UIButton!
     @IBOutlet weak var giftShopBUtton: UIButton!
     @IBOutlet weak var compassButton: UIButton!
+    @IBOutlet weak var trayView: UIVisualEffectView!
     
     let galleries = MapGalleryController.sharedController
     let bottomSheetViewController = BottomSheetViewController()
@@ -45,6 +46,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     var firstFloor: MKOverlay? = nil
     var secondFloor: MKOverlay? = nil
     
+    var regionName = ""
+    
     var trackingSwitch = 2
     var trackingType = "user"
     
@@ -58,14 +61,17 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     var galleryZoomed = false
     
-    let locationManager = CLLocationManager()
+
+    var locationManager = CLLocationManager()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red:0.00, green:0.41, blue:0.57, alpha:1.00)
         
-        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.delegate = self
+        
         
         tabBarTint(view: self)
         
@@ -74,6 +80,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         currentLocationAnnotation.coordinate = CurrentLocationController.shared.coordinate
         
         mapView.mapType = .standard
+        
+        trayView.layer.cornerRadius = 5.0
+        trayView.clipsToBounds = true
         
         
         let latDelta = aquarium.topLeftMapCoordinate.latitude + 0.0009 - aquarium.bottomRightMapCoordinate.latitude + 0.0009
@@ -113,14 +122,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.startUpdatingHeading()
-        
-        
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
-        
     }
     
     
@@ -130,15 +133,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     
     
+    
+    
     func addOverlays() {
-        
-      //  let path = Bundle.main.path(forResource: "background", ofType: "jpg")
-      //  let fileURL = NSURL(fileURLWithPath: path!)
-     //   let colorOverlay = MKTileOverlay(urlTemplate: fileURL.absoluteString)
-      //  colorOverlay.canReplaceMapContent = true
-     //   colorOverlay.tileSize = CGSize(width: 265, height: 265)
-     //   mapView.add(colorOverlay)
-        
         
         
         // MARK: -  Background Overlay
@@ -306,50 +303,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             }
         }
     }
-    
-    
-    func zoomGallery() {
-        
-        
-        //        UIView.animate(withDuration: 1.2, delay: 0.0, usingSpringWithDamping: 0.50, initialSpringVelocity: 9.0, options: .allowUserInteraction, animations: {
-        //
-        //            self.zoomGalleryView.isHidden = false
-        //            self.zoomGalleryView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-        //            self.mapView.alpha = 0.05
-        //        }, completion: nil)
-        //
-        //        self.galleryZoomed = true
-        //
-        //        if self.galleryZoomed == true {
-        //            self.mapView.isScrollEnabled = false
-        //        }
-        //
-    }
-    
-    func dismissZoomedGallery() {
-        //        UIView.animate(withDuration: 0.30, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 7.0, options: .allowUserInteraction, animations: {
-        //
-        //            self.zoomGalleryView.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
-        //            self.mapView.alpha = 1.0
-        //        }, completion: { (true) in
-        //            self.zoomGalleryView.isHidden = true
-        //        })
-        //
-        //        self.galleryZoomed = false
-        //
-        //        if self.galleryZoomed == false {
-        //            self.mapView.isScrollEnabled = true
-        //        }
-        
-    }
-    
-    
-    @IBAction func dismissZoomGalleryButtonTapped(_ sender: Any) {
-        
-        dismissZoomedGallery()
-        
-    }
-    
+
     
     
     func centerMapOnSelected() {
@@ -440,11 +394,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         switch self.titleLabel {
         case "Discover Utah":
             postNotificationWithGalleryName(gallery: galleries.discoverUtah)
-            zoomGallery()
             
         case "Journey to South America":
             postNotificationWithGalleryName(gallery: galleries.jsa)
-            zoomGallery()
             
         case "Gift Shop":
             postNotificationWithGalleryName(gallery: galleries.amenities)
@@ -454,36 +406,30 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             
         case "Ocean Explorer":
             postNotificationWithGalleryName(gallery: galleries.oceanExplorer)
-            zoomGallery()
             
         case "Antarctic Adventure":
             postNotificationWithGalleryName(gallery: galleries.antarcticAdventure)
-            zoomGallery()
             
         case "Restrooms":
             postNotificationWithGalleryName(gallery: galleries.amenities)
             
         case "Jellyfish":
             postNotificationWithGalleryName(gallery: galleries.jellyFish)
-            zoomGallery()
             
         case "Elevator":
             postNotificationWithGalleryName(gallery: galleries.amenities)
             
         case "Deep Sea Lab":
             postNotificationWithGalleryName(gallery: galleries.deepSeaLab)
-            zoomGallery()
             
         case "40' Shark Tunnel":
             postNotificationWithGalleryName(gallery: galleries.oceanExplorer)
-            zoomGallery()
             
         case "4D Theater":
             postNotificationWithGalleryName(gallery: galleries.theater)
             
         case "Expedition Asia":
             postNotificationWithGalleryName(gallery: galleries.expeditionAsia)
-            zoomGallery()
             
         case "Tuki's Island":
             postNotificationWithGalleryName(gallery: galleries.tukis)
@@ -493,7 +439,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             
         case "Journey to South America - Aviary":
             postNotificationWithGalleryName(gallery: galleries.jsa)
-            zoomGallery()
             
         case "Cafe":
             postNotificationWithGalleryName(gallery: galleries.cafe)
@@ -547,7 +492,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     @IBAction func tapDismiss(_ sender: AnyObject) {
         
-        dismissZoomedGallery()
         
     }
     
