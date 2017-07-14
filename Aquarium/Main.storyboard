@@ -2022,7 +2022,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TfO-93-w9N">
-                                <rect key="frame" x="319" y="28" width="50" height="32"/>
+                                <rect key="frame" x="319" y="28.5" width="50" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TfO-93-w9N" secondAttribute="height" multiplier="47:30" id="K6M-cL-YWw"/>
                                 </constraints>
@@ -2248,7 +2248,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="na8-wQ-HhM" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                                <rect key="frame" x="324" y="29.5" width="35" height="35"/>
+                                <rect key="frame" x="324" y="30" width="35" height="35"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="A1B-A1-jmy"/>
@@ -2728,7 +2728,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yu1-Oe-RAM">
-                                <rect key="frame" x="0.0" y="53" width="375" height="564"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="439"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="delegate" destination="hsF-ni-6Pt" id="VsX-3J-WKn"/>
@@ -2763,20 +2763,20 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9RV-qd-z8f">
-                                <rect key="frame" x="16" y="130" width="343" height="37"/>
+                                <rect key="frame" x="16" y="130" width="138" height="39"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="hdF-7p-GMK">
-                                    <rect key="frame" x="0.0" y="0.0" width="343" height="37"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="138" height="39"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOf-IF-cy9">
-                                            <rect key="frame" x="46" y="3.5" width="30" height="30"/>
+                                            <rect key="frame" x="54" y="5" width="30" height="30"/>
                                             <state key="normal" image="shop"/>
                                             <connections>
                                                 <action selector="giftshopButtonTapped:" destination="hsF-ni-6Pt" eventType="touchUpInside" id="Xau-cW-7ZV"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xkk-ie-QT0">
-                                            <rect key="frame" x="8" y="3.5" width="30" height="30"/>
+                                            <rect key="frame" x="12" y="5" width="30" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="2iQ-65-6JU"/>
                                                 <constraint firstAttribute="width" constant="30" id="fVD-eI-VLG"/>
@@ -2786,8 +2786,41 @@
                                                 <action selector="restroomButtonTapped:" destination="hsF-ni-6Pt" eventType="touchUpInside" id="cA6-GS-2lJ"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-Qw-RXL">
+                                            <rect key="frame" x="96" y="5" width="30" height="30"/>
+                                            <state key="normal" image="food"/>
+                                            <connections>
+                                                <action selector="cafeButtonTapped:" destination="hsF-ni-6Pt" eventType="touchUpInside" id="gkL-ps-e6n"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="centerY" secondItem="Xkk-ie-QT0" secondAttribute="centerY" id="3QO-IA-gAN"/>
+                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="centerY" secondItem="YOf-IF-cy9" secondAttribute="centerY" id="Rg8-RO-cbc"/>
+                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="height" secondItem="YOf-IF-cy9" secondAttribute="height" id="VhO-Vg-Xgx"/>
+                                        <constraint firstAttribute="trailing" secondItem="UxW-Qw-RXL" secondAttribute="trailing" constant="12" id="WEx-dq-nPP"/>
+                                        <constraint firstItem="Xkk-ie-QT0" firstAttribute="centerY" secondItem="hdF-7p-GMK" secondAttribute="centerY" id="XE1-ro-bCg"/>
+                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="width" secondItem="Xkk-ie-QT0" secondAttribute="width" id="XaF-sT-OYK"/>
+                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="width" secondItem="YOf-IF-cy9" secondAttribute="width" id="Yk5-Zf-Ph1"/>
+                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="leading" secondItem="Xkk-ie-QT0" secondAttribute="trailing" constant="12" id="bRC-5T-9Sn"/>
+                                        <constraint firstItem="Xkk-ie-QT0" firstAttribute="leading" secondItem="hdF-7p-GMK" secondAttribute="leading" constant="12" id="jmq-qz-xgo"/>
+                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="leading" secondItem="YOf-IF-cy9" secondAttribute="trailing" constant="12" id="rBz-NW-6s7"/>
+                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="height" secondItem="Xkk-ie-QT0" secondAttribute="height" id="tOL-zA-CE3"/>
+                                    </constraints>
+                                </view>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="9RV-qd-z8f" secondAttribute="height" multiplier="116:15" constant="-163.13333333333333" id="1vx-Xj-Ibh"/>
+                                </constraints>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ofI-wT-4Dh">
+                                <rect key="frame" x="308" y="131.5" width="51" height="37"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="wlZ-Fv-QUw">
+                                    <rect key="frame" x="0.0" y="0.0" width="51" height="37"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lSq-JG-tPW">
-                                            <rect key="frame" x="300" y="1" width="35" height="35"/>
+                                            <rect key="frame" x="8" y="1" width="35" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="JBG-fM-mpK"/>
                                                 <constraint firstAttribute="width" constant="35" id="gAk-bU-pbb"/>
@@ -2797,31 +2830,15 @@
                                                 <action selector="compassModeButtonTapped:" destination="hsF-ni-6Pt" eventType="touchUpInside" id="Ntt-2l-wvs"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UxW-Qw-RXL">
-                                            <rect key="frame" x="84" y="3.5" width="30" height="30"/>
-                                            <state key="normal" image="food"/>
-                                            <connections>
-                                                <action selector="cafeButtonTapped:" destination="hsF-ni-6Pt" eventType="touchUpInside" id="gkL-ps-e6n"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="centerY" secondItem="Xkk-ie-QT0" secondAttribute="centerY" id="3QO-IA-gAN"/>
-                                        <constraint firstItem="lSq-JG-tPW" firstAttribute="centerY" secondItem="hdF-7p-GMK" secondAttribute="centerY" id="HoM-h0-rSX"/>
-                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="centerY" secondItem="YOf-IF-cy9" secondAttribute="centerY" id="Rg8-RO-cbc"/>
-                                        <constraint firstAttribute="trailing" secondItem="lSq-JG-tPW" secondAttribute="trailing" constant="8" id="T0l-SW-hnP"/>
-                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="height" secondItem="YOf-IF-cy9" secondAttribute="height" id="VhO-Vg-Xgx"/>
-                                        <constraint firstItem="Xkk-ie-QT0" firstAttribute="centerY" secondItem="hdF-7p-GMK" secondAttribute="centerY" id="XE1-ro-bCg"/>
-                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="width" secondItem="Xkk-ie-QT0" secondAttribute="width" id="XaF-sT-OYK"/>
-                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="width" secondItem="YOf-IF-cy9" secondAttribute="width" id="Yk5-Zf-Ph1"/>
-                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="leading" secondItem="Xkk-ie-QT0" secondAttribute="trailing" constant="8" id="bRC-5T-9Sn"/>
-                                        <constraint firstItem="Xkk-ie-QT0" firstAttribute="leading" secondItem="hdF-7p-GMK" secondAttribute="leading" constant="8" id="jmq-qz-xgo"/>
-                                        <constraint firstItem="UxW-Qw-RXL" firstAttribute="leading" secondItem="YOf-IF-cy9" secondAttribute="trailing" constant="8" id="rBz-NW-6s7"/>
-                                        <constraint firstItem="YOf-IF-cy9" firstAttribute="height" secondItem="Xkk-ie-QT0" secondAttribute="height" id="tOL-zA-CE3"/>
+                                        <constraint firstItem="lSq-JG-tPW" firstAttribute="centerY" secondItem="wlZ-Fv-QUw" secondAttribute="centerY" id="Cpl-NA-HWe"/>
+                                        <constraint firstAttribute="trailing" secondItem="lSq-JG-tPW" secondAttribute="trailing" constant="8" id="WqT-SU-eum"/>
+                                        <constraint firstItem="lSq-JG-tPW" firstAttribute="leading" secondItem="wlZ-Fv-QUw" secondAttribute="leading" constant="8" id="sON-85-b4i"/>
                                     </constraints>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="9RV-qd-z8f" secondAttribute="height" multiplier="116:15" constant="56.866666666666674" id="1vx-Xj-Ibh"/>
+                                    <constraint firstAttribute="width" secondItem="ofI-wT-4Dh" secondAttribute="height" multiplier="51:37" id="HkQ-1g-TB1"/>
                                 </constraints>
                                 <blurEffect style="light"/>
                             </visualEffectView>
@@ -2830,12 +2847,13 @@
                         <constraints>
                             <constraint firstItem="9RV-qd-z8f" firstAttribute="leading" secondItem="YLr-US-Y15" secondAttribute="leading" constant="16" id="7s7-ot-fzV"/>
                             <constraint firstItem="9RV-qd-z8f" firstAttribute="top" secondItem="JnW-V9-rTl" secondAttribute="bottom" constant="8" id="FSk-hO-gqO"/>
-                            <constraint firstItem="Yu1-Oe-RAM" firstAttribute="top" secondItem="FfK-PC-Pnp" secondAttribute="bottom" constant="33" id="GFZ-Jv-6NB"/>
+                            <constraint firstItem="Yu1-Oe-RAM" firstAttribute="top" secondItem="FfK-PC-Pnp" secondAttribute="bottom" constant="110" id="GFZ-Jv-6NB"/>
                             <constraint firstAttribute="trailingMargin" secondItem="9Hg-rg-M6e" secondAttribute="trailing" id="Gvk-Nq-MMv"/>
-                            <constraint firstAttribute="trailing" secondItem="9RV-qd-z8f" secondAttribute="trailing" constant="16" id="IWO-u9-m0a"/>
-                            <constraint firstItem="R93-yq-5bn" firstAttribute="top" secondItem="Yu1-Oe-RAM" secondAttribute="bottom" constant="1" id="Lun-xJ-wvf"/>
+                            <constraint firstItem="ofI-wT-4Dh" firstAttribute="centerY" secondItem="9RV-qd-z8f" secondAttribute="centerY" id="KCf-rx-DLD"/>
+                            <constraint firstItem="R93-yq-5bn" firstAttribute="top" secondItem="Yu1-Oe-RAM" secondAttribute="bottom" constant="49" id="Lun-xJ-wvf"/>
                             <constraint firstItem="Yu1-Oe-RAM" firstAttribute="leading" secondItem="YLr-US-Y15" secondAttribute="leading" id="PuA-nB-gaD"/>
                             <constraint firstItem="9Hg-rg-M6e" firstAttribute="top" secondItem="FfK-PC-Pnp" secondAttribute="bottom" constant="17" id="RON-4C-SiY"/>
+                            <constraint firstItem="ofI-wT-4Dh" firstAttribute="trailing" secondItem="YLr-US-Y15" secondAttribute="trailingMargin" id="Rcx-up-7pC"/>
                             <constraint firstItem="JnW-V9-rTl" firstAttribute="top" secondItem="xKd-2L-FBn" secondAttribute="bottom" constant="8" id="Vyc-c8-o9F"/>
                             <constraint firstItem="JnW-V9-rTl" firstAttribute="leading" secondItem="YLr-US-Y15" secondAttribute="leadingMargin" id="c48-fT-wmx"/>
                             <constraint firstItem="xKd-2L-FBn" firstAttribute="top" secondItem="FfK-PC-Pnp" secondAttribute="bottom" constant="-20" id="f6e-37-YVf"/>
@@ -2850,6 +2868,7 @@
                     <connections>
                         <outlet property="cafeButton" destination="UxW-Qw-RXL" id="nWA-wV-vBB"/>
                         <outlet property="compassButton" destination="lSq-JG-tPW" id="KiD-0A-aT9"/>
+                        <outlet property="compassTrayView" destination="ofI-wT-4Dh" id="GBp-Pb-YEN"/>
                         <outlet property="giftShopBUtton" destination="YOf-IF-cy9" id="HcN-BP-dfQ"/>
                         <outlet property="mapView" destination="Yu1-Oe-RAM" id="AEz-iE-LKB"/>
                         <outlet property="restroomButton" destination="Xkk-ie-QT0" id="o8E-eC-SCq"/>

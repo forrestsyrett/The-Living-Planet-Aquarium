@@ -27,6 +27,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     @IBOutlet weak var giftShopBUtton: UIButton!
     @IBOutlet weak var compassButton: UIButton!
     @IBOutlet weak var trayView: UIVisualEffectView!
+    @IBOutlet weak var compassTrayView: UIVisualEffectView!
     
     let galleries = MapGalleryController.sharedController
     let bottomSheetViewController = BottomSheetViewController()
@@ -83,6 +84,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         trayView.layer.cornerRadius = 5.0
         trayView.clipsToBounds = true
+        compassTrayView.layer.cornerRadius = 5.0
+        compassTrayView.clipsToBounds = true
+
         
         
         let latDelta = aquarium.topLeftMapCoordinate.latitude + 0.0009 - aquarium.bottomRightMapCoordinate.latitude + 0.0009
@@ -629,10 +633,14 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             self.trackingType = TrackingTypes.user.rawValue
             self.mapView.isScrollEnabled = true
             self.mapView.isZoomEnabled = true
+            self.mapView.isUserInteractionEnabled = true
             UIView.animate(withDuration: 0.3, animations: {
                 self.resetMapCenter()
                 self.mapView.transform = CGAffineTransform.identity
                 self.compassButton.setImage(#imageLiteral(resourceName: "compass"), for: .normal)
+                self.restroomButton.isUserInteractionEnabled = true
+                self.cafeButton.isUserInteractionEnabled = true
+                self.giftShopBUtton.isUserInteractionEnabled = true
             })
             
         // Map Rotates
@@ -642,7 +650,10 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             self.compassButton.setImage(#imageLiteral(resourceName: "compassFilled"), for: .normal)
             self.mapView.isScrollEnabled = false
             self.mapView.isZoomEnabled = false
-            
+            self.restroomButton.isUserInteractionEnabled = false
+            self.cafeButton.isUserInteractionEnabled = false
+            self.giftShopBUtton.isUserInteractionEnabled = false
+            self.mapView.isUserInteractionEnabled = false
             for annotation in self.mapView.annotations {
                 mapView.deselectAnnotation(annotation, animated: true)
             }

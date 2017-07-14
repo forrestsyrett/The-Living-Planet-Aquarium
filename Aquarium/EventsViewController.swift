@@ -39,7 +39,7 @@ class EventsViewController: UIViewController {
     var month = ""
     var monthIndex = 0
     var unwindDate = Date()
-    
+    var executionComplete = true
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -119,7 +119,7 @@ class EventsViewController: UIViewController {
         for a in cells {
             
             let cell: UITableViewCell = a as! EventTableViewCell
-            UIView.animate(withDuration: 1.5, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .allowUserInteraction, animations: {
+            UIView.animate(withDuration: 1.65, delay: 0.05 * Double(index), usingSpringWithDamping: 0.75, initialSpringVelocity: 0.05, options: .allowUserInteraction, animations: {
                 cell.transform = CGAffineTransform(translationX: 0, y: 0)
             }, completion: { _ in
                 self.tableView.reloadData()
@@ -140,7 +140,7 @@ class EventsViewController: UIViewController {
     /////////////////////////////////////////////
     func getCalendarItems() {
         
-        
+        self.executionComplete = false
         self.activityMonitor.isHidden = false
         self.activityMonitor.startAnimating()
         
@@ -175,6 +175,7 @@ class EventsViewController: UIViewController {
             
             switch response.result {
             case .success:
+                
                 guard let event = response.result.value else { return }
                 
                 guard let events = event.events else { return }
@@ -184,28 +185,27 @@ class EventsViewController: UIViewController {
                  //   print("EventName: \(singleEvent.eventName) \(singleEvent.scheduled)")
                     
                 }
+                
+               
                 self.checkScheduledEvents(completionHandler: { (complete) in
                     
                     if complete {
                 self.animateTableView(completion: { (true) in
-                    
+                    self.executionComplete = true
                 //prevent flashing of activity monitor
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                             self.activityMonitor.stopAnimating()
                             self.activityMonitor.isHidden = true
                             print("Execution Finished")
+                            
                         })
                     })
-                
+                    
                 } else {
                     print("not complete")
-                        }
-                    
-                
-                
-                
-                
-            })
+            }
+    })
+        
             case .failure(let error):
                 print(error)
                 let noConnectionAlert = UIAlertController(title: "There was a problem loading the events.", message: "Please check your internet connection and try again.", preferredStyle: .alert)
@@ -426,10 +426,11 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
          //   calendar.scrollToDate(date)
      //   }
      
-        
         self.currentDate = cellState.date
         getCalendarItems()
         calendarView.scrollToDate(cellState.date)
+        self.executionComplete = false
+
         
     }
     

@@ -240,7 +240,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     }
     
     func keyboardWasShown(notification: NSNotification) {
-        print("rise keyboard")
         
         if self.keyboardIsUp == false {
             self.keyboardIsUp = true
