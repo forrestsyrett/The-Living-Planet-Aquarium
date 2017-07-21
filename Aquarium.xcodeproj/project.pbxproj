@@ -31,6 +31,7 @@
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0631A56D1F22B75A0007E4CF /* TestViewController.swift */; };
 		0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633A3681EFF16C400522FAC /* QRExhibits.swift */; };
 		06539C9C1F115C9D00A3ABD0 /* MapWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */; };
 		06539CA01F115D7D00A3ABD0 /* HomeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */; };
@@ -49,6 +50,7 @@
 		06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
+		06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */; };
 		06F298061EF469A000856A93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06F298051EF469A000856A93 /* GoogleService-Info.plist */; };
 		06F298081EF470D800856A93 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298071EF470D800856A93 /* FirebaseController.swift */; };
 		06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298091EF4710800856A93 /* AnimalTest.swift */; };
@@ -131,6 +133,7 @@
 		0615493B1EF1E94E004406CF /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0631A56D1F22B75A0007E4CF /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0633A3681EFF16C400522FAC /* QRExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRExhibits.swift; sourceTree = "<group>"; };
 		06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapWebViewController.swift; path = Aquarium/MapWebViewController.swift; sourceTree = "<group>"; };
 		06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWebViewController.swift; sourceTree = "<group>"; };
@@ -149,6 +152,7 @@
 		06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalNotificationsViewController.swift; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenURLExtension.swift; sourceTree = "<group>"; };
 		06F298051EF469A000856A93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06F298071EF470D800856A93 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		06F298091EF4710800856A93 /* AnimalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTest.swift; sourceTree = "<group>"; };
@@ -412,10 +416,12 @@
 			isa = PBXGroup;
 			children = (
 				AA8D05151D19DC930063F222 /* HomeViewController.swift */,
+				06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */,
 				06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */,
 				061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */,
 				06B325241DF7383500A53057 /* BeaconInfoViewController.swift */,
 				AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */,
+				0631A56D1F22B75A0007E4CF /* TestViewController.swift */,
 				0633A3681EFF16C400522FAC /* QRExhibits.swift */,
 			);
 			name = "Main Tab Bar Items";
@@ -608,6 +614,7 @@
 				069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */,
 				AA353ACE1DCE670000AD5490 /* Annotations.swift in Sources */,
 				069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */,
+				0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */,
 				AA55B5861DDF765100CC2336 /* MainExhibitController.swift in Sources */,
 				AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */,
 				AA353ABE1DCE60A700AD5490 /* AnnotationViews.swift in Sources */,
@@ -630,6 +637,7 @@
 				06539CA01F115D7D00A3ABD0 /* HomeWebViewController.swift in Sources */,
 				AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */,
 				AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */,
+				06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */,
 				06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */,
 				AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */,
 				06539CA21F11783D00A3ABD0 /* EventDatePickerViewController.swift in Sources */,

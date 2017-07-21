@@ -24,6 +24,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     @IBOutlet weak var lineTwo: UIView!
     @IBOutlet weak var lineThree: UIView!
     @IBOutlet weak var lineFour: UIView!
+    @IBOutlet weak var socialMediaTrayWidth: NSLayoutConstraint!
     
     var destinationName = "String"
     var notificationSwitch = true
@@ -137,7 +138,32 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         
         completionHandler()
     }
+    
+    
+    
+    // MARK: Social Media Actions
+    
+    @IBAction func facebookButtonTapped(_ sender: Any) {
+        
+        UIApplication.tryURL(urls: [
+            "fb://profile/138949625025", // App
+            "http://www.facebook.com/138949625025" //Website
+            ])
+    }
+    
+    @IBAction func instagramButtonTapped(_ sender: Any) {
+        UIApplication.tryURL(urls: [
+            "instagram://user?username=lovelandlivingplanet", // App
+            "http://www.instagram.com/lovelandlivingplanet" //Website
+            ])
+    }
      
+    @IBAction func twitterButtonTapped(_ sender: Any) {
+        UIApplication.tryURL(urls: [
+            "twitter://user?screen_name=107117254", // App
+            "http://www.twitter.com/livingplanetUT" //Website
+            ])
+    }
     
     ////////////////
     // MARK: - Prepare for Segue

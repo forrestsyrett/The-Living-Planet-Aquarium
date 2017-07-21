@@ -31,6 +31,11 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         roundCornerButtons(welcomeView)
         roundCornerButtons(blurView)
         roundCornerButtons(addAMembershipButton)
+        becomeAMemberButtonLabel.layer.borderColor = UIColor.white.cgColor
+        becomeAMemberButtonLabel.layer.borderWidth = 1.0
+        
+        addAMembershipButton.layer.borderColor = UIColor.white.cgColor
+        addAMembershipButton.layer.borderWidth = 1.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(MembershipListTableViewController.reloadView), name: Notification.Name(rawValue: "addedNewMembership"), object: nil)
         
@@ -58,6 +63,9 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         } else {
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         }
+        
+        
+        
     }
     
     
