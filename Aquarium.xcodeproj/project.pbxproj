@@ -7,11 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		060C1EB31E81D7FC00501713 /* SceneKitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */; };
 		060C1EB61E81D87500501713 /* shark.obj in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB41E81D87500501713 /* shark.obj */; };
 		060C1EB71E81D87500501713 /* sharkTexture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB51E81D87500501713 /* sharkTexture.jpg */; };
-		061548EC1EF1CDB6004406CF /* CraftARResourcesAR.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */; };
-		061548F21EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */; };
 		061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F31EF1CEBE004406CF /* libc++.tbd */; };
 		061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F51EF1CEC8004406CF /* libz.tbd */; };
 		061548FC1EF1D04B004406CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FB1EF1D04B004406CF /* QuartzCore.framework */; };
@@ -28,17 +25,16 @@
 		0615492D1EF1E64D004406CF /* BackgroundOverlay.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */; };
 		0615492F1EF1E65C004406CF /* firstFloorExhibits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */; };
 		061549311EF1E667004406CF /* SecondFloorExhibits.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549301EF1E667004406CF /* SecondFloorExhibits.plist */; };
-		061549331EF1E6B6004406CF /* AugmentedRealityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */; };
 		061549351EF1E6D3004406CF /* ARCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */; };
 		061549371EF1E80B004406CF /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 061549361EF1E80B004406CF /* background.jpg */; };
 		061549391EF1E93B004406CF /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061549381EF1E93B004406CF /* EventsViewController.swift */; };
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0631A56D1F22B75A0007E4CF /* TestViewController.swift */; };
 		0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633A3681EFF16C400522FAC /* QRExhibits.swift */; };
 		06539C9C1F115C9D00A3ABD0 /* MapWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */; };
 		06539CA01F115D7D00A3ABD0 /* HomeWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */; };
-		06539CA21F11783D00A3ABD0 /* EventDatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539CA11F11783D00A3ABD0 /* EventDatePickerViewController.swift */; };
 		0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */; };
 		0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */; };
 		0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0461EA00AB700D14C3D /* TheaterShows.swift */; };
@@ -51,11 +47,9 @@
 		06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */; };
 		06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DE1E8714930012A1DD /* AnimalController.swift */; };
 		06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */; };
-		06A60F691F05946600635477 /* TESTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A60F681F05946600635477 /* TESTViewController.swift */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
-		06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */; };
-		06C714F81E5E6C61003F3794 /* jellies.MOV in Resources */ = {isa = PBXBuildFile; fileRef = 06C714F71E5E6C61003F3794 /* jellies.MOV */; };
+		06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */; };
 		06F298061EF469A000856A93 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 06F298051EF469A000856A93 /* GoogleService-Info.plist */; };
 		06F298081EF470D800856A93 /* FirebaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298071EF470D800856A93 /* FirebaseController.swift */; };
 		06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F298091EF4710800856A93 /* AnimalTest.swift */; };
@@ -114,14 +108,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneKitViewController.swift; sourceTree = "<group>"; };
 		060C1EB41E81D87500501713 /* shark.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shark.obj; sourceTree = "<group>"; };
 		060C1EB51E81D87500501713 /* sharkTexture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sharkTexture.jpg; sourceTree = "<group>"; };
-		061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = CraftARResourcesAR.bundle; sourceTree = "<group>"; };
-		061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CraftARAugmentedRealitySDK.framework; sourceTree = "<group>"; };
 		061548F31EF1CEBE004406CF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		061548F51EF1CEC8004406CF /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
-		061548F81EF1CFC6004406CF /* Aquarium-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Aquarium-Bridging-Header.h"; sourceTree = "<group>"; };
 		061548FB1EF1D04B004406CF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		061548FD1EF1D054004406CF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		061548FF1EF1D060004406CF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -136,17 +126,17 @@
 		0615492C1EF1E64D004406CF /* BackgroundOverlay.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = BackgroundOverlay.plist; sourceTree = "<group>"; };
 		0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = firstFloorExhibits.plist; sourceTree = "<group>"; };
 		061549301EF1E667004406CF /* SecondFloorExhibits.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SecondFloorExhibits.plist; sourceTree = "<group>"; };
-		061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AugmentedRealityViewController.swift; sourceTree = "<group>"; };
 		061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARCollectionViewCell.swift; sourceTree = "<group>"; };
 		061549361EF1E80B004406CF /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		061549381EF1E93B004406CF /* EventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		0615493B1EF1E94E004406CF /* CustomCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomCell.swift; sourceTree = "<group>"; };
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		0618981D1F2A6D9D00882789 /* SAConfettiView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAConfettiView.framework; path = "Pods/../build/Release-iphoneos/SAConfettiView/SAConfettiView.framework"; sourceTree = "<group>"; };
+		0631A56D1F22B75A0007E4CF /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0633A3681EFF16C400522FAC /* QRExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRExhibits.swift; sourceTree = "<group>"; };
 		06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapWebViewController.swift; path = Aquarium/MapWebViewController.swift; sourceTree = "<group>"; };
 		06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeWebViewController.swift; sourceTree = "<group>"; };
-		06539CA11F11783D00A3ABD0 /* EventDatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDatePickerViewController.swift; sourceTree = "<group>"; };
 		0656D2CC1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalCollectionViewCell.swift; sourceTree = "<group>"; };
 		0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterTimesTableViewCell.swift; path = Aquarium/TheaterTimesTableViewCell.swift; sourceTree = "<group>"; };
 		0660F0461EA00AB700D14C3D /* TheaterShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShows.swift; path = Aquarium/TheaterShows.swift; sourceTree = "<group>"; };
@@ -159,11 +149,9 @@
 		06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = Aquarium/MapTableViewCell.swift; sourceTree = "<group>"; };
 		06A0C2DE1E8714930012A1DD /* AnimalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalController.swift; sourceTree = "<group>"; };
 		06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalNotificationsViewController.swift; sourceTree = "<group>"; };
-		06A60F681F05946600635477 /* TESTViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TESTViewController.swift; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
-		06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpeningScreenViewController.swift; sourceTree = "<group>"; };
-		06C714F71E5E6C61003F3794 /* jellies.MOV */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = jellies.MOV; sourceTree = "<group>"; };
+		06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenURLExtension.swift; sourceTree = "<group>"; };
 		06F298051EF469A000856A93 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		06F298071EF470D800856A93 /* FirebaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseController.swift; sourceTree = "<group>"; };
 		06F298091EF4710800856A93 /* AnimalTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalTest.swift; sourceTree = "<group>"; };
@@ -241,7 +229,6 @@
 				061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */,
 				061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */,
 				AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */,
-				061548F21EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework in Frameworks */,
 				2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -253,7 +240,6 @@
 			isa = PBXGroup;
 			children = (
 				061549381EF1E93B004406CF /* EventsViewController.swift */,
-				06539CA11F11783D00A3ABD0 /* EventDatePickerViewController.swift */,
 				0615493B1EF1E94E004406CF /* CustomCell.swift */,
 				0615493D1EF1E956004406CF /* EventTableViewCell.swift */,
 				0615493F1EF1E95D004406CF /* Event.swift */,
@@ -337,8 +323,6 @@
 		AA544C881D0BB66B00DC1725 = {
 			isa = PBXGroup;
 			children = (
-				061548F81EF1CFC6004406CF /* Aquarium-Bridging-Header.h */,
-				061548EB1EF1CDB6004406CF /* CraftARResourcesAR.bundle */,
 				AA544C931D0BB66C00DC1725 /* Aquarium */,
 				AA544C921D0BB66C00DC1725 /* Products */,
 				BA65A9DDB62A50DF28C33017 /* Pods */,
@@ -358,16 +342,13 @@
 			isa = PBXGroup;
 			children = (
 				061549071EF1D18C004406CF /* Pods.framework */,
-				061548F11EF1CDFF004406CF /* CraftARAugmentedRealitySDK.framework */,
 				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
 				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
-				06C714F11E5E60E3003F3794 /* OpeningScreenViewController.swift */,
 				06F298071EF470D800856A93 /* FirebaseController.swift */,
 				06F298091EF4710800856A93 /* AnimalTest.swift */,
 				061549241EF1DF01004406CF /* Main.storyboard */,
 				AA00A7861DD3D3E100B80DF6 /* WebViewController.swift */,
 				AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */,
-				06C714F71E5E6C61003F3794 /* jellies.MOV */,
 				AA544CA01D0BB66C00DC1725 /* Info.plist */,
 				061549261EF1E38F004406CF /* GoogleService-Info-2.plist */,
 				06F298051EF469A000856A93 /* GoogleService-Info.plist */,
@@ -412,7 +393,6 @@
 				AA55B5851DDF765100CC2336 /* MainExhibitController.swift */,
 				06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */,
 				06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */,
-				060C1EB21E81D7FC00501713 /* SceneKitViewController.swift */,
 				060C1EB41E81D87500501713 /* shark.obj */,
 				060C1EB51E81D87500501713 /* sharkTexture.jpg */,
 			);
@@ -434,12 +414,12 @@
 			isa = PBXGroup;
 			children = (
 				AA8D05151D19DC930063F222 /* HomeViewController.swift */,
+				06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */,
 				06539C9F1F115D7D00A3ABD0 /* HomeWebViewController.swift */,
-				061549321EF1E6B6004406CF /* AugmentedRealityViewController.swift */,
 				061549341EF1E6D3004406CF /* ARCollectionViewCell.swift */,
 				06B325241DF7383500A53057 /* BeaconInfoViewController.swift */,
 				AA544CF91D149C0A00DC1725 /* QRScannerViewController.swift */,
-				06A60F681F05946600635477 /* TESTViewController.swift */,
+				0631A56D1F22B75A0007E4CF /* TestViewController.swift */,
 				0633A3681EFF16C400522FAC /* QRExhibits.swift */,
 			);
 			name = "Main Tab Bar Items";
@@ -457,6 +437,7 @@
 		EA94B41FA31D61D281B2BE4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0618981D1F2A6D9D00882789 /* SAConfettiView.framework */,
 				061549051EF1D075004406CF /* CoreLocation.framework */,
 				061549031EF1D06D004406CF /* MobileCoreServices.framework */,
 				061549011EF1D066004406CF /* SystemConfiguration.framework */,
@@ -546,7 +527,6 @@
 				061549371EF1E80B004406CF /* background.jpg in Resources */,
 				061549251EF1DF01004406CF /* Main.storyboard in Resources */,
 				AA353ADD1DCE8B9E00AD5490 /* ITCFranklinGothicStd-Hvy.otf in Resources */,
-				061548EC1EF1CDB6004406CF /* CraftARResourcesAR.bundle in Resources */,
 				AA544C9F1D0BB66C00DC1725 /* LaunchScreen.storyboard in Resources */,
 				AA353AD91DCE8B9E00AD5490 /* ITCFranklinGothicStd-Book.otf in Resources */,
 				AA353ADE1DCE8B9E00AD5490 /* ITCFranklinGothicStd-HvyIt.otf in Resources */,
@@ -565,7 +545,6 @@
 				AA353ADA1DCE8B9E00AD5490 /* ITCFranklinGothicStd-BookIt.otf in Resources */,
 				060C1EB71E81D87500501713 /* sharkTexture.jpg in Resources */,
 				0615492F1EF1E65C004406CF /* firstFloorExhibits.plist in Resources */,
-				06C714F81E5E6C61003F3794 /* jellies.MOV in Resources */,
 				AA353AD01DCE701500AD5490 /* EntranceToSharksRoute.plist in Resources */,
 				AA353AE01DCE8B9E00AD5490 /* ITCFranklinGothicStd-MedIt.otf in Resources */,
 				AA353ADC1DCE8B9E00AD5490 /* ITCFranklinGothicStd-DemiIt.otf in Resources */,
@@ -634,11 +613,10 @@
 				069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */,
 				AA353ACE1DCE670000AD5490 /* Annotations.swift in Sources */,
 				069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */,
+				0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */,
 				AA55B5861DDF765100CC2336 /* MainExhibitController.swift in Sources */,
-				06A60F691F05946600635477 /* TESTViewController.swift in Sources */,
 				AA55B5881DDF7D4100CC2336 /* ExhibitGalleryTableViewCell.swift in Sources */,
 				AA353ABE1DCE60A700AD5490 /* AnnotationViews.swift in Sources */,
-				061549331EF1E6B6004406CF /* AugmentedRealityViewController.swift in Sources */,
 				0656D2CD1DE4C7680014BBF0 /* AnimalCollectionViewCell.swift in Sources */,
 				061549351EF1E6D3004406CF /* ARCollectionViewCell.swift in Sources */,
 				AA07C6A01DD5090E00AD855D /* SecondFloorOverlay.swift in Sources */,
@@ -658,9 +636,9 @@
 				06539CA01F115D7D00A3ABD0 /* HomeWebViewController.swift in Sources */,
 				AA6FA1D41D55540B00CBEEC7 /* MembershipListTableViewController.swift in Sources */,
 				AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */,
+				06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */,
 				06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */,
 				AA081A581DDA91E60020C269 /* BackGroundOverlay.swift in Sources */,
-				06539CA21F11783D00A3ABD0 /* EventDatePickerViewController.swift in Sources */,
 				AA544CFA1D149C0A00DC1725 /* QRScannerViewController.swift in Sources */,
 				AA353AC01DCE617000AD5490 /* AquariumMapOverlay.swift in Sources */,
 				AAA20FF61D5E47A1009B3241 /* ContactUsViewController.swift in Sources */,
@@ -670,7 +648,6 @@
 				AA353AB81DCE601800AD5490 /* BottomSheetViewController.swift in Sources */,
 				AA7FF44B1DDE65AE002A5AE0 /* MainExhibitViewController.swift in Sources */,
 				AA6F4E661D386A2A00FA20F7 /* AnimalTableViewCell.swift in Sources */,
-				060C1EB31E81D7FC00501713 /* SceneKitViewController.swift in Sources */,
 				AA353AC21DCE619100AD5490 /* AquariumMapOverlayView.swift in Sources */,
 				06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */,
 				06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */,
@@ -685,7 +662,6 @@
 				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
 				06F298081EF470D800856A93 /* FirebaseController.swift in Sources */,
 				0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */,
-				06C714F21E5E60E3003F3794 /* OpeningScreenViewController.swift in Sources */,
 				AA353ABC1DCE608500AD5490 /* CurrentLocationController.swift in Sources */,
 				06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */,
 				AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */,
@@ -827,7 +803,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Aquarium-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -864,7 +839,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "Aquarium-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

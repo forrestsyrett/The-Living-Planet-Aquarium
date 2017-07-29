@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "812597ED3379BEEABCA6FE7AF9F5C796"
+               BlueprintIdentifier = "FD2E6AE6FF3D8AB53F530F78C78429B0"
                BuildableName = "Pods_Aquarium.framework"
                BlueprintName = "Pods-Aquarium"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,6 +26,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -36,6 +37,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -45,7 +47,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "812597ED3379BEEABCA6FE7AF9F5C796"
+            BlueprintIdentifier = "FD2E6AE6FF3D8AB53F530F78C78429B0"
             BuildableName = "Pods_Aquarium.framework"
             BlueprintName = "Pods-Aquarium"
             ReferencedContainer = "container:Pods.xcodeproj">

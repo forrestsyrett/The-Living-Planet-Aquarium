@@ -48,6 +48,8 @@ class HomeWebViewController: UIViewController, UIWebViewDelegate {
         
         self.titleLabel.text = titleLabelString
         
+        IndexController.shared.index = 2
+        
     }
     
     func webViewDidStartLoad(_ webView: UIWebView) {

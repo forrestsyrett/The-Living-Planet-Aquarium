@@ -25,7 +25,7 @@ PODS:
   - FirebaseStorage (1.1.0):
     - FirebaseAnalytics (~> 3.7)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseUI/Storage (4.0.0):
+  - FirebaseUI/Storage (4.1.1):
     - Firebase/Storage
     - SDWebImage (~> 4.0)
   - FlowingMenu (2.0.1)
@@ -57,18 +57,21 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
   - GTMOAuth2 (1.1.4):
     - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.1.10):
-    - GTMSessionFetcher/Full (= 1.1.10)
-  - GTMSessionFetcher/Core (1.1.10)
-  - GTMSessionFetcher/Full (1.1.10):
-    - GTMSessionFetcher/Core (= 1.1.10)
+  - GTMSessionFetcher (1.1.11):
+    - GTMSessionFetcher/Full (= 1.1.11)
+  - GTMSessionFetcher/Core (1.1.11)
+  - GTMSessionFetcher/Full (1.1.11):
+    - GTMSessionFetcher/Core (= 1.1.11)
   - Hero (0.3.6)
   - JTAppleCalendar (7.0.4)
   - LTMorphingLabel (0.5.0)
-  - NVActivityIndicatorView (3.6.1)
-  - ObjectMapper (2.2.7)
+  - NVActivityIndicatorView (3.7.0):
+    - NVActivityIndicatorView/Presenter (= 3.7.0)
+  - NVActivityIndicatorView/Presenter (3.7.0)
+  - ObjectMapper (2.2.8)
   - OneSignal (2.5.4)
   - RQShineLabel (0.1.3)
+  - SAConfettiView (0.1.8)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -90,6 +93,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - OneSignal
   - RQShineLabel
+  - SAConfettiView
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -101,24 +105,25 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
   FirebaseInstanceID: b9eedd6846fb5e1f0f7279e1deaa7a7e4cf8392e
   FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
-  FirebaseUI: b9de05bfb4768db05f64ea90fc2f6a07b819118f
+  FirebaseUI: 5ebebe2c096c71f20abd1d43d0388958373bdaa0
   FlowingMenu: 097789ea7fcec5c94edd58765e00e27b31e62cf5
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleSignIn: d7ad83f13480e1f30453471d00d19b5293ac46af
   GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
   GTMOAuth2: 7fc9c10f5c745f4d9850419ea88889fe3baa6b7d
-  GTMSessionFetcher: 30d874b96d0d76028f61fbd122801e3f030d47db
+  GTMSessionFetcher: 5ad62e8200fa00ed011fe5e08d27fef72c5b1429
   Hero: d3c6f4dd80cdcdbb339be64e57ae3b5c3ab9938c
   JTAppleCalendar: 6def48ecd0daae1d5baaa45e813124c2a20b184d
   LTMorphingLabel: bc170be74b219b7dae0e5543a44676d16da70ff7
-  NVActivityIndicatorView: 9f52a7f84bf5c6a798722c450fe3c198e01c56ed
-  ObjectMapper: 65abcfd9a61cf7396cbd14a4fb22fddfcc46577e
+  NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
+  ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 5983a902a9e139bfdaef5e3b23b63d6a87f29bb4
+PODFILE CHECKSUM: 7a4d42b15eac6f8d6d8e9cac793002de784a3553
 
 COCOAPODS: 1.1.1

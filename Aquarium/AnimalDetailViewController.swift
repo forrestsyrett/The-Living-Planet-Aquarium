@@ -91,12 +91,12 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.dismissButton.heroID = self.dismissButtonHeroID
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
-        if self.name == "Blacktip Reef Shark" {
-            self.ThreeDView.isHidden = false
+      //  if self.name == "Blacktip Reef Shark" {
+        //    self.ThreeDView.isHidden = false
             
-        } else {
+       // } else {
             self.ThreeDView.isHidden = true
-        }
+        // }
         
         
         switch self.status {

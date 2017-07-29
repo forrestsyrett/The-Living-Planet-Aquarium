@@ -35,6 +35,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var firebaseReference: FIRDatabaseReference!
     var heroIDString = ""
     var initialLoading = true
+    var keyboardIsUp = false
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -240,6 +241,10 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     func keyboardWasShown(notification: NSNotification) {
         
+        if self.keyboardIsUp == false {
+            self.keyboardIsUp = true
+            print("keyboard will be shown")
+
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         let keyboardHeight: CGFloat = (keyboardSize?.height)!
@@ -255,22 +260,31 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             if (!aRect.contains(activeField.frame.origin)){
             }
         }
-    }
+        }
+        
+}
+    
+    func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+            return text.canBeConverted(to: String.Encoding.ascii)
+        }
+    
     
     
     func keyboardWillBeHidden(notification: NSNotification) {
         _ = notification.userInfo!
         //     let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         //     let keyboardHeight: CGFloat = (keyboardSize?.height)!
+        print("keyboard will be hidden")
+        if self.keyboardIsUp == true {
+            self.keyboardIsUp = false
         
         UIView.animate(withDuration: 0.20, delay: 0.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-            
-            
+
             self.setSearchBarView()
         }, completion: nil)
         
         self.view.endEditing(true)
-        
+        }
     }
     ///////////////////////////////////////////////////
     

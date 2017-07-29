@@ -69,6 +69,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SAConfettiView-SAConfettiView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SAConfettiView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SDWebImage.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -82,7 +92,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0E38258FFEB45F964FBEF9575C6C62A7</key>
+		<key>0BFC59DA3984D602A5349CE99F557CD1</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -98,6 +108,16 @@
 			<true/>
 		</dict>
 		<key>2F5622F3B18DF497981AB58C6D1FC72F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>34AAF0D4D9DA78082E95D89C3298EB59</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3D860B2AA4FF1BDE7A276B8E70CAF1D0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -122,16 +142,6 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>812597ED3379BEEABCA6FE7AF9F5C796</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8588D67DFCF1EB8AE7EEEA5DE522C935</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
@@ -142,7 +152,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CBEA6468082A780D05BD0B428252924</key>
+		<key>9532FDA060D40426362C2CF4EA2E1848</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -153,6 +163,16 @@
 			<true/>
 		</dict>
 		<key>BFED2E29E95E065400F8846E0231A970</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FA3DC9235A5B0B917AC0E585568A7464</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FD2E6AE6FF3D8AB53F530F78C78429B0</key>
 		<dict>
 			<key>primary</key>
 			<true/>

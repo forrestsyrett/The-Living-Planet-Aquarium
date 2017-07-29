@@ -51,6 +51,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         return UIScreen.main.bounds.height - 120
         
     }
+    var viewIsUp: Bool = false
     var urlString = "http://www.thelivingplanet.com/"
     
     
@@ -394,12 +395,18 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     
     func animateTappedGallery() {
-        
-        
+        if self.viewIsUp {
+            self.view.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.3, initialSpringVelocity: 8.0, options: .allowUserInteraction, animations: {
+
             self.view.transform = CGAffineTransform(translationX: 0.0, y: -25.0)
+            
         }, completion: nil)
-        
+            self.viewIsUp = true
+        })
     }
     
     
@@ -577,15 +584,11 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
         
         if recognizer.isUp(view: self.view) == false {
-            
+            self.viewIsUp = false
             UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 8.0, options: .allowUserInteraction, animations: {
                 self.view.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
             }, completion: nil)
-            
-            
         }
-        
-        
     }
     
     
@@ -632,6 +635,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func animateDown() {
+        self.viewIsUp = false
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .allowUserInteraction, animations: {
             UIView.animate(withDuration: 0.5) {
                 let frame = self.view.frame

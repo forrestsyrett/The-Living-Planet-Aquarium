@@ -17,7 +17,10 @@ class CurrentLocationController {
     static var shared = CurrentLocationController()
     
     
+    // CENTERED {40.53235,-111.89397}
     
-    dynamic var coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(40.5321), CLLocationDegrees(-111.89382))
+     dynamic var coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(40.53228), CLLocationDegrees(-111.89397))
+    
+  // ENTRANCE //  dynamic var coordinate = CLLocationCoordinate2DMake(CLLocationDegrees(40.5321), CLLocationDegrees(-111.89382))
     var exhibitName = ""
 }

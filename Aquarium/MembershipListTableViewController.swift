@@ -17,33 +17,37 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
     @IBOutlet weak var welcomeView: UIView!
     @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var addAMembershipButton: UIButton!
-    
+    @IBOutlet weak var plusButton: UIBarButtonItem!
     @IBOutlet weak var becomeAMemberButtonLabel: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        gradient(self.view)
         tabBarTint(view: self)
-        
+        membershipCardTableView.backgroundColor = UIColor.clear
+        transparentNavigationBar(self)
         membershipCardTableView.reloadData()
         roundCornerButtons(becomeAMemberButtonLabel)
         roundCornerButtons(welcomeView)
         roundCornerButtons(blurView)
         roundCornerButtons(addAMembershipButton)
+        addAMembershipButton.layer.borderColor = UIColor.white.cgColor
+        addAMembershipButton.layer.borderWidth = 1.0
+        addAMembershipButton.backgroundColor = aquaLight
         
         NotificationCenter.default.addObserver(self, selector: #selector(MembershipListTableViewController.reloadView), name: Notification.Name(rawValue: "addedNewMembership"), object: nil)
         
         self.membershipCardTableView.contentInset = UIEdgeInsetsMake(30, 0, 0, 0)
+        
+  
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
         membershipCardTableView.reloadData()
-        gradient(self.view)
-        membershipCardTableView.backgroundColor = UIColor.clear
-        transparentNavigationBar(self)
+        
         
         if MembershipCardController.sharedMembershipController.memberships.count != 0 {
             
@@ -58,6 +62,9 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         } else {
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         }
+        
+        
+        
     }
     
     

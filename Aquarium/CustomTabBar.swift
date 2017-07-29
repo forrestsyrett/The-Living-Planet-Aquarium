@@ -85,7 +85,9 @@ class CustomTabBar: UIView {
         
         
         
-        let overlayColors = [aquaDark, aquaDark, aquaLight, aquaDark, aquaDark]
+       let overlayColors = [aquaDark, aquaDark, aquaLight, aquaDark, aquaDark]
+        
+      //  let overlayColors = [aquaLight, aquaLight, aquaDark, aquaLight, aquaLight]
         
         
         for index in 0..<tabBarItems.count {
