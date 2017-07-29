@@ -14,6 +14,8 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
     static let shared = CustomTabBarController()
     var selectedTabIndex = 0
     var buttonColor = aquaLight
+    var home: Bool = true
+    let homeButton = UIButton(frame: CGRect(x: 0, y: 2.0, width: 60, height: 60))
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,13 +29,14 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         customTabBar.datasource = self
         customTabBar.delegate = self
         self.delegate = self
-        customTabBar.setup()
+        
         
      //   customTabBar.autoresizingMask = [UIViewAutoresizing.flexibleHeight]
         customTabBar.autoresizesSubviews = false
         
         self.view.addSubview(customTabBar)
         setupHomeButton()
+        customTabBar.setup()
     }
     
     
@@ -44,7 +47,29 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
     
     func didSelectViewController(_ tabBarView: CustomTabBar, atIndex index: Int) {
         self.selectedIndex = index
+        changeHomeButtonColor()
         
+    }
+    
+    func changeHomeButtonColor() {
+        
+        if self.selectedIndex == 2 {
+            UIView.animate(withDuration: 0.3, animations: { 
+                self.homeButton.backgroundColor = aquaDark
+                self.homeButton.layer.shadowColor = UIColor.white.cgColor
+                self.homeButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+                self.homeButton.layer.shadowOpacity = 1.0
+                self.homeButton.layer.shadowRadius = 3.0
+            })
+        } else {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.homeButton.backgroundColor = aquaLight
+                self.homeButton.layer.shadowColor = UIColor.white.cgColor
+                self.homeButton.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+                self.homeButton.layer.shadowOpacity = 0.0
+                self.homeButton.layer.shadowRadius = 2.0
+            })
+        }
     }
     
     // MARK: - TabBarTransition Delegate
@@ -54,8 +79,12 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         return CustomTabBarAnimatedTransition()
     }
     
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        print("Selected item")
+    }
+    
     func setupHomeButton() {
-        let homeButton = UIButton(frame: CGRect(x: 0, y: 2.0, width: 60, height: 60))
+        
         var homeButtonFrame = homeButton.frame
         homeButtonFrame.origin.y = self.view.bounds.height - homeButtonFrame.height
         homeButtonFrame.origin.x = self.view.bounds.width/2 - homeButtonFrame.size.width/2
@@ -66,7 +95,7 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
         homeButton.layer.borderWidth = 0.5
         self.view.addSubview(homeButton)
         homeButton.setImage(#imageLiteral(resourceName: "home"), for: .normal)
-       
+       changeHomeButtonColor()
         homeButton.tintColor = .white
         homeButton.isUserInteractionEnabled = false
         self.view.layoutIfNeeded()

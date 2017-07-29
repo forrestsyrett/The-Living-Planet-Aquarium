@@ -71,6 +71,7 @@ PODS:
   - ObjectMapper (2.2.8)
   - OneSignal (2.5.4)
   - RQShineLabel (0.1.3)
+  - SAConfettiView (0.1.8)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -92,6 +93,7 @@ DEPENDENCIES:
   - NVActivityIndicatorView
   - OneSignal
   - RQShineLabel
+  - SAConfettiView
   - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -118,9 +120,10 @@ SPEC CHECKSUMS:
   ObjectMapper: 3d571bb5af471c779e1160828cd9ad5c4ef90958
   OneSignal: da994bcf6a2efbdceaf71e389e1d05245c562899
   RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
+  SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
 
-PODFILE CHECKSUM: 5983a902a9e139bfdaef5e3b23b63d6a87f29bb4
+PODFILE CHECKSUM: 7a4d42b15eac6f8d6d8e9cac793002de784a3553
 
 COCOAPODS: 1.1.1

@@ -71,6 +71,7 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         
         
         expirationDatePicker.setValue(UIColor.white, forKey: "textColor")
+        expirationDatePicker.minimumDate = Date()
         firstNameTextField.delegate = self
         lastNameTextField.delegate = self
         membershipIDTextField.delegate = self

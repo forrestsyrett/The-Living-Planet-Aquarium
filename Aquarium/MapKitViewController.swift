@@ -70,7 +70,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         super.viewDidLoad()
         self.view.backgroundColor = UIColor(red:0.00, green:0.41, blue:0.57, alpha:1.00)
         
-        
+        mapView.delegate = self
         locationManager.delegate = self
         
         
@@ -89,14 +89,13 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
 
         
         
-        let latDelta = aquarium.topLeftMapCoordinate.latitude + 0.0009 - aquarium.bottomRightMapCoordinate.latitude + 0.0009
-        
+        let latDelta = aquarium.topLeftMapCoordinate.latitude + 0.0004 - aquarium.bottomRightMapCoordinate.latitude + 0.0004
         let span = MKCoordinateSpanMake(fabs(latDelta), 0.0)
         self.delta = latDelta
         
         let region = MKCoordinateRegionMake(aquarium.midCoordinate, span)
         
-        mapView.setRegion(region, animated: true)
+        
         mapView.showsUserLocation = false
         mapView.showsBuildings = false
         mapView.showsCompass = true
@@ -109,19 +108,16 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         addCurrentLocationAnnotation()
         addBottomSheetView()
         addOverlays()
-        
+        mapView.setRegion(region, animated: true)
         
         
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "jsa"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "sharks"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "theater"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "utah"), object: nil)
-        
+ 
         transparentNavigationBar(self)
         
-        let mapCamera = MKMapCamera()
-        
-        mapView.setCamera(mapCamera, animated: false)
         
     }
     
@@ -136,14 +132,10 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     }
     
     
-    
-    
-    
     func addOverlays() {
         
         
         // MARK: -  Background Overlay
-        
          let background = BackGroundOverlay(background: self.background)
            mapView.add(background, level: .aboveLabels)
         
@@ -152,7 +144,6 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         let secondFloorOverlay = SecondFloorOverlay(aquarium: aquariumSecondFloor)
         self.secondFloor = secondFloorOverlay
-        
         
         mapView.add(firstFloorOverlay)
         mapView.showsPointsOfInterest = false
@@ -231,7 +222,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
             renderer.alpha = 5.0
             return renderer
         }
-        return MKOverlayRenderer()
+        return MKOverlayRenderer(overlay: overlay)
     }
     
     
@@ -281,11 +272,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     
     
     func addCurrentLocationAnnotation() {
-        
-        
         mapView.addAnnotation(self.currentLocationAnnotation)
-        
-      //  print("New Location Added")
     }
     
     func updateLocation() {

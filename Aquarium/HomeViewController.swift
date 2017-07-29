@@ -10,11 +10,11 @@ import UIKit
 import SafariServices
 import CoreLocation
 import UserNotifications
+import SAConfettiView
 
 class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNotificationCenterDelegate, UITabBarDelegate {
     
     @IBOutlet weak var welcomeLabel: UILabel!
-    @IBOutlet weak var livingPlanetLabel: UILabel!
     @IBOutlet weak var buyTicketsLabel: UIButton!
     @IBOutlet weak var becomeAMemberLabel: UIButton!
     @IBOutlet weak var animalEncountersLabel: UIButton!
@@ -25,28 +25,27 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     @IBOutlet weak var lineThree: UIView!
     @IBOutlet weak var lineFour: UIView!
     @IBOutlet weak var socialMediaTrayWidth: NSLayoutConstraint!
+    @IBOutlet weak var logoButton: UIButton!
+    @IBOutlet weak var confettiView: SAConfettiView!
     
     var destinationName = "String"
     var notificationSwitch = true
-    
+    var counter = 0
     
     // MARK: - Beacon Regions
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         tabBarTint(view: self)
         gradient(self.view)
         transparentNavigationBar(self)
-   
+        confettiView.isUserInteractionEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
-
         animateLabel(welcomeLabel, animateTime: 0.5)
-        animateLabel(livingPlanetLabel, animateTime: 1.0)
         animateLines(lineOne, animateTime: 0.75)
         animateLines(lineTwo, animateTime: 1.0)
         animateLines(lineThree, animateTime: 1.5)
@@ -56,7 +55,25 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
     }
     
-    
+ 
+
+    @IBAction func logoButtonTapped(_ sender: Any) {
+      
+        counter += 1
+        
+        if counter == 20 {
+            if !confettiView.isActive() {
+                confettiView.startConfetti()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                    self.confettiView.stopConfetti()
+            })
+        }
+        }
+        if counter > 20 {
+            counter = 0
+        }
+ 
+    }
     
     
     // MARK: - Notification Code
@@ -160,7 +177,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
      
     @IBAction func twitterButtonTapped(_ sender: Any) {
         UIApplication.tryURL(urls: [
-            "twitter://user?screen_name=107117254", // App
+            "twitter://user?screen_name=livingplanetUT", // App
             "http://www.twitter.com/livingplanetUT" //Website
             ])
     }

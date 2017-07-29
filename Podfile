@@ -25,4 +25,5 @@ pod 'NVActivityIndicatorView'
 pod 'Hero'
 pod 'LTMorphingLabel'
 pod 'RQShineLabel'
+pod "SAConfettiView"
 end

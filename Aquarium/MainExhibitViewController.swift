@@ -243,7 +243,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         if self.keyboardIsUp == false {
             self.keyboardIsUp = true
-        
+            print("keyboard will be shown")
+
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         let keyboardHeight: CGFloat = (keyboardSize?.height)!
@@ -273,7 +274,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         _ = notification.userInfo!
         //     let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         //     let keyboardHeight: CGFloat = (keyboardSize?.height)!
-        
+        print("keyboard will be hidden")
         if self.keyboardIsUp == true {
             self.keyboardIsUp = false
         

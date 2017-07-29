@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '9532FDA060D40426362C2CF4EA2E1848'
-               BlueprintName = 'RQShineLabel'
+               BlueprintIdentifier = '3D860B2AA4FF1BDE7A276B8E70CAF1D0'
+               BlueprintName = 'SAConfettiView-SAConfettiView'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'RQShineLabel.framework'>
+               BuildableName = 'SAConfettiView.bundle'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
