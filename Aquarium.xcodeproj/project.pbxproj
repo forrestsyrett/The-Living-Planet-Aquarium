@@ -39,6 +39,8 @@
 		0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */; };
 		0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0461EA00AB700D14C3D /* TheaterShows.swift */; };
 		0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */; };
+		06810C261F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06810C251F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift */; };
+		06810C281F2D301500BE9211 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06810C271F2D301500BE9211 /* MenuCollectionViewCell.swift */; };
 		069A216B1EB68F77006130C1 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21671EB68F77006130C1 /* CustomTabBarController.swift */; };
 		069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21681EB68F77006130C1 /* CustomTabBar.swift */; };
 		069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */; };
@@ -141,6 +143,8 @@
 		0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterTimesTableViewCell.swift; path = Aquarium/TheaterTimesTableViewCell.swift; sourceTree = "<group>"; };
 		0660F0461EA00AB700D14C3D /* TheaterShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShows.swift; path = Aquarium/TheaterShows.swift; sourceTree = "<group>"; };
 		0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShowsController.swift; path = Aquarium/TheaterShowsController.swift; sourceTree = "<group>"; };
+		06810C251F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CafeMenuCollectionViewController.swift; path = Aquarium/CafeMenuCollectionViewController.swift; sourceTree = "<group>"; };
+		06810C271F2D301500BE9211 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuCollectionViewCell.swift; path = Aquarium/MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		069A21671EB68F77006130C1 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		069A21681EB68F77006130C1 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarAnimatedTransition.swift; sourceTree = "<group>"; };
@@ -297,6 +301,8 @@
 				0615492E1EF1E65C004406CF /* firstFloorExhibits.plist */,
 				061549301EF1E667004406CF /* SecondFloorExhibits.plist */,
 				AA353ACF1DCE701500AD5490 /* EntranceToSharksRoute.plist */,
+				06810C251F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift */,
+				06810C271F2D301500BE9211 /* MenuCollectionViewCell.swift */,
 			);
 			name = Map;
 			path = ..;
@@ -653,9 +659,11 @@
 				06FD838D1DEA41F5005F4EFA /* AnimalDetailViewController.swift in Sources */,
 				06F2980A1EF4710800856A93 /* AnimalTest.swift in Sources */,
 				AA544C951D0BB66C00DC1725 /* AppDelegate.swift in Sources */,
+				06810C261F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift in Sources */,
 				06539C9C1F115C9D00A3ABD0 /* MapWebViewController.swift in Sources */,
 				0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */,
 				AAEE47681D3CAD8500E0C537 /* NotificationController.swift in Sources */,
+				06810C281F2D301500BE9211 /* MenuCollectionViewCell.swift in Sources */,
 				0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */,
 				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
 				0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */,

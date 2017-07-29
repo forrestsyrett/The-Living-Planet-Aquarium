@@ -194,7 +194,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         ///// Sets Overlay and Overlay Image
         if overlay is AquariumMapOverlay {
-            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFinalRSZ") )
+            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "main"))
             return overlayView
         }
         if overlay is SecondFloorOverlay {

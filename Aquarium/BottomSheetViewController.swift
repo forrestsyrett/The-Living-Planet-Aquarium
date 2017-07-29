@@ -334,8 +334,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.cafe.name:
             hideTableView()
-            self.theaterTableView.isHidden = true
-            self.shadowView.isHidden = true
+            self.segueString = "toMenus"
+            self.getDirectionsButton.isHidden = false
             
         case galleries.deepSeaLab.name:
             showTableView()
@@ -500,9 +500,9 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.cafe)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.segueString = "cafe"
-        self.getDirectionsButton.isHidden = true
+        self.getDirectionsButton.setTitle("View the Menu!", for: .normal)
+        self.segueString = "toMenus"
+        self.getDirectionsButton.isHidden = false
     
     }
     
@@ -698,13 +698,6 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 webviewDestination.buttonHidden = false
                 webviewDestination.requestString = "http://www.thelivingplanet.com/home-4/education/"
                 webviewDestination.titleLabelString = "Education"
-                
-            }
-            
-            if segue.identifier == "cafe" {
-                webviewDestination.buttonHidden = false
-                webviewDestination.requestString = "http://thelivingplanet.com/cafe-avalon/"
-                webviewDestination.titleLabelString = "Cafe Avalon"
                 
             }
         }
