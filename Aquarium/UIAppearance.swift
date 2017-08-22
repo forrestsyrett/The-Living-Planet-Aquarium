@@ -15,6 +15,7 @@ let aquaMedium = UIColor(red: 0.1451, green: 0.6235, blue: 0.7686, alpha: 1.0)
 let aquaLight = UIColor(red:0.13, green:0.43, blue:0.60, alpha:1.00)
 
 let aquaWaveColor = UIColor(red:0.20, green:0.36, blue:0.53, alpha:1.00)
+let aquaLightTransparent = UIColor(red:0.13, green:0.43, blue:0.60, alpha:0.85)
 
 
 func gradient (_ view: UIView) {

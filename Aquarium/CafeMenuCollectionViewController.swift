@@ -2,7 +2,7 @@
 //  CafeMenuCollectionViewController.swift
 //  Aquarium
 //
-//  Created by TLPAAdmin on 7/29/17.
+//  Created by Forrest Syrett on 7/29/17.
 //  Copyright © 2017 Forrest Syrett. All rights reserved.
 //
 
@@ -19,15 +19,17 @@ class CafeMenuCollectionViewController: UIViewController, UICollectionViewDataSo
     
     @IBOutlet weak var pageControl: UIPageControl!
    
+    @IBOutlet weak var bottomTrayView: UIView!
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-
+        bottomTrayView.backgroundColor = aquaLight
     }
 
 
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -49,6 +51,7 @@ class CafeMenuCollectionViewController: UIViewController, UICollectionViewDataSo
         
         return cell
     }
+    
     
     
     func collectionView(_ collectionView: UICollectionView,

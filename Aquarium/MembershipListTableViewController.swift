@@ -50,12 +50,13 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         
         if MembershipCardController.sharedMembershipController.memberships.count != 0 {
-            
             welcomeView.isHidden = true
             blurView.isHidden = true
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .plain, target: self, action: #selector(MembershipListTableViewController.addMembership))
         } else {
             welcomeView.isHidden = false
             blurView.isHidden = false
+            self.navigationItem.rightBarButtonItem = nil
         }
         if self.tabBarController == nil {
             print("tabBar is not loaded yet")
@@ -66,6 +67,13 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
         
         
     }
+    
+    
+    func addMembership() {
+        
+        self.performSegue(withIdentifier: "addMembership", sender: nil)
+    }
+    
     
     
     func reloadView() {

@@ -40,12 +40,13 @@ class EventsViewController: UIViewController {
     var monthIndex = 0
     var unwindDate = Date()
     var executionComplete = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCalendar()
         gradient(self.view)
-       
         
     }
     
@@ -53,6 +54,7 @@ class EventsViewController: UIViewController {
         
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         self.tableView.reloadData()
+
     }
     
     
@@ -90,16 +92,14 @@ class EventsViewController: UIViewController {
         calendarView.layer.borderWidth = 1.0
         
         //setup labels
-        calendarView.visibleDates { (visibleDates) in
-            self.setupViewsOfCalendar(from: visibleDates)
-        }
+     //   calendarView.visibleDates { (visibleDates) in
+   //         self.setupViewsOfCalendar(from: visibleDates)
+     //   }
+        
+        
+        
     }
-    
-    
 
-    
-    
-    
     
     func animateTableView(completion: @escaping (Bool) -> ()) {
       
@@ -304,18 +304,21 @@ class EventsViewController: UIViewController {
         
         
         guard let date = visibleDates.monthDates.last?.date else { return }
-      
-        self.dateFormatter.dateFormat = "MMMM yyyy"
-        self.monthLabel.text = self.dateFormatter.string(from: date)
+        updateDateLabel(date: date)
+        
     }
     
   
     @IBAction func todayButtonTapped(_ sender: Any) {
         
-        let currentDate = Date()
-        self.calendarView.scrollToDate(currentDate)
-        self.calendarView.selectDates([currentDate])
-        
+        self.calendarView.scrollToDate(Date())
+        self.calendarView.selectDates([Date()])
+    }
+    
+    
+    func updateDateLabel(date: Date) {
+        self.dateFormatter.dateFormat = "MMMM yyyy"
+        self.monthLabel.text = self.dateFormatter.string(from: date)
         
     }
  /*
@@ -428,8 +431,9 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
      
         self.currentDate = cellState.date
         getCalendarItems()
-        calendarView.scrollToDate(cellState.date)
+       // calendarView.scrollToDate(cellState.date)
         self.executionComplete = false
+        updateDateLabel(date: cellState.date)
 
         
     }

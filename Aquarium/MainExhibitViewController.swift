@@ -36,6 +36,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var heroIDString = ""
     var initialLoading = true
     var keyboardIsUp = false
+    var timer = Timer()
+    var time = 0
     
     @IBOutlet weak var searchBar: UISearchBar!
     
@@ -158,7 +160,82 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     }
     
     
+  @objc func bubbles(timer: Timer) {
+        
+        let array = timer.userInfo as! Dictionary<String, AnyObject>
+        let cell = array["cell"] as! AnimalCollectionViewCell
+        let view = array["view"] as! UIView
     
+        cell.time += 1
+  print("Cell Time \(cell.time)")
+        if cell.time == 2 {
+            UIView.animate(withDuration: 0.2, animations: {
+                view.alpha = 1.0
+                view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                view.transform = CGAffineTransform.identity
+                
+                shadow(view)
+
+            })
+        }
+            
+        else if cell.time == 10 {
+            timer.invalidate()
+            cell.time = 0
+        }
+        
+        let size = randomNumber(low: 8, high: 15)
+  //      print("SIZE: \(size)")
+        let xLocation = randomNumber(low: 10, high: 25)
+    //    print("X LOCATION: \(xLocation)")
+        
+        let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
+        bubbleImageView.frame = CGRect(x: xLocation, y: view.center.y + 50, width: size, height: size)
+        view.addSubview(bubbleImageView)
+        view.bringSubview(toFront: bubbleImageView)
+        
+        let zigzagPath = UIBezierPath()
+        let originX: CGFloat = xLocation
+        let originY: CGFloat = view.center.y + 20
+        let eX: CGFloat = originX
+        let eY: CGFloat = originY - randomNumber(low: 50, high: 30)
+        let time: CGFloat = randomNumber(low: 20, high: 100)
+        var cp1 = CGPoint(x: originX - time, y: ((originY + eY) / 2))
+        var cp2 = CGPoint(x: originX + time, y: cp1.y)
+        
+        let r: Int = Int(arc4random() % 2)
+        if r == 1 {
+            let temp: CGPoint = cp1
+            cp1 = cp2
+            cp2 = temp
+        }
+        // the moveToPoint method sets the starting point of the line
+        zigzagPath.move(to: CGPoint(x: originX, y: originY))
+        // add the end point and the control points
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: cp1, controlPoint2: cp2)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({() -> Void in
+            
+            UIView.transition(with: bubbleImageView, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
+                bubbleImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            }, completion: {(_ finished: Bool) -> Void in
+                bubbleImageView.removeFromSuperview()
+            })
+        })
+        
+        let pathAnimation = CAKeyframeAnimation(keyPath: "position")
+        pathAnimation.duration = 1.5
+        pathAnimation.path = zigzagPath.cgPath
+        // remains visible in it's final state when animation is finished
+        // in conjunction with removedOnCompletion
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.isRemovedOnCompletion = false
+        bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
+        
+        CATransaction.commit()
+        
+    }
     
     
     // MARK: - Search Bar Functions
@@ -312,6 +389,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
         cell.newsRibbonHeight.constant = 0.0
         cell.layoutIfNeeded()
+        cell.infoImage.alpha = 0.0
         var animal = allAnimals[indexPath.row]
         
         //Get odd numbers (right hand column)
@@ -362,16 +440,28 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
 
                 //Check for animal updates, and show ribbon
-                if animal.animalUpdates != "none" {
-                    UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                if animal.animalUpdates != "" || animal.animalUpdates != "none" {
+                    
+                    self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(MainExhibitViewController.bubbles(timer:)), userInfo: ["cell" : cell, "view" : cell.infoImage], repeats: true)
+                    
+                    self.timer.fire()
+                    
+
+                    
+                   /* UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
                         cell.newsRibbonHeight.constant = 58.0
                         cell.layoutIfNeeded()
                     }, completion: nil)
+                    */
                     
                     // No animal updates at the moment, hide ribbon
                 } else {
-                    cell.newsRibbonHeight.constant = 0.0
-                    cell.layoutIfNeeded()
+                    //Show animal news animation
+                    
+                    cell.infoImage.alpha = 0.0
+                    
+                    // cell.newsRibbonHeight.constant = 0.0
+                    // cell.layoutIfNeeded()
             }
         
         

@@ -89,6 +89,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         self.getDirectionsButton.isHidden = true
         
         self.firebaseReference = FIRDatabase.database().reference()

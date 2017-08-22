@@ -2,7 +2,7 @@
 //  AnimalDetailViewController.swift
 //  Aquarium
 //
-//  Created by TLPAAdmin on 11/26/16.
+//  Created by Forrest Syrett on 11/26/16.
 //  Copyright © 2016 Forrest Syrett. All rights reserved.
 //
 
@@ -36,6 +36,14 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
 
     @IBOutlet weak var animalNewsBUttonHeight: NSLayoutConstraint!
     
+
+    
+    
+    @IBOutlet weak var infoButton: UIButton!
+    
+    
+    
+    
     var name = ""
     var image = UIImageView()
     var info = ""
@@ -49,6 +57,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var dismissButtonHeroID = ""
     var factSheetString = ""
     var updateImage = ""
+    var timer = Timer()
+    var time = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +77,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         
+        self.infoButton.alpha = 0.0
         self.animalNewsBUttonHeight.constant = 0.0
         self.view.layoutIfNeeded()
         
@@ -114,8 +125,85 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func viewDidAppear(_ animated: Bool) {
         animateRibbon()
+    
+        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(AnimalDetailViewController.bubbles), userInfo: nil, repeats: true)
+        timer.fire()
     }
+    
+    func randomNumber(low: Int, high: Int) -> CGFloat {
+        let random = CGFloat(arc4random_uniform(UInt32(high)) + UInt32(low))
+        return random
+    }
+    
 
+    func bubbles() {
+        
+        time += 1
+        
+        if self.time == 2 {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.infoButton.alpha = 1.0
+                self.infoButton.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+                self.infoButton.transform = CGAffineTransform.identity
+            })
+        }
+        
+        else if self.time == 10 {
+            timer.invalidate()
+        }
+        
+        let size = randomNumber(low: 8, high: 15)
+        print("SIZE: \(size)")
+        let xLocation = randomNumber(low: 19, high: 31)
+        print("X LOCATION: \(xLocation)")
+        
+        let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
+        bubbleImageView.frame = CGRect(x: xLocation, y: infoButton.center.y + 50, width: size, height: size)
+        view.addSubview(bubbleImageView)
+        view.bringSubview(toFront: bubbleImageView)
+        
+        let zigzagPath = UIBezierPath()
+        let oX: CGFloat = xLocation
+        let oY: CGFloat = infoButton.center.y + 20
+        let eX: CGFloat = oX
+        let eY: CGFloat = oY - randomNumber(low: 50, high: 30)
+        let t: CGFloat = randomNumber(low: 20, high: 100)
+        var cp1 = CGPoint(x: oX - t, y: ((oY + eY) / 2))
+        var cp2 = CGPoint(x: oX + t, y: cp1.y)
+        
+        let r: Int = Int(arc4random() % 2)
+        if r == 1 {
+            let temp: CGPoint = cp1
+            cp1 = cp2
+            cp2 = temp
+        }
+        // the moveToPoint method sets the starting point of the line
+        zigzagPath.move(to: CGPoint(x: oX, y: oY))
+        // add the end point and the control points
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: cp1, controlPoint2: cp2)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({() -> Void in
+            
+            UIView.transition(with: bubbleImageView, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
+                bubbleImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            }, completion: {(_ finished: Bool) -> Void in
+                bubbleImageView.removeFromSuperview()
+            })
+        })
+        
+        let pathAnimation = CAKeyframeAnimation(keyPath: "position")
+        pathAnimation.duration = 1.5
+        pathAnimation.path = zigzagPath.cgPath
+        // remains visible in it's final state when animation is finished
+        // in conjunction with removedOnCompletion
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.isRemovedOnCompletion = false
+        bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
+        
+        CATransaction.commit()
+        
+    }
     
     @IBAction func toModelButtonTapped(_ sender: Any) {
         
@@ -151,12 +239,18 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         self.performSegue(withIdentifier: "animalNotification", sender: nil)
     }
+    @IBAction func animalNotificationButtonTapped(_ sender: Any) {
+        self.performSegue(withIdentifier: "animalNotification", sender: nil)
+    }
     
     func animateRibbon() {
-        if self.animalUpdates == "none" {
+        if self.animalUpdates == "" {
             self.animalNewsBUttonHeight.constant = 0.0
+            self.infoButton.alpha = 0.0
             self.view.layoutIfNeeded()
         } else {
+            
+            self.bubbles()
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
                 self.animalNewsBUttonHeight.constant = 78.0
                 self.view.layoutIfNeeded()
