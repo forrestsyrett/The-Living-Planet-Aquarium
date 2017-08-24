@@ -8,21 +8,10 @@
 
 import UIKit
 
-
-protocol AnimalActionsDelegate: class {
-    func infoButtonAction(_ mapTableViewCell: MapTableViewCell)
-    func locateButtonAction(_ mapTableViewCell: MapTableViewCell)
-    func feedingButtonAction(_ mapTableViewCell: MapTableViewCell)
-}
-
 class MapTableViewCell: UITableViewCell {
     
     @IBOutlet weak var cellImage: UIImageView!
     @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var animalInfoButton: UIButton!
-    
-    
-    weak var delegate: AnimalActionsDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -36,9 +25,6 @@ class MapTableViewCell: UITableViewCell {
     }
     
     
-    @IBAction func animalInfoButtonTapped(_ sender: Any) {
-        delegate?.infoButtonAction(self)
-        print("Delegate Sent for info")
-    }
+   
     
 }

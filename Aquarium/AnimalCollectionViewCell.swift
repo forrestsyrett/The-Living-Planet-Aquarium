@@ -16,6 +16,8 @@ class AnimalCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsRibbon: UIImageView!
     @IBOutlet weak var newsRibbonHeight: NSLayoutConstraint!
     @IBOutlet weak var infoImage: UIImageView!
+    @IBOutlet weak var infoImageHeight: NSLayoutConstraint!
     var time = 0
+    
     
 }

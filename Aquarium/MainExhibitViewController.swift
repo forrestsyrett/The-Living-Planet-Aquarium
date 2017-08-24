@@ -92,6 +92,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     override func viewWillAppear(_ animated: Bool) {
         
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -170,11 +171,12 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
   print("Cell Time \(cell.time)")
         if cell.time == 2 {
             UIView.animate(withDuration: 0.2, animations: {
+                view.isHidden = false
                 view.alpha = 1.0
-                view.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-                view.transform = CGAffineTransform.identity
-                
-                shadow(view)
+                view.layer.shadowColor = UIColor.white.cgColor
+                view.layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
+                view.layer.shadowOpacity = 0.8
+                view.layer.shadowRadius = 2.0
 
             })
         }
@@ -323,7 +325,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             print("keyboard will be shown")
 
         var info = notification.userInfo!
-        let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
+        let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
         let keyboardHeight: CGFloat = (keyboardSize?.height)!
         
         UIView.animate(withDuration: 0.40, delay: 0.027, options: UIViewAnimationOptions.curveEaseIn, animations: {
@@ -337,7 +339,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             if (!aRect.contains(activeField.frame.origin)){
             }
         }
-        }
+    }
         
 }
     
@@ -383,20 +385,24 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         let index = indexPath.row
-        
         cell.newsRibbon.heroModifiers = [.fade]
+        cell.infoImage.heroModifiers = [.fade]
         cell.heroID = "animal: \(indexPath.row)"
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+        cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
         cell.newsRibbonHeight.constant = 0.0
+        cell.infoImageHeight.constant = 0.0
         cell.layoutIfNeeded()
-        cell.infoImage.alpha = 0.0
+        cell.infoImage.heroID = "infoImage: \(indexPath.row)"
         var animal = allAnimals[indexPath.row]
         
-        //Get odd numbers (right hand column)
+
+        
+        //Get odd numbers (right column)
         if indexPath.row % 2 == 1 {
             cell.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0.0)
         } else {
-            //Left hand column
+            //Left column
             cell.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0.0)
         }
         
@@ -440,28 +446,29 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
 
                 //Check for animal updates, and show ribbon
-                if animal.animalUpdates != "" || animal.animalUpdates != "none" {
+                if animal.animalUpdates != "none" {
                     
                     self.timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(MainExhibitViewController.bubbles(timer:)), userInfo: ["cell" : cell, "view" : cell.infoImage], repeats: true)
                     
                     self.timer.fire()
-                    
+                    cell.layoutIfNeeded()
 
-                    
-                   /* UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
+                  /*  UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
                         cell.newsRibbonHeight.constant = 58.0
                         cell.layoutIfNeeded()
                     }, completion: nil)
-                    */
+                 */
+                    
+                    cell.infoImageHeight.constant = 25.0
+                    cell.layoutIfNeeded()
                     
                     // No animal updates at the moment, hide ribbon
                 } else {
                     //Show animal news animation
                     
-                    cell.infoImage.alpha = 0.0
-                    
-                    // cell.newsRibbonHeight.constant = 0.0
-                    // cell.layoutIfNeeded()
+                    cell.infoImageHeight.constant = 0.0
+                  //   cell.newsRibbonHeight.constant = 0.0
+                     cell.layoutIfNeeded()
             }
         
         
@@ -474,7 +481,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
+         let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
         cell.heroID = "animal: \(indexPath.row)"
         cell.animalImage.heroID = "animalImage: \(indexPath.row)"
     }
@@ -544,28 +551,39 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
             self.searchBar.resignFirstResponder()
             self.searchBarIsActive = false
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
+          
                 
                 let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
                 
+                
+                
                 guard let newIndexPath = indexPath else { return }
+                
+
                 let heroString = "animal: \(newIndexPath.row)"
                 let imageHeroID = "animalImage: \(newIndexPath.row)"
-                let titleLabelHeroID = "titleLabel: \(newIndexPath.row)"
+                let titleLabelHeroID = "animalName: \(newIndexPath.row)"
+                let infoImage = "infoImage: \(newIndexPath.row)"
                 
                 destinationViewController.view.heroID = heroString
                 destinationViewController.imageHeroID = imageHeroID
                 destinationViewController.titleLabelHeroID = titleLabelHeroID
+                destinationViewController.infoImageHeroID = infoImage
+                
                 
                 if let selectedItem = (indexPath as NSIndexPath?)?.row {
                     
+                    // Searching For animal
                     if (self.searchBar.text?.characters.count)! > 0 {
                         let animal = dataSourceForSearchResult?[selectedItem]
                         destinationViewController.updateInfo(animal: animal!)
                         destinationViewController.view.heroID = heroString
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
-                        
+                        destinationViewController.infoImageHeroID = infoImage
                     }
+                        
+                      //  default all animals
                     else  {
                         let animal = allAnimals[selectedItem]
                         destinationViewController.view.heroID = heroString
@@ -573,6 +591,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.updateInfo(animal: animal)
                         destinationViewController.animal = animal.animalName!
+                        destinationViewController.infoImageHeroID = infoImage
                     }
                 }
             }

@@ -9,6 +9,7 @@
 import UIKit
 import QuartzCore
 import FirebaseStorageUI
+import Hero
 
 
 class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate {
@@ -36,7 +37,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
 
     @IBOutlet weak var animalNewsBUttonHeight: NSLayoutConstraint!
     
-
+    @IBOutlet weak var panView: UIView!
+    
     
     
     @IBOutlet weak var infoButton: UIButton!
@@ -57,8 +59,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var dismissButtonHeroID = ""
     var factSheetString = ""
     var updateImage = ""
+    var infoImageHeroID = ""
     var timer = Timer()
     var time = 0
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -100,6 +105,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalImage.heroID = self.imageHeroID
         self.animalNameLabel.heroID = self.titleLabelHeroID
         self.dismissButton.heroID = self.dismissButtonHeroID
+        self.infoButton.heroID = self.infoImageHeroID
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
       //  if self.name == "Blacktip Reef Shark" {
@@ -126,8 +132,6 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     override func viewDidAppear(_ animated: Bool) {
         animateRibbon()
     
-        timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(AnimalDetailViewController.bubbles), userInfo: nil, repeats: true)
-        timer.fire()
     }
     
     func randomNumber(low: Int, high: Int) -> CGFloat {
@@ -139,7 +143,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     func bubbles() {
         
         time += 1
-        
+        print("Time \(time)")
         if self.time == 2 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.infoButton.alpha = 1.0
@@ -150,11 +154,13 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         else if self.time == 10 {
             timer.invalidate()
+            print("Time \(time)")
+            self.time = 0
         }
         
         let size = randomNumber(low: 8, high: 15)
         print("SIZE: \(size)")
-        let xLocation = randomNumber(low: 19, high: 31)
+        let xLocation = randomNumber(low: 19, high: 45)
         print("X LOCATION: \(xLocation)")
         
         let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
@@ -163,24 +169,24 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         view.bringSubview(toFront: bubbleImageView)
         
         let zigzagPath = UIBezierPath()
-        let oX: CGFloat = xLocation
-        let oY: CGFloat = infoButton.center.y + 20
-        let eX: CGFloat = oX
-        let eY: CGFloat = oY - randomNumber(low: 50, high: 30)
+        let originX: CGFloat = xLocation
+        let originY: CGFloat = infoButton.center.y + 20
+        let eX: CGFloat = originX
+        let eY: CGFloat = originY - randomNumber(low: 50, high: 30)
         let t: CGFloat = randomNumber(low: 20, high: 100)
-        var cp1 = CGPoint(x: oX - t, y: ((oY + eY) / 2))
-        var cp2 = CGPoint(x: oX + t, y: cp1.y)
+        var startPoint = CGPoint(x: originX - t, y: ((originY + eY) / 2))
+        var endPoint = CGPoint(x: originX + t, y: startPoint.y)
         
         let r: Int = Int(arc4random() % 2)
         if r == 1 {
-            let temp: CGPoint = cp1
-            cp1 = cp2
-            cp2 = temp
+            let temp: CGPoint = startPoint
+            startPoint = endPoint
+            endPoint = temp
         }
         // the moveToPoint method sets the starting point of the line
-        zigzagPath.move(to: CGPoint(x: oX, y: oY))
+        zigzagPath.move(to: CGPoint(x: originX, y: originY))
         // add the end point and the control points
-        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: cp1, controlPoint2: cp2)
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: startPoint, controlPoint2: endPoint)
         
         CATransaction.begin()
         CATransaction.setCompletionBlock({() -> Void in
@@ -226,13 +232,42 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
  */
     }
     
+    @IBAction func handlePanGesture(_ sender: UIPanGestureRecognizer) {
+
+            let translation = sender.translation(in: self.panView)
+            let progress = translation.y / 2 / self.panView.bounds.height
+            switch sender.state {
+            case .began:
+    Hero.shared.setDefaultAnimationForNextTransition(.fade)
+                hero_dismissViewController()
+            case .changed:
+                Hero.shared.update(progress: Double(progress))
+
+            default:
+                if progress + sender.velocity(in: nil).y / self.panView.bounds.height > 0.3 {
+                    Hero.shared.end()
+                } else {
+                    Hero.shared.cancel()
+                }
+            }
+    }
     
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
     
     
     @IBAction func dismissButtonTapped(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func dismissOutside(_ sender: Any) {
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     
     @IBAction func animalNewsButtonTapped(_ sender: Any) {
@@ -244,13 +279,15 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     }
     
     func animateRibbon() {
-        if self.animalUpdates == "" {
+        if self.animalUpdates == "none" {
             self.animalNewsBUttonHeight.constant = 0.0
             self.infoButton.alpha = 0.0
             self.view.layoutIfNeeded()
         } else {
             
-            self.bubbles()
+            timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(AnimalDetailViewController.bubbles), userInfo: nil, repeats: true)
+            timer.fire()
+            
             UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .curveEaseOut, animations: {
                 self.animalNewsBUttonHeight.constant = 78.0
                 self.view.layoutIfNeeded()
@@ -273,18 +310,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     
     func panGesture(recognizer: UIPanGestureRecognizer) {
-        /*
-         if recognizer.isUp(view: self.view) == false {
-         
-         let transition = CATransition()
-         transition.duration = 0.5
-         transition.type = kCATransitionFade
-         //                transition.subtype = kCATransitionFromBottom
-         
-         self.view.window?.layer.add(transition, forKey: nil)
-         self.dismiss(animated: false, completion: nil)
-         }
-         */
+
     }
     
     
@@ -295,22 +321,9 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             destination.updateInfo = self.animalUpdates
             destination.imageReference = self.updateImage
             
-            
         }
-        
-        
-        
     }
-    
-    
-    
-    
 }
-
-
-
-
-
 
 
 extension UIPanGestureRecognizer {
