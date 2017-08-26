@@ -121,8 +121,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
  
         transparentNavigationBar(self)
         
-         tapGesture = UITapGestureRecognizer(target: self, action: #selector(MapKitViewController.startTimer))
-        mapView.addGestureRecognizer(tapGesture)
+     //    tapGesture = UITapGestureRecognizer(target: self, action: #selector(MapKitViewController.startTimer))
+      //  mapView.addGestureRecognizer(tapGesture)
         
        
     }
@@ -140,12 +140,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
     }
     
     
-    func handleTap() {
-        
-    }
-    
-    
-    func startTimer() {
+ /*   func startTimer() {
 
         print("Tap!")
        
@@ -225,7 +220,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         CATransaction.commit()
         
     }
-    
+  */
     
     func addOverlays() {
         

@@ -22,7 +22,6 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     @IBOutlet weak var getStartedButtonLabel: UIButton!
     @IBOutlet weak var qrCodeResult: UILabel!
     @IBOutlet weak var photoFrameImage: UIImageView!
-    @IBOutlet weak var alignQRCodeLabel: UILabel!
     @IBOutlet weak var scanButton: UIButton!
     @IBOutlet weak var barcodeViewFinder: UIImageView!
     @IBOutlet weak var blurView: UIVisualEffectView!
@@ -37,15 +36,16 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     @IBOutlet weak var dismissBarcodeScanner: UIButton!
     
+    @IBOutlet weak var qrCodeLabel: RQShineLabel!
     @IBOutlet weak var foundAnimalsview: UIView!
     @IBOutlet weak var foundAnimalsViewXConstraint: NSLayoutConstraint!
     @IBOutlet weak var foundAnimalsViewWidth: NSLayoutConstraint!
 
     @IBOutlet weak var exhibitNameLabel: RQShineLabel!
     
-    @IBOutlet weak var bubbleImage: UIImageView!
     var animals: [AnimalTest] = []
     var organizedAnimals: [AnimalTest] = []
+    var foundAnimal = 0
     var foundAnimalsViewIsShown = false
     var resetFoundAnimals = false
     var initialScan = true
@@ -64,6 +64,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var dataType = AVMetadataObjectTypeQRCode
     var resetExhibit = false
     var oneScan = false
+    
+    var time = 0
+    var timer = Timer()
+    var isBubbling = false
     
     func configureVideoCapture() {
         let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
@@ -119,12 +123,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.view.addSubview(QRScannerLabel)
         self.view.addSubview(qrCodeFrameView!)
         self.view.addSubview(photoFrameImage)
-        self.view.addSubview(alignQRCodeLabel)
         self.view.addSubview(self.QRAnimalView)
         self.view.addSubview(self.dismissBarcodeScanner)
         self.view.addSubview(self.foundAnimalsview)
         self.view.addSubview(self.containerViewForDismiss)
         self.view.addSubview(barcodeViewFinder)
+        self.view.addSubview(qrCodeLabel)
+        
+
     }
     
     
@@ -227,8 +233,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       bubbles()
+ 
         self.exhibitNameLabel.adjustsFontSizeToFitWidth = true
 
         self.firebaseReference = FIRDatabase.database().reference()
@@ -242,6 +247,9 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         self.foundAnimalsViewWidth.constant = UIScreen.main.bounds.width - self.containerViewForDismiss.frame.width - 12
         
+        self.qrCodeLabel.shineDuration = 0.5
+        self.qrCodeLabel.shine()
+        self.qrCodeLabel.text = "Align QR Code in Frame"
         
         getAnimals()
         self.containerViewForDismiss.layer.cornerRadius = 5.0
@@ -272,6 +280,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
         self.scanType = "qr"
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -287,7 +299,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         if self.scanType == "barCode" {
             self.dataType = AVMetadataObjectTypeCode128Code
             self.barcodeViewFinder.isHidden = false
-            self.alignQRCodeLabel.text = "Align barcode in frame"
+            self.qrCodeLabel.text = "Align barcode in frame"
             self.photoFrameImage.isHidden = true
             self.QRScannerLabel.text = "Membership Card Scanner"
             self.dismissBarcodeScanner.isHidden = false
@@ -297,7 +309,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         } else {
             self.dataType = AVMetadataObjectTypeQRCode
             self.barcodeViewFinder.isHidden = true
-            self.alignQRCodeLabel.text = "Align QR code in frame"
+            self.qrCodeLabel.text = "Align QR code in frame"
             self.scanButton.isHidden = false
             self.photoFrameImage.isHidden = false
             self.QRScannerLabel.text = "Exhibit Scanner"
@@ -332,47 +344,90 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         }
         
         if QRModalView.isHidden == false {
-            alignQRCodeLabel.alpha = 0.0
+            qrCodeLabel.alpha = 0.0
+        }
+    }
+    
+    func startBubbles() {
+        
+        if self.isBubbling == false {
+        print("start bubbles")
+        // time interval controls amount of bubbles generated
+        timer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(QRScannerViewController.bubbles), userInfo: nil, repeats: true)
+        timer.fire()
         }
     }
     
     
     func bubbles() {
         
-        self.view.addSubview(bubbleImage)
+        self.isBubbling = true
+        
+        time += 1
+        print("Time \(time)")
+        
+         if self.time == 250 {
+            timer.invalidate()
+            print("Time \(time)")
+            self.time = 0
+            self.isBubbling = false
+        }
+        
+        let size = randomNumber(low: 8, high: 15)
+        print("SIZE: \(size)")
+        let xLocation = randomNumber(low: 8, high: 370)
+        print("X LOCATION: \(xLocation)")
+        
+        let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
+        bubbleImageView.frame = CGRect(x: xLocation, y: collectionView.center.y + 300, width: size, height: size)
+        view.addSubview(bubbleImageView)
+        view.bringSubview(toFront: bubbleImageView)
+        
         let zigzagPath = UIBezierPath()
-        let oX: CGFloat = bubbleImage.frame.origin.x
-        let oY: CGFloat = bubbleImage.frame.origin.y
-        let eX: CGFloat = oX
-        let eY: CGFloat = oY - 650
-        let t: CGFloat = 40
-        let cp1 = CGPoint(x: oX - t, y: ((oY + eY) / 2))
-        let cp2 = CGPoint(x: oX + t, y: cp1.y)
+        let originX: CGFloat = xLocation
+        // Set bubble starting location to bottom of screen
+        let originY: CGFloat = self.view.frame.height
+        let eX: CGFloat = originX
+        
+        // set vertical distance travelled before popping
+        let eY: CGFloat = originY - randomNumber(low: Int(self.view.frame.height) - 30, high: Int(self.view.frame.height))
+        //t = horizontal displacement
+        let t: CGFloat = randomNumber(low: 20, high: 100)
+        var startPoint = CGPoint(x: originX - t, y: ((originY + eY) / 2))
+        var endPoint = CGPoint(x: originX + t, y: startPoint.y)
+        
+        let r: Int = Int(arc4random() % 2)
+        if r == 1 {
+            let temp: CGPoint = startPoint
+            startPoint = endPoint
+            endPoint = temp
+        }
         // the moveToPoint method sets the starting point of the line
-        zigzagPath.move(to: CGPoint(x: oX, y: oY))
+        zigzagPath.move(to: CGPoint(x: originX, y: originY))
         // add the end point and the control points
-        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: cp1, controlPoint2: cp2)
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: startPoint, controlPoint2: endPoint)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({() -> Void in
+            
+            UIView.transition(with: bubbleImageView, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
+                bubbleImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            }, completion: {(_ finished: Bool) -> Void in
+                bubbleImageView.removeFromSuperview()
+            })
+        })
+        
         let pathAnimation = CAKeyframeAnimation(keyPath: "position")
-        pathAnimation.duration = 3
+        pathAnimation.duration = 2.9
         pathAnimation.path = zigzagPath.cgPath
         // remains visible in it's final state when animation is finished
         // in conjunction with removedOnCompletion
         pathAnimation.fillMode = kCAFillModeForwards
         pathAnimation.isRemovedOnCompletion = false
-        bubbleImage.layer.add(pathAnimation, forKey: "movingAnimation")
+        bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
         
+        CATransaction.commit()
         
-        CATransaction.begin()
-        CATransaction.setCompletionBlock({() -> Void in
-        
-            UIView.transition(with: self.bubbleImage, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
-                self.bubbleImage.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
-            }, completion: {(_ finished: Bool) -> Void in
-                self.bubbleImage.removeFromSuperview()
-                
-            })
-        })
-
     }
     
     func cameraCheck() {
@@ -382,7 +437,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             qrOn(true)
             self.photoFrameImage.isHidden = false
             QRModalView.isHidden = true
-            alignQRCodeLabel.alpha = 1.0
+            qrCodeLabel.alpha = 1.0
             scanButton.isHidden = false
             
         case .denied:
@@ -399,7 +454,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             
             QRModalView.isHidden = false
-            alignQRCodeLabel.alpha = 0.0
+            qrCodeLabel.alpha = 0.0
             scanButton.isHidden = true
             photoFrameImage.isHidden = true
             
@@ -570,7 +625,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         self.QRAnimalViewYConstraint.constant = self.collectionViewLocation
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.scanButton.alpha = 0.0
-            self.alignQRCodeLabel.alpha = 0.0
+          //  self.alignQRCodeLabel.alpha = 0.0
             self.view.layoutIfNeeded()
         }, completion: { (true) in
                 self.animateRight()
@@ -588,7 +643,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.4, options: .allowUserInteraction, animations: {
             self.scanButton.alpha = 1.0
-            self.alignQRCodeLabel.alpha = 1.0
+        //    self.alignQRCodeLabel.alpha = 1.0
             self.view.layoutIfNeeded()
         }, completion: { (true) in
         self.QRViewIsVisible = false
@@ -614,7 +669,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
             if self.getFoundAnimals() == 0 {
-                    self.animateLabel(with: "Check off the animals you find in the list below!", fadeOutDuration: 0.5, shineDuration: 0.5)
+                self.animateLabel(label: self.exhibitNameLabel, with: "Check off the animals you find in the list below!", fadeOutDuration: 0.5, shineDuration: 0.5)
                 }
             })
 
@@ -638,12 +693,12 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
 
-    func animateLabel(with newString: String, fadeOutDuration: CFTimeInterval, shineDuration: CFTimeInterval) {
-        self.exhibitNameLabel.shineDuration = shineDuration
-        self.exhibitNameLabel.fadeoutDuration = fadeOutDuration
-        self.exhibitNameLabel.fadeOut {
-            self.exhibitNameLabel.text = newString
-            self.exhibitNameLabel.shine()
+    func animateLabel(label: RQShineLabel, with newString: String, fadeOutDuration: CFTimeInterval, shineDuration: CFTimeInterval) {
+        label.shineDuration = shineDuration
+        label.fadeoutDuration = fadeOutDuration
+        label.fadeOut {
+            label.text = newString
+            label.shine()
         }
     }
     
@@ -679,25 +734,48 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             print("checked!")
         cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "checked"), for: .normal)
         animal.found = true
+            self.foundAnimal += 1
         
     } else {
             print("unchecked!")
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
             animal.found = false
+            self.foundAnimal -= 1
         }
         
         let animalCount = self.getFoundAnimals()
+        
+        
+        // User found all animals, start bubble animation
+        if animalCount == self.organizedAnimals.count {
+            startBubbles()
+            
+            self.animateLabel(label: self.qrCodeLabel, with: "You found all the animals in this exhibit!", fadeOutDuration: 0.3, shineDuration: 0.5)
+            UIView.animate(withDuration: 0.3, animations: {
+                self.qrCodeLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            })
+            
+            
+             DispatchQueue.main.asyncAfter(deadline: .now() + 5.0, execute: {
+                self.animateLabel(label: self.qrCodeLabel, with: "Align QR Code in Frame", fadeOutDuration: 0.5, shineDuration: 0.5)
+                self.qrCodeLabel.font = self.qrCodeLabel.font.withSize(18)
+                UIView.animate(withDuration: 0.3, animations: {
+                    self.qrCodeLabel.transform = CGAffineTransform.identity
+                })
+            })
+        }
+        
         
         if animalCount != 0 {
             
             //Change grammar (Add/Remove "s" in "animals")
             if animalCount == 1 {
-                self.animateLabel(with: "You've found \(animalCount) animal.", fadeOutDuration: 0.2, shineDuration: 0.2)
+                self.animateLabel(label: self.exhibitNameLabel, with: "You've found \(animalCount) animal.", fadeOutDuration: 0.2, shineDuration: 0.2)
             } else {
-                self.animateLabel(with: "You've found \(animalCount) animals.", fadeOutDuration: 0.2, shineDuration: 0.2)
+                self.animateLabel(label: self.exhibitNameLabel, with: "You've found \(animalCount) animals.", fadeOutDuration: 0.2, shineDuration: 0.2)
             }
         } else {
-            self.animateLabel(with: "Check off the animals you find in the list below!", fadeOutDuration: 0.2, shineDuration: 0.2)
+            self.animateLabel(label: self.exhibitNameLabel, with: "Check off the animals you find in the list below!", fadeOutDuration: 0.2, shineDuration: 0.2)
         }
         
     }

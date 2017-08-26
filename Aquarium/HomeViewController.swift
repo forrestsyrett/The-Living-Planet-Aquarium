@@ -12,7 +12,7 @@ import CoreLocation
 import UserNotifications
 import SAConfettiView
 
-class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNotificationCenterDelegate, UITabBarDelegate {
+class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNotificationCenterDelegate, UITabBarDelegate, UIGestureRecognizerDelegate {
     
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var buyTicketsLabel: UIButton!
@@ -28,9 +28,17 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     @IBOutlet weak var logoButton: UIButton!
     @IBOutlet weak var confettiView: SAConfettiView!
     
+    
+    var bubbleView = UIImageView()
+    
     var destinationName = "String"
     var notificationSwitch = true
     var counter = 0
+    
+    var time = 0
+    var timer = Timer()
+    
+  //  var tapGesture = UITapGestureRecognizer()
     
     // MARK: - Beacon Regions
     
@@ -42,6 +50,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         gradient(self.view)
         transparentNavigationBar(self)
         confettiView.isUserInteractionEnabled = false
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +64,13 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        startBubbles()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        timer.invalidate()
+    }
  
 
     @IBAction func logoButtonTapped(_ sender: Any) {
@@ -73,6 +89,89 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
             counter = 0
         }
  
+    }
+    
+    func startBubbles() {
+        
+            print("start bubbles")
+            // time interval controls amount of bubbles generated
+            timer = Timer.scheduledTimer(timeInterval: 0.8, target: self, selector: #selector(HomeViewController.bubbles), userInfo: nil, repeats: true)
+            timer.fire()
+        
+    }
+    
+    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+        
+        print("tap")
+        guard let image = gestureRecognizer.view else { return }
+        image.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        image.removeFromSuperview()
+        
+    }
+    
+    
+    func bubbles() {
+   
+        let size = randomNumber(low: 10, high: 22)
+        let xLocation = randomNumber(low: 8, high: 370)
+        
+        
+        let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
+        bubbleImageView.frame = CGRect(x: xLocation, y: self.view.frame.height, width: size, height: size)
+
+        view.addSubview(bubbleImageView)
+        view.bringSubview(toFront: bubbleImageView)
+        
+        let zigzagPath = UIBezierPath()
+        let originX: CGFloat = xLocation
+        // Set bubble starting location to bottom of screen
+        let originY: CGFloat = self.view.frame.height
+        let eX: CGFloat = originX
+        
+        // set vertical distance travelled before popping
+        let eY: CGFloat = originY - randomNumber(low: Int(self.view.frame.height) - 30, high: Int(self.view.frame.height))
+        //t = horizontal displacement
+        let t: CGFloat = randomNumber(low: 30, high: 120)
+        var startPoint = CGPoint(x: originX - t, y: ((originY + eY) / 2))
+        var endPoint = CGPoint(x: originX + t, y: startPoint.y)
+        
+        let r: Int = Int(arc4random() % 2)
+        if r == 1 {
+            let temp: CGPoint = startPoint
+            startPoint = endPoint
+            endPoint = temp
+        }
+        // the moveToPoint method sets the starting point of the line
+        zigzagPath.move(to: CGPoint(x: originX, y: originY))
+        // add the end point and the control points
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: startPoint, controlPoint2: endPoint)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({() -> Void in
+            
+            UIView.transition(with: bubbleImageView, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
+                bubbleImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            }, completion: {(_ finished: Bool) -> Void in
+                bubbleImageView.removeFromSuperview()
+            })
+        })
+   
+        
+        let pathAnimation = CAKeyframeAnimation(keyPath: "position")
+        pathAnimation.duration = 5.2
+        pathAnimation.path = zigzagPath.cgPath
+        // remains visible in it's final state when animation is finished
+        // in conjunction with removedOnCompletion
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.isRemovedOnCompletion = false
+        bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
+        
+    //    let viewLocation: CGRect? = bubbleImageView.layer.presentation()?.frame
+    //    bubbleImageView.frame = CGRect(x: (viewLocation?.origin.x)!, y: (viewLocation?.origin.y)!, width: (viewLocation?.size.width)!, height: (viewLocation?.size.height)!)
+        
+        
+        CATransaction.commit()
+        
     }
     
     
