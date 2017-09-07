@@ -111,6 +111,8 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     
     
     func bubbles() {
+        
+        var bubbleArray: [UIImageView] = []
    
         let size = randomNumber(low: 10, high: 22)
         let xLocation = randomNumber(low: 8, high: 370)
@@ -118,7 +120,14 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         
         let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
         bubbleImageView.frame = CGRect(x: xLocation, y: self.view.frame.height, width: size, height: size)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(HomeViewController.handleTap(gestureRecognizer:)))
 
+        bubbleImageView.addGestureRecognizer(tapGesture)
+        
+        bubbleArray.append(bubbleImageView)
+        
+        
         view.addSubview(bubbleImageView)
         view.bringSubview(toFront: bubbleImageView)
         
@@ -166,8 +175,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         pathAnimation.isRemovedOnCompletion = false
         bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
         
-    //    let viewLocation: CGRect? = bubbleImageView.layer.presentation()?.frame
-    //    bubbleImageView.frame = CGRect(x: (viewLocation?.origin.x)!, y: (viewLocation?.origin.y)!, width: (viewLocation?.size.width)!, height: (viewLocation?.size.height)!)
+   
         
         
         CATransaction.commit()

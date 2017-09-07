@@ -143,7 +143,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     func bubbles() {
         
         time += 1
-        print("Time \(time)")
+   //     print("Time \(time)")
         if self.time == 2 {
             UIView.animate(withDuration: 0.3, animations: {
                 self.infoButton.alpha = 1.0
@@ -154,14 +154,14 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         else if self.time == 10 {
             timer.invalidate()
-            print("Time \(time)")
+      //      print("Time \(time)")
             self.time = 0
         }
         
         let size = randomNumber(low: 8, high: 15)
-        print("SIZE: \(size)")
+     //   print("SIZE: \(size)")
         let xLocation = randomNumber(low: 19, high: 45)
-        print("X LOCATION: \(xLocation)")
+    //    print("X LOCATION: \(xLocation)")
         
         let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
         bubbleImageView.frame = CGRect(x: xLocation, y: infoButton.center.y + 50, width: size, height: size)
@@ -252,9 +252,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             }
     }
     
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
-    }
+
     
     
     @IBAction func dismissButtonTapped(_ sender: Any) {

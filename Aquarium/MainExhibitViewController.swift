@@ -168,7 +168,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         let view = array["view"] as! UIView
     
         cell.time += 1
-  print("Cell Time \(cell.time)")
+ // print("Cell Time \(cell.time)")
         if cell.time == 2 {
             UIView.animate(withDuration: 0.2, animations: {
                 view.isHidden = false
@@ -322,7 +322,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         if self.keyboardIsUp == false {
             self.keyboardIsUp = true
-            print("keyboard will be shown")
+     //       print("keyboard will be shown")
 
         var info = notification.userInfo!
         let keyboardSize = (info[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
@@ -353,7 +353,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         _ = notification.userInfo!
         //     let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         //     let keyboardHeight: CGFloat = (keyboardSize?.height)!
-        print("keyboard will be hidden")
+   //     print("keyboard will be hidden")
         if self.keyboardIsUp == true {
             self.keyboardIsUp = false
         
