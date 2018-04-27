@@ -14,7 +14,7 @@ import SAConfettiView
 
 class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNotificationCenterDelegate, UITabBarDelegate, UIGestureRecognizerDelegate {
     
-    @IBOutlet weak var welcomeLabel: UILabel!
+   
     @IBOutlet weak var buyTicketsLabel: UIButton!
     @IBOutlet weak var becomeAMemberLabel: UIButton!
     @IBOutlet weak var animalEncountersLabel: UIButton!
@@ -50,11 +50,12 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         gradient(self.view)
         transparentNavigationBar(self)
         confettiView.isUserInteractionEnabled = false
+        startBubbles()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        animateLabel(welcomeLabel, animateTime: 0.5)
+     
         animateLines(lineOne, animateTime: 0.75)
         animateLines(lineTwo, animateTime: 1.0)
         animateLines(lineThree, animateTime: 1.5)
@@ -70,6 +71,10 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     
     override func viewDidDisappear(_ animated: Bool) {
         timer.invalidate()
+    }
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return true
     }
  
 
@@ -100,7 +105,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
         
     }
     
-    func handleTap(gestureRecognizer: UITapGestureRecognizer) {
+    @objc func handleTap(gestureRecognizer: UITapGestureRecognizer) {
         
         print("tap")
         guard let image = gestureRecognizer.view else { return }
@@ -110,7 +115,7 @@ class HomeViewController: UIViewController, UITabBarControllerDelegate, UNUserNo
     }
     
     
-    func bubbles() {
+    @objc func bubbles() {
         
         var bubbleArray: [UIImageView] = []
    

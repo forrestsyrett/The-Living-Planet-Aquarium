@@ -163,10 +163,15 @@ class EventsViewController: UIViewController {
                 guard let event = response.result.value else { return }
                 
                 guard let events = event.events else { return }
-                
+                let reconfiguredDate = self.getStringFromDate(date: self.calendarView.selectedDates.first!)
                 for singleEvent in events {
+                    if singleEvent.eventDate != nil {
                     self.calendarEvents.append(singleEvent)
-                 //   print("EventName: \(singleEvent.eventName) \(singleEvent.scheduled)")
+                    } else {
+                        singleEvent.eventDate = "All Day"
+                        self.calendarEvents.append(singleEvent)
+                    }
+                   // print("EventName: \(singleEvent.eventName) \(singleEvent.eventDate)")
                     
                 }
                 
@@ -227,6 +232,17 @@ class EventsViewController: UIViewController {
         guard let date = formatter.date(from: dateString) else { return Date() }
         
         return date
+    }
+    
+    func getStringFromDate(date: Date) -> String {
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssxxxxx"
+        //Set the hour to LLPA closing time
+        let adjustedDate = Calendar.current.date(bySetting: .hour, value: 18, of: date)
+        let stringDate = formatter.string(from: adjustedDate!)
+        
+        return stringDate
     }
     
     
@@ -380,8 +396,8 @@ extension EventsViewController: JTAppleCalendarViewDataSource {
         dateFormatter.timeZone = Calendar.current.timeZone
         dateFormatter.locale = Calendar.current.locale
         
-        let startDate = dateFormatter.date(from: "2017 01 01")!
-        let endDate = dateFormatter.date(from: "2017 12 31")!
+        let startDate = dateFormatter.date(from: "2018 01 01")!
+        let endDate = dateFormatter.date(from: "2019 12 31")!
         
         let parameters = ConfigurationParameters(startDate: startDate, endDate: endDate, numberOfRows: 1, calendar: Calendar.current, generateInDates: .off , generateOutDates: .off, firstDayOfWeek: .sunday , hasStrictBoundaries: nil)
         return parameters
@@ -391,6 +407,13 @@ extension EventsViewController: JTAppleCalendarViewDataSource {
 
 
 extension EventsViewController: JTAppleCalendarViewDelegate {
+    
+    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
+        //
+    }
+    
+   
+    
     
     func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "customCell", for: indexPath) as! CustomCell
@@ -461,7 +484,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
         cell.eventNameLabel.text = event.eventName
         
         guard let eventDate = event.eventDate else {
-            cell.eventTimeLabel.text = ""
+            cell.eventTimeLabel.text = "All Day"
             return cell
         }
         
@@ -479,8 +502,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
         cell.notifyMeButton.titleLabel?.adjustsFontSizeToFitWidth = true
         cell.notifyMeButton.titleLabel?.minimumScaleFactor = 0.5
         
-        
-        
+      
         if currentDate >= date.addingTimeInterval(15 * 60) {
             cell.notifyMeButton.alpha = 0.45
             cell.notifyMeButton.tintColor = UIColor(red: 0.25, green: 0.25, blue: 0.25, alpha: 0.45)
@@ -492,7 +514,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
             cell.notifyMeButton.alpha = 1.0
             cell.notifyMeButton.tintColor = .white
             cell.notifyMeButton.isEnabled = false
-            cell.notifyMeButton.layer.borderColor = UIColor.lightGray.cgColor
+            cell.notifyMeButton.layer.borderColor = UIColor.white.cgColor
             cell.notifyMeButton.layer.borderWidth = 1.0
             cell.notifyMeButton.setTitle("Starting Soon", for: .normal)
             
@@ -530,6 +552,7 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
         }
     }
 }
+        
         return cell
         
     }
@@ -582,10 +605,14 @@ extension EventsViewController: UITableViewDelegate, UITableViewDataSource,Event
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssxxxxx"
                 formatter.locale = Locale(identifier: "en_US")
-                let date = formatter.date(from: event.eventDate!)
-                let notificationDate = date?.addingTimeInterval(TimeInterval(-60 * 15))
+                guard let eventDate = event.eventDate else {
+            //        print("\(event.eventDate)")
+                    return }
+                let date = formatter.date(from: eventDate)
+                guard let notificationDate = date?.addingTimeInterval(TimeInterval(-60 * 15)) else {
+                    return }
                 
-                notificationController.scheduleNewNotification(on: notificationDate!, event: event)
+                notificationController.scheduleNewNotification(on: notificationDate, event: event)
            
                 // set button title label to show notification is pending
                 eventTableViewCell.notifyMeButton.setTitle("Cancel", for: .normal)

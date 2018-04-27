@@ -365,7 +365,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         mapView.addAnnotation(self.currentLocationAnnotation)
     }
     
-    func updateLocation() {
+    @objc func updateLocation() {
         
         print("Updating Location For \(CurrentLocationController.shared.exhibitName)")
         UIView.animate(withDuration: 1.5) {

@@ -26,6 +26,7 @@ class CafeMenuCollectionViewController: UIViewController, UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         bottomTrayView.backgroundColor = aquaLight
+        view.backgroundColor = aquaLight
     }
 
 

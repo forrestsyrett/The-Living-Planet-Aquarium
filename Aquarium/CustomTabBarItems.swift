@@ -3,7 +3,7 @@
 //  CustomTabBar
 //
 //  Created by Forrest Syrett on 4/28/17.
-//  Copyright © 2017 Swift Joureny. All rights reserved.
+//  Copyright © 2017 Forrest Syrett. All rights reserved.
 //
 
 import UIKit
@@ -11,6 +11,7 @@ import UIKit
 class CustomTabBarItem: UIView {
     
     var iconView: UIImageView!
+    var iconOffset: CGFloat = 2.0
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -32,13 +33,22 @@ class CustomTabBarItem: UIView {
         }
         
         
+        // Messy solution for adjusting icon offset for extended tabBar on iPhone X
+        if DeviceCheck.shared.device == "iPhone X" {
+            iconOffset = 3.0
+        } else {
+            iconOffset = 2.0
+        }
+        
+        
         iconView = UIImageView(frame: CGRect(x: (self.frame.width-image.size.width)/2, y: (self.frame.height-image.size
-            .height)/2, width: self.frame.width, height: self.frame.height))
+            .height) / iconOffset, width: self.frame.width, height: self.frame.height))
         iconView.image = image
         iconView.sizeToFit()
         iconView.tintColor = UIColor.white
         
         self.addSubview(iconView)
+      
     }
     
     

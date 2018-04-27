@@ -11,34 +11,61 @@ import UIKit
 
 class CustomTabBarController: UITabBarController, CustomTabBarDataSource, CustomTabBarDelegate, UITabBarControllerDelegate {
     
+    
+    
     static let shared = CustomTabBarController()
     var selectedTabIndex = 0
     var buttonColor = aquaLight
     var home: Bool = true
     let homeButton = UIButton(frame: CGRect(x: 0, y: 2.0, width: 60, height: 60))
+    var customTabBar = CustomTabBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        DeviceCheck.shared.checkDevice()
+        
         self.tabBar.isHidden = true
         self.selectedIndex = 2
         self.selectedTabIndex = self.selectedIndex
-        let customTabBar = CustomTabBar(frame: self.tabBar.frame)
-        print("Custom Tab Bar Height = \(customTabBar.frame.height)")
+       customTabBar = CustomTabBar(frame: self.tabBar.frame)
+      // customTabBar = CustomTabBar(frame: CGRect(x: 0, y: 750.0, width: self.tabBar.frame.width, height: self.tabBar.frame.height))
+        
         
         customTabBar.datasource = self
         customTabBar.delegate = self
         self.delegate = self
-        
-        
-     //   customTabBar.autoresizingMask = [UIViewAutoresizing.flexibleHeight]
-        customTabBar.autoresizesSubviews = false
-        
+
         self.view.addSubview(customTabBar)
+        
+        
+        customTabBar.translatesAutoresizingMaskIntoConstraints = false
+        customTabBar.clipsToBounds = true
+        
+        
+        // Messy solution for adjusting custom tab bar for iPhone X
+        if DeviceCheck.shared.device == "iPhone X" {
+        NSLayoutConstraint.activate([
+            customTabBar.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+           customTabBar.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+           customTabBar.heightAnchor.constraint(equalToConstant: 90.0),
+            customTabBar.bottomAnchor.constraintEqualToSystemSpacingBelow(self.view.bottomAnchor, multiplier: 1.0)
+            ])
+       
+        }
+      
+        
         setupHomeButton()
         customTabBar.setup()
+        print("Custom Tab Bar Height = \(customTabBar.frame.height)")
+        print("TabBar stats = \(self.tabBar.frame)")
+ 
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+    }
+
     
     func tabBarItemsInCustomTabBar(_ tabBarView: CustomTabBar) -> [UITabBarItem] {
         return tabBar.items!
@@ -85,8 +112,16 @@ class CustomTabBarController: UITabBarController, CustomTabBarDataSource, Custom
     
     func setupHomeButton() {
         
+        var yOrigin:CGFloat = 0.0
         var homeButtonFrame = homeButton.frame
-        homeButtonFrame.origin.y = self.view.bounds.height - homeButtonFrame.height
+        
+        if DeviceCheck.shared.device == "iPhone X" {
+            yOrigin = self.view.bounds.height - homeButtonFrame.height - 30
+        } else {
+            yOrigin = self.view.bounds.height - homeButtonFrame.height
+        }
+        
+        homeButtonFrame.origin.y = yOrigin
         homeButtonFrame.origin.x = self.view.bounds.width/2 - homeButtonFrame.size.width/2
         homeButton.frame = homeButtonFrame
         homeButton.backgroundColor = buttonColor
