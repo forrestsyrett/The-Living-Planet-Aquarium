@@ -19,7 +19,7 @@ protocol BottomSheetViewControllerDelegate: class {
     func getDirectionsButtonTapped(_ bottomSheetViewController: BottomSheetViewController)
 }
 
-class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource, AnimalActionsDelegate  {
+class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, UITableViewDelegate, UITableViewDataSource  {
     
     
     static let shared = BottomSheetViewController()
@@ -34,13 +34,14 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet weak var galleryPhoto1: UIImageView!
     @IBOutlet weak var galleryInfo: UILabel!
     @IBOutlet weak var shadowView: UIImageView!
-    @IBOutlet weak var handleView: UIView!
     @IBOutlet weak var getDirectionsButton: UIButton!
     var buttonAction = "Safari"
     @IBOutlet weak var scrollView: UIScrollView!
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var theaterTableView: UITableView!
+    
+    @IBOutlet weak var pullArrow: UIImageView!
     
     let galleries = MapGalleryController.sharedController
     
@@ -74,7 +75,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     var mapGalleries = [MapGalleryController.sharedController.antarcticAdventure.name]
     var allTheaterShows = [TheaterShowsController.shared.penguins4D, TheaterShowsController.shared.sammyAndRay4D, TheaterShowsController.shared.wildCats3D]
-    
+    let cellSpacingHeight: CGFloat = 5
     
     var animalInfo = ""
     var animalImage = ""
@@ -89,6 +90,10 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        bottomSheetGradient(self.view)
+        
+        glow(view: completeView)
+        
         self.getDirectionsButton.isHidden = true
         
         self.firebaseReference = FIRDatabase.database().reference()
@@ -101,9 +106,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
         gesture.delegate = self
         
-        roundedCorners(completeView, cornerRadius: 5.0)
         roundedCorners(galleryPhoto1, cornerRadius: 5.0)
-        roundedCorners(handleView, cornerRadius: 3.0)
         roundedCorners(getDirectionsButton, cornerRadius: 5.0)
         getDirectionsButton.layer.borderColor = UIColor.white.cgColor
         getDirectionsButton.layer.borderWidth = 1.0
@@ -215,7 +218,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func numberOfSections(in tableView: UITableView) -> Int {
         if tableView == self.tableView {
-            return  1
+            return  self.allAnimals.count
         } else {
             return 1
         }
@@ -224,11 +227,23 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == self.tableView {
-            return self.allAnimals.count
+            return 1
         } else {
             return self.allTheaterShows.count
         }
     }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return cellSpacingHeight
+    }
+    
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.clear
+        return headerView
+    }
+    
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -236,10 +251,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         if tableView == self.tableView {
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "mapCell") as! MapTableViewCell
-            
-            cell.delegate = self
-            
-            let mapData = self.allAnimals[indexPath.row]
+
+            let mapData = self.allAnimals[indexPath.section]
             
             // Download image from Firebase Storage
             
@@ -250,12 +263,12 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             
             cell.cellLabel.text = mapData.animalName
-            
-            cell.animalInfoButton.tag = indexPath.row
-            
             cell.cellImage.layer.cornerRadius = 5.0
             cell.cellImage.clipsToBounds = true
-            
+            cell.layer.cornerRadius = 5.0
+            cell.clipsToBounds = true
+            cell.cellImage.heroID = "tableViewImage \(indexPath.section)"
+            cell.cellLabel.heroID = "animalName: \(indexPath.section)"
             
             return cell
             
@@ -269,6 +282,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             cell.moviePosterImage.layer.cornerRadius = 5.0
             cell.moviePosterImage.clipsToBounds = true
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 5.0
             
             return cell
         }
@@ -279,12 +294,11 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if tableView == self.tableView {
-            let animal = allAnimals[indexPath.row]
+            let animal = allAnimals[indexPath.section]
             let cell = self.tableView.cellForRow(at: indexPath) as! MapTableViewCell
             
-            cell.cellImage.heroID = "tableViewImage \(indexPath.row)"
-            cell.cellLabel.heroID = "tableViewTitle \(indexPath.row)"
-            cell.animalInfoButton.heroID = "tableViewInfoButton \(indexPath.row)"
+            cell.cellImage.heroID = "tableViewImage \(indexPath.section)"
+            cell.cellLabel.heroID = "animalName: \(indexPath.section)"
             self.animalName = animal.animalName ?? ""
             self.animalImage = animal.animalImage ?? ""
             self.animalInfo = animal.animalInfo ?? ""
@@ -334,8 +348,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             
         case galleries.cafe.name:
             hideTableView()
-            self.theaterTableView.isHidden = true
-            self.shadowView.isHidden = true
+            self.segueString = "toMenus"
+            self.getDirectionsButton.isHidden = false
             
         case galleries.deepSeaLab.name:
             showTableView()
@@ -500,9 +514,9 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.cafe)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("More Info!", for: .normal)
-        self.segueString = "cafe"
-        self.getDirectionsButton.isHidden = true
+        self.getDirectionsButton.setTitle("View the Menu!", for: .normal)
+        self.segueString = "toMenus"
+        self.getDirectionsButton.isHidden = false
     
     }
     
@@ -576,8 +590,15 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             UIView.animate(withDuration: duration, delay: 0.0, options: .allowUserInteraction, animations: {
                 if  velocity.y >= 0 {
                     self.view.frame = CGRect(x: 0, y: self.partialView, width: self.view.frame.width, height: self.view.frame.height)
+                    UIView.animate(withDuration: 0.6, animations: {
+                        self.pullArrow.image = #imageLiteral(resourceName: "upArrow")
+                    })
+                    
                 } else {
                     self.view.frame = CGRect(x: 0, y: self.fullView, width: self.view.frame.width, height: self.view.frame.height)
+                    UIView.animate(withDuration: 0.6, animations: {
+                        self.pullArrow.image = #imageLiteral(resourceName: "expandArrow")
+                    })
                 }
                 
             })
@@ -590,42 +611,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             }, completion: nil)
         }
     }
-    
-    
-    
-    
-    
-    // MARK: - Delegate Functions
-    
-    func infoButtonAction(_ mapTableViewCell: MapTableViewCell) {
-        
-        guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
-        self.animalImage = animal.animalImage ?? ""
-        self.animalInfo = animal.animalInfo ?? ""
-        self.animalName = animal.animalName ?? ""
-        self.conservationStatus = animal.conservationStatus ?? ""
-        
-       // print("Info button tapped for \(animal.animalName ?? "")")
-        self.performSegue(withIdentifier: "toAnimalDetail", sender: self)
-        
-        self.closeSwitch = false
-    }
-    
-    func locateButtonAction(_ mapTableViewCell: MapTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
-        print("Locate button tapped for \(animal.animalName ?? "")")
-    }
-    
-    func feedingButtonAction(_ mapTableViewCell: MapTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: mapTableViewCell) else { return }
-        let animal = self.allAnimals[(indexPath as NSIndexPath).row]
-        print("Feeding button tapped for \(animal.animalName ?? "")")
-    }
-    
-    
-    
+
     
     // "More Info" Button
     @IBAction func getDirectionsButtonTapped(_ sender: AnyObject) {
@@ -659,7 +645,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             if let destinationViewController = segue.destination as? AnimalDetailViewController {
                 let indexPath = self.tableView.indexPath(for: (sender as! UITableViewCell))
                 guard let newIndexPath = indexPath else { return }
-                let animal = self.allAnimals[newIndexPath.row]
+                let animal = self.allAnimals[newIndexPath.section]
 
                 
                 destinationViewController.imageReference = animal.animalImage ?? ""
@@ -669,9 +655,9 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 destinationViewController.factSheetString = animal.factSheet ?? ""
                 destinationViewController.animalUpdates = animal.animalUpdates ?? ""
                 destinationViewController.updateImage = animal.updateImage ?? ""
-                destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.row)"
-                destinationViewController.titleLabelHeroID = "tableViewTitle \(newIndexPath.row)"
-                destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.row)"
+                destinationViewController.imageHeroID = "tableViewImage \(newIndexPath.section)"
+                destinationViewController.titleLabelHeroID = "animalName: \(newIndexPath.section)"
+                destinationViewController.dismissButtonHeroID = "tableViewInfoButton \(newIndexPath.section)"
                 
                 
             }
@@ -698,13 +684,6 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
                 webviewDestination.buttonHidden = false
                 webviewDestination.requestString = "http://www.thelivingplanet.com/home-4/education/"
                 webviewDestination.titleLabelString = "Education"
-                
-            }
-            
-            if segue.identifier == "cafe" {
-                webviewDestination.buttonHidden = false
-                webviewDestination.requestString = "http://thelivingplanet.com/cafe-avalon/"
-                webviewDestination.titleLabelString = "Cafe Avalon"
                 
             }
         }

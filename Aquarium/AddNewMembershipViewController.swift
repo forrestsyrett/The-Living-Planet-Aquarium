@@ -77,9 +77,14 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         membershipIDTextField.delegate = self
         transparentNavigationBar(self)
         roundCornerButtons(scanButton)
+        roundCornerButtons(saveButton)
         
         if firstNameTextField.text?.isEmpty == true {
             saveButton.isEnabled = false
+            saveButton.layer.shadowRadius = 0.0
+            saveButton.layer.shadowOpacity = 0.0
+            saveButton.layer.borderWidth = 0.0
+            
             
             dismissButton.layer.cornerRadius = 17.0
         }
@@ -107,8 +112,12 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         
         if firstNameTextField.text == "" || membershipIDTextField.text == "" {
             saveButton.isEnabled = false
+            saveButton.layer.shadowRadius = 0.0
+            saveButton.layer.shadowOpacity = 0.0
+            saveButton.layer.borderWidth = 0.0
         } else {
             saveButton.isEnabled = true
+            glow(view: saveButton)
         }
         
         if textField == self.firstNameTextField {
@@ -131,8 +140,12 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         
         if firstNameTextField.text?.characters.count <= 0 || membershipIDTextField.text?.characters.count <= 0 || lastNameTextField.text?.characters.count <= 0 {
             saveButton.isEnabled = false
+            saveButton.layer.shadowRadius = 0.0
+            saveButton.layer.shadowOpacity = 0.0
+            saveButton.layer.borderWidth = 0.0
         } else if membershipIDTextField.text?.characters.count > 0 {
             saveButton.isEnabled = true
+            glow(view: self.saveButton)
         }
     }
     
@@ -142,8 +155,12 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         
         if firstNameTextField.text?.characters.count <= 0 || membershipIDTextField.text?.characters.count <= 0 {
             saveButton.isEnabled = false
+            saveButton.layer.shadowRadius = 0.0
+            saveButton.layer.shadowOpacity = 0.0
+            saveButton.layer.borderWidth = 0.0
         } else if membershipIDTextField.text?.characters.count > 0 && self.firstNameTextField.text?.characters.count > 0 {
             saveButton.isEnabled = true
+            glow(view: self.saveButton)
         }
         
         guard let name = self.firstNameTextField.text else { return }
@@ -324,6 +341,7 @@ class AddNewMembershipViewController: UIViewController, UITextFieldDelegate {
         
         if (self.firstNameTextField.text?.characters.count > 0 || self.lastNameTextField.text?.characters.count > 0) && self.membershipIDTextField.text?.characters.count > 0 {
             self.saveButton.isEnabled = true
+            glow(view: self.saveButton)
         }
         
     }

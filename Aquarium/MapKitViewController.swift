@@ -12,7 +12,7 @@ import OneSignal
 import CoreLocation
 
 
-class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetViewControllerDelegate, CLLocationManagerDelegate {
+class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetViewControllerDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     
     
     static let shared = MapKitViewController()
@@ -65,6 +65,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
 
     var locationManager = CLLocationManager()
     
+    var time = 0
+    var timer: Timer?
+    var tapGesture = UITapGestureRecognizer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,8 +121,13 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
  
         transparentNavigationBar(self)
         
+     //    tapGesture = UITapGestureRecognizer(target: self, action: #selector(MapKitViewController.startTimer))
+      //  mapView.addGestureRecognizer(tapGesture)
         
+       
     }
+    
+
     
     override func viewWillAppear(_ animated: Bool) {
         locationManager.startUpdatingHeading()
@@ -131,6 +139,88 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         locationManager.stopUpdatingHeading()
     }
     
+    
+ /*   func startTimer() {
+
+        print("Tap!")
+       
+        timer = Timer.scheduledTimer(timeInterval: 0.3, target: self, selector: #selector(MapKitViewController.tapBubbles), userInfo: nil, repeats: true)
+        timer?.fire()
+        
+    }
+    
+    func stopBubbles() {
+        
+        timer?.invalidate()
+        
+    }
+    
+    
+    
+    func tapBubbles() {
+        
+        let touch = tapGesture
+        let touchPoint = touch.location(in: mapView)
+        
+        time += 1
+        print("Time \(time)")
+         if time > 8 {
+            timer?.invalidate()
+        }
+        
+        let size = randomNumber(low: 8, high: 15)
+        print("SIZE: \(size)")
+        let xLocation = randomNumber(low: Int(touchPoint.x), high: Int(touchPoint.x + 10))
+        print("X LOCATION: \(xLocation)")
+        
+        let bubbleImageView = UIImageView(image: UIImage(named: "Bubble"))
+        bubbleImageView.frame = CGRect(x: xLocation, y: touchPoint.y, width: size, height: size)
+        view.addSubview(bubbleImageView)
+        view.bringSubview(toFront: bubbleImageView)
+        
+        let zigzagPath = UIBezierPath()
+        let originX: CGFloat = touchPoint.x
+        let originY: CGFloat = touchPoint.y + 100
+        let eX: CGFloat = originX
+        let eY: CGFloat = originY - randomNumber(low: 50, high: 30)
+        let t: CGFloat = randomNumber(low: 20, high: 100)
+        var startPoint = CGPoint(x: originX - t, y: ((originY + eY) / 2))
+        var endPoint = CGPoint(x: originX + t, y: startPoint.y)
+        
+        let r: Int = Int(arc4random() % 2)
+        if r == 1 {
+            let temp: CGPoint = startPoint
+            startPoint = endPoint
+            endPoint = temp
+        }
+        // the moveToPoint method sets the starting point of the line
+        zigzagPath.move(to: CGPoint(x: originX, y: originY))
+        // add the end point and the control points
+        zigzagPath.addCurve(to: CGPoint(x: eX, y: eY), controlPoint1: startPoint, controlPoint2: endPoint)
+        
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({() -> Void in
+            
+            UIView.transition(with: bubbleImageView, duration: 0.1, options: .transitionCrossDissolve, animations: {() -> Void in
+                bubbleImageView.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+            }, completion: {(_ finished: Bool) -> Void in
+                bubbleImageView.removeFromSuperview()
+            })
+        })
+        
+        let pathAnimation = CAKeyframeAnimation(keyPath: "position")
+        pathAnimation.duration = 1.5
+        pathAnimation.path = zigzagPath.cgPath
+        // remains visible in it's final state when animation is finished
+        // in conjunction with removedOnCompletion
+        pathAnimation.fillMode = kCAFillModeForwards
+        pathAnimation.isRemovedOnCompletion = false
+        bubbleImageView.layer.add(pathAnimation, forKey: "movingAnimation")
+        
+        CATransaction.commit()
+        
+    }
+  */
     
     func addOverlays() {
         
@@ -194,7 +284,7 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         
         ///// Sets Overlay and Overlay Image
         if overlay is AquariumMapOverlay {
-            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "mainFinalRSZ") )
+            let overlayView = AquariumMapOverlayView(overlay: overlay, overlayImage: #imageLiteral(resourceName: "main"))
             return overlayView
         }
         if overlay is SecondFloorOverlay {

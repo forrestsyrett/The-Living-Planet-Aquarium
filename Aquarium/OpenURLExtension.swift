@@ -2,7 +2,7 @@
 //  OpenURLExtension.swift
 //  Aquarium
 //
-//  Created by TLPAAdmin on 7/21/17.
+//  Created by Forrest Syrett on 7/21/17.
 //  Copyright © 2017 Forrest Syrett. All rights reserved.
 //
 

@@ -2,7 +2,7 @@
 //  BeaconInfoViewController.swift
 //  Aquarium
 //
-//  Created by TLPAAdmin on 12/6/16.
+//  Created by Forrest Syrett on 12/6/16.
 //  Copyright © 2016 Forrest Syrett. All rights reserved.
 //
 

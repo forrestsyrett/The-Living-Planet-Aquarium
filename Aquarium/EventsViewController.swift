@@ -40,12 +40,13 @@ class EventsViewController: UIViewController {
     var monthIndex = 0
     var unwindDate = Date()
     var executionComplete = true
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupCalendar()
         gradient(self.view)
-       
         
     }
     
@@ -53,6 +54,7 @@ class EventsViewController: UIViewController {
         
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
         self.tableView.reloadData()
+
     }
     
     
@@ -63,23 +65,14 @@ class EventsViewController: UIViewController {
     func setupCalendar() {
         
         //Set currentDate
-        var date = Date()
-        var components = DateComponents()
-        let calendar = Calendar.current
-        components.year = Calendar.current.component(.year, from: date)
-        components.month = Calendar.current.component(.month, from: date)
-        components.day = Calendar.current.component(.day, from: date)
-        components.hour = Calendar.current.component(.hour, from: date)
-        components.minute = Calendar.current.component(.minute, from: date)
-        components.second = Calendar.current.component(.second, from: date)
-        components.timeZone = TimeZone(abbreviation: "MDT")!
-        date = calendar.date(from: components)!
+        let date = Date()
+        self.currentDate = date
         
+
+        calendarView.selectDates([date])
+        calendarView.scrollToDate(date)
+        updateDateLabel(date: date)
         
-        self.currentDate = calendar.date(from: components)!
-        
-        calendarView.scrollToDate(currentDate)
-        calendarView.selectDates([currentDate])
         
         //Setup Calendar Spacing
         calendarView.minimumLineSpacing = 0
@@ -88,18 +81,9 @@ class EventsViewController: UIViewController {
         
         calendarView.layer.borderColor = UIColor.white.cgColor
         calendarView.layer.borderWidth = 1.0
-        
-        //setup labels
-        calendarView.visibleDates { (visibleDates) in
-            self.setupViewsOfCalendar(from: visibleDates)
-        }
+  
     }
-    
-    
 
-    
-    
-    
     
     func animateTableView(completion: @escaping (Bool) -> ()) {
       
@@ -304,18 +288,21 @@ class EventsViewController: UIViewController {
         
         
         guard let date = visibleDates.monthDates.last?.date else { return }
-      
-        self.dateFormatter.dateFormat = "MMMM yyyy"
-        self.monthLabel.text = self.dateFormatter.string(from: date)
+        updateDateLabel(date: date)
+        
     }
     
   
     @IBAction func todayButtonTapped(_ sender: Any) {
         
-        let currentDate = Date()
-        self.calendarView.scrollToDate(currentDate)
-        self.calendarView.selectDates([currentDate])
-        
+        self.calendarView.scrollToDate(Date())
+        self.calendarView.selectDates([Date()])
+    }
+    
+    
+    func updateDateLabel(date: Date) {
+        self.dateFormatter.dateFormat = "MMMM yyyy"
+        self.monthLabel.text = self.dateFormatter.string(from: date)
         
     }
  /*
@@ -428,8 +415,9 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
      
         self.currentDate = cellState.date
         getCalendarItems()
-        calendarView.scrollToDate(cellState.date)
         self.executionComplete = false
+        updateDateLabel(date: cellState.date)
+        print("date: \(cellState.date)")
 
         
     }
@@ -442,7 +430,7 @@ extension EventsViewController: JTAppleCalendarViewDelegate {
     }
     
     func calendar(_ calendar: JTAppleCalendarView, didScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        setupViewsOfCalendar(from: visibleDates)
+   //     setupViewsOfCalendar(from: visibleDates)
     }
     
 }

@@ -2,7 +2,7 @@
 //  ARCollectionViewCell.swift
 //  Aquarium
 //
-//  Created by TLPAAdmin on 5/10/17.
+//  Created by Forrest Syrett on 5/10/17.
 //  Copyright © 2017 Forrest Syrett. All rights reserved.
 //
 
