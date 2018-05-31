@@ -520,8 +520,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         updateLabels(gallery: galleries.cafe)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("View the Menu!", for: .normal)
-        self.segueString = "toMenus"
+        self.getDirectionsButton.setTitle("Order Food!", for: .normal)
+        self.segueString = "orderFood"
         self.getDirectionsButton.isHidden = false
     
     }

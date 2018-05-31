@@ -1623,6 +1623,69 @@
             </objects>
             <point key="canvasLocation" x="506.39999999999998" y="2514.5320197044334"/>
         </scene>
+        <!--Cafe View Controller-->
+        <scene sceneID="raY-Id-ZNt">
+            <objects>
+                <viewController id="BY2-j8-fQP" customClass="CafeViewController" customModule="Aquarium" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hBn-9p-Ul4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jJB-GX-Ymi">
+                                <rect key="frame" x="0.0" y="122" width="375" height="690"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration" allowsAirPlayForMediaPlayback="NO">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aquaWave" translatesAutoresizingMaskIntoConstraints="NO" id="XS0-Ax-hir">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reef Cafe Online" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0JC-HP-CB9">
+                                <rect key="frame" x="8" y="56" width="359" height="19"/>
+                                <fontDescription key="fontDescription" name="TrajanPro-Regular" family="Trajan Pro" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="01e-K8-Fzx">
+                                <rect key="frame" x="16" y="48" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="Eef-9X-g0x"/>
+                                    <constraint firstAttribute="height" constant="35" id="ie0-1g-aFr"/>
+                                </constraints>
+                                <state key="normal" title="Button" image="cancel"/>
+                                <connections>
+                                    <action selector="dismissButtonTapped:" destination="sud-X9-yob" eventType="touchUpInside" id="hsj-9n-N3l"/>
+                                    <action selector="dismissButtonTapped:" destination="BY2-j8-fQP" eventType="touchUpInside" id="qAz-Q0-0Ac"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="01e-K8-Fzx" firstAttribute="centerY" secondItem="0JC-HP-CB9" secondAttribute="centerY" id="46b-AP-hGm"/>
+                            <constraint firstItem="XS0-Ax-hir" firstAttribute="top" secondItem="hBn-9p-Ul4" secondAttribute="top" id="PBo-NR-YZN"/>
+                            <constraint firstItem="XS0-Ax-hir" firstAttribute="leading" secondItem="F1g-R6-YZW" secondAttribute="leading" id="UiS-ad-35x"/>
+                            <constraint firstItem="0JC-HP-CB9" firstAttribute="top" secondItem="F1g-R6-YZW" secondAttribute="top" constant="12" id="Xve-Rw-AUW"/>
+                            <constraint firstItem="XS0-Ax-hir" firstAttribute="trailing" secondItem="F1g-R6-YZW" secondAttribute="trailing" id="bA8-bW-wnI"/>
+                            <constraint firstItem="F1g-R6-YZW" firstAttribute="top" secondItem="XS0-Ax-hir" secondAttribute="bottom" constant="-70" id="dq8-d3-2bE"/>
+                            <constraint firstItem="F1g-R6-YZW" firstAttribute="leading" secondItem="01e-K8-Fzx" secondAttribute="trailing" constant="-51" id="lOo-Pf-elN"/>
+                            <constraint firstItem="0JC-HP-CB9" firstAttribute="leading" secondItem="F1g-R6-YZW" secondAttribute="leading" constant="8" id="wi2-cy-WnX"/>
+                            <constraint firstItem="F1g-R6-YZW" firstAttribute="trailing" secondItem="0JC-HP-CB9" secondAttribute="trailing" constant="8" id="xSJ-Ff-PkH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="F1g-R6-YZW"/>
+                    </view>
+                    <connections>
+                        <outlet property="WebView" destination="jJB-GX-Ymi" id="s7h-C5-dwX"/>
+                        <outlet property="dismissButton" destination="01e-K8-Fzx" id="eVZ-2T-JKp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iEX-VM-Jbn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1224.8" y="2513.7931034482758"/>
+        </scene>
         <!--Animal Notifications View Controller-->
         <scene sceneID="elS-tr-6dk">
             <objects>
@@ -3036,24 +3099,30 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pcv-UG-DP3">
-                                                        <rect key="frame" x="122" y="157" width="132" height="40"/>
+                                                        <rect key="frame" x="55" y="157" width="265" height="56"/>
                                                         <color key="backgroundColor" red="0.04671810317956334" green="0.44088320665670599" blue="0.59289578045685287" alpha="0.82689426369863017" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="dbS-BK-TIc"/>
-                                                            <constraint firstAttribute="width" constant="132" id="tNt-Fk-keT"/>
+                                                            <constraint firstAttribute="height" constant="56" id="dbS-BK-TIc"/>
                                                         </constraints>
+                                                        <fontDescription key="fontDescription" name="ITCFranklinGothicStd-Demi" family="ITC Franklin Gothic Std" pointSize="18"/>
                                                         <state key="normal" title="More Info!">
                                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </state>
                                                         <connections>
                                                             <action selector="getDirectionsButtonTapped:" destination="C9K-Fz-59y" eventType="touchUpInside" id="h63-pR-G6K"/>
+                                                            <segue destination="BY2-j8-fQP" kind="presentation" identifier="orderFood" id="9cC-Rz-u6K">
+                                                                <segue key="commit" inheritsFrom="parent" id="ayJ-xq-WD0"/>
+                                                                <segue key="preview" inheritsFrom="commit" id="zzR-ku-F4R"/>
+                                                            </segue>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="pcv-UG-DP3" secondAttribute="bottom" priority="750" constant="8" id="E4h-as-jCk"/>
+                                                    <constraint firstAttribute="trailing" secondItem="pcv-UG-DP3" secondAttribute="trailing" constant="55" id="6hN-pY-LhT"/>
+                                                    <constraint firstAttribute="bottom" secondItem="pcv-UG-DP3" secondAttribute="bottom" priority="750" constant="-8" id="E4h-as-jCk"/>
                                                     <constraint firstItem="Mrz-bQ-DuM" firstAttribute="top" secondItem="M9F-H7-sc9" secondAttribute="top" constant="12" id="IuE-yR-jlj"/>
+                                                    <constraint firstItem="pcv-UG-DP3" firstAttribute="leading" secondItem="M9F-H7-sc9" secondAttribute="leading" constant="55" id="bdU-v5-9HZ"/>
                                                     <constraint firstItem="Mrz-bQ-DuM" firstAttribute="leading" secondItem="M9F-H7-sc9" secondAttribute="leading" constant="20" id="c0R-ye-I6O"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mrz-bQ-DuM" secondAttribute="trailing" constant="20" id="dO3-K4-xfD"/>
                                                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Mrz-bQ-DuM" secondAttribute="bottom" constant="8" id="hws-pj-Mmc"/>
@@ -3132,7 +3201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QLt-zb-f7p" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80.799999999999997" y="1808.5457271364319"/>
+            <point key="canvasLocation" x="80.799999999999997" y="1808.1280788177341"/>
         </scene>
         <!--Map Web View Controller-->
         <scene sceneID="TUh-pq-7Ee">
@@ -3508,7 +3577,8 @@
         <segue reference="Dbw-eS-lqi"/>
         <segue reference="qCd-ud-LAc"/>
         <segue reference="vrJ-gv-5wk"/>
-        <segue reference="80C-Eh-CAz"/>
+        <segue reference="kyc-Kc-tr0"/>
+        <segue reference="9cC-Rz-u6K"/>
         <segue reference="NUJ-0r-xeJ"/>
     </inferredMetricsTieBreakers>
 </document>

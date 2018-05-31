@@ -32,6 +32,7 @@
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063041FC20C0B010009DF30E /* CafeViewController.swift */; };
 		0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0631A56D1F22B75A0007E4CF /* TestViewController.swift */; };
 		0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633A3681EFF16C400522FAC /* QRExhibits.swift */; };
 		06539C9C1F115C9D00A3ABD0 /* MapWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */; };
@@ -138,6 +139,7 @@
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		0618981D1F2A6D9D00882789 /* SAConfettiView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAConfettiView.framework; path = "Pods/../build/Release-iphoneos/SAConfettiView/SAConfettiView.framework"; sourceTree = "<group>"; };
+		063041FC20C0B010009DF30E /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		0631A56D1F22B75A0007E4CF /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0633A3681EFF16C400522FAC /* QRExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRExhibits.swift; sourceTree = "<group>"; };
 		06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapWebViewController.swift; path = Aquarium/MapWebViewController.swift; sourceTree = "<group>"; };
@@ -255,6 +257,14 @@
 			name = "Calendar Events";
 			sourceTree = "<group>";
 		};
+		063041FB20C0AFE6009DF30E /* Cafe */ = {
+			isa = PBXGroup;
+			children = (
+				063041FC20C0B010009DF30E /* CafeViewController.swift */,
+			);
+			name = Cafe;
+			sourceTree = "<group>";
+		};
 		069A21661EB68F52006130C1 /* CustomTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -352,6 +362,7 @@
 		AA544C931D0BB66C00DC1725 /* Aquarium */ = {
 			isa = PBXGroup;
 			children = (
+				063041FB20C0AFE6009DF30E /* Cafe */,
 				061549071EF1D18C004406CF /* Pods.framework */,
 				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
 				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
@@ -636,6 +647,7 @@
 				0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */,
 				0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */,
 				061549401EF1E95D004406CF /* Event.swift in Sources */,
+				063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */,
 				AA7CE7011DDB928200EF4669 /* BackgroundOverlayView.swift in Sources */,
 				AA353AB61DCE5FD200AD5490 /* MapKitViewController.swift in Sources */,
 				AACE392A1D54578E0082E667 /* AddNewMembershipViewController.swift in Sources */,
