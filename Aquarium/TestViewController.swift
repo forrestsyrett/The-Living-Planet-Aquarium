@@ -55,7 +55,7 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     var scanType = "qr"
     var result = "Coral Reef"
     var previousResult = ""
-    var dataType = AVMetadataObjectTypeQRCode
+    var dataType = AVMetadataObject.ObjectType.qr
     var resetExhibit = false
     var oneScan = false
     
@@ -204,7 +204,7 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         
         self.QRViewIsVisible = false
         
-            self.dataType = AVMetadataObjectTypeQRCode
+            self.dataType = AVMetadataObject.ObjectType.qr
             self.qrCodeLabel.text = "Align QR code in frame"
             self.photoFrameImage.isHidden = false
             self.QRScannerLabel.text = "Exhibit Scanner"
@@ -298,7 +298,7 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     }
     
     func cameraCheck() {
-        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         switch authStatus {
         case .authorized:
             qrOn(true)
@@ -324,7 +324,10 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             
         case .notDetermined:
             
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: nil)
+         //   AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: nil)
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { (true) in
+                print("Access Granted")
+            }
             
             
             
@@ -430,8 +433,8 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         }
         
-        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
-        cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
+        cell.animalImage.hero.id = "animalImage: \(indexPath.row)"
+        cell.animalNameLabel.hero.id = "animalName: \(indexPath.row)"
         
         
         return cell

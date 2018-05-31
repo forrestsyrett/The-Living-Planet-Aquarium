@@ -1,4 +1,4 @@
-platform :ios, '10.0'
+platform :ios, '11.0'
 use_frameworks!
 
 target 'Aquarium' do
@@ -13,8 +13,8 @@ source 'https://github.com/CocoaPods/Specs.git'
 pod 'Alamofire'
 pod 'FlowingMenu', '~> 2.0.1'
 pod 'SwiftyJSON'
-pod 'JTAppleCalendar', '~> 7.0'
-pod 'AlamofireObjectMapper', '~> 4.0'
+pod 'JTAppleCalendar'
+pod 'AlamofireObjectMapper', '~> 5.0'
 pod 'Google'
 pod 'Google/Analytics'
 pod 'Google/SignIn'

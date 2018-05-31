@@ -33,7 +33,7 @@ class HomeWebViewController: UIViewController, UIWebViewDelegate {
         
      //   gradient(self.view)
         
-        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         navigationController?.navigationBar.tintColor = UIColor.white
         transparentNavigationBar(self)
         

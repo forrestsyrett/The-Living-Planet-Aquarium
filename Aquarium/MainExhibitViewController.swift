@@ -39,6 +39,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     var timer = Timer()
     var time = 0
     
+    var searchBarOffset: CGFloat = 100.0
+    
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
@@ -56,6 +58,12 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         tabBarTint(view: self)
         transparentNavigationBar(self)
         gradient(self.view)
+        
+        if DeviceCheck.shared.device == "iPhone X" {
+            searchBarOffset = 135.0
+        } else {
+            searchBarOffset = 100.0
+        }
         
         
         // Add the pan screen edge gesture to the current view //
@@ -79,7 +87,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
     }
     
-    func panGesture(recognizer: UIPanGestureRecognizer) {
+    @objc func panGesture(recognizer: UIPanGestureRecognizer) {
         
         if !recognizer.isUp(view: self.searchBar) {
             self.searchBar.resignFirstResponder()
@@ -287,13 +295,15 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     
     
-    func resignKeyboard() {
+    @objc func resignKeyboard() {
         searchBar.resignFirstResponder()
         setSearchBarView()
         
     }
-    func setSearchBarView() {
-        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - 100, width: view.frame.width, height: 50)
+    @objc func setSearchBarView() {
+        
+        searchBar.frame = CGRect(x: 0, y: UIScreen.main.bounds.height - searchBarOffset, width: view.frame.width, height: 50)
+        print(searchBar.frame)
         self.searchBar.isHidden = false
     }
     
@@ -318,7 +328,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         NotificationCenter.default.removeObserver(self, name: Notification.Name(rawValue: "exhibitsAppeared"), object: nil)
     }
     
-    func keyboardWasShown(notification: NSNotification) {
+    @objc func keyboardWasShown(notification: NSNotification) {
         
         if self.keyboardIsUp == false {
             self.keyboardIsUp = true
@@ -330,7 +340,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         
         UIView.animate(withDuration: 0.40, delay: 0.027, options: UIViewAnimationOptions.curveEaseIn, animations: {
             
-            self.searchBar.frame = CGRect(x: 0, y: (self.searchBar.frame.origin.y - keyboardHeight + 50), width: self.view.bounds.width, height: 50)
+            self.searchBar.frame = CGRect(x: 0, y: (self.searchBar.frame.origin.y - keyboardHeight + self.searchBarOffset - 50), width: self.view.bounds.width, height: 50)
         }, completion: nil)
         
         var aRect : CGRect = self.view.frame
@@ -349,7 +359,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     
     
-    func keyboardWillBeHidden(notification: NSNotification) {
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
         _ = notification.userInfo!
         //     let keyboardSize = (info[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue
         //     let keyboardHeight: CGFloat = (keyboardSize?.height)!
@@ -385,15 +395,15 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! AnimalCollectionViewCell
         let index = indexPath.row
-        cell.newsRibbon.heroModifiers = [.fade]
-        cell.infoImage.heroModifiers = [.fade]
-        cell.heroID = "animal: \(indexPath.row)"
-        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
-        cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
+        cell.newsRibbon.hero.modifiers = [.fade]
+        cell.infoImage.hero.modifiers = [.fade]
+        cell.hero.id = "animal: \(indexPath.row)"
+        cell.animalImage.hero.id = "animalImage: \(indexPath.row)"
+        cell.animalNameLabel.hero.id = "animalName: \(indexPath.row)"
         cell.newsRibbonHeight.constant = 0.0
         cell.infoImageHeight.constant = 0.0
         cell.layoutIfNeeded()
-        cell.infoImage.heroID = "infoImage: \(indexPath.row)"
+        cell.infoImage.hero.id = "infoImage: \(indexPath.row)"
         var animal = allAnimals[indexPath.row]
         
 
@@ -482,8 +492,8 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
          let cell = collectionView.cellForItem(at: indexPath) as! AnimalCollectionViewCell
-        cell.heroID = "animal: \(indexPath.row)"
-        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
+        cell.hero.id = "animal: \(indexPath.row)"
+        cell.animalImage.hero.id = "animalImage: \(indexPath.row)"
     }
     
     
@@ -526,7 +536,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     
     
     
-    func updateToAllAnimals() {
+    @objc func updateToAllAnimals() {
         allAnimals = allAnimalsSorted
         self.collectionView.reloadData()
         menu?.dismiss(animated: true, completion: nil)
@@ -565,7 +575,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 let titleLabelHeroID = "animalName: \(newIndexPath.row)"
                 let infoImage = "infoImage: \(newIndexPath.row)"
                 
-                destinationViewController.view.heroID = heroString
+                destinationViewController.view.hero.id = heroString
                 destinationViewController.imageHeroID = imageHeroID
                 destinationViewController.titleLabelHeroID = titleLabelHeroID
                 destinationViewController.infoImageHeroID = infoImage
@@ -577,7 +587,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                     if (self.searchBar.text?.characters.count)! > 0 {
                         let animal = dataSourceForSearchResult?[selectedItem]
                         destinationViewController.updateInfo(animal: animal!)
-                        destinationViewController.view.heroID = heroString
+                        destinationViewController.view.hero.id = heroString
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.infoImageHeroID = infoImage
@@ -586,7 +596,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                       //  default all animals
                     else  {
                         let animal = allAnimals[selectedItem]
-                        destinationViewController.view.heroID = heroString
+                        destinationViewController.view.hero.id = heroString
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.updateInfo(animal: animal)

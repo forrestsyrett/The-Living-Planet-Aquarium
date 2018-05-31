@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06047F49208FED6F002C4DB4 /* libc++abi.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 06047F48208FED6F002C4DB4 /* libc++abi.tbd */; };
+		06047F4B208FEE6E002C4DB4 /* FlowingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06047F4A208FEE6E002C4DB4 /* FlowingMenu.framework */; };
 		060C1EB61E81D87500501713 /* shark.obj in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB41E81D87500501713 /* shark.obj */; };
 		060C1EB71E81D87500501713 /* sharkTexture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 060C1EB51E81D87500501713 /* sharkTexture.jpg */; };
-		061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F31EF1CEBE004406CF /* libc++.tbd */; };
 		061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548F51EF1CEC8004406CF /* libz.tbd */; };
 		061548FC1EF1D04B004406CF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FB1EF1D04B004406CF /* QuartzCore.framework */; };
 		061548FE1EF1D054004406CF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061548FD1EF1D054004406CF /* AudioToolbox.framework */; };
@@ -31,6 +32,7 @@
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063041FC20C0B010009DF30E /* CafeViewController.swift */; };
 		0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0631A56D1F22B75A0007E4CF /* TestViewController.swift */; };
 		0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0633A3681EFF16C400522FAC /* QRExhibits.swift */; };
 		06539C9C1F115C9D00A3ABD0 /* MapWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */; };
@@ -49,6 +51,7 @@
 		06A0C2DD1E8713800012A1DD /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */; };
 		06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DE1E8714930012A1DD /* AnimalController.swift */; };
 		06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */; };
+		06AA8B41209100D700F07D18 /* DeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AA8B40209100D700F07D18 /* DeviceCheck.swift */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
 		06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */; };
@@ -101,7 +104,6 @@
 		AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CE6FE1DDB91A600EF4669 /* Background.swift */; };
 		AA7CE7011DDB928200EF4669 /* BackgroundOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7CE7001DDB928200EF4669 /* BackgroundOverlayView.swift */; };
 		AA7FF44B1DDE65AE002A5AE0 /* MainExhibitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA7FF44A1DDE65AE002A5AE0 /* MainExhibitViewController.swift */; };
-		AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA7FF44C1DDE67AF002A5AE0 /* FlowingMenu.framework */; };
 		AA8D05161D19DC930063F222 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8D05151D19DC930063F222 /* HomeViewController.swift */; };
 		AA9D6EE01D1CCD5000831AFE /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9D6EDF1D1CCD5000831AFE /* Animal.swift */; };
 		AAA20FF61D5E47A1009B3241 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAA20FF51D5E47A1009B3241 /* ContactUsViewController.swift */; };
@@ -110,6 +112,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06047F48208FED6F002C4DB4 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
+		06047F4A208FEE6E002C4DB4 /* FlowingMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FlowingMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		060C1EB41E81D87500501713 /* shark.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = shark.obj; sourceTree = "<group>"; };
 		060C1EB51E81D87500501713 /* sharkTexture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sharkTexture.jpg; sourceTree = "<group>"; };
 		061548F31EF1CEBE004406CF /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
@@ -135,6 +139,7 @@
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		0618981D1F2A6D9D00882789 /* SAConfettiView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAConfettiView.framework; path = "Pods/../build/Release-iphoneos/SAConfettiView/SAConfettiView.framework"; sourceTree = "<group>"; };
+		063041FC20C0B010009DF30E /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		0631A56D1F22B75A0007E4CF /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0633A3681EFF16C400522FAC /* QRExhibits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRExhibits.swift; sourceTree = "<group>"; };
 		06539C9B1F115C9D00A3ABD0 /* MapWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapWebViewController.swift; path = Aquarium/MapWebViewController.swift; sourceTree = "<group>"; };
@@ -153,6 +158,7 @@
 		06A0C2DC1E8713800012A1DD /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = Aquarium/MapTableViewCell.swift; sourceTree = "<group>"; };
 		06A0C2DE1E8714930012A1DD /* AnimalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalController.swift; sourceTree = "<group>"; };
 		06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalNotificationsViewController.swift; sourceTree = "<group>"; };
+		06AA8B40209100D700F07D18 /* DeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCheck.swift; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenURLExtension.swift; sourceTree = "<group>"; };
@@ -223,6 +229,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06047F4B208FEE6E002C4DB4 /* FlowingMenu.framework in Frameworks */,
+				06047F49208FED6F002C4DB4 /* libc++abi.tbd in Frameworks */,
 				061549081EF1D18C004406CF /* Pods.framework in Frameworks */,
 				061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */,
 				061549041EF1D06D004406CF /* MobileCoreServices.framework in Frameworks */,
@@ -231,8 +239,6 @@
 				061548FE1EF1D054004406CF /* AudioToolbox.framework in Frameworks */,
 				061548FC1EF1D04B004406CF /* QuartzCore.framework in Frameworks */,
 				061548F61EF1CEC8004406CF /* libz.tbd in Frameworks */,
-				061548F41EF1CEBE004406CF /* libc++.tbd in Frameworks */,
-				AA7FF44D1DDE67AF002A5AE0 /* FlowingMenu.framework in Frameworks */,
 				2E3C1D313B999B8DCB850948 /* Pods_Aquarium.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +257,14 @@
 			name = "Calendar Events";
 			sourceTree = "<group>";
 		};
+		063041FB20C0AFE6009DF30E /* Cafe */ = {
+			isa = PBXGroup;
+			children = (
+				063041FC20C0B010009DF30E /* CafeViewController.swift */,
+			);
+			name = Cafe;
+			sourceTree = "<group>";
+		};
 		069A21661EB68F52006130C1 /* CustomTabBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +273,7 @@
 				069A21691EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift */,
 				069A216A1EB68F77006130C1 /* CustomTabBarItems.swift */,
 				069A216F1EB68FB0006130C1 /* IndexController.swift */,
+				06AA8B40209100D700F07D18 /* DeviceCheck.swift */,
 			);
 			name = CustomTabBar;
 			sourceTree = "<group>";
@@ -347,6 +362,7 @@
 		AA544C931D0BB66C00DC1725 /* Aquarium */ = {
 			isa = PBXGroup;
 			children = (
+				063041FB20C0AFE6009DF30E /* Cafe */,
 				061549071EF1D18C004406CF /* Pods.framework */,
 				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
 				AA544C941D0BB66C00DC1725 /* AppDelegate.swift */,
@@ -443,6 +459,8 @@
 		EA94B41FA31D61D281B2BE4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06047F4A208FEE6E002C4DB4 /* FlowingMenu.framework */,
+				06047F48208FED6F002C4DB4 /* libc++abi.tbd */,
 				0618981D1F2A6D9D00882789 /* SAConfettiView.framework */,
 				061549051EF1D075004406CF /* CoreLocation.framework */,
 				061549031EF1D06D004406CF /* MobileCoreServices.framework */,
@@ -488,13 +506,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Forrest Syrett";
 				TargetAttributes = {
 					AA544C901D0BB66B00DC1725 = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = B3G94J8WC9;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0930;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -629,6 +647,7 @@
 				0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */,
 				0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */,
 				061549401EF1E95D004406CF /* Event.swift in Sources */,
+				063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */,
 				AA7CE7011DDB928200EF4669 /* BackgroundOverlayView.swift in Sources */,
 				AA353AB61DCE5FD200AD5490 /* MapKitViewController.swift in Sources */,
 				AACE392A1D54578E0082E667 /* AddNewMembershipViewController.swift in Sources */,
@@ -666,6 +685,7 @@
 				06810C281F2D301500BE9211 /* MenuCollectionViewCell.swift in Sources */,
 				0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */,
 				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
+				06AA8B41209100D700F07D18 /* DeviceCheck.swift in Sources */,
 				0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */,
 				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
 				06F298081EF470D800856A93 /* FirebaseController.swift in Sources */,
@@ -702,14 +722,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -749,14 +777,22 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -796,6 +832,7 @@
 					"$(PROJECT_DIR)/Aquarium",
 				);
 				INFOPLIST_FILE = Aquarium/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -812,7 +849,8 @@
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -832,6 +870,7 @@
 					"$(PROJECT_DIR)/Aquarium",
 				);
 				INFOPLIST_FILE = Aquarium/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -847,7 +886,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

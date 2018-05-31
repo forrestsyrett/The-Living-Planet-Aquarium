@@ -62,6 +62,7 @@ import UIKit
  - BallRotateChase:         BallRotateChase animation.
  - Orbit:                   Orbit animation.
  - AudioEqualizer:          AudioEqualizer animation.
+ - CircleStrokeSpin:        CircleStrokeSpin animation.
  */
 public enum NVActivityIndicatorType: Int {
     /**
@@ -256,9 +257,16 @@ public enum NVActivityIndicatorType: Int {
      - returns: Instance of NVActivityIndicatorAnimationAudioEqualizer.
      */
     case audioEqualizer
+    /**
+     Stroke.
+     
+     - returns: Instance of NVActivityIndicatorAnimationCircleStrokeSpin.
+     */
+    case circleStrokeSpin
 
-    static let allTypes = (blank.rawValue ... audioEqualizer.rawValue).map { NVActivityIndicatorType(rawValue: $0)! }
+    static let allTypes = (blank.rawValue ... circleStrokeSpin.rawValue).map { NVActivityIndicatorType(rawValue: $0)! }
 
+    // swiftlint:disable cyclomatic_complexity function_body_length
     func animation() -> NVActivityIndicatorAnimationDelegate {
         switch self {
         case .blank:
@@ -325,39 +333,62 @@ public enum NVActivityIndicatorType: Int {
             return NVActivityIndicatorAnimationOrbit()
         case .audioEqualizer:
             return NVActivityIndicatorAnimationAudioEqualizer()
+        case .circleStrokeSpin:
+            return NVActivityIndicatorAnimationCircleStrokeSpin()
         }
     }
 }
 
+// swiftlint:disable file_length
 /// Activity indicator view with nice animations
 public final class NVActivityIndicatorView: UIView {
+    // swiftlint:disable identifier_name
     /// Default type. Default value is .BallSpinFadeLoader.
     public static var DEFAULT_TYPE: NVActivityIndicatorType = .ballSpinFadeLoader
 
+    // swiftlint:disable identifier_name
     /// Default color of activity indicator. Default value is UIColor.white.
     public static var DEFAULT_COLOR = UIColor.white
 
+    // swiftlint:disable identifier_name
     /// Default color of text. Default value is UIColor.white.
     public static var DEFAULT_TEXT_COLOR = UIColor.white
 
+    // swiftlint:disable identifier_name
     /// Default padding. Default value is 0.
     public static var DEFAULT_PADDING: CGFloat = 0
 
+    // swiftlint:disable identifier_name
     /// Default size of activity indicator view in UI blocker. Default value is 60x60.
     public static var DEFAULT_BLOCKER_SIZE = CGSize(width: 60, height: 60)
 
+    // swiftlint:disable identifier_name
     /// Default display time threshold to actually display UI blocker. Default value is 0 ms.
+    ///
+    /// - note:
+    /// Default time that has to be elapsed (between calls of `startAnimating()` and `stopAnimating()`) in order to actually display UI blocker. It should be set thinking about what the minimum duration of an activity is to be worth showing it to the user. If the activity ends before this time threshold, then it will not be displayed at all.
     public static var DEFAULT_BLOCKER_DISPLAY_TIME_THRESHOLD = 0
 
+    // swiftlint:disable identifier_name
     /// Default minimum display time of UI blocker. Default value is 0 ms.
+    ///
+    /// - note:
+    /// Default minimum display time of UI blocker. Its main purpose is to avoid flashes showing and hiding it so fast. For instance, setting it to 200ms will force UI blocker to be shown for at least this time (regardless of calling `stopAnimating()` ealier).
     public static var DEFAULT_BLOCKER_MINIMUM_DISPLAY_TIME = 0
 
+    // swiftlint:disable identifier_name
     /// Default message displayed in UI blocker. Default value is nil.
     public static var DEFAULT_BLOCKER_MESSAGE: String?
 
+    // swiftlint:disable identifier_name
+    /// Default message spacing to activity indicator view in UI blocker. Default value is 8.
+    public static var DEFAULT_BLOCKER_MESSAGE_SPACING = CGFloat(8.0)
+
+    // swiftlint:disable identifier_name
     /// Default font of message displayed in UI blocker. Default value is bold system font, size 20.
     public static var DEFAULT_BLOCKER_MESSAGE_FONT = UIFont.boldSystemFont(ofSize: 20)
 
+    // swiftlint:disable identifier_name
     /// Default background color of UI blocker. Default value is UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
     public static var DEFAULT_BLOCKER_BACKGROUND_COLOR = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
 
@@ -435,6 +466,15 @@ public final class NVActivityIndicatorView: UIView {
         return CGSize(width: bounds.width, height: bounds.height)
     }
 
+    public override var bounds: CGRect {
+        didSet {
+            // setup the animation again for the new bounds
+            if oldValue != bounds && isAnimating {
+                setUpAnimation()
+            }
+        }
+    }
+
     /**
      Start animating.
      */
@@ -473,7 +513,7 @@ public final class NVActivityIndicatorView: UIView {
 
     private final func setUpAnimation() {
         let animation: NVActivityIndicatorAnimationDelegate = type.animation()
-        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsetsMake(padding, padding, padding, padding))
+        var animationRect = UIEdgeInsetsInsetRect(frame, UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding))
         let minEdge = min(animationRect.width, animationRect.height)
 
         layer.sublayers = nil

@@ -38,7 +38,9 @@ enum NVActivityIndicatorShape {
     case triangle
     case line
     case pacman
+    case stroke
 
+    // swiftlint:disable cyclomatic_complexity function_body_length
     func layerWith(size: CGSize, color: UIColor) -> CALayer {
         let layer: CAShapeLayer = CAShapeLayer()
         var path: UIBezierPath = UIBezierPath()
@@ -141,6 +143,15 @@ enum NVActivityIndicatorShape {
             layer.fillColor = nil
             layer.strokeColor = color.cgColor
             layer.lineWidth = size.width / 2
+        case .stroke:
+            path.addArc(withCenter: CGPoint(x: size.width / 2, y: size.height / 2),
+                        radius: size.width / 2,
+                        startAngle: -(.pi / 2),
+                        endAngle: .pi + .pi / 2,
+                        clockwise: true)
+            layer.fillColor = nil
+            layer.strokeColor = color.cgColor
+            layer.lineWidth = 2
         }
 
         layer.backgroundColor = nil

@@ -11,7 +11,7 @@ import PushKit
 import OneSignal
 import UserNotifications
 import Google
-import GoogleSignIn
+import GoogleSignIn
 import Firebase
 
 @UIApplicationMain
@@ -20,7 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     let notificationDelegate = NotificationDelegate()
-    
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
@@ -28,9 +29,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UITabBar.appearance().tintColor = UIColor.white
         
         
-        OneSignal.initWithLaunchOptions(launchOptions, appId: "3090501c-b1b5-4a1f-9c02-cb3a768e71a7")
+      //  OneSignal.initWithLaunchOptions(launchOptions, appId: "3090501c-b1b5-4a1f-9c02-cb3a768e71a7")
         
-        application.registerForRemoteNotifications()
+       // application.registerForRemoteNotifications()
+        
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
+        OneSignal.initWithLaunchOptions(launchOptions,
+                                        appId: "3090501c-b1b5-4a1f-9c02-cb3a768e71a7",
+                                        handleNotificationAction: nil,
+                                        settings: onesignalInitSettings)
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        OneSignal.promptForPushNotifications(userResponse: { accepted in
+            print("User accepted notifications: \(accepted)")
+        })
         
         
         let center = UNUserNotificationCenter.current()
@@ -174,6 +185,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         return true
     }
+    
+    
 }
 
 

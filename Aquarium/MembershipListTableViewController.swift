@@ -69,14 +69,14 @@ class MembershipListTableViewController: UIViewController, UITableViewDelegate, 
     }
     
     
-    func addMembership() {
+    @objc func addMembership() {
         
         self.performSegue(withIdentifier: "addMembership", sender: nil)
     }
     
     
     
-    func reloadView() {
+    @objc func reloadView() {
         self.membershipCardTableView.reloadData()
         welcomeView.isHidden = true
         self.blurView.isHidden = true

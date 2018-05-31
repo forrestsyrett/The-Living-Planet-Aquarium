@@ -49,8 +49,12 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     let fullView: CGFloat = 100
     var partialView: CGFloat {
-        return UIScreen.main.bounds.height - 120
         
+        if DeviceCheck.shared.device == "iPhone X" {
+        return UIScreen.main.bounds.height - 150
+        }  else {
+                return UIScreen.main.bounds.height - 120
+            }
     }
     var viewIsUp: Bool = false
     var urlString = "http://www.thelivingplanet.com/"
@@ -111,6 +115,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         getDirectionsButton.layer.borderColor = UIColor.white.cgColor
         getDirectionsButton.layer.borderWidth = 1.0
         
+        roundedCorners(self.view, cornerRadius: 5.0)
+        
         postObservers()
         
         self.shadowView.layer.shadowColor = UIColor.black.cgColor
@@ -141,7 +147,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         if self.closeSwitch == true {
             UIView.animate(withDuration: 0.3) {
                 let frame = self.view.frame
-                let yComponent = UIScreen.main.bounds.height - 120
+                let yComponent = self.partialView
                 self.view.frame = CGRect(x: 0, y: yComponent, width: frame.width, height: frame.height)
             }
         }
@@ -152,7 +158,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     override func viewWillDisappear(_ animated: Bool) {
         /*    let frame = self.view.frame
-         let yComponent = UIScreen.main.bounds.height - 120
+         let yComponent = self.partialView
          self.view.frame = CGRect(x: 0, y: yComponent, width: frame.width, height: frame.height)
          
          UIView.animate(withDuration: 0.3) {
@@ -267,8 +273,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             cell.cellImage.clipsToBounds = true
             cell.layer.cornerRadius = 5.0
             cell.clipsToBounds = true
-            cell.cellImage.heroID = "tableViewImage \(indexPath.section)"
-            cell.cellLabel.heroID = "animalName: \(indexPath.section)"
+            cell.cellImage.hero.id = "tableViewImage \(indexPath.section)"
+            cell.cellLabel.hero.id = "animalName: \(indexPath.section)"
             
             return cell
             
@@ -297,8 +303,8 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
             let animal = allAnimals[indexPath.section]
             let cell = self.tableView.cellForRow(at: indexPath) as! MapTableViewCell
             
-            cell.cellImage.heroID = "tableViewImage \(indexPath.section)"
-            cell.cellLabel.heroID = "animalName: \(indexPath.section)"
+            cell.cellImage.hero.id = "tableViewImage \(indexPath.section)"
+            cell.cellLabel.hero.id = "animalName: \(indexPath.section)"
             self.animalName = animal.animalName ?? ""
             self.animalImage = animal.animalImage ?? ""
             self.animalInfo = animal.animalInfo ?? ""
@@ -424,13 +430,13 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     
-    func discoverUtah() {
+    @objc func discoverUtah() {
         updateLabels(gallery: galleries.discoverUtah)
         animateTappedGallery()
         sortGalleryData()
     }
     
-    func antarcticAdventure() {
+    @objc func antarcticAdventure() {
         updateLabels(gallery: galleries.antarcticAdventure)
         animateTappedGallery()
         sortGalleryData()
@@ -439,14 +445,14 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         
     }
     
-    func ammenities() {
+    @objc func ammenities() {
         updateLabels(gallery: galleries.amenities)
         animateTappedGallery()
         sortGalleryData()
         
     }
     
-    func banquetHall() {
+    @objc func banquetHall() {
         updateLabels(gallery: galleries.banquetHall)
         animateTappedGallery()
         sortGalleryData()
@@ -454,28 +460,28 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.segueString = "banquet"
     }
     
-    func asia() {
+    @objc func asia() {
         updateLabels(gallery: galleries.expeditionAsia)
         animateTappedGallery()
         sortGalleryData()
         
     }
     
-    func jsa() {
+    @objc func jsa() {
         updateLabels(gallery: galleries.jsa)
         animateTappedGallery()
         sortGalleryData()
 
     }
     
-    func oceans() {
+    @objc func oceans() {
         updateLabels(gallery: galleries.oceanExplorer)
         animateTappedGallery()
         sortGalleryData()
         
     }
     
-    func tukis() {
+    @objc func tukis() {
         updateLabels(gallery: galleries.tukis)
         animateTappedGallery()
         sortGalleryData()
@@ -483,19 +489,19 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.segueString = "tukis"
 
     }
-    func jellies() {
+    @objc func jellies() {
         updateLabels(gallery: galleries.jellyFish)
         animateTappedGallery()
         sortGalleryData()
 
     }
-    func theater() {
+    @objc func theater() {
         updateLabels(gallery: galleries.theater)
         animateTappedGallery()
         sortGalleryData()
 
     }
-    func educationCenter() {
+    @objc func educationCenter() {
         updateLabels(gallery: galleries.educationCenter)
         animateTappedGallery()
         sortGalleryData()
@@ -503,19 +509,19 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.segueString = "educationCenter"
 
     }
-    func deepSea() {
+    @objc func deepSea() {
         updateLabels(gallery: galleries.deepSeaLab)
         animateTappedGallery()
         sortGalleryData()
         self.getDirectionsButton.isHidden = true
 
     }
-    func cafe() {
+    @objc func cafe() {
         updateLabels(gallery: galleries.cafe)
         animateTappedGallery()
         sortGalleryData()
-        self.getDirectionsButton.setTitle("View the Menu!", for: .normal)
-        self.segueString = "toMenus"
+        self.getDirectionsButton.setTitle("Order Food!", for: .normal)
+        self.segueString = "orderFood"
         self.getDirectionsButton.isHidden = false
     
     }
@@ -554,7 +560,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     
-    func closeSwitchAction() {
+    @objc func closeSwitchAction() {
         self.closeSwitch = true
     }
     
@@ -568,7 +574,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     
-    func panGesture(recognizer: UIPanGestureRecognizer) {
+    @objc func panGesture(recognizer: UIPanGestureRecognizer) {
         
         
         let translation = recognizer.translation(in: self.view)
@@ -625,7 +631,7 @@ class BottomSheetViewController: UIViewController, UIGestureRecognizerDelegate, 
         UIView.animate(withDuration: 0.5, delay: 0.0, options: .allowUserInteraction, animations: {
             UIView.animate(withDuration: 0.5) {
                 let frame = self.view.frame
-                let yComponent = UIScreen.main.bounds.height - 145
+                let yComponent = self.partialView
                 self.view.frame = CGRect(x: 0, y: yComponent, width: frame.width, height: frame.height)
             }
             

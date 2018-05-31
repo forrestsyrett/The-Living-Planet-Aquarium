@@ -75,7 +75,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
         
-        view.addGestureRecognizer(gesture)
+        panView.addGestureRecognizer(gesture)
         
         gesture.delegate = self
     }
@@ -92,7 +92,6 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalFactSheet.sd_setShowActivityIndicatorView(true)
         self.animalImage.sd_setImage(with: reference)
         self.animalFactSheet.sd_setImage(with: factSheetReference)
-        
         self.animalNameLabel.text = name
         self.animalInfo.text = info
         animalImage.layer.cornerRadius = 5.0
@@ -102,10 +101,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             self.factSheetHeight.constant = 0.0
         }
         
-        self.animalImage.heroID = self.imageHeroID
-        self.animalNameLabel.heroID = self.titleLabelHeroID
-        self.dismissButton.heroID = self.dismissButtonHeroID
-        self.infoButton.heroID = self.infoImageHeroID
+        self.animalImage.hero.id = self.imageHeroID
+        self.animalNameLabel.hero.id = self.titleLabelHeroID
+        self.dismissButton.hero.id = self.dismissButtonHeroID
+        self.infoButton.hero.id = self.infoImageHeroID
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
       //  if self.name == "Blacktip Reef Shark" {
@@ -140,7 +139,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     }
     
 
-    func bubbles() {
+    @objc func bubbles() {
         
         time += 1
    //     print("Time \(time)")
@@ -232,25 +231,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
  */
     }
     
-    @IBAction func handlePanGesture(_ sender: UIPanGestureRecognizer) {
 
-            let translation = sender.translation(in: self.panView)
-            let progress = translation.y / 2 / self.panView.bounds.height
-            switch sender.state {
-            case .began:
-    Hero.shared.setDefaultAnimationForNextTransition(.fade)
-                hero_dismissViewController()
-            case .changed:
-                Hero.shared.update(progress: Double(progress))
-
-            default:
-                if progress + sender.velocity(in: nil).y / self.panView.bounds.height > 0.3 {
-                    Hero.shared.end()
-                } else {
-                    Hero.shared.cancel()
-                }
-            }
-    }
     
 
     
@@ -307,10 +288,27 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
 
     
     
-    func panGesture(recognizer: UIPanGestureRecognizer) {
+ @objc func panGesture(recognizer: UIPanGestureRecognizer) {
+    
+    
+    let translation = recognizer.translation(in: self.panView)
+    let progress = translation.y / 2 / self.panView.bounds.height
+    switch recognizer.state {
+    case .began:
+        Hero.shared.defaultAnimation = .fade
+        hero.dismissViewController()
+    case .changed:
+        Hero.shared.update(progress)
+        
+    default:
+        if progress + recognizer.velocity(in: nil).y / self.panView.bounds.height > 0.3 {
+            Hero.shared.finish()
+        } else {
+            Hero.shared.cancel()
+        }
+    }
 
     }
-    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -319,8 +317,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             destination.updateInfo = self.animalUpdates
             destination.imageReference = self.updateImage
             
+            
         }
     }
+    
+    
 }
 
 
@@ -331,9 +332,11 @@ extension UIPanGestureRecognizer {
         let direction: CGPoint = velocity(in: view)
         if direction.y < 0 {
             // Panning up
+           
             return true
         } else {
             // Panning Down
+          
             return false
         }
     }

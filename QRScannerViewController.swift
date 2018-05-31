@@ -61,7 +61,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var scanType = "qr"
     var result = ""
     var previousResult = ""
-    var dataType = AVMetadataObjectTypeQRCode
+    var dataType = AVMetadataObject.ObjectType.qr
     var resetExhibit = false
     var oneScan = false
     
@@ -70,14 +70,14 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     var isBubbling = false
     
     func configureVideoCapture() {
-        let captureDevice = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let captureDevice = AVCaptureDevice.default(for: AVMediaType.video)
         
         //    var error: NSError?
         let input: AnyObject!
         
         
         do {
-            input = try AVCaptureDeviceInput(device: captureDevice) as AVCaptureDeviceInput
+            input = try AVCaptureDeviceInput(device: captureDevice!) as AVCaptureDeviceInput
         }
         catch _ as NSError {
             //      error = error1
@@ -97,19 +97,19 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             return
             
         } else {
-            captureSession?.addInput(input as? AVCaptureInput)
+            captureSession?.addInput((input as? AVCaptureInput)!)
         }
         
         let objCaptureMetadataOutput = AVCaptureMetadataOutput()
         captureSession?.addOutput(objCaptureMetadataOutput)
         objCaptureMetadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-        objCaptureMetadataOutput.metadataObjectTypes = [AVMetadataObjectTypeQRCode, AVMetadataObjectTypeCode128Code]
+        objCaptureMetadataOutput.metadataObjectTypes = [AVMetadataObject.ObjectType.qr, AVMetadataObject.ObjectType.code128]
     }
     
     
     func addVideoPreviewLayer() {
-        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        videoPreviewLayer?.videoGravity = AVLayerVideoGravityResizeAspectFill
+        videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession!)
+        videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
         videoPreviewLayer?.frame = view.layer.bounds
         self.view.layer.addSublayer(videoPreviewLayer!)
         captureSession?.startRunning()
@@ -135,7 +135,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     
     
     
-    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputMetadataObjects metadataObjects: [Any]!, from connection: AVCaptureConnection!) {
+    func metadataOutput(_ captureOutput: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
         
         if metadataObjects == nil || metadataObjects.count == 0 {
             qrCodeFrameView?.frame = CGRect.zero
@@ -146,7 +146,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             let objBarCode = videoPreviewLayer?.transformedMetadataObject(for: objMetadataMachineReadableCodeObject as AVMetadataMachineReadableCodeObject) as! AVMetadataMachineReadableCodeObject
             qrCodeFrameView?.frame = objBarCode.bounds;
             if objMetadataMachineReadableCodeObject.stringValue != nil {
-                result = objMetadataMachineReadableCodeObject.stringValue
+                result = objMetadataMachineReadableCodeObject.stringValue!
                 
             }
         }
@@ -297,7 +297,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
         
         // Barcode Scanner Mode
         if self.scanType == "barCode" {
-            self.dataType = AVMetadataObjectTypeCode128Code
+            self.dataType = AVMetadataObject.ObjectType.code128
             self.barcodeViewFinder.isHidden = false
             self.qrCodeLabel.text = "Align barcode in frame"
             self.photoFrameImage.isHidden = true
@@ -307,7 +307,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
             // QR Scanner Mode
         } else {
-            self.dataType = AVMetadataObjectTypeQRCode
+            self.dataType = AVMetadataObject.ObjectType.qr
             self.barcodeViewFinder.isHidden = true
             self.qrCodeLabel.text = "Align QR code in frame"
             self.scanButton.isHidden = false
@@ -359,7 +359,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     
-    func bubbles() {
+    @objc func bubbles() {
         
         self.isBubbling = true
         
@@ -431,7 +431,7 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
     }
     
     func cameraCheck() {
-        let authStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
+        let authStatus = AVCaptureDevice.authorizationStatus(for: AVMediaType.video)
         switch authStatus {
         case .authorized:
             qrOn(true)
@@ -460,7 +460,10 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             
         case .notDetermined:
             
-            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo, completionHandler: nil)
+           // AVCaptureDevice.requestAccess(for: AVMediaType.video, completionHandler: nil)
+            AVCaptureDevice.requestAccess(for: AVMediaType.video) { (true) in
+                print("Access Granted")
+            }
             
             
             
@@ -566,8 +569,8 @@ class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsD
             cell.animalCheckedButton.setImage(#imageLiteral(resourceName: "unchecked"), for: .normal)
         }
         
-        cell.animalImage.heroID = "animalImage: \(indexPath.row)"
-        cell.animalNameLabel.heroID = "animalName: \(indexPath.row)"
+        cell.animalImage.hero.id = "animalImage: \(indexPath.row)"
+        cell.animalNameLabel.hero.id = "animalName: \(indexPath.row)"
         
         
         return cell

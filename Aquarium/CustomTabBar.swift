@@ -41,11 +41,11 @@ class CustomTabBar: UIView {
         super.init(frame: frame)
         
         self.backgroundColor = aquaWaveColor
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.white.cgColor
+     //   self.layer.borderWidth = 0.5
+     //   self.layer.borderColor = UIColor.white.cgColor
         
         
-        //        self.clipsToBounds = true
+                self.clipsToBounds = true
         //        let rightBorder = CALayer()
         //        rightBorder.borderColor = UIColor.white.cgColor
         //        rightBorder.borderWidth = 0.5
@@ -74,7 +74,6 @@ class CustomTabBar: UIView {
         tabBarButtons = []
         
         let containers = createTabBarItemContainers()
-        
         createTabBarItemSelectionOverlay(containers: containers)
         createItemSelectionOverlayMask(containers: containers)
         createTabBarItems(containers)
@@ -172,7 +171,7 @@ class CustomTabBar: UIView {
             
             customTabBarItem.addSubview(button)
             tabBarButtons.append(button)
-            
+         
             index += 1
         }
         
@@ -200,7 +199,7 @@ class CustomTabBar: UIView {
         return tabBarContainerRect
     }
     
-    func barItemTapped(_ sender : UIButton) {
+    @objc func barItemTapped(_ sender : UIButton) {
         let index = tabBarButtons.index(of: sender)!
         
         animateTabBarSelection(from: selectedTabBarItemIndex, to: index)
