@@ -13,6 +13,7 @@ import Firebase
 import FirebaseStorage
 import FirebaseStorageUI
 import RQShineLabel
+import CoreML
 
 class QRScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate, SFSafariViewControllerDelegate, UICollectionViewDelegate, UICollectionViewDataSource, QRAnimalCollectionViewDelegate {
     
