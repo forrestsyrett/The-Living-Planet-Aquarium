@@ -12,7 +12,7 @@ import FirebaseStorageUI
 import Hero
 
 
-class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var animalNameLabel: UILabel!
@@ -27,7 +27,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var ThreeDView: UIButton!
     
-    @IBOutlet weak var conservationStatusImage: UIImageView!
+    //@IBOutlet weak var conservationStatusImage: UIImageView!
     
     @IBOutlet weak var animalFactSheet: UIImageView!
     
@@ -39,10 +39,11 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var panView: UIView!
     
-    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var infoButton: UIButton!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     
@@ -63,7 +64,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var timer = Timer()
     var time = 0
     
-    
+    var images: [UIImage] = []
+    var imageID = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,23 +73,32 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         gradient(self.view)
         dismissButton.layer.cornerRadius = 19.5
         ThreeDView.layer.cornerRadius = 5.0
-        
+          collectionView.isHidden = true
         
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
         
         panView.addGestureRecognizer(gesture)
         
         gesture.delegate = self
+        
+        let sharkImage = UIImage(named: "Shark")!
+        let orangeFish = UIImage(named: "OrangeFish")!
+        images = [sharkImage, orangeFish]
+       
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+    
         self.infoButton.alpha = 0.0
         self.animalNewsBUttonHeight.constant = 0.0
         self.view.layoutIfNeeded()
         
         let reference = FIRStorageReference().child(self.imageReference)
         let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
+        let galleryReference = FIRStorageReference().child("GalleryImages/\(name)/\(imageID)")
+
         self.animalImage.sd_setShowActivityIndicatorView(true)
         self.animalFactSheet.sd_setShowActivityIndicatorView(true)
         self.animalImage.sd_setImage(with: reference)
@@ -114,7 +125,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             self.ThreeDView.isHidden = true
         // }
         
-        
+   /*
         switch self.status {
         case "Least Concern": conservationStatusImage.image = #imageLiteral(resourceName: "LeastConcern")
         case "Near Threatened": conservationStatusImage.image = #imageLiteral(resourceName: "NearThreatened")
@@ -124,6 +135,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         case "Extinct in the Wild": conservationStatusImage.image = #imageLiteral(resourceName: "Extinct_In_Wild")
         default: conservationStatusImage.image = #imageLiteral(resourceName: "Unknown")
         }
+ */
         
     }
     
@@ -137,6 +149,28 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         let random = CGFloat(arc4random_uniform(UInt32(high)) + UInt32(low))
         return random
     }
+    
+    
+    @IBAction func segmentedControlTapped(_ sender: Any) {
+        
+        
+        switch segmentedControl.selectedSegmentIndex {
+            
+        case 0: scrollView.isHidden = false
+            collectionView.isHidden = true
+            
+        case 1: scrollView.isHidden = true
+            collectionView.isHidden = false
+            collectionView.reloadData()
+            print(collectionView.numberOfItems(inSection: 0))
+            
+        default: break
+        }
+        
+        
+    }
+    
+    
     
 
     @objc func bubbles() {
@@ -217,25 +251,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         }
     }
     
-    
-    @IBAction func heatmapButtonTapped(_ sender: Any) {
-        
-    /*    if self.imageType == "animal" {
-            self.animalImage.image = image
-            self.imageType = "heatmap"
-        } else {
-            let reference = FIRStorageReference().child(self.imageReference)
-            self.animalImage.sd_setImage(with: reference, placeholderImage: image)
-            self.imageType = "animal"
-        }
- */
-    }
-    
 
-    
-
-    
-    
     @IBAction func dismissButtonTapped(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
@@ -285,6 +301,84 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalUpdates = animal.animalUpdates ?? ""
         self.updateImage = animal.updateImage ?? ""
     }
+    
+    
+    // Mark: - CollectionView Methods
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+        return images.count
+        
+        }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as! GalleryCollectionViewCell
+        let index = indexPath.row
+        
+       let thumbnail = self.images[index]
+        
+        cell.thumbnailImage.image = thumbnail
+        
+        
+        
+        //Get odd numbers (right column)
+        if indexPath.row % 2 == 1 {
+            cell.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0.0)
+        } else {
+            //Left column
+            cell.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0.0)
+        }
+
+        // Show cascade animation on first load
+        
+        var delay = 0.05 * Double(index) / 2
+        if cell.didAnimate == false {
+            delay = 0.05 * Double(index) / 2
+            
+            UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                cell.transform = CGAffineTransform.identity
+                cell.layoutIfNeeded()
+                cell.didAnimate = true
+            }, completion: nil)
+        } else {
+            cell.transform = CGAffineTransform.identity
+        }
+        
+        cell.layer.cornerRadius = 5.0
+        
+        return cell
+        
+        
+    }
+
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: ((self.collectionView.frame.width / 2) - 12), height: collectionView.frame.height / 3.75)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 4.0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout
+        collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8.0
+    }
+    
+    
+    
+    
+    
+    
 
     
     

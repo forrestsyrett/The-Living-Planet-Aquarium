@@ -13,7 +13,7 @@ import UserNotifications
 import Google
 import GoogleSignIn
 import Firebase
-import EstimoteProximitySDK
+//import EstimoteProximitySDK
 import CoreLocation
 
 @UIApplicationMain
@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     let notificationDelegate = NotificationDelegate()
-    var proximityObserver: EPXProximityObserver!
+    //var proximityObserver: EPXProximityObserver!
     
     let center = UNUserNotificationCenter.current()
     
@@ -30,8 +30,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
      let geofenceRegionCenter = CLLocationCoordinate2DMake(40.5321, -111.8940)
     
     // Use for testing geofencing with highway drive mode on simulator
-   // let geofenceRegionCenter = CLLocationCoordinate2DMake(37.3324, -122.0558)
-    var zones = [EPXProximityZone]()
+    //let geofenceRegionCenter = CLLocationCoordinate2DMake(37.3324, -122.0558)
+   // var zones = [EPXProximityZone]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -64,12 +64,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         self.locationManager.delegate = self
         
-        
-        
-        
-        
-        
-        
+
         // Notification Actions
         
         let openMembershipAction = UNNotificationAction(identifier: "membership", title: "Open Membership", options: [.foreground])
@@ -78,7 +73,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         // BEACONS //////////////////////////////////////////////////////
-        
+     /*
             let cloudCredentials = EPXCloudCredentials(appID: "llpa-app-lvz",
                                                        appToken: "4474d4b135f8f962a85206c18ddd9165")
             
@@ -159,7 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         //////////////////////////////////////////////////////////////////
         
-        
+      */
         
         // Initialize sign-in
         var configureError: NSError?
@@ -246,7 +241,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Beacon monitoring functions
     
-    
+    /*
     func startBeaconMonitoring(zones: [EPXProximityZone]) {
         self.proximityObserver.startObserving(zones)
     }
@@ -255,7 +250,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.proximityObserver.stopObservingZones()
     }
     
-    
+    */
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -412,7 +407,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         }
     }
     
-    
+    /*
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         self.stopBeaconMonitoring()
         print("stop beacon monitoring")
@@ -423,7 +418,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         self.startBeaconMonitoring(zones: zones)
         print("Start beacon monitoring")
     }
-    
+    */
 
   
 }

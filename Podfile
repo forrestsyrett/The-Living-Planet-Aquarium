@@ -25,8 +25,7 @@ pod 'NVActivityIndicatorView'
 pod 'Hero'
 pod 'LTMorphingLabel'
 pod 'RQShineLabel'
-pod "SAConfettiView"
-pod "EstimoteProximitySDK"
+pod 'SAConfettiView'
 
 
 end
