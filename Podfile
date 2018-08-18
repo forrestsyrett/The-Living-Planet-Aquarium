@@ -20,13 +20,14 @@ pod 'Google/Analytics'
 pod 'Google/SignIn'
 pod 'Firebase/Core'
 pod 'Firebase/Database'
+pod 'Firebase/Storage'
 pod 'FirebaseUI/Storage'
 pod 'NVActivityIndicatorView'
 pod 'Hero'
 pod 'LTMorphingLabel'
 pod 'RQShineLabel'
-pod "SAConfettiView"
-pod "EstimoteProximitySDK"
+pod 'SAConfettiView'
+pod 'AnimatedCollectionViewLayout'
 
 
 end

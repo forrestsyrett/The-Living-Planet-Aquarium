@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import Foundation
 import QuartzCore
+import FirebaseStorage
 import FirebaseStorageUI
 import Hero
+import NVActivityIndicatorView
 
 
-class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate {
+class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
     
     
     @IBOutlet weak var animalNameLabel: UILabel!
@@ -27,7 +30,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var ThreeDView: UIButton!
     
-    @IBOutlet weak var conservationStatusImage: UIImageView!
+    //@IBOutlet weak var conservationStatusImage: UIImageView!
     
     @IBOutlet weak var animalFactSheet: UIImageView!
     
@@ -39,14 +42,16 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     @IBOutlet weak var panView: UIView!
     
-    
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     @IBOutlet weak var infoButton: UIButton!
     
+    @IBOutlet weak var collectionView: UICollectionView!
     
     
     
     var name = ""
+    var trimmedName = ""
     var image = UIImageView()
     var info = ""
     var imageReference = ""
@@ -62,16 +67,20 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     var infoImageHeroID = ""
     var timer = Timer()
     var time = 0
+    var tempReference = FIRStorageReference()
     
-    
+    var images = [UIImage]()
+    var imageID = 0
+    var totalImages = Int()
+    var references = [FIRStorageReference]()
+    var imageData = [Data]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         gradient(self.view)
         dismissButton.layer.cornerRadius = 19.5
         ThreeDView.layer.cornerRadius = 5.0
-        
+          collectionView.isHidden = true
         
         let gesture = UIPanGestureRecognizer.init(target: self, action: #selector(BottomSheetViewController.panGesture))
         
@@ -88,6 +97,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         
         let reference = FIRStorageReference().child(self.imageReference)
         let factSheetReference = FIRStorageReference().child("factSheets/\(self.factSheetString)")
+        
+   
+        trimmedName = name.replacingOccurrences(of: " ", with: "")
+        
         self.animalImage.sd_setShowActivityIndicatorView(true)
         self.animalFactSheet.sd_setShowActivityIndicatorView(true)
         self.animalImage.sd_setImage(with: reference)
@@ -105,6 +118,10 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalNameLabel.hero.id = self.titleLabelHeroID
         self.dismissButton.hero.id = self.dismissButtonHeroID
         self.infoButton.hero.id = self.infoImageHeroID
+
+        
+        loadImagesFromFirebase()
+        self.collectionView.reloadData()
         
         // Added to test 3D model functionality. Will hide button if no 3D Model is available.
       //  if self.name == "Blacktip Reef Shark" {
@@ -114,7 +131,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
             self.ThreeDView.isHidden = true
         // }
         
-        
+   /*
         switch self.status {
         case "Least Concern": conservationStatusImage.image = #imageLiteral(resourceName: "LeastConcern")
         case "Near Threatened": conservationStatusImage.image = #imageLiteral(resourceName: "NearThreatened")
@@ -124,7 +141,8 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         case "Extinct in the Wild": conservationStatusImage.image = #imageLiteral(resourceName: "Extinct_In_Wild")
         default: conservationStatusImage.image = #imageLiteral(resourceName: "Unknown")
         }
-        
+ */
+    
     }
     
     
@@ -133,10 +151,55 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     }
     
+    
+    
+    func loadImagesFromFirebase() {
+        for index in stride(from: 0, to: totalImages, by: 1) {
+            let reference = FIRStorageReference().child("GalleryImages/\(trimmedName.lowercased())/\(index).jpg")
+            
+            references.append(reference)
+            
+       //     let url = URL(string: ("GalleryImages/\(trimmedName.lowercased())/\(index).jpg"))
+
+        /*    reference.data(withMaxSize: 5 * 1024 * 1024) { (data, error) in
+                if let error = error {
+                    // Handle error here
+                    print("Error: \(error)")
+                } else {
+                    let imageFromData = UIImage(data: data!)
+                    self.images.append(imageFromData!)
+                    print("Appending \(self.images.count)")
+                }
+            } */
+        }
+    }
+    
+    
     func randomNumber(low: Int, high: Int) -> CGFloat {
         let random = CGFloat(arc4random_uniform(UInt32(high)) + UInt32(low))
         return random
     }
+    
+    
+    @IBAction func segmentedControlTapped(_ sender: Any) {
+        
+        
+        switch segmentedControl.selectedSegmentIndex {
+            
+        case 0: scrollView.isHidden = false
+            collectionView.isHidden = true
+            
+        case 1: scrollView.isHidden = true
+            collectionView.isHidden = false
+            collectionView.reloadData()
+            
+        default: break
+        }
+        
+        
+    }
+    
+    
     
 
     @objc func bubbles() {
@@ -217,25 +280,7 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         }
     }
     
-    
-    @IBAction func heatmapButtonTapped(_ sender: Any) {
-        
-    /*    if self.imageType == "animal" {
-            self.animalImage.image = image
-            self.imageType = "heatmap"
-        } else {
-            let reference = FIRStorageReference().child(self.imageReference)
-            self.animalImage.sd_setImage(with: reference, placeholderImage: image)
-            self.imageType = "animal"
-        }
- */
-    }
-    
 
-    
-
-    
-    
     @IBAction func dismissButtonTapped(_ sender: Any) {
         
         self.dismiss(animated: true, completion: nil)
@@ -285,7 +330,64 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
         self.animalUpdates = animal.animalUpdates ?? ""
         self.updateImage = animal.updateImage ?? ""
     }
+    
+    
+    /////////////////////////////////////////////////////////////////////
+    // MARK: - CollectionView Methods
+    /////////////////////////////////////////////////////////////////////
+    
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    
+        return references.count
+        
+        }
+    
 
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "galleryCell", for: indexPath) as! GalleryCollectionViewCell
+        
+        let ref = references[indexPath.row]
+        
+        cell.hero.id = "photo: \(indexPath.row)"
+        
+        cell.activityIndicator.startAnimating()
+        
+        cell.thumbnailImage.sd_setImage(with: ref)
+        
+ 
+    /*    //Get odd numbers (right column)
+        if indexPath.row % 2 == 1 {
+            cell.transform = CGAffineTransform(translationX: UIScreen.main.bounds.width, y: 0.0)
+        } else {
+            //Left column
+            cell.transform = CGAffineTransform(translationX: -UIScreen.main.bounds.width, y: 0.0)
+        }
+ 
+ */
+        
+        cell.alpha = 0.0
+        
+       let delay = 0.15 * Double(indexPath.row) / 2
+            
+            UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+                cell.alpha = 1.0
+              //  cell.layoutIfNeeded()
+                cell.didAnimate = true
+            }, completion: nil)
+        
+ 
+        
+        
+        return cell
+        
+        
+    }
+    
     
     
  @objc func panGesture(recognizer: UIPanGestureRecognizer) {
@@ -312,17 +414,34 @@ class AnimalDetailViewController: UIViewController, UIGestureRecognizerDelegate 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        if segue.identifier == "animalNotification" {
         if let destination = segue.destination as? AnimalNotificationsViewController {
             
             destination.updateInfo = self.animalUpdates
             destination.imageReference = self.updateImage
-            
+            }
             
         }
+        
+        
+        if segue.identifier == "toPhoto" {
+            if let destinationViewController = segue.destination as? GalleryPhotoViewController {
+
+                let indexPath = self.collectionView.indexPath(for: (sender as! UICollectionViewCell))
+                guard let newIndexPath = indexPath else { return }
+                let index = newIndexPath.row
+                
+                destinationViewController.heroID = "photo: \(index)"
+                destinationViewController.selectedIndex = index
+                destinationViewController.images = self.images
+                destinationViewController.references = self.references
+                
+            }
+        }
     }
-    
-    
 }
+
+
 
 
 extension UIPanGestureRecognizer {
