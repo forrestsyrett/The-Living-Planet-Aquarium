@@ -377,7 +377,6 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
     }
     ///////////////////////////////////////////////////
     
-    // Generate cells for animals
     // MARK: - CollectionView Methods
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -441,20 +440,29 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
         }
             // Show cascade animation on first load
         
-        var delay = 0.05 * Double(index) / 2
-            if cell.didAnimate == false {
-                delay = 0.05 * Double(index) / 2
-                
+        cell.transform = CGAffineTransform(scaleX: 0.0, y: 0.0)
+        
+        let delay = 0.12
+        
+        UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
+            cell.transform = CGAffineTransform.identity
+            cell.layoutIfNeeded()
+            cell.didAnimate = true
+        }, completion: nil)
+        
+        /*
+         
+         Uncomment this for the default animation
+        let delay = 0.00 * Double(index) / 2
+        
                 UIView.animate(withDuration: 0.85, delay: delay, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.1, options: .allowUserInteraction, animations: {
                     cell.transform = CGAffineTransform.identity
                     cell.layoutIfNeeded()
                     cell.didAnimate = true
                 }, completion: nil)
-            } else {
-            cell.transform = CGAffineTransform.identity
-        }
+        */
         
-
+        
                 //Check for animal updates, and show ribbon
                 if animal.animalUpdates != "none" {
                     
@@ -574,11 +582,13 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                 let imageHeroID = "animalImage: \(newIndexPath.row)"
                 let titleLabelHeroID = "animalName: \(newIndexPath.row)"
                 let infoImage = "infoImage: \(newIndexPath.row)"
+            
                 
                 destinationViewController.view.hero.id = heroString
                 destinationViewController.imageHeroID = imageHeroID
                 destinationViewController.titleLabelHeroID = titleLabelHeroID
                 destinationViewController.infoImageHeroID = infoImage
+                
                 
                 
                 if let selectedItem = (indexPath as NSIndexPath?)?.row {
@@ -591,6 +601,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         destinationViewController.imageHeroID = imageHeroID
                         destinationViewController.titleLabelHeroID = titleLabelHeroID
                         destinationViewController.infoImageHeroID = infoImage
+                        destinationViewController.totalImages = (animal?.imageCount)!
                     }
                         
                       //  default all animals
@@ -602,6 +613,7 @@ class MainExhibitViewController: UIViewController, FlowingMenuDelegate, UICollec
                         destinationViewController.updateInfo(animal: animal)
                         destinationViewController.animal = animal.animalName!
                         destinationViewController.infoImageHeroID = infoImage
+                        destinationViewController.totalImages = animal.imageCount!
                     }
                 }
             }

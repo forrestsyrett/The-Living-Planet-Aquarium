@@ -34,6 +34,7 @@
 		0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493B1EF1E94E004406CF /* CustomCell.swift */; };
 		0615493E1EF1E956004406CF /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493D1EF1E956004406CF /* EventTableViewCell.swift */; };
 		061549401EF1E95D004406CF /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0615493F1EF1E95D004406CF /* Event.swift */; };
+		062DB4ED2117679A0058D162 /* PhotoViewerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062DB4EC2117679A0058D162 /* PhotoViewerCollectionViewCell.swift */; };
 		063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 063041FC20C0B010009DF30E /* CafeViewController.swift */; };
 		0631A56E1F22B75A0007E4CF /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0631A56D1F22B75A0007E4CF /* TestViewController.swift */; };
 		0631DCFC20CF3B4900F6609A /* tree.dae in Resources */ = {isa = PBXBuildFile; fileRef = 0631DCFB20CF3B4900F6609A /* tree.dae */; };
@@ -59,6 +60,7 @@
 		06B24F8F2110EED1009294DB /* AnimalClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 06B24F8E2110EED0009294DB /* AnimalClassifier.mlmodel */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
+		06C6EEF221151FB900A20446 /* GalleryPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C6EEF121151FB900A20446 /* GalleryPhotoViewController.swift */; };
 		06CCC73020C716B90014AAAF /* ARAnimalsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CCC72F20C716B90014AAAF /* ARAnimalsController.swift */; };
 		06CFC3B52112733800DA3E86 /* GalleryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06CFC3B42112733800DA3E86 /* GalleryCollectionViewCell.swift */; };
 		06D937501F22ADB1005D7D63 /* OpenURLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */; };
@@ -154,6 +156,7 @@
 		0615493D1EF1E956004406CF /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 		0615493F1EF1E95D004406CF /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		0618981D1F2A6D9D00882789 /* SAConfettiView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SAConfettiView.framework; path = "Pods/../build/Release-iphoneos/SAConfettiView/SAConfettiView.framework"; sourceTree = "<group>"; };
+		062DB4EC2117679A0058D162 /* PhotoViewerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewerCollectionViewCell.swift; sourceTree = "<group>"; };
 		063041FC20C0B010009DF30E /* CafeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CafeViewController.swift; sourceTree = "<group>"; };
 		0631A56D1F22B75A0007E4CF /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		0631DCFB20CF3B4900F6609A /* tree.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = tree.dae; sourceTree = "<group>"; };
@@ -179,6 +182,7 @@
 		06B24F8E2110EED0009294DB /* AnimalClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AnimalClassifier.mlmodel; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
+		06C6EEF121151FB900A20446 /* GalleryPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPhotoViewController.swift; sourceTree = "<group>"; };
 		06CCC72F20C716B90014AAAF /* ARAnimalsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAnimalsController.swift; sourceTree = "<group>"; };
 		06CFC3B42112733800DA3E86 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenURLExtension.swift; sourceTree = "<group>"; };
@@ -461,6 +465,8 @@
 				AA55B5851DDF765100CC2336 /* MainExhibitController.swift */,
 				06FD838C1DEA41F5005F4EFA /* AnimalDetailViewController.swift */,
 				06CFC3B42112733800DA3E86 /* GalleryCollectionViewCell.swift */,
+				06C6EEF121151FB900A20446 /* GalleryPhotoViewController.swift */,
+				062DB4EC2117679A0058D162 /* PhotoViewerCollectionViewCell.swift */,
 				06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */,
 				060C1EB41E81D87500501713 /* shark.obj */,
 				060C1EB51E81D87500501713 /* sharkTexture.jpg */,
@@ -656,6 +662,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/AnimatedCollectionViewLayout/AnimatedCollectionViewLayout.framework",
 				"${BUILT_PRODUCTS_DIR}/FlowingMenu/FlowingMenu.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
@@ -674,6 +681,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AnimatedCollectionViewLayout.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlowingMenu.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
@@ -737,6 +745,7 @@
 				06E8528220C609A600CCF8BF /* ARAnimalTableViewCell.swift in Sources */,
 				AA07C6A01DD5090E00AD855D /* SecondFloorOverlay.swift in Sources */,
 				0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */,
+				062DB4ED2117679A0058D162 /* PhotoViewerCollectionViewCell.swift in Sources */,
 				0615493C1EF1E94E004406CF /* CustomCell.swift in Sources */,
 				061549401EF1E95D004406CF /* Event.swift in Sources */,
 				063041FD20C0B010009DF30E /* CafeViewController.swift in Sources */,
@@ -790,6 +799,7 @@
 				06E8527E20C6077500CCF8BF /* ARAnimalTableViewController.swift in Sources */,
 				06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */,
 				AA544CAB1D0C790400DC1725 /* UIAppearance.swift in Sources */,
+				06C6EEF221151FB900A20446 /* GalleryPhotoViewController.swift in Sources */,
 				AA00A7871DD3D3E100B80DF6 /* WebViewController.swift in Sources */,
 				AA6FA1D21D554E6800CBEEC7 /* MembershipCardTableViewCell.swift in Sources */,
 				AA6FA1D81D55552800CBEEC7 /* Membership.swift in Sources */,

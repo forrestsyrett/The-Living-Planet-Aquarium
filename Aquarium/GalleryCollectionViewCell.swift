@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 
 class GalleryCollectionViewCell: UICollectionViewCell {
     
+    @IBOutlet weak var activityIndicator: NVActivityIndicatorView!
     @IBOutlet weak var thumbnailImage: UIImageView!
     var didAnimate = false
     
