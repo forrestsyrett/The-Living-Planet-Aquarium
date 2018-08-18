@@ -13,6 +13,8 @@ import UserNotifications
 import Google
 import GoogleSignIn
 import Firebase
+import EstimoteProximitySDK
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -20,18 +22,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     let notificationDelegate = NotificationDelegate()
-
+    var proximityObserver: EPXProximityObserver!
+    
+    let center = UNUserNotificationCenter.current()
+    
+    let locationManager = CLLocationManager()
+     let geofenceRegionCenter = CLLocationCoordinate2DMake(40.5321, -111.8940)
+    
+    // Use for testing geofencing with highway drive mode on simulator
+   // let geofenceRegionCenter = CLLocationCoordinate2DMake(37.3324, -122.0558)
+    var zones = [EPXProximityZone]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FIRApp.configure()
         FIRDatabase.database().goOnline()
         UITabBar.appearance().tintColor = UIColor.white
+    
         
-        
-      //  OneSignal.initWithLaunchOptions(launchOptions, appId: "3090501c-b1b5-4a1f-9c02-cb3a768e71a7")
-        
-       // application.registerForRemoteNotifications()
         
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false]
         OneSignal.initWithLaunchOptions(launchOptions,
@@ -43,13 +51,114 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             print("User accepted notifications: \(accepted)")
         })
         
-        
-        let center = UNUserNotificationCenter.current()
         center.delegate = notificationDelegate
         
         center.requestAuthorization(options: [.alert, .sound]) { (granted, error) in
             
         }
+        
+        
+        // Core location to start monitoring beacons in the background
+        // Code in the Extension below will start and stop monitoring for beacons when the user is in/out of rnage from the aquarium.
+        // This will save battery life and also not require the app to be launched to receive beacon notifications.
+        
+        self.locationManager.delegate = self
+        
+        
+        
+        
+        
+        
+        
+        // Notification Actions
+        
+        let openMembershipAction = UNNotificationAction(identifier: "membership", title: "Open Membership", options: [.foreground])
+        let actionCategory = UNNotificationCategory(identifier: "entranceCategory", actions: [openMembershipAction], intentIdentifiers: [],options: [])
+        center.setNotificationCategories([actionCategory])
+        
+        
+        // BEACONS //////////////////////////////////////////////////////
+        
+            let cloudCredentials = EPXCloudCredentials(appID: "llpa-app-lvz",
+                                                       appToken: "4474d4b135f8f962a85206c18ddd9165")
+            
+            self.proximityObserver = EPXProximityObserver(credentials: cloudCredentials, errorBlock: { (error) in
+                print("Proximity observer error: \(error)")
+            })
+        
+     
+        let coconutPuffZone = EPXProximityZone(range: .near, attachmentKey: "DoorName", attachmentValue: "Entrance")
+        coconutPuffZone.onEnterAction = {
+            context in
+            let info = context.payload["DoorName"] as! String
+            print("You are entering the \(info)!")
+            self.setupEntranceNotification()
+        }
+        coconutPuffZone.onExitAction = {
+            context in
+            let info = context.payload["DoorName"] as! String
+            print("You are exiting the \(info)!")
+        }
+
+        
+        /////////
+        
+        let blueberryPieZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Sharks")
+        blueberryPieZone.onEnterAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are entering the \(info)!")
+            self.blueberryPieAlert()
+        }
+        blueberryPieZone.onExitAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are exiting the \(info)!")
+        }
+        
+        /////////
+        
+        let icyMarshmallowZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Penguins")
+        icyMarshmallowZone.onEnterAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are entering the \(info)!")
+            self.icyMarshmallowAlert()
+        }
+        icyMarshmallowZone.onExitAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are exiting the \(info)!")
+        }
+        
+        
+        /////////
+        
+        let mintCocktailZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Sloths")
+        mintCocktailZone.onEnterAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are entering the \(info)!")
+            self.mintCocktailAlert()
+        }
+        mintCocktailZone.onExitAction = {
+            context in
+            let info = context.payload["Exhibit"] as! String
+            print("You are exiting the \(info)!")
+        }
+        
+        
+        
+        
+        //////////////////////////////////////
+        //////// SET ZONES HERE///////////////
+        //////////////////////////////////////
+        
+        zones = [coconutPuffZone, icyMarshmallowZone, blueberryPieZone, mintCocktailZone]
+        startBeaconMonitoring(zones: zones)
+        
+        //////////////////////////////////////////////////////////////////
+        
         
         
         // Initialize sign-in
@@ -58,6 +167,94 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         assert(configureError == nil, "Error configuring Google services: \(configureError)")
         return true
     }
+    
+    
+    
+    // Send notification when user enters through the front door.
+    
+    func setupEntranceNotification() {
+        
+        let content = UNMutableNotificationContent()
+        
+        
+        let members = MembershipCardController.sharedMembershipController.memberships
+        if members.count != 0 {
+            let firstName = members[0].firstName
+            
+            content.title = "Welcome to the Aquarium, \(firstName)!"
+            content.body = "Tap this notification to open up your membership card!"
+        }
+        else {
+            content.title = "Welcome to the Aquarium!"
+            content.body = "Tap this notification to purchase tickets!"
+        }
+        
+        content.sound = UNNotificationSound.default()
+        content.categoryIdentifier = "entranceCategory"
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        
+        let identifier = "MemberEntrance"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        
+        center.add(request) { (error) in
+            print(error as Any)
+        }
+    }
+    
+    
+    func blueberryPieAlert() {
+        let content = UNMutableNotificationContent()
+        content.title = "Blueberry Pie"
+        content.body = "You're within range of the Blueberry Pie beacon!"
+        content.sound = UNNotificationSound.default()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "blueberryPie"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request) { (error) in
+            print(error as Any)
+        }
+        
+    }
+    func mintCocktailAlert() {
+        let content = UNMutableNotificationContent()
+        content.title = "Mint Cocktail"
+        content.body = "You're within range of the Mint Cocktail beacon!"
+        content.sound = UNNotificationSound.default()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "mintCocktail"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request) { (error) in
+            print(error as Any)
+        }
+        
+    }
+    func icyMarshmallowAlert() {
+        let content = UNMutableNotificationContent()
+        content.title = "Icy Marshmallow"
+        content.body = "You're within range of the Icy Marshmallow beacon!"
+        content.sound = UNNotificationSound.default()
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+        let identifier = "icyMarshmallow"
+        let request = UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
+        center.add(request) { (error) in
+            print(error as Any)
+        }
+        
+    }
+    
+    
+    // Beacon monitoring functions
+    
+    
+    func startBeaconMonitoring(zones: [EPXProximityZone]) {
+        self.proximityObserver.startObserving(zones)
+    }
+    
+    func stopBeaconMonitoring() {
+        self.proximityObserver.stopObservingZones()
+    }
+    
     
     
     func applicationWillResignActive(_ application: UIApplication) {
@@ -187,6 +384,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
+  
+    
+}
+
+
+extension AppDelegate: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        switch status {
+        case .denied: return
+        case .notDetermined: self.locationManager.requestAlwaysAuthorization()
+        case .authorizedAlways:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            let aquariumRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 300.0, identifier: "aquarium")
+            aquariumRegion.notifyOnEntry = true
+            aquariumRegion.notifyOnExit = true
+            locationManager.startMonitoring(for: aquariumRegion)
+        case .authorizedWhenInUse:
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            let aquariumRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 300.0, identifier: "aquarium")
+            aquariumRegion.notifyOnEntry = true
+            aquariumRegion.notifyOnExit = true
+            locationManager.startMonitoring(for: aquariumRegion)
+        default: break
+        }
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        self.stopBeaconMonitoring()
+        print("stop beacon monitoring")
+    }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        self.startBeaconMonitoring(zones: zones)
+        print("Start beacon monitoring")
+    }
+    
+
+  
 }
 
 

@@ -99,6 +99,9 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         let region = MKCoordinateRegionMake(aquarium.midCoordinate, span)
         
         
+    
+        
+        
         mapView.showsUserLocation = false
         mapView.showsBuildings = false
         mapView.showsCompass = true
@@ -120,6 +123,8 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         NotificationCenter.default.addObserver(self, selector: #selector(MapKitViewController.updateLocation), name: Notification.Name(rawValue: "utah"), object: nil)
  
         transparentNavigationBar(self)
+        
+       
         
      //    tapGesture = UITapGestureRecognizer(target: self, action: #selector(MapKitViewController.startTimer))
       //  mapView.addGestureRecognizer(tapGesture)
@@ -448,10 +453,22 @@ class MapKitViewController: UIViewController, MKMapViewDelegate, BottomSheetView
         }
     }
     
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
         
+        view.image = #imageLiteral(resourceName: "transparent")
+
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    
+        
+        UIView.animate(withDuration: 0.5) {
+            
+           
+        }
         
         if let annotation = view.annotation {
+            
             
             
             //             Zoom To Selected Annotation

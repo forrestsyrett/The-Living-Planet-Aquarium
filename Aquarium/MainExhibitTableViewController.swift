@@ -78,8 +78,7 @@ class MainExhibitTableViewController: UIViewController, UITableViewDelegate, UIT
     @IBAction func showAllAnimalsButtonTapped(_ sender: Any) {
         
         NotificationCenter.default.post(name: Notification.Name(rawValue: "allAnimals"), object: nil)
-        
-        
+  
     }
     
     

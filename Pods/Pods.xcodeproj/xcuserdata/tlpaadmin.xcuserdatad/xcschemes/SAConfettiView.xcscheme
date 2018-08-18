@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'FA3DC9235A5B0B917AC0E585568A7464'
-               BlueprintName = 'SAConfettiView'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SAConfettiView.framework'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FA3DC9235A5B0B917AC0E585568A7464"
+               BlueprintName = "SAConfettiView"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "SAConfettiView.framework">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
