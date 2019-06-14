@@ -13,7 +13,7 @@ import UserNotifications
 import Google
 import GoogleSignIn
 import Firebase
-//import EstimoteProximitySDK
+import EstimoteProximitySDK
 import CoreLocation
 
 @UIApplicationMain
@@ -22,16 +22,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var window: UIWindow?
     let notificationDelegate = NotificationDelegate()
-    //var proximityObserver: EPXProximityObserver!
+    var proximityObserver: ProximityObserver!
     
     let center = UNUserNotificationCenter.current()
     
     let locationManager = CLLocationManager()
-     let geofenceRegionCenter = CLLocationCoordinate2DMake(40.5321, -111.8940)
+    let geofenceRegionCenter = CLLocationCoordinate2DMake(40.5321, -111.8940)
     
     // Use for testing geofencing with highway drive mode on simulator
     //let geofenceRegionCenter = CLLocationCoordinate2DMake(37.3324, -122.0558)
-   // var zones = [EPXProximityZone]()
+    
+    // UNCOMMENT THIS FOR BEACONS
+    var zones = [ProximityZone]()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -57,13 +59,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
         }
         
+       
+        
         
         // Core location to start monitoring beacons in the background
         // Code in the Extension below will start and stop monitoring for beacons when the user is in/out of rnage from the aquarium.
         // This will save battery life and also not require the app to be launched to receive beacon notifications.
         
-        self.locationManager.delegate = self
-        
+         self.locationManager.delegate = self
+         self.locationManager.requestAlwaysAuthorization()
+       
 
         // Notification Actions
         
@@ -73,73 +78,75 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         
         // BEACONS //////////////////////////////////////////////////////
-     /*
-            let cloudCredentials = EPXCloudCredentials(appID: "llpa-app-lvz",
-                                                       appToken: "4474d4b135f8f962a85206c18ddd9165")
+    
+        let cloudCredentials = CloudCredentials(appID: "llpa-app-lvz", appToken: "4474d4b135f8f962a85206c18ddd9165")
             
-            self.proximityObserver = EPXProximityObserver(credentials: cloudCredentials, errorBlock: { (error) in
-                print("Proximity observer error: \(error)")
-            })
+        self.proximityObserver = ProximityObserver(credentials: cloudCredentials, configuration: .default, onError: { (Error) in
+            print(Error)
+        })
         
+    
      
-        let coconutPuffZone = EPXProximityZone(range: .near, attachmentKey: "DoorName", attachmentValue: "Entrance")
-        coconutPuffZone.onEnterAction = {
-            context in
-            let info = context.payload["DoorName"] as! String
-            print("You are entering the \(info)!")
+        let coconutPuffZone = ProximityZone(tag: "Exhibit", range: ProximityRange.near)
+
+        coconutPuffZone.onEnter = {
+            zoneContext in
+            let info = zoneContext.attachments["DoorName"]
+            print("You are entering the \(info ?? "err")!")
             self.setupEntranceNotification()
         }
-        coconutPuffZone.onExitAction = {
-            context in
-            let info = context.payload["DoorName"] as! String
-            print("You are exiting the \(info)!")
+        coconutPuffZone.onExit = {
+            zoneContext in
+            let info = zoneContext.attachments["DoorName"]
+            print("You are exiting the \(info ?? "err")!")
         }
 
-        
+   
         /////////
         
-        let blueberryPieZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Sharks")
-        blueberryPieZone.onEnterAction = {
+        let blueberryPieZone = ProximityZone(tag: "Exhibit", range: ProximityRange.near)
+        blueberryPieZone.onEnter = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are entering the \(info)!")
+            let info = context.attachments["Exhibit"]
+            print("You are entering the \(info ?? "err")!")
             self.blueberryPieAlert()
         }
-        blueberryPieZone.onExitAction = {
+        blueberryPieZone.onExit = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are exiting the \(info)!")
+            let info = context.attachments["Exhibit"]
+            print("You are exiting the \(info ?? "err")!")
         }
         
         /////////
         
-        let icyMarshmallowZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Penguins")
-        icyMarshmallowZone.onEnterAction = {
+        let icyMarshmallowZone = ProximityZone(tag: "Door", range: ProximityRange.near)
+
+        icyMarshmallowZone.onEnter = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are entering the \(info)!")
+            let info = context.attachments["DoorName"]
+            print("You are entering the \(info ?? "err")!")
             self.icyMarshmallowAlert()
         }
-        icyMarshmallowZone.onExitAction = {
+        icyMarshmallowZone.onExit = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are exiting the \(info)!")
+            let info = context.attachments["Exhibit"]
+            print("You are exiting the \(info ?? "err")!")
         }
         
         
         /////////
         
-        let mintCocktailZone = EPXProximityZone(range: .near, attachmentKey: "Exhibit", attachmentValue: "Sloths")
-        mintCocktailZone.onEnterAction = {
+        let mintCocktailZone = ProximityZone(tag: "Exhibit", range: ProximityRange.near)
+        mintCocktailZone.onEnter = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are entering the \(info)!")
+            let info = context.attachments["Exhibit"]
+            print("You are entering the \(info ?? "err")!")
             self.mintCocktailAlert()
         }
-        mintCocktailZone.onExitAction = {
+        mintCocktailZone.onExit = {
             context in
-            let info = context.payload["Exhibit"] as! String
-            print("You are exiting the \(info)!")
+            let info = context.attachments["Exhibit"]
+            print("You are exiting the \(info ?? "err")!")
         }
         
         
@@ -150,11 +157,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //////////////////////////////////////
         
         zones = [coconutPuffZone, icyMarshmallowZone, blueberryPieZone, mintCocktailZone]
-        startBeaconMonitoring(zones: zones)
+         startBeaconMonitoring(zones: zones)
         
         //////////////////////////////////////////////////////////////////
         
-      */
+        // Stop Comment
+       
         
         // Initialize sign-in
         var configureError: NSError?
@@ -163,7 +171,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    
+ 
     
     // Send notification when user enters through the front door.
     
@@ -241,8 +249,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // Beacon monitoring functions
     
-    /*
-    func startBeaconMonitoring(zones: [EPXProximityZone]) {
+  
+    func startBeaconMonitoring(zones: [ProximityZone]) {
         self.proximityObserver.startObserving(zones)
     }
     
@@ -250,7 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.proximityObserver.stopObservingZones()
     }
     
-    */
+    
     
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -396,18 +404,21 @@ extension AppDelegate: CLLocationManagerDelegate {
             let aquariumRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 300.0, identifier: "aquarium")
             aquariumRegion.notifyOnEntry = true
             aquariumRegion.notifyOnExit = true
+            startBeaconMonitoring(zones: zones)
             locationManager.startMonitoring(for: aquariumRegion)
         case .authorizedWhenInUse:
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
             let aquariumRegion = CLCircularRegion(center: geofenceRegionCenter, radius: 300.0, identifier: "aquarium")
             aquariumRegion.notifyOnEntry = true
             aquariumRegion.notifyOnExit = true
+            startBeaconMonitoring(zones: zones)
             locationManager.startMonitoring(for: aquariumRegion)
         default: break
         }
     }
+   
     
-    /*
+    // Region monitoring events to open app in the background upon arrival at the Aquarium.
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         self.stopBeaconMonitoring()
         print("stop beacon monitoring")
@@ -418,7 +429,7 @@ extension AppDelegate: CLLocationManagerDelegate {
         self.startBeaconMonitoring(zones: zones)
         print("Start beacon monitoring")
     }
-    */
+    
 
   
 }

@@ -573,7 +573,7 @@ class TestViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     func animateLabel(label: RQShineLabel, with newString: String, fadeOutDuration: CFTimeInterval, shineDuration: CFTimeInterval) {
         label.shineDuration = shineDuration
         label.fadeoutDuration = fadeOutDuration
-        label.fadeOut {
+        label.fadeOut(animated: true) {
             label.text = newString
             label.shine()
         }

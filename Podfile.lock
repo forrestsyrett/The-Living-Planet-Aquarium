@@ -1,9 +1,12 @@
 PODS:
-  - Alamofire (4.7.3)
-  - AlamofireObjectMapper (5.1.0):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.3)
-  - AnimatedCollectionViewLayout (0.3.0)
+  - Alamofire (4.8.2)
+  - AlamofireObjectMapper (5.2.0):
+    - Alamofire (~> 4.7)
+    - ObjectMapper (~> 3.4)
+  - AnimatedCollectionViewLayout (0.6.0)
+  - EstimoteBluetoothScanning (1.0.5)
+  - EstimoteProximitySDK (1.4.0):
+    - EstimoteBluetoothScanning (>= 0.2)
   - Firebase/Core (3.17.0):
     - FirebaseAnalytics (= 3.9.0)
     - FirebaseCore (= 3.6.0)
@@ -41,47 +44,40 @@ PODS:
     - Google/Core
     - GoogleSignIn (~> 4.0)
   - GoogleAnalytics (3.17.0)
-  - GoogleSignIn (4.1.2):
+  - GoogleSignIn (4.4.0):
     - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
     - "GoogleToolboxForMac/NSString+URLArguments (~> 2.1)"
-    - GTMOAuth2 (~> 1.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GoogleToolboxForMac/DebugUtils (2.1.4):
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/Defines (2.1.4)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.4)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.4)
-    - GoogleToolboxForMac/Defines (= 2.1.4)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.4)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.4)"
-  - GTMOAuth2 (1.1.6):
-    - GTMSessionFetcher (~> 1.1)
-  - GTMSessionFetcher (1.2.0):
-    - GTMSessionFetcher/Full (= 1.2.0)
-  - GTMSessionFetcher/Core (1.2.0)
-  - GTMSessionFetcher/Full (1.2.0):
-    - GTMSessionFetcher/Core (= 1.2.0)
-  - Hero (1.2.0)
-  - JTAppleCalendar (7.1.5)
-  - LTMorphingLabel (0.5.7)
-  - NVActivityIndicatorView (4.3.0):
-    - NVActivityIndicatorView/Presenter (= 4.3.0)
-  - NVActivityIndicatorView/Presenter (4.3.0)
-  - ObjectMapper (3.3.0)
-  - OneSignal (2.8.5)
-  - RQShineLabel (0.1.3)
+  - GoogleToolboxForMac/DebugUtils (2.2.1):
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - GoogleToolboxForMac/Defines (2.2.1)
+  - "GoogleToolboxForMac/NSData+zlib (2.2.1)":
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.2.1)":
+    - GoogleToolboxForMac/DebugUtils (= 2.2.1)
+    - GoogleToolboxForMac/Defines (= 2.2.1)
+    - "GoogleToolboxForMac/NSString+URLArguments (= 2.2.1)"
+  - "GoogleToolboxForMac/NSString+URLArguments (2.2.1)"
+  - GTMSessionFetcher/Core (1.2.2)
+  - Hero (1.4.0)
+  - JTAppleCalendar (7.1.7)
+  - NVActivityIndicatorView (4.7.0):
+    - NVActivityIndicatorView/Presenter (= 4.7.0)
+  - NVActivityIndicatorView/Presenter (4.7.0)
+  - ObjectMapper (3.5.0)
+  - OneSignal (2.10.0)
+  - RQShineLabel (1.0.0)
   - SAConfettiView (0.1.8)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - SwiftyJSON (4.1.0)
+  - SDWebImage (4.4.7):
+    - SDWebImage/Core (= 4.4.7)
+  - SDWebImage/Core (4.4.7)
+  - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
   - Alamofire
   - AlamofireObjectMapper (~> 5.0)
   - AnimatedCollectionViewLayout
+  - EstimoteProximitySDK
   - Firebase/Core
   - Firebase/Database
   - Firebase/Storage
@@ -92,7 +88,6 @@ DEPENDENCIES:
   - Google/SignIn
   - Hero
   - JTAppleCalendar
-  - LTMorphingLabel
   - NVActivityIndicatorView
   - OneSignal
   - RQShineLabel
@@ -104,6 +99,8 @@ SPEC REPOS:
     - Alamofire
     - AlamofireObjectMapper
     - AnimatedCollectionViewLayout
+    - EstimoteBluetoothScanning
+    - EstimoteProximitySDK
     - Firebase
     - FirebaseAnalytics
     - FirebaseCore
@@ -116,11 +113,9 @@ SPEC REPOS:
     - GoogleAnalytics
     - GoogleSignIn
     - GoogleToolboxForMac
-    - GTMOAuth2
     - GTMSessionFetcher
     - Hero
     - JTAppleCalendar
-    - LTMorphingLabel
     - NVActivityIndicatorView
     - ObjectMapper
     - OneSignal
@@ -130,9 +125,11 @@ SPEC REPOS:
     - SwiftyJSON
 
 SPEC CHECKSUMS:
-  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
-  AnimatedCollectionViewLayout: 504b992a4258eb39d2dd2b2b48e84b4b95860fd7
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  AlamofireObjectMapper: 92b6ce2423a9d159e686f6a1d514a009bf903ddc
+  AnimatedCollectionViewLayout: f2c4e8dda4e3f1678ad6c0b39273a31b19bc935d
+  EstimoteBluetoothScanning: 8aae20369d7d9008deb8429b9c83c11e948bd7be
+  EstimoteProximitySDK: 45d453e37c1ed1c3f36275caef55a6f86677b22b
   Firebase: 4b66b5b59c43edac745b87f0c87e42cdd0279c13
   FirebaseAnalytics: e5fe8486efc01bec33f6bf82e2fa9fce4b124052
   FirebaseCore: 9691ee2ade70c098d7cf92440f4303f16d83ca75
@@ -143,21 +140,19 @@ SPEC CHECKSUMS:
   FlowingMenu: 097789ea7fcec5c94edd58765e00e27b31e62cf5
   Google: 98da4b1a60ed0beb80a290387a28333406a1eb90
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleSignIn: d9ef55b10f0aa401a5de2747f59b725e4b9732ac
-  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
-  GTMOAuth2: c77fe325e4acd453837e72d91e3b5f13116857b2
-  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
-  Hero: 33dadf2cd1c98af71e213dcbc2902e6e03622a4e
-  JTAppleCalendar: 2d4f974f9f3c8b4964d51ca1f6e004883c031fbe
-  LTMorphingLabel: 9d1c38bd602fe505f264d3e9fdb780995142f275
-  NVActivityIndicatorView: 963f62bf9f993fcf23218e55958e5b1761b9504c
-  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
-  OneSignal: 42dae269c7eca517aee34963820e1eb922390031
-  RQShineLabel: ae66343d6c779a8efdf61241734ddcec5d79d351
+  GoogleSignIn: 7ff245e1a7b26d379099d3243a562f5747e23d39
+  GoogleToolboxForMac: b3553629623a3b1bff17f555e736cd5a6d95ad55
+  GTMSessionFetcher: 61bb0f61a4cb560030f1222021178008a5727a23
+  Hero: bac92350d7201a1a940003e0767c7b52ce7c99a1
+  JTAppleCalendar: 96da4d8388fa6dc82d6a60d41ef36a015e167e2f
+  NVActivityIndicatorView: b19ddab2576f805cbe0fb2306cba3476e09a1dea
+  ObjectMapper: 078b564ed25c6578b62588e306bf1da3924636d4
+  OneSignal: 0f5ff711d9f25da54885e4ab06ef0abc221a46ef
+  RQShineLabel: 17457abf7250d1220ddd99bc61323d57563344cd
   SAConfettiView: c87031a2280659261b730fce3669fb10e73636ee
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
+  SDWebImage: c10d14a8883ebd89664f02a422006f66a85c0c5d
+  SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 698ba5562d2b48dd0a404e3b273464dbf7e0b942
+PODFILE CHECKSUM: c4fa39662871c0349ad58315e9ad3031830e812d
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.7.1

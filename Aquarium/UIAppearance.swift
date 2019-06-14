@@ -36,6 +36,7 @@ func gradient (_ view: UIView) {
     gradientLayer.colors = [aquaLight.cgColor as CGColor, aquaMedium.cgColor as CGColor, aquaDark.cgColor as CGColor]
     
     gradientLayer.locations = [0.0, 0.50, 0.8]
+   // gradientLayer.start
     
     view.layer.insertSublayer(gradientLayer, at: 0)
     

@@ -20,7 +20,6 @@
 		061549021EF1D066004406CF /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549011EF1D066004406CF /* SystemConfiguration.framework */; };
 		061549041EF1D06D004406CF /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549031EF1D06D004406CF /* MobileCoreServices.framework */; };
 		061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549051EF1D075004406CF /* CoreLocation.framework */; };
-		061549081EF1D18C004406CF /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 061549071EF1D18C004406CF /* Pods.framework */; };
 		061549251EF1DF01004406CF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 061549241EF1DF01004406CF /* Main.storyboard */; };
 		061549271EF1E38F004406CF /* GoogleService-Info-2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549261EF1E38F004406CF /* GoogleService-Info-2.plist */; };
 		061549291EF1E62B004406CF /* Aquarium.plist in Resources */ = {isa = PBXBuildFile; fileRef = 061549281EF1E62B004406CF /* Aquarium.plist */; };
@@ -45,6 +44,7 @@
 		0660F0451EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */; };
 		0660F0471EA00AB700D14C3D /* TheaterShows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0461EA00AB700D14C3D /* TheaterShows.swift */; };
 		0660F0491EA00B1D00D14C3D /* TheaterShowsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */; };
+		0666F09A213F28C90059EFB4 /* AnimalClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 0666F099213F28C80059EFB4 /* AnimalClassifier.mlmodel */; };
 		06810C261F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06810C251F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift */; };
 		06810C281F2D301500BE9211 /* MenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06810C271F2D301500BE9211 /* MenuCollectionViewCell.swift */; };
 		068BC2B5210905DF00C8D628 /* AnimalScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 068BC2B4210905DF00C8D628 /* AnimalScannerViewController.swift */; };
@@ -57,7 +57,6 @@
 		06A0C2DF1E8714930012A1DD /* AnimalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A0C2DE1E8714930012A1DD /* AnimalController.swift */; };
 		06A3E12D1F0EB8D800A76084 /* AnimalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */; };
 		06AA8B41209100D700F07D18 /* DeviceCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AA8B40209100D700F07D18 /* DeviceCheck.swift */; };
-		06B24F8F2110EED1009294DB /* AnimalClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 06B24F8E2110EED0009294DB /* AnimalClassifier.mlmodel */; };
 		06B325251DF7383500A53057 /* BeaconInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06B325241DF7383500A53057 /* BeaconInfoViewController.swift */; };
 		06C4BB8A1E78882B005A96CE /* NotificationDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C4BB891E78882B005A96CE /* NotificationDelegate.swift */; };
 		06C6EEF221151FB900A20446 /* GalleryPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C6EEF121151FB900A20446 /* GalleryPhotoViewController.swift */; };
@@ -126,6 +125,19 @@
 		AAEE47681D3CAD8500E0C537 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEE47671D3CAD8500E0C537 /* NotificationController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		06B39D09214AE724005FFE11 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		06047F48208FED6F002C4DB4 /* libc++abi.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++abi.tbd"; path = "usr/lib/libc++abi.tbd"; sourceTree = SDKROOT; };
 		06047F4A208FEE6E002C4DB4 /* FlowingMenu.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = FlowingMenu.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,6 +179,7 @@
 		0660F0441EA00A5F00D14C3D /* TheaterTimesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterTimesTableViewCell.swift; path = Aquarium/TheaterTimesTableViewCell.swift; sourceTree = "<group>"; };
 		0660F0461EA00AB700D14C3D /* TheaterShows.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShows.swift; path = Aquarium/TheaterShows.swift; sourceTree = "<group>"; };
 		0660F0481EA00B1D00D14C3D /* TheaterShowsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TheaterShowsController.swift; path = Aquarium/TheaterShowsController.swift; sourceTree = "<group>"; };
+		0666F099213F28C80059EFB4 /* AnimalClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AnimalClassifier.mlmodel; sourceTree = "<group>"; };
 		06810C251F2D2F5D00BE9211 /* CafeMenuCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CafeMenuCollectionViewController.swift; path = Aquarium/CafeMenuCollectionViewController.swift; sourceTree = "<group>"; };
 		06810C271F2D301500BE9211 /* MenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MenuCollectionViewCell.swift; path = Aquarium/MenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		068BC2B4210905DF00C8D628 /* AnimalScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalScannerViewController.swift; sourceTree = "<group>"; };
@@ -179,13 +192,13 @@
 		06A0C2DE1E8714930012A1DD /* AnimalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalController.swift; sourceTree = "<group>"; };
 		06A3E12C1F0EB8D800A76084 /* AnimalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimalNotificationsViewController.swift; sourceTree = "<group>"; };
 		06AA8B40209100D700F07D18 /* DeviceCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceCheck.swift; sourceTree = "<group>"; };
-		06B24F8E2110EED0009294DB /* AnimalClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = AnimalClassifier.mlmodel; sourceTree = "<group>"; };
 		06B325241DF7383500A53057 /* BeaconInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeaconInfoViewController.swift; sourceTree = "<group>"; };
 		06C4BB891E78882B005A96CE /* NotificationDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationDelegate.swift; sourceTree = "<group>"; };
 		06C6EEF121151FB900A20446 /* GalleryPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryPhotoViewController.swift; sourceTree = "<group>"; };
 		06CCC72F20C716B90014AAAF /* ARAnimalsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARAnimalsController.swift; sourceTree = "<group>"; };
 		06CFC3B42112733800DA3E86 /* GalleryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionViewCell.swift; sourceTree = "<group>"; };
 		06D9374F1F22ADB1005D7D63 /* OpenURLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenURLExtension.swift; sourceTree = "<group>"; };
+		06E351F3214AD5810008F64D /* EstimoteProximitySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EstimoteProximitySDK.framework; path = "../../../Downloads/iOS-Proximity-SDK-1.1.0-swift4.2/EstimoteProximitySDK/EstimoteProximitySDK.framework"; sourceTree = "<group>"; };
 		06E7D18020C9FAE4002B180B /* TropicalFish01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TropicalFish01.jpg; sourceTree = "<group>"; };
 		06E8527720C5F59800CCF8BF /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		06E8527B20C5F81100CCF8BF /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -261,7 +274,6 @@
 			files = (
 				06047F4B208FEE6E002C4DB4 /* FlowingMenu.framework in Frameworks */,
 				06047F49208FED6F002C4DB4 /* libc++abi.tbd in Frameworks */,
-				061549081EF1D18C004406CF /* Pods.framework in Frameworks */,
 				061549061EF1D075004406CF /* CoreLocation.framework in Frameworks */,
 				061549041EF1D06D004406CF /* MobileCoreServices.framework in Frameworks */,
 				061549021EF1D066004406CF /* SystemConfiguration.framework in Frameworks */,
@@ -405,7 +417,7 @@
 		AA544C931D0BB66C00DC1725 /* Aquarium */ = {
 			isa = PBXGroup;
 			children = (
-				06B24F8E2110EED0009294DB /* AnimalClassifier.mlmodel */,
+				0666F099213F28C80059EFB4 /* AnimalClassifier.mlmodel */,
 				063041FB20C0AFE6009DF30E /* Cafe */,
 				061549071EF1D18C004406CF /* Pods.framework */,
 				AA9EE37B1DD25F94007D1E08 /* Aquarium.entitlements */,
@@ -512,6 +524,7 @@
 		EA94B41FA31D61D281B2BE4B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06E351F3214AD5810008F64D /* EstimoteProximitySDK.framework */,
 				06047F4A208FEE6E002C4DB4 /* FlowingMenu.framework */,
 				06047F48208FED6F002C4DB4 /* libc++abi.tbd */,
 				0618981D1F2A6D9D00882789 /* SAConfettiView.framework */,
@@ -542,6 +555,7 @@
 				AA544C8F1D0BB66B00DC1725 /* Resources */,
 				46E6E5229D403232BA3BCF95 /* [CP] Embed Pods Frameworks */,
 				64C321959809DAF444FA9955 /* [CP] Copy Pods Resources */,
+				06B39D09214AE724005FFE11 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -582,6 +596,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -659,17 +674,17 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/AnimatedCollectionViewLayout/AnimatedCollectionViewLayout.framework",
+				"${PODS_ROOT}/EstimoteBluetoothScanning/EstimoteBluetoothScanning/EstimoteBluetoothScanning.framework",
+				"${PODS_ROOT}/EstimoteProximitySDK/EstimoteProximitySDK/EstimoteProximitySDK.framework",
 				"${BUILT_PRODUCTS_DIR}/FlowingMenu/FlowingMenu.framework",
-				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Hero/Hero.framework",
 				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
-				"${BUILT_PRODUCTS_DIR}/LTMorphingLabel/LTMorphingLabel.framework",
 				"${BUILT_PRODUCTS_DIR}/NVActivityIndicatorView/NVActivityIndicatorView.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/RQShineLabel/RQShineLabel.framework",
@@ -682,13 +697,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AnimatedCollectionViewLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EstimoteBluetoothScanning.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/EstimoteProximitySDK.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlowingMenu.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Hero.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LTMorphingLabel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NVActivityIndicatorView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RQShineLabel.framework",
@@ -698,7 +713,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Aquarium/Pods-Aquarium-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		64C321959809DAF444FA9955 /* [CP] Copy Pods Resources */ = {
@@ -707,7 +722,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Aquarium/Pods-Aquarium-resources.sh",
 				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -716,7 +731,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Aquarium/Pods-Aquarium-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Aquarium/Pods-Aquarium-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -731,7 +746,6 @@
 				069A216E1EB68F77006130C1 /* CustomTabBarItems.swift in Sources */,
 				AA55B5821DDF759600CC2336 /* MainExhibitTableViewController.swift in Sources */,
 				069A216C1EB68F77006130C1 /* CustomTabBar.swift in Sources */,
-				06B24F8F2110EED1009294DB /* AnimalClassifier.mlmodel in Sources */,
 				068BC2B5210905DF00C8D628 /* AnimalScannerViewController.swift in Sources */,
 				AA353ACE1DCE670000AD5490 /* Annotations.swift in Sources */,
 				069A216D1EB68F77006130C1 /* CustomTabBarAnimatedTransition.swift in Sources */,
@@ -790,6 +804,7 @@
 				AA6F4E641D3868F900FA20F7 /* Animations.swift in Sources */,
 				06CFC3B52112733800DA3E86 /* GalleryCollectionViewCell.swift in Sources */,
 				06AA8B41209100D700F07D18 /* DeviceCheck.swift in Sources */,
+				0666F09A213F28C90059EFB4 /* AnimalClassifier.mlmodel in Sources */,
 				0633A3691EFF16C400522FAC /* QRExhibits.swift in Sources */,
 				AA7CE6FF1DDB91A600EF4669 /* Background.swift in Sources */,
 				06F298081EF470D800856A93 /* FirebaseController.swift in Sources */,
@@ -937,9 +952,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aquarium",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Aquarium/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -952,7 +968,7 @@
 					"\"SystemConfiguration\"",
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrestsyrett.Aquarium;
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -975,9 +991,10 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Aquarium",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Aquarium/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -990,7 +1007,7 @@
 					"\"SystemConfiguration\"",
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.forrest.Aquarium;
+				PRODUCT_BUNDLE_IDENTIFIER = com.forrestsyrett.Aquarium;
 				PRODUCT_NAME = Aquarium;
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
