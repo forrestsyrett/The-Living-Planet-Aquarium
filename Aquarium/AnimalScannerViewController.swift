@@ -72,7 +72,12 @@ class AnimalScannerViewController: UIViewController, AVCaptureVideoDataOutputSam
     
     override func viewWillAppear(_ animated: Bool) {
         IndexController.shared.index = (self.tabBarController?.selectedIndex)!
+        captureSession.startRunning()
         self.loadingView.alpha = 0.0
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        captureSession.stopRunning()
     }
     
     

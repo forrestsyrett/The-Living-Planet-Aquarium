@@ -30,8 +30,6 @@ enum Animals {
         var animalImage: UIImage
         var gallery: String
         var status: String
-        
-        
     }
     
     var info: Info {

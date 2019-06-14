@@ -15,6 +15,7 @@
 @property (nonatomic, strong) NSMutableArray *characterAnimationDelays;
 @property (strong, nonatomic) CADisplayLink *displaylink;
 @property (assign, nonatomic) CFTimeInterval beginTime;
+@property (assign, nonatomic) CFTimeInterval endTime;
 @property (assign, nonatomic, getter = isFadedOut) BOOL fadedOut;
 @property (nonatomic, copy) void (^completion)();
 
@@ -54,6 +55,8 @@
   }
   
   [self commonInit];
+  
+  [self setText:self.text];
   
   return self;
 }
@@ -100,31 +103,59 @@
 
 - (void)shine
 {
-  [self shineWithCompletion:NULL];
+  [self shineAnimated:YES completion:NULL];
 }
 
-- (void)shineWithCompletion:(void (^)())completion
-{
-  
-  if (!self.isShining && self.isFadedOut) {
-    self.completion = completion;
-    self.fadedOut = NO;
-    [self startAnimation];
-  }
+- (void)shineAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    if (self.isFadedOut) {
+        if (animated) {
+            if (!self.isShining) {
+                self.completion = completion;
+                self.fadedOut = NO;
+                [self startAnimationWithDuration:self.shineDuration];
+            }
+            
+        } else {
+            self.fadedOut = NO;
+            self.displaylink.paused = YES;
+            
+            UIColor *color = [self.textColor colorWithAlphaComponent:1];
+            [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.attributedString.string.length)];
+            [super setAttributedText:self.attributedString];
+            if (completion) {
+                completion();
+            }
+        }
+    }
 }
 
 - (void)fadeOut
 {
-  [self fadeOutWithCompletion:NULL];
+  [self fadeOutAnimated:YES completion:NULL];
 }
 
-- (void)fadeOutWithCompletion:(void (^)())completion
-{
-  if (!self.isShining && !self.isFadedOut) {
-    self.completion = completion;
-    self.fadedOut = YES;
-    [self startAnimation];
-  }
+- (void)fadeOutAnimated:(BOOL)animated completion:(void (^)(void))completion {
+    
+    if (!self.isFadedOut) {
+        if (animated) {
+            if (!self.isShining) {
+                self.completion = completion;
+                self.fadedOut = YES;
+                [self startAnimationWithDuration:self.fadeoutDuration];
+            }
+            
+        } else {
+            self.fadedOut = YES;
+            self.displaylink.paused = YES;
+            
+            UIColor *color = [self.textColor colorWithAlphaComponent:0];
+            [self.attributedString addAttribute:NSForegroundColorAttributeName value:color range:NSMakeRange(0, self.attributedString.string.length)];
+            [super setAttributedText:self.attributedString];
+            if (completion) {
+                completion();
+            }
+        }
+    }
 }
 
 - (BOOL)isShining
@@ -140,9 +171,10 @@
 
 #pragma mark - Private methods
 
-- (void)startAnimation
+- (void)startAnimationWithDuration:(CFTimeInterval)duration
 {
   self.beginTime = CACurrentMediaTime();
+  self.endTime = self.beginTime + self.shineDuration;
   self.displaylink.paused = NO;
 }
 
@@ -150,6 +182,9 @@
 {
   CFTimeInterval now = CACurrentMediaTime();
   for (NSUInteger i = 0; i < self.attributedString.length; i ++) {
+    if ([[NSCharacterSet whitespaceAndNewlineCharacterSet] characterIsMember:[self.attributedString.string characterAtIndex:i]]) {
+        continue;
+    }
     [self.attributedString enumerateAttribute:NSForegroundColorAttributeName
                                       inRange:NSMakeRange(i, 1)
                                       options:NSAttributedStringEnumerationLongestEffectiveRangeNotRequired
@@ -171,7 +206,7 @@
                                    }];
   }
   [super setAttributedText:self.attributedString];
-  if (now > self.beginTime + self.shineDuration) {
+  if (now > self.endTime) {
     self.displaylink.paused = YES;
     if (self.completion) {
       self.completion();
